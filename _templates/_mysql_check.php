@@ -1,8 +1,9 @@
 <?php
-$server = "mariadb.selfmade.ninja";
+
+$server = "mysql.selfmade.ninja";
 $username = "Henry";
-$password = "";
-$dbname = "Henry_logintest";
+$password = "Syphn0tch#098";
+$dbname = "Henry_testdb";
 
 // Create connection
 $conn = new mysqli($server, $username, $password, $dbname);
@@ -13,30 +14,19 @@ if ($conn->connect_error) {
 }
 echo "Connected successfully<br>";
 
-// Create database
-$sql = "CREATE DATABASE Henry_myDB";
-if ($conn->query($sql) === TRUE) {
-  echo "Database created successfully";
-} else {
-  echo "Error creating database: " . $conn->error;
+$sql = "INSERT INTO `auth` (`username`, `password`, `email`, `phone`, `active`, `blocked`)
+VALUES ('fdg', 'dfg', 'ds@sdds.sd', '3234567890', '0', '0');"; 
+
+// Check insertion
+if ($conn->connect_error) {
+  die("Data not inserted: " . $conn->connect_error);
 }
+echo "Successfully data inserted<br>";
+
+$result = $conn->query($sql);
+
 
 $conn->close();
-
-// $sql = "SELECT userid, name, email, password FROM login_test"; 
-
-// $result = $conn->query($sql);
-
-// if ($result->num_rows > 0){
-//   while($row = $result->fetch_assoc()){
-//     echo "Data" . $row["user_id"]. " - Name: " . 
-//     $row["name"]. " - Email: " . $row["email"]. " - Password: " . $row["password"]. "<br>";
-//   }
-// } else {
-//   echo "0 results";
-// }
-
-// $conn->close();
 
 
 // Create database

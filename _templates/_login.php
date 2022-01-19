@@ -21,31 +21,32 @@ if ($result) {
 <?php
 } else {
 ?>
-
-<form method="post" action="">
-    <img class="logo" src="assets/brand/sna-logo-dark.png" alt=""><br><br>
-    <div class="border-boxer">
-        <h3 class="h4 mb-3">Login</h3>
-        <div class=" form-floating mb-3">
-            <input name="email_address" type="email" class="form-control" id="floatingInput"
-                placeholder="Email address">
-            <label for="floatingInput">Email address</label>
-        </div>
-        <div class="form-floating mb-2">
-            <input name="password" type="password" class="form-control" id="floatingPassword" placeholder="password">
-            <label for="floatingPassword">Password</label>
-        </div>
-        <div class="checkbox">
-            <label>
-                <input type="checkbox" value="remember-me"> Remember me
-            </label>
-        </div><br>
-        <button class="w-100 btn btn btn-primary hvr-float" type="submit">Log in</button>
-        <br><br>
-        <!-- <p>Don't have an account yet?</p> -->
-        <button class="w-100 btn btn btn-secondary hvr-float" type="submit">Sign in</button>
+<main>
+    <form method="post" action="">
+        <img class="logo" src="assets/brand/sna-logo-dark.png" alt=""><br><br>
+        <div class="border-boxer">
+            <div class="form-group mb-3">
+                <label class="mb-2">Username or email</label>
+                <input type="email" class="form-control">
+            </div>
+            <div class="form-group mb-3">
+                <label class="mb-2">Password</label>
+                <input type="password" class="form-control">
+            </div>
+            <div class="row">
+                <label class="col-sm-6">
+                    <input type="checkbox" class="form-check-input" value="0">
+                    <span>Remember me</span>
+                </label>
+                <div class="col-sm-6">
+                    <a href=""> Forgot password?</a>
+                </div>
+            </div>
+            <br>
+            <button class="w-100 btn btn btn-primary hvr-float" type="submit">Log in</button>
+    </form>
     </div>
-</form>
 
+</main>
 <?php
 }

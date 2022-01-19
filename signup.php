@@ -10,7 +10,7 @@ include 'libs/load.php';
 <body>
     <main>
         <?
-        load_template('_login');
+        load_template('_signup');
         ?>
     </main>
     <script src="assets/dist/js/bootstrap.bundle.min.js"></script>
