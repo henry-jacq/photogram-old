@@ -2,9 +2,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Login">
-    <meta name="author" content="Selfmade Ninja Academy">
+    <meta name="Henry" content="Selfmade Ninja Academy">
     <meta name="generator" content="Hugo 0.88.1">
-    <title>Login</title>
+    <title>Sign in/up · SNA</title>
 
     <!-- Bootstrap core CSS -->
     <link href="assets/dist/css/bootstrap.min.css" rel="stylesheet">

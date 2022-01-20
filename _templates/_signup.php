@@ -22,7 +22,7 @@ if(isset($_POST['username']) and isset($_POST['password']) and isset($_POST['ema
         <div class="jumbotron">
             <div class="container">
                 <h1 class="display-4">Sign up Success</h1>
-                <p class="lead">Now you can login from<a href="/login-page/login.php">here</a>.</p>
+                <p class="lead">Now you can login from <a href="/login-page/login.php">here</a>.</p>
             </div>
         </div>
     </main>

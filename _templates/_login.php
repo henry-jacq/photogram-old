@@ -1,37 +1,30 @@
 <?php
 
-$username = $_POST['email_address'];
-$password = $_POST['password'];
+$login = false;
 
-$result = validate_credentials($username, $password);
+if(isset($_POST['username']) and isset($_POST['password'])){
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+    $error = login($username, $password);
+    $login = true;
+}
 
 if ($result) {
-
-?>
-
-<main class="container">
-    <div class="jumbotron">
-        <div class="container">
-            <h1 class="display-4">Login success</h1>
-            <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
-        </div>
-    </div>
-</main>
-
-<?php
+    load_main_page('index');
 } else {
 ?>
 <main>
-    <form method="post" action="">
+    <form method="post" action="/login-page/test.php">
         <img class="logo" src="assets/brand/sna-logo-dark.png" alt=""><br><br>
         <div class="border-boxer">
-            <div class="form-group mb-3">
+            <h4 class="blockquote">Login</h4>
+            <div class="form-group mb-1">
                 <label class="mb-2">Username or email</label>
-                <input type="email" class="form-control">
+                <input name="username" type="text" class="form-control">
             </div>
-            <div class="form-group mb-3">
+            <div class="form-group mb-2">
                 <label class="mb-2">Password</label>
-                <input type="password" class="form-control">
+                <input name="password" type="password" class="form-control">
             </div>
             <div class="row">
                 <label class="col-sm-6">
