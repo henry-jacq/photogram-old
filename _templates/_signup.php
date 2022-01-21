@@ -2,13 +2,13 @@
 
 $signup = false;
 
-// This set of code will only run if the user has submitted the form
+// This set of code will only run if the user has to properly submit the form
 if(isset($_POST['username']) and isset($_POST['password']) and isset($_POST['email_address']) and isset($_POST['phone'])){
     $username = $_POST['username'];
     $password = $_POST['password'];
     $email = $_POST['email_address'];
     $phone = $_POST['phone'];
-    $error = signup($username, $password, $email, $phone);
+    $result = signup($username, $password, $email, $phone);
     $signup = true;
 }
 
@@ -17,7 +17,7 @@ if(isset($_POST['username']) and isset($_POST['password']) and isset($_POST['ema
 <main>
     <?php
     if ($signup) {
-        if (!$error) {
+        if ($result) {
             ?>
     <main class="container">
         <div class="jumbotron">
@@ -33,7 +33,7 @@ if(isset($_POST['username']) and isset($_POST['password']) and isset($_POST['ema
         <div class="jumbotron">
             <div class="container">
                 <h1 class="display-4">Sign up Failed</h1>
-                <p class="lead">Something went wrong. <?=$error?></p>
+                <p class="lead">Something went wrong.</p>
             </div>
         </div>
     </main>

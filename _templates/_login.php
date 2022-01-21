@@ -6,17 +6,16 @@ $login = false;
 if(isset($_POST['username']) and isset($_POST['password'])){
     $username = $_POST['username'];
     $password = $_POST['password'];
-    $result = login($username, $password);
+    $error = login($username, $password);
     $login = true;
 }
 
 if ($login) {
-    if ($result) { ?>
+    if (!$error) { ?>
 <main class="container">
     <div class="jumbotron">
         <div class="container">
             <h1 class="display-4">Login Success</h1>
-            <p class="lead">Now you can login from <a href="">here</a>.</p>
         </div>
     </div>
 </main>
@@ -33,6 +32,8 @@ if ($login) {
             <strong>Warning!</strong><br> Invalid username or password.
             <span type="button" class="close" data-dismiss="alert">
                 <ins class="mx-5"></ins><span>&times;</span>
+            </span>
+            <?=$error?>
         </div>
         <?load_template('_formin');?>
     </form>
