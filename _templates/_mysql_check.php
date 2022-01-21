@@ -2,7 +2,7 @@
 
 $server = "mysql.selfmade.ninja";
 $username = "Henry";
-$password = "Syphn0tch#098";
+$password = "";
 $dbname = "Henry_testdb";
 
 // Create connection
