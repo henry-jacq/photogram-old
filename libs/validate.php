@@ -3,7 +3,7 @@
 // connection information for the database
 $server = "mysql.selfmade.ninja";
 $serv_user = "Henry";
-$serv_pass = "Syphn0tch#098";
+$serv_pass = "";
 $dbname = "Henry_testdb";
 $table = "auth";
 
