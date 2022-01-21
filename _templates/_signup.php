@@ -2,6 +2,7 @@
 
 $signup = false;
 
+// This set of code will only run if the user has submitted the form
 if(isset($_POST['username']) and isset($_POST['password']) and isset($_POST['email_address']) and isset($_POST['phone'])){
     $username = $_POST['username'];
     $password = $_POST['password'];
@@ -40,27 +41,7 @@ if(isset($_POST['username']) and isset($_POST['password']) and isset($_POST['ema
     } else {?>
     <form method="post" action="signup.php">
         <img class="logo" src="assets/brand/sna-logo-dark.png" alt=""><br><br>
-        <div class="border-boxer">
-            <h4 class="blockquote">Sign up</h4>
-            <div class="form-group mb-1">
-                <label class="label-bold mb-2" for="new_user_username">Username</label>
-                <input name="username" class="form-control" type="text">
-            </div>
-            <div class="form-group mb-1">
-                <label class="label-bold mb-1" for="new_user_password">Password</label>
-                <input name="password" class="form-control" type="password">
-            </div>
-            <div class="form-group mb-1">
-                <label class="label-bold mb-2" for="new_user_email">Email</label>
-                <input name="email_address" class="form-control" type="text">
-            </div>
-            <div class="form-group mb-1">
-                <label class="label-bold mb-2" for="new_user_number">Phone Number</label>
-                <input name="phone" class="form-control" type="text">
-            </div>
-            <br>
-            <button class="w-100 btn btn btn-primary hvr-float" type="submit">Sign up</button>
-        </div>
+        <?load_template('_formup');?>
     </form>
 </main>
 <?}?>
