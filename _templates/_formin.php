@@ -20,4 +20,6 @@
     </div>
     <br>
     <button class="w-100 btn btn btn-primary hvr-float" type="submit">Log in</button>
+    <br><br>
+    <button class="w-100 btn btn btn-secondary hvr-float" type="submit" formaction="signup.php">Sign up</button>
 </div>
