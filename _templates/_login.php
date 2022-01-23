@@ -3,19 +3,20 @@
 $login = false;
 
 // This set of code will only run if the user has submitted the form
-if(isset($_POST['username']) and isset($_POST['password'])){
+if(isset($_POST['username']) and !empty($_POST['username']) and isset($_POST['password']) and !empty($_POST['password'])) {
     $username = $_POST['username'];
     $password = $_POST['password'];
-    $error = login($username, $password);
+    $result = login($username, $password);
     $login = true;
 }
 
 if ($login) {
-    if (!$error) { ?>
+    if ($result) { ?>
 <main class="container">
     <div class="jumbotron">
         <div class="container">
             <h1 class="display-4">Login Success</h1>
+            <p class="lead">Enjoy :-)</p>
         </div>
     </div>
 </main>
@@ -32,8 +33,6 @@ if ($login) {
             <strong>Warning!</strong><br> Invalid username or password.
             <span type="button" class="close" data-dismiss="alert">
                 <ins class="mx-5"></ins><span>&times;</span>
-            </span>
-            <?=$error?>
         </div>
         <?load_template('_formin');?>
     </form>

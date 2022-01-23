@@ -60,5 +60,6 @@ function login($username, $password){
     } else {
         return false;
     }
+
     $conn->close();
 }

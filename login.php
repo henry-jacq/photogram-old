@@ -1,5 +1,4 @@
 <?php
-// include needed files
 include 'libs/load.php';
 include 'libs/validate.php';
 ?>

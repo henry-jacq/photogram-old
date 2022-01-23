@@ -10,7 +10,7 @@
     </div>
     <div class="form-group mb-1">
         <label class="label-bold mb-2" for="new_user_email">Email</label>
-        <input name="email_address" class="form-control" type="email">
+        <input name="email_address" class="form-control" type="text">
     </div>
     <div class="form-group mb-1">
         <label class="label-bold mb-2" for="new_user_number">Phone Number</label>
