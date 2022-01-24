@@ -43,7 +43,7 @@ if ($result) {
                 </div>
             </div>
             <br>
-            <button class="w-100 btn btn btn-primary hvr-float" type="submit">Log in</button>
+            <button class="w-100 btn btn btn-primary hvr-float" type="submit">Login</button>
     </form>
     </div>
 

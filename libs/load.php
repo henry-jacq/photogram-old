@@ -16,9 +16,9 @@ function validate_credentials($username, $password)
 
 function signup($username, $password, $email, $phone){
     $server = "mysql.selfmade.ninja";
-    $serv_user = "Henry";
+    $serv_user = "";
     $serv_pass = "";
-    $dbname = "Henry_testdb";
+    $dbname = "";
 
     // Create connection
     $conn = new mysqli($server, $serv_user, $serv_pass, $dbname);
