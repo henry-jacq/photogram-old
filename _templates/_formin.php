@@ -2,15 +2,15 @@
     <h4 class="blockquote">Login</h4>
     <div class="form-group mb-1">
         <label class="mb-2">Username or email</label>
-        <input name="username" type="text" class="form-control">
+        <input name="username" type="text" class="form-control" autofocus required>
     </div>
     <div class="form-group mb-2">
         <label class="mb-2">Password</label>
-        <input name="password" type="password" class="form-control">
+        <input name="password" type="password" class="form-control" autofocus required>
     </div>
     <div class="row">
         <label class="col-sm-6">
-            <input type="checkbox" class="form-check-input" value="0">
+            <input type="checkbox" class="form-check-input">
             <span>Remember me</span>
         </label>
         <div class="col-sm-6">
