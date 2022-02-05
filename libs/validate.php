@@ -1,6 +1,5 @@
 <?
-
-// connection information for the database
+// connection information to connect the database
 $server = "mysql.selfmade.ninja";
 $serv_user = "Henry";
 $serv_pass = "";
