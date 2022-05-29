@@ -1,17 +1,17 @@
 <?
-// connection information to connect the database
+// connection information to connect database
 $server = "mysql.selfmade.ninja";
-$serv_user = "Henry";
-$serv_pass = "";
+$db_user = "Henry";
+$db_pass = "pvoh-oXyg-vtyP";
 $dbname = "Henry_testdb";
 $table = "auth";
 
 // Signup function
 function signup($username, $password, $email, $phone){
-    global $server, $serv_user, $serv_pass, $dbname, $table;
+    global $server, $db_user, $db_pass, $dbname, $table;
 
     // To establish connection to the mysql database
-    $conn = mysqli_connect($server, $serv_user, $serv_pass, $dbname);
+    $conn = mysqli_connect($server, $db_user, $db_pass, $dbname);
 
     // Check if the connection available or not
     if ($conn->connect_error) {
@@ -22,7 +22,7 @@ function signup($username, $password, $email, $phone){
     $sql = "INSERT INTO `$table` (`username`, `password`, `email`, `phone`, `active`, `blocked`)
     VALUES ('$username', '$password', '$email', '$phone', '0', '1');";
     
-    // Sending the query to the database and checking if it is true or false 
+    // Sending the query to the database and checking if it is true or false
     if($conn->query($sql) === true) {
         $error = false;
     } else {
@@ -36,10 +36,10 @@ function signup($username, $password, $email, $phone){
 
 // login function
 function login($username, $password){
-    global $server, $serv_user, $serv_pass, $dbname, $table;
+    global $server, $db_user, $db_pass, $dbname, $table;
 
     // To establish connection to the mysql database
-    $conn = mysqli_connect($server, $serv_user, $serv_pass, $dbname) or die("Connection failed: " . $conn->connect_error);
+    $conn = mysqli_connect($server, $db_user, $db_pass, $dbname) or die("Connection failed: " . $conn->connect_error);
     
     // If connection fails, display error message
     if ($conn->connect_error) {
