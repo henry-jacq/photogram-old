@@ -6,7 +6,7 @@ $login = false;
 if(isset($_POST['username']) and !empty($_POST['username']) and isset($_POST['password']) and !empty($_POST['password'])) {
     $username = $_POST['username'];
     $password = $_POST['password'];
-    $result = login($username, $password);
+    $result = User::login($username, $password);
     $login = true;
 }
 

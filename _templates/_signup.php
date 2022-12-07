@@ -8,7 +8,8 @@ if(isset($_POST['username']) and isset($_POST['password']) and isset($_POST['ema
     $password = $_POST['password'];
     $email = $_POST['email_address'];
     $phone = $_POST['phone'];
-    $result = signup($username, $password, $email, $phone);
+    $result = User::signup($username, $password, $email, $phone);
+    var_dump($result);
     $signup = true;
 }
 

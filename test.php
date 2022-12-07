@@ -45,3 +45,9 @@ echo $row['username'];
 $conn->close();
 echo "</pre>";
 */
+
+include_once 'libs/includes/Database.class.php';
+
+$conn = Database::getConnection();
+$conn = Database::getConnection();
+$conn = Database::getConnection();
