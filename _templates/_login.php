@@ -28,13 +28,26 @@ if ($login) {
     <!-- login form -->
     <form method="post" action="">
         <img class="logo" src="assets/brand/sna-logo-dark.png" alt=""><br><br>
-        <!-- This will popup the alert -->
-        <div id="alertbox" class="alert alert-warning fade show" role="alert">
-            <strong>Warning!</strong><br> Invalid username or password.
-            <span type="button" class="close" data-dismiss="alert">
-                <ins class="mx-5"></ins><span>&times;</span>
-        </div>
-        <?load_template('_formin');?>
+        <div class="border-boxer">
+            <div class="form-group mb-3">
+                <label class="mb-2">Username or email</label>
+                <input type="email" class="form-control">
+            </div>
+            <div class="form-group mb-3">
+                <label class="mb-2">Password</label>
+                <input type="password" class="form-control">
+            </div>
+            <div class="row">
+                <label class="col-sm-6">
+                    <input type="checkbox" class="form-check-input" value="0">
+                    <span>Remember me</span>
+                </label>
+                <div class="col-sm-6">
+                    <a href=""> Forgot password?</a>
+                </div>
+            </div>
+            <br>
+            <button class="w-100 btn btn btn-primary hvr-float" type="submit">Login</button>
     </form>
 </main>
 
