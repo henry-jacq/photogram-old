@@ -1,5 +1,6 @@
 <?php
 include 'libs/load.php';
+include 'libs/validate.php';
 ?>
 
 <!doctype html>
