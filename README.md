@@ -1,17 +1,17 @@
-## Photogram
+# Photogram
 
+### To start the project:
 
-To start the project:
+#### Make sure you installed npm
 
 - Change directory
+
 `cd photogram/assets/styles`
 
-- Initialise NPM
-`npm init -y`
+- Install dependencies with NPM
 
-- Install bootstrap with NPM
-`npm install bootstrap`
+`npm install`
 
 - Then compile the **main.scss** using the sass compiler
 
-- The compiled css extension should be named as **main.min.css**
+- The compiled CSS extension should be named as **main.min.css**

@@ -1,13 +1,15 @@
-<?
+<?php
+
 // connection information to connect database
-$server = "mysql.selfmade.ninja";
-$db_user = "Henry";
-$db_pass = "pvoh-oXyg-vtyP";
-$dbname = "Henry_testdb";
-$table = "auth";
+$server = "";
+$db_user = "";
+$db_pass = "";
+$dbname = "";
+$table = "";
 
 // Signup function
-function signup($username, $password, $email, $phone){
+function signup($username, $password, $email, $phone)
+{
     global $server, $db_user, $db_pass, $dbname, $table;
 
     // To establish connection to the mysql database
@@ -21,9 +23,9 @@ function signup($username, $password, $email, $phone){
     // Insert values into the database
     $sql = "INSERT INTO `$table` (`username`, `password`, `email`, `phone`, `active`, `blocked`)
     VALUES ('$username', '$password', '$email', '$phone', '0', '1');";
-    
+
     // Sending the query to the database and checking if it is true or false
-    if($conn->query($sql) === true) {
+    if ($conn->query($sql) === true) {
         $error = false;
     } else {
         // echo "Error: " . $sql . "<br>" . $conn->error;
@@ -35,12 +37,13 @@ function signup($username, $password, $email, $phone){
 }
 
 // login function
-function login($username, $password){
+function login($username, $password)
+{
     global $server, $db_user, $db_pass, $dbname, $table;
 
     // To establish connection to the mysql database
     $conn = mysqli_connect($server, $db_user, $db_pass, $dbname) or die("Connection failed: " . $conn->connect_error);
-    
+
     // If connection fails, display error message
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
@@ -48,13 +51,13 @@ function login($username, $password){
 
     // sql query for checking if the user is available or not
     $sql = "SELECT * FROM `$table` WHERE `username` = '".$username."' AND `password` = '".$password."' LIMIT 1";
-    
+
     // Sending query to database if not print the error message
     $result = mysqli_query($conn, $sql) or die("Query failed: " . mysqli_error($conn));
 
     // Check if no of rows in query from database is equal to 1.
     // If query returns 1 row, then the user is found.
-    if (mysqli_num_rows($result) == 1){
+    if (mysqli_num_rows($result) == 1) {
         return true;
     } else {
         return false;
