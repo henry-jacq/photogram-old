@@ -1,0 +1,17 @@
+// Custom theme colors
+// $primary: #635ca8;
+
+// Import functions and variables
+@import "./node_modules/bootstrap/scss/_functions";
+@import "./node_modules/bootstrap/scss/_variables";
+
+$photogram-theme-colors: (
+    // "glassy": #ffffff19, 
+    // "glassy-light": #ffffff1a,
+    "dracula": #635ca8,
+    "tomato": #ff6347
+);
+
+$theme-colors: map-merge($photogram-theme-colors, $theme-colors);
+
+@import "./node_modules/bootstrap/scss/bootstrap";

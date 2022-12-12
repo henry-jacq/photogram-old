@@ -1,10 +1,10 @@
 <?
 // connection information to connect database
-$server = "";
-$db_user = "";
-$db_pass = "";
-$dbname = "";
-$table = "";
+$server = "mysql.selfmade.ninja";
+$db_user = "Henry";
+$db_pass = "pvoh-oXyg-vtyP";
+$dbname = "Henry_testdb";
+$table = "auth";
 
 // Signup function
 function signup($username, $password, $email, $phone){

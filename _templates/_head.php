@@ -1,15 +1,27 @@
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Login">
-    <meta name="Henry" content="Selfmade Ninja Academy">
-    <meta name="generator" content="Hugo 0.88.1">
-    <title>Sign in/up · SNA</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- SEO -->
+    <meta property="og:image" content="/photogram/assets/brand/photogram-icon.png">
+    <meta property="site_name" content="Photogram">
+    <meta property="og:title" content="Photogram · Gallery of Memories">
+    <meta property="description"
+        content="Create an account or log in to Photogram. Share photos &amp; videos with friends, family and other people you know.">
+    <title>Sign in/up · Photogram</title>
+    <!-- Favicon for photogram -->
+    <link rel="shortcut icon" href="/photogram/assets/brand/favicon.ico">
+    <!-- Custom compiled bootstrap css -->
+    <link href="/photogram/assets/styles/main.min.css" rel="stylesheet">
+    <!-- User specified css -->
+    <!-- <link rel="stylesheet" href="css/style.css"> -->
+    <!-- Custom icons from fontawesome -->
+    <!-- <script src="https://kit.fontawesome.com/cd2caad5e8.js" crossorigin="anonymous"></script> -->
 
-    <link href="assets/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hover.css/2.1.0/css/hover-min.css"
-        integrity="sha512-glciccPoOqr5mfDGmlJ3bpbvomZmFK+5dRARpt62nZnlKwaYZSfFpFIgUoD8ujqBw4TmPa/F3TX28OctJzoLfg=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <?if(file_exists($_SERVER['DOCUMENT_ROOT'.'/login-page/css/'.basename($_SERVER['PHP_SELF'], ".php").".css"]))?>
-    <link rel="stylesheet" href="/login-page/css/<?=basename($_SERVER['PHP_SELF'], ".php");?>.css">
+    <!-- It allows us to load the css for the respective web pages -->
+    <!-- If the required css files exist, it will automatically loaded -->
+    <?if (file_exists($_SERVER['DOCUMENT_ROOT'].'/photogram/css/'.basename($_SERVER['PHP_SELF'], ".php").".css")) {?>
+
+        <link rel="stylesheet" href="/photogram/css/<?=basename($_SERVER['PHP_SELF'], ".php");?>.css">
+    <? } ?>
 </head>

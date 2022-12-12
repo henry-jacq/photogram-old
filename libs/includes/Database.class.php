@@ -9,14 +9,15 @@
  * NOTE: It will not open connections for multiple times, rather it uses the same connection, it's a secure practice to establish connection to database.
  */
 
-class Database{
-
+class Database
+{
     public static $conn = null;
 
     // Establish a new connection or return the existing connection.
-    public static function getConnection(){
-        if(Database::$conn == null){
-            $server = "";
+    public static function getConnection()
+    {
+        if (Database::$conn == null) {
+            $server = "mysql.selfmade.ninja";
             $db_user = "";
             $db_pass = "";
             $dbname = "";

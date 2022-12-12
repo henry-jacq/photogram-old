@@ -9,12 +9,12 @@
  * And try to make the login state persist in session
 */
 
-include 'libs/load.php';
+include '../libs/load.php';
 
 // Username and password exist in database
 $username = "tonystark";
-// $password = "ironman";
-$password = isset($_GET['pass']);
+$password = "ironman";
+// $password = isset($_GET['pass']);
 
 $result = null;
 
