@@ -64,7 +64,7 @@ body {
     background: rgba(255, 255, 255, 0.1);
 }
 
-#alertbox {
+#popup-error {
     background: rgba(255, 255, 255, 0.1);
     border: 1px solid rgba(255, 206, 206, 0.2);
 }
