@@ -17,11 +17,11 @@ class Database
     public static function getConnection()
     {
         if (Database::$conn == null) {
-            $server = "mysql.selfmade.ninja";
-            $db_user = "";
-            $db_pass = "";
-            $dbname = "";
-            $table = "";
+            // Get credentials from config
+            $server = get_config('db_server');
+            $db_user = get_config('db_user');
+            $db_pass = get_config('db_pass');
+            $dbname = get_config('db_name');
 
             // To establish connection to the mysql database
             $connection = new mysqli($server, $db_user, $db_pass, $dbname);
