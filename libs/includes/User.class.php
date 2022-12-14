@@ -4,7 +4,19 @@ class User
 {
     private $conn;
 
-    // Signup Implementation
+    public function __call($name, $arguments)
+    {
+        $property = preg_replace("/[^0-9a-zA-Z]/", "", substr($name, 3));
+        $property = strtolower(preg_replace('/\B([A-Z])/', '_$1', $property));
+        if (substr($name, 0, 3) == "get") {
+            return $this->_get_data($property);
+        } elseif (substr($name, 0, 3) == "set") {
+            return $this->_set_data($property, $arguments[0]);
+        }
+    }
+
+
+    // Signup
     public static function signup($username, $password, $email, $phone)
     {
         // Amount of cost requires to generate a random hash
@@ -35,7 +47,7 @@ class User
         return $error;
     }
 
-    // Login implementation
+    // Login
     public static function login($username, $password)
     {
         // Query to fetch the user data
@@ -51,7 +63,7 @@ class User
             // Checking the row that has the password which is entered by user.
             // Checking the password entered by user is matching with password in database
             if (password_verify($password, $row['password'])) {
-                return $row;
+                return $row['username'];
             } else {
                 return false;
             }
@@ -62,42 +74,45 @@ class User
 
     public function __construct($username)
     {
-        //TODO: Write the code to fetch user data from Database for the given username. If username is not present, throw Exception.
-
         $this->conn = Database::getConnection();
         $this->username = $username;
+        $this->id = null;
         $sql = "SELECT `id` FROM `auth` WHERE `username`= '$username' LIMIT 1";
         $result = $this->conn->query($sql);
         if ($result->num_rows) {
             $row = $result->fetch_assoc();
-            $this->id = $row['id']; //Updating this from database
+            $this->id = $row['id']; // Updating this from database
         } else {
-            throw new Exception("Username doesn't exist");
+            throw new Exception("Username is not available");
         }
     }
 
-    //this function helps to retrieve data from the database
-    private function getData($var)
+    // It is used to retrieve data from the database
+    private function _get_data($var)
     {
+        // Create a connection, if it doesn't exist
         if (!$this->conn) {
             $this->conn = Database::getConnection();
         }
-        $sql = "SELECT `$var` FROM `users` WHERE `id` = '$this->id'";
+        // Query to get data from users table
+        $sql = "SELECT `$var` FROM `users` WHERE `id` = $this->id";
         $result = $this->conn->query($sql);
-        if ($result->num_rows) {
+        if ($result and $result->num_rows == 1) {
             return $result->fetch_assoc()["$var"];
         } else {
             return null;
         }
     }
 
-    //This function helps to  set the data in the database
-    private function setData($var, $data)
+    // It used to set the data in the database
+    private function _set_data($var, $data)
     {
+        // Create a connection, if it doesn't exist
         if (!$this->conn) {
             $this->conn = Database::getConnection();
         }
-        $sql = "UPDATE `users` SET `$var`='$data' WHERE `id`='$this->id';";
+        // Query to update the data in users table
+        $sql = "UPDATE `users` SET `$var`='$data' WHERE `id`=$this->id;";
         if ($this->conn->query($sql)) {
             return true;
         } else {
@@ -105,92 +120,22 @@ class User
         }
     }
 
-    public function authenticate()
-    {
-    }
-
-    public function setBio($bio)
-    {
-        //TODO: Write UPDATE command to change new bio
-        return $this->setData('bio', $bio);
-    }
-
-    public function getBio()
-    {
-        //TODO: Write SELECT command to get the bio.
-        return $this->getData('bio');
-    }
-
-    public function setAvatar($link)
-    {
-        return $this->setData('avatar', $link);
-    }
-
-    public function getAvatar()
-    {
-        return $this->getData('avatar');
-    }
-
-    public function setFirstname($name)
-    {
-        return $this->setData("firstname", $name);
-    }
-
-    public function getFirstname()
-    {
-        return $this->getData('firstname');
-    }
-
-    public function setLastname($name)
-    {
-        return $this->setData("lastname", $name);
-    }
-
-    public function getLastname()
-    {
-        return $this->getData('lastname');
-    }
-
     public function setDob($year, $month, $day)
     {
-        if (checkdate($month, $day, $year)) { //checking data is valid
-            return $this->setData('dob', "$year.$month.$day");
+        // checking data is valid or not
+        if (checkdate($month, $day, $year)) {
+            return $this->_set_data('dob', "$year.$month.$day");
         } else {
             return false;
         }
     }
 
-    public function getDob()
+    public function getUsername()
     {
-        return $this->getData('dob');
+        return $this->username;
     }
 
-    public function setInstagramlink($link)
+    public function authenticate()
     {
-        return $this->setData('instagram', $link);
-    }
-
-    public function getInstagramlink()
-    {
-        return $this->getData('instagram');
-    }
-
-    public function setTwitterlink($link)
-    {
-        return $this->setData('twitter', $link);
-    }
-
-    public function getTwitterlink()
-    {
-        return $this->getData('twitter');
-    }
-    public function setFacebooklink($link)
-    {
-        return $this->setData('facebook', $link);
-    }
-
-    public function getFacebooklink()
-    {
-        return $this->getData('facebook');
     }
 }

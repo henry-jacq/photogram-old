@@ -1,17 +1,8 @@
-<?
-
-// This a fully a PHP based login system
-// Refer - Day-20 Photogram login
-// Create a new gitlab repo named ['photogram']
-// So what to do ?
-/**
- * Make login system and check the hashed password is correct or not
- * And try to make the login state persist in session
-*/
+<?php
 
 include '../libs/load.php';
 
-// Username and password exist in database
+// Username and password already exist in database
 $username = "tonystark";
 $password = "ironman";
 // $password = isset($_GET['pass']);
@@ -19,23 +10,27 @@ $password = "ironman";
 $result = null;
 
 // Destroy the session if key logout is passed in _GET Request
-if(isset($_GET['logout'])){
+if (isset($_GET['logout'])) {
     Session::destroy();
     die("Session destroyed !\n<a href='logintest.php'>Login again</a>");
 }
 
-if(Session::get('is_loggedin')){
-    $userdata = Session::get('session_user');
-    // echo "\n<br>User details: $userdata";
-    // print_r($userdata);
-    print("Welcome back, $userdata[username]");
+if (Session::get('is_loggedin')) {
+    $username = Session::get('session_username');
+    $userobj = new User($username);
+    print("Welcome back, " . $userobj->getFirstname());
+    print("<br>Older Bio: " . $userobj->getBio());
+    $userobj->setBio("I am using arch BTW");
+    print("<br>New Bio: " . $userobj->getBio());
 } else {
     printf("No session found, trying to login now !\n");
     $result = User::login($username, $password);
-    if($result){
-        echo "<br>Success, Logged in as $result[username]";
+
+    if ($result) {
+        $userobj = new User($username);
+        echo "<br>Success, Logged in as ".$userobj->getUsername();
         Session::set('is_loggedin', true);
-        print_r(Session::set('session_user', $result));
+        Session::set('session_username', $result);
     } else {
         echo "Login failed<br>";
     }
