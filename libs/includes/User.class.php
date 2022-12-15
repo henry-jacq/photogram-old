@@ -12,6 +12,9 @@ class User
             return $this->_get_data($property);
         } elseif (substr($name, 0, 3) == "set") {
             return $this->_set_data($property, $arguments[0]);
+        } else {
+            // This for ease of debugging.
+            throw new Exception("User::__call() -> $name, function is unavailable.");
         }
     }
 
@@ -63,6 +66,12 @@ class User
             // Checking the row that has the password which is entered by user.
             // Checking the password entered by user is matching with password in database
             if (password_verify($password, $row['password'])) {
+                /*
+                1. Generate Session Token
+                2. Insert Session Token
+                3. Build session and give session to user.
+                */
+
                 return $row['username'];
             } else {
                 return false;
@@ -72,12 +81,13 @@ class User
         }
     }
 
-    public function __construct($username)
+    // User object can be constructed with either username or userID
+    public function __construct($user_or_id)
     {
         $this->conn = Database::getConnection();
-        $this->username = $username;
+        $this->username = $user_or_id;
         $this->id = null;
-        $sql = "SELECT `id` FROM `auth` WHERE `username`= '$username' LIMIT 1";
+        $sql = "SELECT `id` FROM `auth` WHERE `username`= '$user_or_id' OR `id` = '$user_or_id' LIMIT 1";
         $result = $this->conn->query($sql);
         if ($result->num_rows) {
             $row = $result->fetch_assoc();

@@ -3,6 +3,7 @@
 include_once 'includes/User.class.php';
 include_once 'includes/Database.class.php';
 include_once 'includes/Session.class.php';
+include_once 'includes/UserSession.class.php';
 
 // Error handling
 // error_reporting(E_ALL);
