@@ -36,7 +36,7 @@ class Database
                 return Database::$conn;
             }
         } else {
-            printf("Returning the existing connection...\n");
+            // printf("Returning the existing connection...\n");
             return Database::$conn;
         }
     }

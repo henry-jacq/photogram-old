@@ -144,8 +144,4 @@ class User
     {
         return $this->username;
     }
-
-    public function authenticate()
-    {
-    }
 }
