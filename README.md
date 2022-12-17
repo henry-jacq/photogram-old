@@ -2,16 +2,17 @@
 
 ### To start the project:
 
-#### Make sure you installed npm
+
+> Before starting the project, make sure you install NPM
 
 - Change directory
 
-`cd photogram/assets/styles`
+- `cd photogram/assets/styles`
 
 - Install dependencies with NPM
 
-`npm install`
+- `npm install`
 
-- Then compile the **main.scss** using the sass compiler
+- Compile **main.scss** file using sass compiler to generate custom bootstrap CSS. 
 
-- The compiled CSS extension should be named as **main.min.css**
+- The extension of custom-compiled bootstrap CSS must be named **main.min.css**.

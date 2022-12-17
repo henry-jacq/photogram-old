@@ -17,12 +17,14 @@
             placeholder="Enter your password" name="password" required>
         <label class="text-black" for="floatingPassword">Password</label>
     </div>
+    <!-- Fingerprint -->
+    <input name="fingerprint" type="hidden" class="form-control" id="fingerprint">
     <div class="form-check mb-3">
         <input type="checkbox" class="form-check-input" id="autoSizingCheck2">
         <label class="text-light">Remember me</label>
     </div>
     <div class="d-grid gap-2 mb-4">
-        <button type="submit" class="btn btn-dracula w-100 rounded-0">Login</button>
+        <button type="submit" class="btn btn-dracula w-100 rounded-0 hvr-grow">Login</button>
     </div>
     <div class="text-white">
         <label for="">Want to join photogram? <a href="signup.php" class="text-decoration-none">Register

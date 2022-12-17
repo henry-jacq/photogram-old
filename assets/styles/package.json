@@ -9,6 +9,8 @@
   "author": "henry",
   "license": "ISC",
   "dependencies": {
-    "bootstrap": "^5.2.3"
+    "bootstrap": "^5.2.3",
+    "hover.css": "^2.3.2",
+    "jquery": "^3.6.2"
   }
 }
