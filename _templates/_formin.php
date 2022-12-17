@@ -18,7 +18,7 @@
         <label class="text-black" for="floatingPassword">Password</label>
     </div>
     <!-- Fingerprint -->
-    <input name="fingerprint" type="hidden" class="form-control" id="fingerprint">
+    <input name="visitor_id" type="hidden" class="form-control" id="fingerprint" value="">
     <div class="form-check mb-3">
         <input type="checkbox" class="form-check-input" id="autoSizingCheck2">
         <label class="text-light">Remember me</label>

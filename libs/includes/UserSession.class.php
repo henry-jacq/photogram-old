@@ -7,17 +7,29 @@ class UserSession
     {
         // Return the username
         $username = User::login($username, $password);
-        $user = new User($username);
 
         if ($username) {
+            $user = new User($username);
             $conn = Database::getConnection();
             $ip = $_SERVER['REMOTE_ADDR'];
             $agent = $_SERVER['HTTP_USER_AGENT'];
             $token = md5(rand(0, 9999999) . $ip . $agent . time());
-            $sql = "INSERT INTO `session` (`uid`, `token`, `login_time`, `ip`, `user_agent`, `active`) VALUES ('$user->id', '$token', now(), '$ip', '$agent', '1');";
+
+            // NOTE:
+            // Fingerprint is optional
+            // If the user is using any adblocker, the fingerprint will not be generated
+            if (isset($_POST['visitor_id'])){
+                $visitor_id = $_POST['visitor_id'];
+                echo "<br>$visitor_id<br>";
+            } else {
+                $visitor_id = null;
+            }
+
+            $sql = "INSERT INTO `session` (`uid`, `token`, `login_time`, `ip`, `user_agent`, `active`, `visitor_id`) VALUES ('$user->id', '$token', now(), '$ip', '$agent', '1', '$visitor_id');";
 
             if ($conn->query($sql)) {
                 Session::set('session_token', $token);
+                Session::set('visitor_id', $visitor_id);
                 return $token;
             } else {
                 return false;
@@ -36,19 +48,23 @@ class UserSession
 
         try{
             // Preventive measures for session hijacking
-            // If user agent and remote address is available
             if (isset($agent) and isset($ip)){
                 if ($agent === $session->getUserAgent() and $ip === $session->getIP()){
+                    // If the session is active and valid
                     if ($session->isValid() and $session->isActive()){
-                        // print "<br>Session validated";
-                        return true;
+                        // NOTE: Fingerprint (or) visitorID is Optional
+                        if (Session::isset('visitor_id') and $session->getVisitorId()) {
+                            // If fingerprint exists, check both equal or not
+                            if (Session::get('visitor_id') == $session->getVisitorId()) {
+                                return true;
+                            } else throw new Exception("Fingerprint doesn't match.");
+                        } else {
+                            throw new Exception("Can't get the fingerprint.");
+                            return true;
+                        }
                     } else throw new Exception("Session is invalid.");
-                } else {
-                    throw new Exception("User agent and IP address doesn't match.");
-                }
-            } else {  
-                throw new Exception("User agent and IP address is NULL.");
-            }
+                } else throw new Exception("User agent and IP address doesn't match.");
+            } else throw new Exception("User agent and IP address is NULL.");
         } catch(Exception $e){
             return false;
         }
@@ -104,6 +120,15 @@ class UserSession
     {
         if (isset($this->data['user_agent'])){
             return $this->data['user_agent'];
+        } else {
+            return false;
+        }
+    }
+
+    // Fingerprint (or) Visitor ID stored in database
+    public function getVisitorId(){
+        if (isset($this->data['visitor_id'])){
+            return $this->data['visitor_id'];
         } else {
             return false;
         }
