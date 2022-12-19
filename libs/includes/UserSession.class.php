@@ -20,7 +20,6 @@ class UserSession
             // If the user is using any adblocker, the fingerprint will not be generated
             if (isset($_POST['visitor_id'])){
                 $visitor_id = $_POST['visitor_id'];
-                echo "<br>$visitor_id<br>";
             } else {
                 $visitor_id = null;
             }
