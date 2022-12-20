@@ -66,12 +66,6 @@ class User
             // Checking the row that has the password which is entered by user.
             // Checking the password entered by user is matching with password in database
             if (password_verify($password, $row['password'])) {
-                /*
-                1. Generate Session Token
-                2. Insert Session Token
-                3. Build session and give session to user.
-                */
-
                 return $row['username'];
             } else {
                 return false;

@@ -12,17 +12,10 @@ include_once 'includes/UserSession.class.php';
 // Config location in labs: /home/$USER/photogram_config.json
 // Config location in server: /var/www/photogram_config.json
 global $__site_config;
-$__base_path = $_SERVER['DOCUMENT_ROOT'] . "/photogram";
 $__site_config = file_get_contents($_SERVER['DOCUMENT_ROOT'].'/../photogram_config.json');
 
 // Start session when this file is loaded
 Session::start();
-
-// Load php templates
-function load_template($name)
-{
-    include $__base_path . "/_templates/$name.php";
-}
 
 // Get credentials from config
 function get_config($key, $default=null)
@@ -34,4 +27,11 @@ function get_config($key, $default=null)
     } else {
         return $default;
     }
+}
+
+// Load php templates
+function load_template($template)
+{
+    $__base_path = $_SERVER['DOCUMENT_ROOT'] . get_config('base_path');
+    include $__base_path . "_templates/$template.php";
 }

@@ -2,7 +2,7 @@
 
 class UserSession
 {
-    // This function will return userID if the username and password is correct.
+    // This function will return session_token if the username and password is correct.
     public static function authenticate($username, $password)
     {
         // Return the username
@@ -18,7 +18,7 @@ class UserSession
             // NOTE:
             // Fingerprint is optional
             // If the user is using any adblocker, the fingerprint will not be generated
-            if (isset($_POST['visitor_id'])){
+            if (!is_null($_POST['visitor_id'])){
                 $visitor_id = $_POST['visitor_id'];
             } else {
                 $visitor_id = null;
@@ -48,7 +48,7 @@ class UserSession
         try{
             // Preventive measures for session hijacking
             if (isset($agent) and isset($ip)){
-                if ($agent === $session->getUserAgent() and $ip === $session->getIP()){
+                if ($agent == $session->getUserAgent() and $ip == $session->getIP()){
                     // If the session is active and valid
                     if ($session->isValid() and $session->isActive()){
                         // NOTE: Fingerprint (or) visitorID is Optional
@@ -58,7 +58,6 @@ class UserSession
                                 return true;
                             } else throw new Exception("Fingerprint doesn't match.");
                         } else {
-                            throw new Exception("Can't get the fingerprint.");
                             return true;
                         }
                     } else throw new Exception("Session is invalid.");

@@ -1,7 +1,5 @@
 <?php
 
-$signup = false;
-
 // Try to register, if the user has submitted the form
 if (isset($_POST['username']) and isset($_POST['password']) and isset($_POST['email_address']) and isset($_POST['phone'])) {
     $username = $_POST['username'];
@@ -10,6 +8,8 @@ if (isset($_POST['username']) and isset($_POST['password']) and isset($_POST['em
     $phone = $_POST['phone'];
     $result = User::signup($username, $password, $email, $phone);
     $signup = true;
+} else {
+    $signup = false;
 }
 
 // If user submitted the form
