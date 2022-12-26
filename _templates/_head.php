@@ -22,7 +22,7 @@
     <!-- Hover css -->
     <link rel="stylesheet" href="<?=get_config('base_path')?>assets/styles/node_modules/hover.css/css/hover-min.css">
     <!-- Custom icons from fontawesome -->
-    <!-- <script src="https://kit.fontawesome.com/cd2caad5e8.js" crossorigin="anonymous"></script> -->
+    <script src="https://kit.fontawesome.com/cd2caad5e8.js" crossorigin="anonymous"></script>
 
     <?
     // It allows us to load the css for the respective web pages
