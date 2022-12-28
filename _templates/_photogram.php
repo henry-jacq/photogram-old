@@ -1,5 +1,5 @@
-<div class="album py-5 bg-light">
-    <div class="container">
+<div class="album py-5 new-bg">
+    <div class="container bg-dark p-5 rounded">
 
     <? if (isset($_POST['logout'])) {
         if (Session::isset('session_token')) {
@@ -10,20 +10,22 @@
         ?><script>window.location.href = "<?=get_config('base_path')?>"</script><?
 
     } else { ?>
-        <form method="post" href="<?=get_config('base_path')?>" class="float-end p-4">
-            <button type="submit" name="logout" class="btn btn-danger">Log out</button>
-        </form>
-    <? } ?>
-        <div class="text-bg-secondary text-light rounded-3 p-5 mb-4">
+
+        <div class="top-head text-white rounded-3 p-4 mb-4">
+            <img class="brand-logo img-fluid mb-3 mx-auto d-block mb-3" src="/photogram/assets/brand/photogram-brand-big.png">
+
+            <form method="post" href="<?=get_config('base_path')?>">
+                <button type="submit" name="logout" class="btn btn-danger float-end">Log out</button>
+            </form>
             <? $userobj = new User(Session::get('session_username')); ?>
             <h1 class="display-6">Welcome back, <?=ucfirst($userobj->getUsername());?></h1>
             <p class="lead">Bio: <?=!is_null($userobj->getBio()) ? $userobj->getBio() : "Not set"?></p>
         </div>
-
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+    <? } ?>
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
         <? for ($i=0; $i < 12; $i++) { ?>
             <div class="col">
-                <div class="card shadow-sm">
+                <div class="card shadow-sm border-0">
                     <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
                         xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail"
                         preserveAspectRatio="xMidYMid slice" focusable="false">

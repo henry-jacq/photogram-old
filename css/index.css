@@ -1,0 +1,24 @@
+.new-bg {
+    background-image: url(/photogram/assets/brand/background-webp.jpg);
+    background-size: contain;
+    width: 100%;
+    height: 100%;
+}
+
+.brand-logo {
+    width: 15rem;
+    animation: introLoad 1s forwards;
+}
+
+.top-head {
+    animation: introLoad 1s forwards;
+}
+
+@keyframes introLoad {
+    from {
+        clip-path: polygon(0 0, 100% 0%, 100% 0, 0 0);
+    }
+    to {
+        clip-path: polygon(0 0, 100% 0%, 100% 100%, 0% 100%);
+    }
+}

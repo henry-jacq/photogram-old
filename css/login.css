@@ -17,6 +17,15 @@ body {
     height: 100%;
 }
 
+@keyframes introLoad {
+    from {
+        clip-path: polygon(0 0, 100% 0%, 100% 0, 0 0);
+    }
+    to {
+        clip-path: polygon(0 0, 100% 0%, 100% 100%, 0% 100%);
+    }
+}
+
 .container {
     z-index: 10;
     position: relative;
@@ -24,6 +33,7 @@ body {
 
 .content {
     height: 100vh;
+    animation: introLoad 2s forwards;
 }
 
 .form-check-input:checked {
@@ -39,6 +49,8 @@ body {
 
 .brand-logo {
     width: 90%;
+    /* animation: introLoad 2s forwards; */
+
     max-width: none;
     min-width: auto;
 }

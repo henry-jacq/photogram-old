@@ -28,6 +28,6 @@
     // It allows us to load the css for the respective web pages
     // If the required css files exist, it will automatically loaded
     if (file_exists($_SERVER['DOCUMENT_ROOT'].get_config('base_path')."css/".basename($_SERVER['PHP_SELF'], ".php").".css")) {?>
-        <link rel="stylesheet" href="<?=get_config('base_path')."css/".basename($_SERVER['PHP_SELF'], ".php");?>.css">
+        <link rel="stylesheet" href="<?=get_config('base_path')."css/".basename($_SERVER['PHP_SELF'], ".php").".css"?>">
     <? } ?>
 </head>
