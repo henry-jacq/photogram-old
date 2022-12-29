@@ -1,0 +1,7 @@
+{
+    "db_server": "mysql.selfmade.ninja",
+    "db_user": "Henry",
+    "db_pass": "pvoh-oXyg-vtyP",
+    "db_name": "Henry_testdb",
+    "base_path": "/"
+}

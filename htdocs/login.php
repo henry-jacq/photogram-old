@@ -17,10 +17,10 @@ include 'libs/load.php';
     </section>
 
     <!-- Jquery -->
-    <script src="<?=get_config('base_path')?>assets/styles/node_modules/jquery/dist/jquery.js"></script>
+    <script src="<?=get_config('base_path')?>js/jquery.js"></script>
 
     <!-- Bootstrap JS -->
-    <script src="<?=get_config('base_path')?>assets/styles/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="<?=get_config('base_path')?>js/bootstrap.bundle.min.js"></script>
 
     <script>
         // Initialize the agent at application startup.

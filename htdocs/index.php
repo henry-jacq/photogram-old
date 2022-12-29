@@ -27,7 +27,7 @@ include 'libs/load.php';
     ?>
 
     <!-- Bootstrap JS -->
-    <script src="<?=get_config('base_path')?>assets/styles/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="<?=get_config('base_path')?>js/bootstrap.bundle.min.js"></script>
 
 </body>
 

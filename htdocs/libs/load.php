@@ -4,6 +4,7 @@ include_once 'includes/User.class.php';
 include_once 'includes/Session.class.php';
 include_once 'includes/Database.class.php';
 include_once 'includes/UserSession.class.php';
+include_once 'includes/WebAPI.class.php';
 
 // Error handling
 // error_reporting(E_ALL);
@@ -11,11 +12,13 @@ include_once 'includes/UserSession.class.php';
 // NOTE:
 // Config location in labs: /home/$USER/photogram_config.json
 // Config location in server: /var/www/photogram_config.json
-global $__site_config;
-$__site_config = file_get_contents($_SERVER['DOCUMENT_ROOT'].'/../photogram_config.json');
 
 // Start session when this file is loaded
-Session::start();
+// Session::start();
+
+$wapi = new WebAPI();
+$wapi->initiateSession();
+
 
 // Get credentials from config
 function get_config($key, $default=null)

@@ -3,7 +3,7 @@
 
 <form method="post" action="signup.php">
     <!-- Brand Logo -->
-    <img class="brand-logo img-fluid mb-3 mx-auto d-block" src="/photogram/assets/brand/photogram-brand-big.png"
+    <img class="brand-logo img-fluid mb-3 mx-auto d-block" src="<?=get_config('base_path')?>assets/brand/photogram-brand-big.png"
         alt="Photogram logo">
 
     <h4 class="text-light mb-3 fw-semibold">Register</h4>

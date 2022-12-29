@@ -18,9 +18,9 @@
     <!-- Favicon for photogram -->
     <link rel="shortcut icon" href="<?=get_config('base_path')?>assets/brand/favicon.ico">
     <!-- Custom-compiled bootstrap css -->
-    <link href="<?=get_config('base_path')?>assets/styles/main.min.css" rel="stylesheet">
+    <link href="<?=get_config('base_path')?>css/main.min.css" rel="stylesheet">
     <!-- Hover css -->
-    <link rel="stylesheet" href="<?=get_config('base_path')?>assets/styles/node_modules/hover.css/css/hover-min.css">
+    <link rel="stylesheet" href="<?=get_config('base_path')?>css/hover-min.css">
     <!-- Custom icons from fontawesome -->
     <script src="https://kit.fontawesome.com/cd2caad5e8.js" crossorigin="anonymous"></script>
 

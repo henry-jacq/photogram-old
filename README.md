@@ -7,7 +7,7 @@
 
 - Change directory
 
-- `cd photogram/assets/styles`
+- `cd workspace/styles/`
 
 - Install dependencies with NPM
 

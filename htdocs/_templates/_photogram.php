@@ -12,7 +12,7 @@
     } else { ?>
 
         <div class="top-head text-white rounded-3 p-4 mb-4">
-            <img class="brand-logo img-fluid mb-3 mx-auto d-block mb-3" src="/photogram/assets/brand/photogram-brand-big.png">
+            <img class="brand-logo img-fluid mb-3 mx-auto d-block mb-3" src="<?=get_config('base_path')?>assets/brand/photogram-brand-big.png">
 
             <form method="post" href="<?=get_config('base_path')?>">
                 <button type="submit" name="logout" class="btn btn-danger float-end">Log out</button>

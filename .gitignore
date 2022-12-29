@@ -1,5 +1,2 @@
 # Node modules
-assets/styles/node_modules/
-
-# DS_Store
-assets/styles/.DS_Store
+workspace/styles/node_modules/

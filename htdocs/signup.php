@@ -16,8 +16,11 @@ include_once 'libs/load.php';
         </div>
     </section>
 
+    <!-- Jquery -->
+    <script src="<?=get_config('base_path')?>js/jquery.js"></script>
+
     <!-- Bootstrap JS -->
-    <script src="/photogram/assets/styles/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="<?=get_config('base_path')?>js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
