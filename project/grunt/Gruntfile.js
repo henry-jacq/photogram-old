@@ -4,7 +4,7 @@ module.exports = function(grunt) {
     var currentdate = new Date();
     var datetime = currentdate.getDate() + "/"
     + (currentdate.getMonth() +1) + "/"
-    + currentdate.getFullYear() + " @ "
+    + currentdate.getFullYear() + " @"
     + currentdate.getHours() + ":"
     + currentdate.getMinutes() + ":"
     + currentdate.getSeconds();
@@ -15,33 +15,50 @@ module.exports = function(grunt) {
             options: {
                 separator: '\n',
                 sourceMap: true,
-                banner: "/* Processed by Grunt on "+ datetime +" */\n\n",
+                banner: "/* Processed by Grunt on "+ datetime +" */\n\n\n",
             },
             css: {
                 src: [
-                    '../css/**/**.css',
-                    'node_modules/hover.css/css/hover.css',
-                    'node_modules/bootstrap/dist/css/bootstrap.css',
+                    '../css/**/*.css',
                 ],
-                dest: '../../htdocs/css/styles.css',
+                dest: 'dist/style.css'
             },
             js: {
                 src: [
-                    '../js/**/**.js',
-                    'node_modules/jquery/dist/jquery.js',
-                    'node_modules/bootstrap/dist/js/bootstrap.bundle.js'
+                    '../js/**/*.js',
                 ],
-                dest: '../../htdocs/js/app.js',
+                dest: 'dist/app.js'
+            },
+            scss: {
+                src: [
+                    '../scss/**/*.scss',
+                ],
+                dest: 'dist/style.scss'
             },
         },
         cssmin: {
             options: {
                 mergeIntoShorthands: false,
-                roundingPrecision: -1
+                roundingPrecision: -1,
             },
-            target: {
+            css: {
                 files: {
-                    'output.css': ['foo.css', 'bar.css']
+                    '../../htdocs/css/style.min.css': ['dist/style.css']
+                }
+            },
+            scss: {
+                files: {
+                    '../../htdocs/css/app.min.css': ['dist/app.css']
+                }
+            }
+        },
+        sass: {
+            compile_scss: {
+                options: {
+                    style: 'expanded'
+                },
+                files: {
+                    'dist/app.css': ['dist/style.scss']
                 }
             }
         },
@@ -49,10 +66,9 @@ module.exports = function(grunt) {
             minify: {
                 options: {
                     sourceMap: true,
-                    sourceMapName: 'path/to/sourcemap.map'
                 },
                 files: {
-                    'dest/output.min.js': ['src/input.js']
+                    '../../htdocs/js/app.min.js': ['dist/app.js']
                 }
             }
         },
@@ -78,6 +94,24 @@ module.exports = function(grunt) {
                 ],
             }
         },
+        obfuscator: {
+            options: {
+                banner: '// Obfuscated by grunt-contrib-obfuscator @'+datetime+'\n',
+                debugProtection: true,
+                debugProtectionInterval: true,
+                domainLock: ['iphotogram.selfmade.one']
+            },
+            obfuscate: {
+                options: {
+                    // options for each sub task
+                },
+                files: {
+                    '../../htdocs/js/app.ofs.js': [
+                        '../js/**/**.js',
+                    ]
+                }
+            }
+        },
         watch: {
             css: {
                 files: ['../css/**/*.css'],
@@ -88,19 +122,35 @@ module.exports = function(grunt) {
             },
             js: {
                 files: ['../css/**/*.js'],
-                tasks: ['concat:js', 'uglify'],
+                tasks: ['concat:js', 'uglify', 'obfuscator'],
                 options: {
                     spawn: false,
                 },
-            }
+            },
+            scss: {
+                files: ['../scss/**/*.scss'],
+                tasks: ['concat:scss', 'sass', 'cssmin'],
+                options: {
+                    spawn: false,
+                },
+            },
         },
     });
-    
     
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-cssmin');
+    grunt.loadNpmTasks('grunt-contrib-obfuscator');
+    grunt.loadNpmTasks('grunt-contrib-sass');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-watch');
-    grunt.registerTask('default', ['copy', 'concat', 'cssmin', 'uglify', 'watch']);
+    /** Default Grunt Tasks
+     * Copy files to htdocs folder
+     * Concatenate files into one file
+     * Minify CSS
+     * Compile and minify scss
+     * Uglify javascript
+     * Obfuscate javascript
+     */
+    grunt.registerTask('default', ['copy', 'concat', 'cssmin:css', 'sass', 'cssmin:scss', 'uglify', 'obfuscator', 'watch']);
 };
