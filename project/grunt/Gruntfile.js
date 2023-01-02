@@ -74,26 +74,17 @@ module.exports = function(grunt) {
         },
         copy: {
             jquery: {
-                files: [
-                    // Include files within path and its sub-directories
-                    {
-                        expand: true,
-                        src: ['node_modules/jquery/dist/jquery.js'],
-                        dist: '../../htdocs/js/jquery/jquery.js',
-                    }
-                ],
+                expand: false,
+                src: 'node_modules/jquery/dist/jquery.js',
+                dest: '../../htdocs/js/jquery/jquery.js',
             },
             bootstrap: {
-                files: [
-                    // Include files within path and its sub-directories
-                    {
-                        expand: true,
-                        src: ['node_modules/bootstrap/dist/js/bootstrap.bundle.js'],
-                        dist: '../../htdocs/js/bootstrap/bootstrap.bundle.js',
-                    }
-                ],
-            }
+                expand: false,
+                src: 'node_modules/bootstrap/dist/js/bootstrap.bundle.js',
+                dest: '../../htdocs/js/bootstrap/bootstrap.bundle.js',
+            },
         },
+
         obfuscator: {
             options: {
                 banner: '// Obfuscated by grunt-contrib-obfuscator @'+datetime+'\n',
@@ -152,5 +143,7 @@ module.exports = function(grunt) {
      * Uglify javascript
      * Obfuscate javascript
      */
+
     grunt.registerTask('default', ['copy', 'concat', 'cssmin:css', 'sass', 'cssmin:scss', 'uglify', 'obfuscator', 'watch']);
+
 };
