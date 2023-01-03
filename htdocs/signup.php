@@ -6,13 +6,13 @@ include_once 'libs/load.php';
 <html lang="en">
 
 <!-- Load header -->
-<?php load_template('_head'); ?>
+<?php Session::loadTemplate('_head'); ?>
 
 <body>
     <section class="container">
         <div class="row content d-flex justify-content-center align-items-center">
             <!-- Load the sign up box -->
-            <?php load_template('_signup'); ?>
+            <?php Session::loadTemplate('signup'); ?>
         </div>
     </section>
 

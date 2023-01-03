@@ -12,7 +12,7 @@
     } else { ?>
 
         <div class="top-head text-white rounded-3 p-4 mb-4">
-            <img class="brand-logo img-fluid mb-3 mx-auto d-block mb-3" src="<?=get_config('base_path')?>assets/brand/photogram-brand-big.png">
+            <img class="brand-logo img-fluid mb-3 mx-start d-block mb-3" src="<?=get_config('base_path')?>assets/brand/photogram-brand-big.png">
 
             <form method="post" href="<?=get_config('base_path')?>">
                 <button type="submit" name="logout" class="btn btn-danger float-end">Log out</button>
@@ -20,6 +20,7 @@
             <? $userobj = new User(Session::get('session_username')); ?>
             <h1 class="display-6">Welcome back, <?=ucfirst($userobj->getUsername());?></h1>
             <p class="lead">Bio: <?=!is_null($userobj->getBio()) ? $userobj->getBio() : "Not set"?></p>
+            <? Session::loadTemplate("index/calltoaction");?>
         </div>
     <? } ?>
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
@@ -50,3 +51,6 @@
                 </div>
             </div>
         <? } ?>
+        </div>
+    </div>
+</div>

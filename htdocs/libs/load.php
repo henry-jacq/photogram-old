@@ -33,8 +33,8 @@ function get_config($key, $default=null)
 }
 
 // Load php templates
-function load_template($template)
+function load_template($template_name)
 {
     $__base_path = $_SERVER['DOCUMENT_ROOT'] . get_config('base_path');
-    include $__base_path . "_templates/$template.php";
+    include $__base_path . "_templates/$template_name.php";
 }

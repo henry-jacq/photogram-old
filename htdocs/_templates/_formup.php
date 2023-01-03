@@ -28,7 +28,7 @@
         <label class="text-black" for="floatingInput">Phone Number</label>
     </div>
     <div class="d-grid gap-2 mb-3">
-        <button type="submit" class="btn btn-dracula w-100 rounded-0 hvr-grow">Register now</button>
+        <button type="submit" class="btn btn-dracula w-100 rounded-0 hvr-grow">Create account</button>
     </div>
     <div class="text-white">
         <label>Do you already have an account? <a href="login.php" class="text-decoration-none">Login now</a>.</label>

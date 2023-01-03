@@ -16,9 +16,12 @@ if (isset($_POST['username']) and isset($_POST['password']) and isset($_POST['em
 if ($signup) {
     // Sign up success, if result has no error
     if (!$result) { ?>
-<div class="text-bg-dark rounded-3 p-5 mt-4">
-    <h1 class="display-4">Sign up Success</h1>
-    <p class="lead">Now you can login from <a class="text-decoration-none" href="/photogram/login.php">here</a>.</p>
+<div class="text-bg-dark rounded-3 p-5 mt-4 text-center">
+    <h1 class="display-4">Welcome to Photogram</h1>
+    <p class="lead mb-4">Your account has been created.</p>
+    <a class="text-decoration-none" href="login.php">
+        <button class="btn btn-success">Continue</button>
+    </a>
 </div>
 
 <?php
