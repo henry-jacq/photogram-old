@@ -1,10 +1,10 @@
 <?php
 
 // Try to login, if the user has submitted the form
-if (isset($_POST['username']) and !empty($_POST['username']) and isset($_POST['password']) and !empty($_POST['password'])) {
-    $username = $_POST['username'];
+if (isset($_POST['username_or_email']) and !empty($_POST['username_or_email']) and isset($_POST['password']) and !empty($_POST['password'])) {
+    $user_or_email = $_POST['username_or_email'];
     $password = $_POST['password'];
-    $result = UserSession::authenticate($username, $password);
+    $result = UserSession::authenticate($user_or_email, $password);
     $login = true;
 } else {
     $login = false;
@@ -14,8 +14,10 @@ if (isset($_POST['username']) and !empty($_POST['username']) and isset($_POST['p
 if ($login) {
     // Load the base path, if result has no error
     if ($result) { 
-        // Save username in session
-        Session::set('session_username', $_POST['username']); ?>
+
+        // Save username or email in session
+        Session::set('session_UsernameOrEmail', $_POST['username_or_email']); ?>
+
         <script>window.location.href = "<?=get_config('base_path')?>"</script>
     <?
     // If any error, load the same page with popup error

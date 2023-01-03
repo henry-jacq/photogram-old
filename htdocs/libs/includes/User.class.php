@@ -53,8 +53,23 @@ class User
     // Login
     public static function login($username, $password)
     {
+
+        // $email = "abc123@sdsd.com"; 
+        // $regex = '/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/'; 
+        // if (preg_match($regex, $email)) {
+        //     echo $email . " is a valid email. We can accept it.";
+        // } else { 
+        //     echo $email . " is an invalid email. Please try again.";
+        // }
+
         // Query to fetch the user data
-        $query = "SELECT * FROM `auth` WHERE `username` = '$username'";
+        // Check if the $username field has email
+        if(filter_var($username, FILTER_VALIDATE_EMAIL)) {
+            $query = "SELECT * FROM `auth` WHERE `email` = '$username'";
+        } else {
+            $query = "SELECT * FROM `auth` WHERE `username` = '$username'";
+        }
+        
         // Create a connection to database
         $conn = Database::getConnection();
         // Get the user details [1 row] by sending this query to database.
@@ -75,17 +90,31 @@ class User
         }
     }
 
-    // User object can be constructed with either username or userID
-    public function __construct($user_or_id)
+    public function __construct($user_or_email)
     {
+        /**
+         * User object can be constructed with either username or email
+         * Check if the $user_or_email has email or not
+         * Query returns userID and username
+         */
+        
+        if (filter_var($user_or_email, FILTER_VALIDATE_EMAIL)) {
+            // Query to fetch data using email
+            $sql = "SELECT `id`, `username` FROM `auth` WHERE `email`= '$user_or_email' OR `id` = '$user_or_email' LIMIT 1";
+        } else {
+            // Query to fetch data using username
+            $sql = "SELECT `id`, `username`  FROM `auth` WHERE `username`= '$user_or_email' OR `id` = '$user_or_email' LIMIT 1";
+        }
+        
         $this->conn = Database::getConnection();
-        $this->username = $user_or_id;
         $this->id = null;
-        $sql = "SELECT `id` FROM `auth` WHERE `username`= '$user_or_id' OR `id` = '$user_or_id' LIMIT 1";
         $result = $this->conn->query($sql);
+
         if ($result->num_rows) {
             $row = $result->fetch_assoc();
-            $this->id = $row['id']; // Updating this from database
+            // Updating this from database
+            $this->id = $row['id']; 
+            $this->username = $row['username'];
         } else {
             throw new Exception("Username is not available");
         }

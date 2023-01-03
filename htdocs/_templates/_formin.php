@@ -9,8 +9,8 @@
     <h4 class="text-light mb-3 fw-semibold">Login</h4>
     <div class="form-floating mb-3">
         <input type="text" class="form-control rounded-0 form-input border-0 text-lowercase" id="floatingInput"
-            placeholder="Enter your username" name="username" required>
-        <label class="text-black" for="floatingInput">Username</label>
+            placeholder="Email or Username" name="username_or_email" required>
+        <label class="text-black" for="floatingInput">Email or Username</label>
     </div>
     <div class="form-floating mb-4">
         <input type="password" class="form-control rounded-0 form-input border-0" id="floatingPassword"
