@@ -6,6 +6,8 @@
 
 class Session
 {
+    public static $isError = false;
+
     public static function start() {
         session_start();
     }
@@ -40,8 +42,13 @@ class Session
     }
 
     public static function loadTemplate($template_name) {
-        $__base_path = $_SERVER['DOCUMENT_ROOT'] . get_config('base_path');
-        include $__base_path . "_templates/$template_name.php";
+
+        $script = $_SERVER['DOCUMENT_ROOT'] . get_config('base_path') . "_templates/$template_name.php";
+        if (is_file($script)) {
+            include $script;
+        } else {
+            Session::loadTemplate('_error');
+        }
     }
 
     public static function renderPage() {

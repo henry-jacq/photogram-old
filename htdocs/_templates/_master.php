@@ -7,7 +7,11 @@
 <body>
 
     <?
-    Session::loadTemplate(Session::currentScript());
+    if (Session::$isError) {
+        Session::loadTemplate('_error');
+    } else {
+        Session::loadTemplate(Session::currentScript());
+    }
     ?>
 
     <!-- Jquery -->
