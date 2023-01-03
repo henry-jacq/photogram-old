@@ -3,13 +3,13 @@
 class UserSession
 {
     // This function will return session_token if the username and password is correct.
-    public static function authenticate($username, $password)
+    public static function authenticate($username_or_email, $password)
     {
         // Return the username
-        $username = User::login($username, $password);
+        $user_or_email = User::login($username_or_email, $password);
 
-        if ($username) {
-            $user = new User($username);
+        if ($user_or_email) {
+            $user = new User($user_or_email);
             $conn = Database::getConnection();
             $ip = $_SERVER['REMOTE_ADDR'];
             $agent = $_SERVER['HTTP_USER_AGENT'];

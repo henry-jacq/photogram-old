@@ -51,23 +51,14 @@ class User
     }
 
     // Login
-    public static function login($username, $password)
+    public static function login($username_or_email, $password)
     {
-
-        // $email = "abc123@sdsd.com"; 
-        // $regex = '/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/'; 
-        // if (preg_match($regex, $email)) {
-        //     echo $email . " is a valid email. We can accept it.";
-        // } else { 
-        //     echo $email . " is an invalid email. Please try again.";
-        // }
-
         // Query to fetch the user data
-        // Check if the $username field has email
-        if(filter_var($username, FILTER_VALIDATE_EMAIL)) {
-            $query = "SELECT * FROM `auth` WHERE `email` = '$username'";
+        // Check if the $username_or_email field has email
+        if(filter_var($username_or_email, FILTER_VALIDATE_EMAIL)) {
+            $query = "SELECT * FROM `auth` WHERE `email` = '$username_or_email'";
         } else {
-            $query = "SELECT * FROM `auth` WHERE `username` = '$username'";
+            $query = "SELECT * FROM `auth` WHERE `username` = '$username_or_email'";
         }
         
         // Create a connection to database
