@@ -34,7 +34,7 @@ if ($login) {
 
                 <div class="box shadow p-5 rounded">
                     <? // Load Login form
-                    load_template('form_in'); ?>
+                    load_template('login/form_in'); ?>
                 </div>
             </div>
         </div>
@@ -48,7 +48,7 @@ if ($login) {
         <div class="col-md-4">
             <div class="box shadow p-5 rounded">
                 <? // Load Login form
-                load_template('form_in'); ?>
+                load_template('login/form_in'); ?>
             </div>
         </div>
     </div>

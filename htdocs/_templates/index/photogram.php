@@ -12,13 +12,12 @@
     } else { ?>
 
         <div class="top-head text-white rounded-3 p-4 mb-3">
-            <img class="brand-logo img-fluid mb-3 mx-start d-block mb-3" src="<?=get_config('base_path')?>assets/brand/photogram-brand-big.png">
-
-            <form method="post" href="<?=get_config('base_path')?>">
-                <button type="submit" name="logout" class="btn btn-danger float-end">Log out</button>
-            </form>
-
-            <? Session::loadTemplate("index/calltoaction");?>
+            <? if(Session::isAuthenticated()) { ?>
+                <form method="post" href="<?=get_config('base_path')?>">
+                    <button type="submit" name="logout" class="btn btn-danger float-end">Log out</button>
+                </form>
+                <? Session::loadTemplate("index/calltoaction");
+            } ?>
         </div>
     <? } ?>
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">

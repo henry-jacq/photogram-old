@@ -28,27 +28,35 @@ if ($signup) {
     // If any error, load the same page with popup error
     } else { ?>
 
-<div class="col-md-4 ">
-    <!-- This will popup the alert -->
-    <div id="popup-error" class="alert text-tomato alert-dismissible fade show" role="alert">
-        <strong>Signup Failed!</strong><br>Username is not available.
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+<section class="container">
+    <div class="row content d-flex justify-content-center align-items-center">
+        <div class="col-md-4 ">
+            <!-- This will popup the alert -->
+            <div id="popup-error" class="alert text-tomato alert-dismissible fade show" role="alert">
+                <strong>Signup Failed!</strong><br>Username is not available.
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            <div class="box shadow p-5 rounded">
+                <!-- Load Sign up form -->
+                <?php load_template('signup/form_up'); ?>
+            </div>
+        </div>
     </div>
-    <div class="box shadow p-5 rounded">
-        <!-- Load Sign up form -->
-        <?php load_template('form_up'); ?>
-    </div>
-</div>
+</section>
 
 <?php }
     // If the user doesn't submit the form, load the same page
 } else { ?>
 
-<div class="col-md-4 ">
-    <div class="box shadow p-5 rounded">
-        <!-- Load Sign up form -->
-        <?php load_template('form_up'); ?>
+<section class="container">
+    <div class="row content d-flex justify-content-center align-items-center">
+        <div class="col-md-4 ">
+            <div class="box shadow p-5 rounded">
+                <!-- Load Sign up form -->
+                <?php load_template('signup/form_up'); ?>
+            </div>
+        </div>
     </div>
-</div>
+</section>
 
 <?php } ?>

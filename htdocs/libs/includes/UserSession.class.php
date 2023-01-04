@@ -38,14 +38,13 @@ class UserSession
         }
     }
 
-    public static function authorize($token)
-    {
+    public static function authorize($token) {
         $session = new UserSession($token);
 
         $ip = $_SERVER['REMOTE_ADDR'];
         $agent = $_SERVER['HTTP_USER_AGENT'];
 
-        try{
+        try {
             // Preventive measures for session hijacking
             if (isset($agent) and isset($ip)){
                 if ($agent == $session->getUserAgent() and $ip == $session->getIP()){
@@ -55,16 +54,18 @@ class UserSession
                         if (Session::isset('visitor_id') and $session->getVisitorId()) {
                             // If fingerprint exists, check both equal or not
                             if (Session::get('visitor_id') == $session->getVisitorId()) {
-                                return true;
+                                Session::$usersession = $session;
+                                return $session;
                             } else throw new Exception("Fingerprint doesn't match.");
                         } else {
-                            return true;
+                            Session::$usersession = $session;
+                            return $session;
                         }
                     } else throw new Exception("Session is invalid.");
                 } else throw new Exception("User agent and IP address doesn't match.");
             } else throw new Exception("User agent and IP address is NULL.");
         } catch(Exception $e){
-            return false;
+            throw new Exception("Something is wrong");
         }
     }
 

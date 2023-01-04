@@ -1,8 +1,8 @@
-<section class="py-5 text-center container">
-    <div class="row py-lg-4">
-        <div class="col-lg-6 col-md-8 mx-auto">
+<section class="py-3 text-center container">
+    <div class="row py-lg-3">
+        <div class="col-lg-7 col-md-8 mx-auto">
             <? $userobj = new User(Session::get('session_UsernameOrEmail'));?>
-            <h1 class="fw-light">What are you upto ? <?=ucfirst($userobj->getUsername());?></h1>
+            <h1 class="display-8">What are you upto <?=strtolower($userobj->getUsername());?> ?</h1>
             <p class="lead text-muted">Share a photo that talks about it</p>
             <form action="#" method="POST" enctype="multipart/form-data">
                 <div class="mb-2">

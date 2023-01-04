@@ -7,6 +7,8 @@
 class Session
 {
     public static $isError = false;
+    public static $user = null;
+    public static $usersession = null;
 
     public static function start() {
         session_start();
@@ -41,6 +43,14 @@ class Session
         }
     }
 
+    public static function getUser() {
+        return Session::$user;
+    }
+
+    public static function getUserSession() {
+        return Session::$usersession;
+    }
+
     public static function loadTemplate($template_name) {
 
         $script = $_SERVER['DOCUMENT_ROOT'] . get_config('base_path') . "_templates/$template_name.php";
@@ -60,6 +70,19 @@ class Session
     }
 
     public static function isAuthenticated() {
-        return true;
+        // TODO: Check this with isActive() function
+        if (is_object(Session::getUserSession())) {
+            return Session::getUserSession()->isValid();
+        } else {
+            return false;
+        }
     }
+
+    public static function ensureLogin(){
+        if(!Session::isAuthenticated()){
+            header("Location: /login.php");
+            die();
+        }
+    }
+
 }

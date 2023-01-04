@@ -1,5 +1,7 @@
 <?php
 
+include 'libs/load.php';
+
 // var_dump($_SERVER);
 
 // $old_time = time();
@@ -23,14 +25,18 @@
 //     echo "Not validated";
 // }
 
-$date = "2022-12-16 15:08:13";
+// $date = "2022-12-16 15:08:13";
 
-$dateTime = DateTime::createFromFormat('Y-m-d H:i:s', $date);
+// $dateTime = DateTime::createFromFormat('Y-m-d H:i:s', $date);
 
-echo("Time stamp: ".$dateTime->getTimestamp()."\n");
-echo("Current time:".time()."\n");
+// echo("Time stamp: ".$dateTime->getTimestamp()."\n");
+// echo("Current time:".time()."\n");
 
-$balance = time() - $dateTime->getTimestamp();
+// $balance = time() - $dateTime->getTimestamp();
 
-echo("Balance time: ".$balance)."\n";
+// echo("Balance time: ".$balance)."\n";
 
+
+if (Session::isAuthenticated()) {
+    print Session::isAuthenticated();
+}
