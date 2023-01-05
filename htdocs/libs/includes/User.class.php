@@ -2,8 +2,7 @@
 
 require_once 'Database.class.php';
 
-class User
-{
+class User {
     private $conn;
 
     public function __call($name, $arguments)
@@ -22,8 +21,10 @@ class User
 
 
     // Signup
-    public static function signup($username, $password, $email, $phone)
-    {
+    public static function signup($username, $password, $email, $phone) {
+        
+        $username = strtolower($username);
+        
         // Amount of cost requires to generate a random hash
         $options = [
             'cost' => 8
@@ -53,8 +54,10 @@ class User
     }
 
     // Login
-    public static function login($username_or_email, $password)
-    {
+    public static function login($username_or_email, $password) {
+
+        $username_or_email = strtolower($username_or_email);
+
         // Query to fetch the user data
         // Check if the $username_or_email field has email
         if(filter_var($username_or_email, FILTER_VALIDATE_EMAIL)) {
@@ -83,8 +86,7 @@ class User
         }
     }
 
-    public function __construct($user_or_email)
-    {
+    public function __construct($user_or_email) {
         /**
          * User object can be constructed with either username or email
          * Check if the $user_or_email has email or not
@@ -114,8 +116,7 @@ class User
     }
 
     // It is used to retrieve data from the database
-    private function _get_data($var)
-    {
+    private function _get_data($var) {
         // Create a connection, if it doesn't exist
         if (!$this->conn) {
             $this->conn = Database::getConnection();
@@ -131,8 +132,7 @@ class User
     }
 
     // It used to set the data in the database
-    private function _set_data($var, $data)
-    {
+    private function _set_data($var, $data) {
         // Create a connection, if it doesn't exist
         if (!$this->conn) {
             $this->conn = Database::getConnection();
@@ -146,8 +146,7 @@ class User
         }
     }
 
-    public function setDob($year, $month, $day)
-    {
+    public function setDob($year, $month, $day) {
         // checking data is valid or not
         if (checkdate($month, $day, $year)) {
             return $this->_set_data('dob', "$year.$month.$day");
@@ -156,8 +155,7 @@ class User
         }
     }
 
-    public function getUsername()
-    {
+    public function getUsername() {
         return $this->username;
     }
 }

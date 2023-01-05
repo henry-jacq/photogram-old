@@ -29,6 +29,7 @@ class WebAPI
             }
             catch (Exception $e) {
                 // TODO: Handle error
+                print  $e->getMessage();
             }
         }
     }

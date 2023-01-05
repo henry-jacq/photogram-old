@@ -80,6 +80,7 @@ class Session
 
     public static function ensureLogin(){
         if(!Session::isAuthenticated()){
+            Session::set('_redirect', $_SERVER['REQUEST_URI']);
             header("Location: /login.php");
             die();
         }
