@@ -1,29 +1,9 @@
-<div class="album py-5 new-bg">
-    <div class="container bg-dark p-5 rounded">
-
-    <? if (isset($_POST['logout'])) {
-        if (Session::isset('session_token')) {
-            UserSession::removeSession(Session::get('session_token'));
-        }
-        Session::destroy();
-        // Load the base path
-        ?><script>window.location.href = "<?=get_config('base_path')?>"</script><?
-
-    } else { ?>
-
-        <div class="top-head text-white rounded-3 p-4 mb-3">
-            <? if(Session::isAuthenticated()) { ?>
-                <form method="post" href="<?=get_config('base_path')?>">
-                    <button type="submit" name="logout" class="btn btn-danger float-end">Log out</button>
-                </form>
-                <? Session::loadTemplate("index/calltoaction");
-            } ?>
-        </div>
-    <? } ?>
+<div class="album py-5 bg-light border">
+    <div class="container p-5 rounded">
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
         <? for ($i=0; $i < 12; $i++) { ?>
             <div class="col">
-                <div class="card shadow-sm border-0">
+                <div class="card shadow border-0">
                     <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
                         xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail"
                         preserveAspectRatio="xMidYMid slice" focusable="false">

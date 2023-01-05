@@ -1,17 +1,11 @@
+<? 
 
-<? if (Session::isset('session_token')){
-    $token = Session::get('session_token');
-
-    if (UserSession::authorize($token)){
-        ?>
-        <main>
-            <?
-            Session::loadTemplate("index/photogram"); ?>
-        </main>
-    <? } else {
-        ?><script>window.location.href = "<?=get_config('base_path')?>login.php"</script><?
-    }
-}else{
-    ?><script>window.location.href = "<?=get_config('base_path')?>login.php"</script><?   
+if (Session::isAuthenticated()) {
+    Session::loadTemplate('_header');
+    Session::loadTemplate('index/calltoaction');
+} else {
+    Session::loadTemplate('_header');
+    Session::loadTemplate('index/login');
 }
-?>
+
+Session::loadTemplate('index/photogram');

@@ -1,4 +1,14 @@
 <?
 include 'libs/load.php';
 
-Session::loadTemplate('_master');
+if (isset($_GET['logout'])) {
+    if (Session::isset('session_token')) {
+        UserSession::removeSession(Session::get('session_token'));
+    }
+
+    Session::destroy();
+    header("Location: /");
+    die();
+} else {
+    Session::renderPage();
+}
