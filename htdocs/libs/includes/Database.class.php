@@ -28,7 +28,7 @@ class Database
 
             // Check connection
             if ($connection->connect_error) {
-                // ToDo: Replace this with exception handling in FUTURE.
+                // TODO: Replace this with exception handling in FUTURE.
                 die("Connection failed: " . $connection->connect_error);
             } else {
                 // printf("New connection establishing...\n");

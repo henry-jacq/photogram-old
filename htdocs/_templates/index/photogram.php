@@ -1,6 +1,6 @@
 <div class="album py-5 bg-light border">
-    <div class="container p-5 rounded">
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
+    <div class="container p-5">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
         <? for ($i=0; $i < 12; $i++) { ?>
             <div class="col">
                 <div class="card shadow border-0">
