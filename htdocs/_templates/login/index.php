@@ -15,10 +15,17 @@ if ($login) {
     // Load the base path, if result has no error
     if ($result) { 
 
+        $should_redirect = Session::get('_redirect');
+        $redirect_to = get_config('base_path');
+        if (isset($should_redirect)) {
+            $redirect_to = $should_redirect;
+            Session::set('_redirect', false);
+        }
+
         // Save username or email in session
         Session::set('session_UsernameOrEmail', $_POST['username_or_email']); ?>
 
-        <script>window.location.href = "<?=get_config('base_path')?>"</script>
+        <script>window.location.href = "<?=$redirect_to?>"</script>
     <?
     // If any error, load the same page with popup error
     } else { ?>
@@ -28,7 +35,7 @@ if ($login) {
             <div class="col-md-4">
                 <!-- This will popup the alert -->
                 <div id="popup-error" class="alert text-tomato alert-dismissible fade show" role="alert">
-                    <strong>Login Failed!</strong><br>Invalid login credentials.
+                    <strong>Login Failed!</strong><br>Invalid credentials. Please try login again.
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
 

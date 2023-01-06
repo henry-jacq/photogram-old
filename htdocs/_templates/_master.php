@@ -4,7 +4,7 @@
 <!-- Load header -->
 <? Session::loadTemplate('_head'); ?>
 
-<body>
+<body class="bg-light">
 
     <?
     if (Session::$isError) {
