@@ -1,5 +1,5 @@
 <header>
-    <nav class="navbar p-1 border-bottom border-secondary navbar-expand-lg" style="background-color: #dedede;">
+    <nav class="navbar p-1 border-bottom border-secondary navbar-expand-lg navbar-dark shadow-lg" style="background-color: #242829;">
         <div class="container-fluid my-0 ml-auto">
             <a class="navbar-brand display-6 text-dracula" href="/">
             <img src="/assets/brand/photogram-logo.png" alt="Logo" width="28" height="30" class="d-inline-block align-text-top"> Photogram</a>
@@ -12,16 +12,15 @@
                     <div class="collapse navbar-collapse" id="navbarNavDropdown">
                         <ul class="navbar-nav">
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Your Profile </a>
-                                <ul class="dropdown-menu dropdown-menu-end" style="background-color: #dedddd;">
-                                    <?
-                                    $userobj = new User(Session::get('session_UsernameOrEmail'));?>
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-sharp fa-solid fa-user"></i> Your Profile </a>
+                                <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end">
+                                    <? $userobj = new User(Session::get('session_UsernameOrEmail'));?>
                                     <li><a href="#" class="dropdown-item" href="">@<?=ucfirst($userobj->getUsername());?></a></li>
-                                    <li><hr class="dropdown-divider"></li>
-                                    <li><a class="dropdown-item" href="#">Edit profile</a></li>
-                                    <li><a class="dropdown-item" href="#">Preferences</a></li>
-                                    <li><hr class="dropdown-divider"></li>
-                                    <li><a class="dropdown-item" href="/?logout">Sign out</a></li>
+                                    <li><hr class="dropdown-divider border-secondary"></li>
+                                    <li><a class="dropdown-item" href="#"><i class="fa-solid fa-pen-to-square"></i> Edit profile</a></li>
+                                    <li><a class="dropdown-item" href="#"><i class="fa-solid fa-gear"></i> Settings</a></li>
+                                    <li><hr class="dropdown-divider border-secondary"></li>
+                                    <li><a class="dropdown-item" href="/?logout"><i class="fa-sharp fa-solid fa-arrow-right-from-bracket"></i> Sign out</a></li>
                                 </ul>
                             </li>
                         </ul>

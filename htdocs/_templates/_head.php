@@ -21,8 +21,6 @@
     <link href="<?=get_config('base_path')?>css/main.min.css" rel="stylesheet">
     <!-- Hover css -->
     <link rel="stylesheet" href="<?=get_config('base_path')?>css/hover-min.css">
-    <!-- Custom icons from fontawesome -->
-    <script src="https://kit.fontawesome.com/cd2caad5e8.js" crossorigin="anonymous"></script>
 
     <?
     // It allows us to load the css for the respective web pages

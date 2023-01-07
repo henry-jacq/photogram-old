@@ -4,7 +4,7 @@
 <!-- Load header -->
 <? Session::loadTemplate('_head'); ?>
 
-<body class="bg-light">
+<body class="bg-dark">
 
     <?
     if (Session::$isError) {
@@ -19,6 +19,9 @@
 
     <!-- Bootstrap JS -->
     <script src="<?=get_config('base_path')?>js/bootstrap.bundle.min.js"></script>
+
+    <!-- Custom icons from fontawesome -->
+    <script src="https://kit.fontawesome.com/cd2caad5e8.js" crossorigin="anonymous"></script>
 
     <script>
         // Initialize the agent at application startup.

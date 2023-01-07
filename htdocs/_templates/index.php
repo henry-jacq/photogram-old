@@ -9,3 +9,4 @@ if (Session::isAuthenticated()) {
 }
 
 Session::loadTemplate('index/photogram');
+Session::loadTemplate('_footer');
