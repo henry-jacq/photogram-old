@@ -6,7 +6,7 @@
     <img class="brand-logo img-fluid mb-3 mx-auto d-block" src="<?=get_config('base_path')?>assets/brand/photogram-brand-big.png"
         alt="Photogram logo">
 
-    <h4 class="text-light mb-3 fw-semibold">Login</h4>
+    <h4 class="text-light mb-3 fw-semibold">Sign in</h4>
     <div class="form-floating mb-3">
         <input type="text" class="form-control rounded-0 form-input border-0 text-lowercase" id="floatingInput"
             placeholder="Email or Username" name="username_or_email" required>
@@ -24,7 +24,7 @@
         <label class="text-light">Remember me</label>
     </div>
     <div class="d-grid gap-2 mb-4">
-        <button type="submit" class="btn btn-dracula w-100 rounded-0 hvr-grow">Login</button>
+        <button type="submit" class="btn btn-dracula w-100 rounded-0 hvr-grow">Sign in</button>
     </div>
     <div class="text-white">
         <label for="">Want to join photogram? <a href="signup.php" class="text-decoration-none">Register
