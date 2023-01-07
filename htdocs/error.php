@@ -1,6 +1,6 @@
 <?
 
-include 'libs/load.php';
+include 'libs/autoload.php';
 
 Session::$isError = true;
 

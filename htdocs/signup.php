@@ -1,5 +1,5 @@
 <?php
-include_once 'libs/load.php';
+include_once 'libs/autoload.php';
 
 if(Session::isAuthenticated()){
     header("Location: /");

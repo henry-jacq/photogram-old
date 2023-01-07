@@ -1,6 +1,6 @@
 <?php
 
-include 'libs/load.php';
+include 'libs/autoload.php';
 
 // var_dump($_SERVER);
 

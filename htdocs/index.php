@@ -1,5 +1,5 @@
 <?
-include 'libs/load.php';
+include 'libs/autoload.php';
 
 if (isset($_GET['logout'])) {
     if (Session::isset('session_token')) {

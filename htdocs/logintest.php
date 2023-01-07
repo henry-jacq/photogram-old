@@ -1,6 +1,6 @@
 <?php
 
-include 'libs/load.php';
+include 'autoload/load.php';
 
 // Username and password already exist in database
 $username = "tonystark";

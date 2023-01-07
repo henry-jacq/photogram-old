@@ -38,7 +38,7 @@ if ($signup) {
             </div>
             <div class="box shadow p-5 rounded">
                 <!-- Load Sign up form -->
-                <?php load_template('signup/form_up'); ?>
+                <?php Session::loadTemplate('signup/form_up'); ?>
             </div>
         </div>
     </div>
@@ -53,7 +53,7 @@ if ($signup) {
         <div class="col-md-4 ">
             <div class="box shadow p-5 rounded">
                 <!-- Load Sign up form -->
-                <?php load_template('signup/form_up'); ?>
+                <?php Session::loadTemplate('signup/form_up'); ?>
             </div>
         </div>
     </div>

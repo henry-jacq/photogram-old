@@ -2,11 +2,14 @@
 
 // Autoload all PHP class files
 spl_autoload_register(function ($class) {
-    $path = "includes/";
+    $path_core = "core/";
+    $path_app = "app/";
     $extension = ".class.php";
-    $full_path = $path . $class . $extension;
+    $full_path_core = $path_core . $class . $extension;
+    $full_path_app = $path_app . $class . $extension;
 
-    include_once $full_path;
+    include_once $full_path_core;
+    include_once $full_path_app;
 });
 
 // Error handling
@@ -29,10 +32,4 @@ function get_config($key, $default=null){
     } else {
         return $default;
     }
-}
-
-// Load php templates
-function load_template($template_name){
-    $__base_path = $_SERVER['DOCUMENT_ROOT'] . get_config('base_path');
-    include $__base_path . "_templates/$template_name.php";
 }
