@@ -4,9 +4,9 @@ require_once 'Database.class.php';
 
 class User {
     private $conn;
+    public $username, $id;
 
-    public function __call($name, $arguments)
-    {
+    public function __call($name, $arguments) {
         $property = preg_replace("/[^0-9a-zA-Z]/", "", substr($name, 3));
         $property = strtolower(preg_replace('/\B([A-Z])/', '_$1', $property));
         if (substr($name, 0, 3) == "get") {

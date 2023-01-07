@@ -1,3 +1,6 @@
 # Node modules
 workspace/styles/node_modules/
 project/grunt/node_modules/
+
+# Image uploads
+uploads/

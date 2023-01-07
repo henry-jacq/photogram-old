@@ -70,7 +70,6 @@ class Session
     }
 
     public static function isAuthenticated() {
-        // TODO: Check this with isActive() function
         if (is_object(Session::getUserSession())) {
             return Session::getUserSession()->isValid();
         } else {

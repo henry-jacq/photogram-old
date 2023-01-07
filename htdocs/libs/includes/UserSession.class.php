@@ -1,7 +1,9 @@
 <?php
 
-class UserSession
-{
+class UserSession {
+
+    public $conn, $token, $data, $uid;
+    
     // This function will return session_token if the username and password is correct.
     public static function authenticate($username_or_email, $password)
     {

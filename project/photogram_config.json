@@ -3,5 +3,6 @@
     "db_user": "Henry",
     "db_pass": "pvoh-oXyg-vtyP",
     "db_name": "Henry_testdb",
-    "base_path": "/"
+    "base_path": "/",
+    "upload_path": "/home/henry/htdocs/photogram/uploads/"
 }

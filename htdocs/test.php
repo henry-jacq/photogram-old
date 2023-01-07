@@ -37,6 +37,10 @@ include 'libs/load.php';
 // echo("Balance time: ".$balance)."\n";
 
 
-if (Session::isAuthenticated()) {
-    print Session::isAuthenticated();
-}
+// if (Session::isAuthenticated()) {
+//     print Session::isAuthenticated();
+// }
+
+$p = new Post(1);
+
+print($p->getOwner());

@@ -2,10 +2,8 @@
 
 require_once 'Database.class.php';
 
-class WebAPI
-{
-    public function __construct()
-    {
+class WebAPI {
+    public function __construct(){
         // if (php_sapi_name() == "cli") {
         //     global $__site_config;
         //     $__site_config_path = "/home/henry/htdocs/photogram/project/photogram_config.json";
