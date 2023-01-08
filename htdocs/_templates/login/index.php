@@ -34,12 +34,12 @@ if ($login) {
         <div class="row content d-flex justify-content-center align-items-center">
             <div class="col-md-4">
                 <!-- This will popup the alert -->
-                <div id="popup-error" class="alert text-tomato alert-dismissible fade show" role="alert">
+                <div id="popup-error" class="alert text-tomato alert-dismissible fade show border border-secondary" role="alert">
                     <strong>Login Failed!</strong><br>Invalid credentials. Please try login again.
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
 
-                <div class="box shadow p-5 rounded">
+                <div class="box shadow p-5 rounded border border-secondary">
                     <? // Load Login form
                     Session::loadTemplate('login/form_in'); ?>
                 </div>
@@ -53,7 +53,7 @@ if ($login) {
 <section class="container">
     <div class="row content d-flex justify-content-center align-items-center">
         <div class="col-md-4">
-            <div class="box shadow p-5 rounded">
+            <div class="box shadow p-5 rounded border border-secondary">
                 <? // Load Login form
                 Session::loadTemplate('login/form_in'); ?>
             </div>

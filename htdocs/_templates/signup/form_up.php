@@ -8,24 +8,24 @@
 
     <h4 class="text-light mb-3 fw-semibold">Register</h4>
     <div class="form-floating mb-2">
-        <input type="text" class="form-control rounded-0 form-input border-0 text-lowercase" id="floatingInput"
+        <input type="text" class="form-control rounded-0 form-input border-secondary text-lowercase text-light" id="floatingInput"
             placeholder="Username" name="username" required>
-        <label class="text-black" for="floatingInput">Username</label>
+        <label class="text-secondary" for="floatingInput">Username</label>
     </div>
     <div class="form-floating mb-2">
-        <input type="password" class="form-control rounded-0 form-input border-0" id="floatingPassword"
+        <input type="password" class="form-control rounded-0 form-input border-secondary text-light" id="floatingPassword"
             placeholder="Password" name="password" required>
-        <label class="text-black" for="floatingPassword">Password</label>
+        <label class="text-secondary" for="floatingPassword">Password</label>
     </div>
     <div class="form-floating mb-2">
-        <input type="email" class="form-control rounded-0 form-input border-0" id="floatingInput" placeholder="Email"
+        <input type="email" class="form-control rounded-0 form-input border-secondary text-light" id="floatingInput" placeholder="Email"
             name="email_address" required>
-        <label class="text-black" for="floatingEmail">Email</label>
+        <label class="text-secondary" for="floatingEmail">Email</label>
     </div>
     <div class="form-floating mb-4">
-        <input type="text" class="form-control rounded-0 form-input border-0" id="floatingInput"
+        <input type="text" class="form-control rounded-0 form-input border-secondary text-light" id="floatingInput"
             placeholder="Phone Number" name="phone" required>
-        <label class="text-black" for="floatingInput">Phone Number</label>
+        <label class="text-secondary" for="floatingInput">Phone Number</label>
     </div>
     <div class="d-grid gap-2 mb-3">
         <button type="submit" class="btn btn-dracula w-100 rounded-0 hvr-grow">Create account</button>

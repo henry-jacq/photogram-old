@@ -32,11 +32,11 @@ if ($signup) {
     <div class="row content d-flex justify-content-center align-items-center">
         <div class="col-md-4 ">
             <!-- This will popup the alert -->
-            <div id="popup-error" class="alert text-tomato alert-dismissible fade show" role="alert">
+            <div id="popup-error" class="alert text-tomato alert-dismissible fade show border border-secondary" role="alert">
                 <strong>Signup Failed!</strong><br>Username is not available.
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
-            <div class="box shadow p-5 rounded">
+            <div class="box shadow p-5 rounded border border-secondary">
                 <!-- Load Sign up form -->
                 <?php Session::loadTemplate('signup/form_up'); ?>
             </div>
@@ -51,7 +51,7 @@ if ($signup) {
 <section class="container">
     <div class="row content d-flex justify-content-center align-items-center">
         <div class="col-md-4 ">
-            <div class="box shadow p-5 rounded">
+            <div class="box shadow p-5 rounded border border-secondary">
                 <!-- Load Sign up form -->
                 <?php Session::loadTemplate('signup/form_up'); ?>
             </div>

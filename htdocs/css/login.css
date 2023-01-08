@@ -26,15 +26,18 @@ body {
     height: 100vh;
 }
 
+.form-check-input {
+    background: rgba(255, 255, 255, 0.050);
+}
+
 .form-check-input:checked {
     background: #635ca8;
-    border: none;
 }
 
 .form-input,
 .form-check-input,
 .form-input:focus-visible {
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.050);
 }
 
 .brand-logo {
@@ -61,10 +64,9 @@ body {
 }
 
 .box {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(26, 28, 30, 0.300);
 }
 
 #popup-error {
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 206, 206, 0.2);
+    background: rgba(26, 28, 30, 0.300);
 }

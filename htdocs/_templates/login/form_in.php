@@ -8,19 +8,19 @@
 
     <h4 class="text-light mb-3 fw-semibold">Sign in</h4>
     <div class="form-floating mb-3">
-        <input type="text" class="form-control rounded-0 form-input border-0 text-lowercase" id="floatingInput"
+        <input type="text" class="form-control rounded-0 form-input border-secondary text-lowercase text-light" id="floatingInput"
             placeholder="Email or Username" name="username_or_email" required>
-        <label class="text-black" for="floatingInput">Email or Username</label>
+        <label class="text-secondary" for="floatingInput">Email or Username</label>
     </div>
     <div class="form-floating mb-4">
-        <input type="password" class="form-control rounded-0 form-input border-0" id="floatingPassword"
+        <input type="password" class="form-control rounded-0 form-input border-secondary text-light" id="floatingPassword"
             placeholder="Enter your password" name="password" required>
-        <label class="text-black" for="floatingPassword">Password</label>
+        <label class="text-secondary" for="floatingPassword">Password</label>
     </div>
     <!-- Fingerprint -->
     <input name="visitor_id" type="hidden" class="form-control" id="fingerprint" value="">
     <div class="form-check mb-3">
-        <input type="checkbox" class="form-check-input" id="autoSizingCheck2">
+        <input type="checkbox" class="form-check-input border-secondary" id="autoSizingCheck2">
         <label class="text-light">Remember me</label>
     </div>
     <div class="d-grid gap-2 mb-4">
