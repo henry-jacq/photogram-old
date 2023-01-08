@@ -1,12 +1,11 @@
 <section class="py-3 text-center bg-dark">
     <div class="row py-lg-5">
         <div class="col-lg-7 col-md-8 mx-auto">
-            <? $userobj = new User(Session::get('session_UsernameOrEmail'));?>
-            <h1 class="display-6 text-light">What are you upto <?=strtolower($userobj->getUsername());?> ?</h1>
+            <h1 class="display-6 text-light">What are you upto <?=strtolower(Session::$user->username);?> ?</h1>
             <p class="lead text-muted">Share a photo that talks about it</p>
-            <form class="my-3" action="sg.php" method="POST" enctype="multipart/form-data">
+            <form class="my-3" action="test.php" method="POST" enctype="multipart/form-data">
                 <div class="mb-2">
-                    <input class="form-control" name="post_image" type="file" id="formFile">
+                    <input class="form-control" accept="image/*" name="post_image" type="file" id="formFile">
                 </div>
                 <div class="form-floating mb-3">
                     <textarea class="form-control" name="post_text" placeholder="Write your description" id="floatingTextarea2" style="height: 160px;"></textarea>

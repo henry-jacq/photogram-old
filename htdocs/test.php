@@ -41,6 +41,16 @@ include 'libs/autoload.php';
 //     print Session::isAuthenticated();
 // }
 
-$p = new Post(1);
+// $p = new Post(1);
 
-print($p->getOwner());
+// print($p->getOwner());
+
+$image_tmp = $_FILES['post_image']['tmp_name'];
+$text = $_POST['post_text'];
+
+echo "Image location: $image_tmp<br>";
+echo "Caption: $text";
+
+Post::registerPost($image_tmp, $text);
+
+print("\n<br>Session::$user->username");

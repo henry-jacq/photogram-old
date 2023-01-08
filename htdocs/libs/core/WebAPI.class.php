@@ -23,6 +23,7 @@ class WebAPI {
         Session::start();
         if (Session::isset('session_token')) {
             try {
+                Session::$user = new User(Session::get('session_UsernameOrEmail'));
                 Session::$usersession = UserSession::authorize(Session::get('session_token'));
             }
             catch (Exception $e) {
