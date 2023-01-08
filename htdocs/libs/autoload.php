@@ -1,16 +1,12 @@
 <?php
 
 // Autoload all PHP class files
-spl_autoload_register(function ($class) {
-    $path_core = "core/";
-    $path_app = "app/";
-    $extension = ".class.php";
-    $full_path_core = $path_core . $class . $extension;
-    $full_path_app = $path_app . $class . $extension;
-
-    include_once $full_path_core;
-    include_once $full_path_app;
-});
+include 'core/Database.class.php';
+include 'core/Session.class.php';
+include 'core/User.class.php';
+include 'core/UserSession.class.php';
+include 'core/WebAPI.class.php';
+include 'app/Post.class.php';
 
 // Error handling
 // error_reporting(E_ALL);
