@@ -5,7 +5,7 @@ include_once __DIR__ . "/../traits/SQLGetterSetter.trait.php";
 
 class User {
     private $conn;
-    public $username, $id;
+    public $username, $id, $table;
 
     use SQLGetterSetter;
 
@@ -33,13 +33,22 @@ class User {
         VALUES ('$username', '$password', '$email', '$phone', '0');";
 
         // Sending the query to the database and checking if it is true or false
-        if ($conn->query($sql) === true) {
-            $error = false;
-        } else {
-            // echo "Error: " . $sql . "<br>" . $conn->error;
-            $error = $conn->error;
+        //PHP 7.4 -
+        // if ($conn->query($sql) === true) {
+        //     $error = false;
+        // } else {
+        //     $error = $conn->error;
+        // }
+
+        //PHP 8.1 - all MySQLi errors are throws as Exceptions
+        try {
+            return $conn->query($sql);
+        } catch (Exception $e) {
+            echo "Error: " . $sql . "<br>" . $conn->error;
+            return false;
         }
-        return $error;
+
+
     }
 
     // Login
@@ -84,21 +93,23 @@ class User {
         
         if (filter_var($user_or_email, FILTER_VALIDATE_EMAIL)) {
             // Query to fetch data using email
-            $sql = "SELECT `id`, `username` FROM `auth` WHERE `email`= '$user_or_email' OR `id` = '$user_or_email' LIMIT 1";
+            $sql = "SELECT `id`, `email` FROM `auth` WHERE `email`= '$user_or_email' OR `id` = '$user_or_email' LIMIT 1";
         } else {
             // Query to fetch data using username
             $sql = "SELECT `id`, `username`  FROM `auth` WHERE `username`= '$user_or_email' OR `id` = '$user_or_email' LIMIT 1";
         }
         
         $this->conn = Database::getConnection();
+        $this->username = $user_or_email;
         $this->id = null;
+        $this->table = "auth";
         $result = $this->conn->query($sql);
 
         if ($result->num_rows) {
             $row = $result->fetch_assoc();
             // Updating this from database
             $this->id = $row['id']; 
-            $this->username = $row['username'];
+            // $this->username = $row['username'];
         } else {
             throw new Exception("Username is not available");
         }
@@ -113,7 +124,7 @@ class User {
         }
     }
 
-    public function getUsername() {
-        return $this->username;
-    }
+    // public function getUsername() {
+    //     return $this->username;
+    // }
 }

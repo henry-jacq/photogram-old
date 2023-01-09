@@ -9,7 +9,7 @@ if(isset($_FILES['post_image']) and isset($_POST['post_text'])){
 <section class="py-3 text-center bg-dark">
     <div class="row py-lg-5">
         <div class="col-lg-7 col-md-8 mx-auto">
-            <h1 class="display-6 text-light">What are you upto <?=strtolower(Session::$user);?> ?</h1>
+            <h1 class="display-6 text-light">What are you upto <?=strtolower(Session::get('session_UsernameOrEmail'));?> ?</h1>
             <p class="lead text-muted">Share a photo that talks about it</p>
             <form class="my-3" action="/" method="POST" enctype="multipart/form-data">
                 <div class="mb-2">

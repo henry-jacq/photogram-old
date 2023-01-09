@@ -56,15 +56,18 @@ class UserSession {
                         if (Session::isset('visitor_id') and $session->getVisitorId()) {
                             // If fingerprint exists, check both equal or not
                             if (Session::get('visitor_id') == $session->getVisitorId()) {
-                                Session::$usersession = $session;
+                                Session::$user = $session->getUser();
                                 return $session;
                             } else throw new Exception("Fingerprint doesn't match.");
                         } else {
-                            Session::$usersession = $session;
+                            Session::$user = $session->getUser();
                             return $session;
                         }
                     } else throw new Exception("Session is invalid.");
-                } else throw new Exception("User agent and IP address doesn't match.");
+                } else {
+                    $session::removeSession($token);
+                    throw new Exception("User agent and IP address doesn't match.");
+                }
             } else throw new Exception("User agent and IP address is NULL.");
         } catch(Exception $e){
             throw new Exception("Something is wrong");

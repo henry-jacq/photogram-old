@@ -52,14 +52,16 @@ class Session
     }
 
     // Takes an email as an input and returns if the session user has the same email
-    public static function isOwnerOf($owner) {
-        $sess_user = Session::getUser();
+    public static function isOwnerOf($postOwner) {
+        $sess_user = Session::$user;
         if ($sess_user){
-            if ($sess_user->getUsername() == $owner) {
+            if ($sess_user->getUsername() == $postOwner) {
                 return true;
             } else {
                 return false;
             }
+        } else {
+            return false;
         }
     }
 

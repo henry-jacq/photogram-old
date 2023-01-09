@@ -13,14 +13,27 @@
                 <div class="card shadow-lg border-0 text-light">
                     <img src="<?=$p->getImageUri()?>" alt="Posts" width="100%" height="225">
 
-                    <div class="card-body"  style="background-color: #2a2d2e;">
-                        <p class="badge bg-dracula"><?=ucfirst(Session::$user)?></p>
+                    <div class="card-body" style="background-color: #2a2d2e;">
+                        <?
+                        if (Session::isAuthenticated()) {
+                            if (Session::isOwnerOf($p->getOwner())) {
+                                ?><p class="badge bg-secondary"><?=ucfirst($p->getOwner());?></p><?
+                            } else {
+                                ?><p class="badge bg-secondary"><?=ucfirst($p->getOwner());?></p><?
+                            }
+                        }
+                        ?>
                         <p class="card-text"><?=$p->getPostText()?></p>
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="btn-group p-2">
                                 <button type="button" class="btn btn-sm btn-outline-primary"><i class="fa-regular fa-heart"></i> Like</button>
                                 <button type="button" class="btn btn-sm btn-outline-secondary"><i class="fa-regular fa-paper-plane"></i> Share</button>
-                                <button type="button" class="btn btn-sm btn-outline-danger"><i class="fa-solid fa-trash"></i> Delete</button>
+
+                                <?
+                                if (Session::isOwnerOf($p->getOwner())) {
+                                    ?><button type="button" class="btn btn-sm btn-outline-danger"><i class="fa-solid fa-trash"></i> Delete</button><?
+                                }
+                                ?>
                             </div>
                             <small class="text-muted"><?=$uploaded_time_str?></small>
                         </div>

@@ -12,7 +12,7 @@ class Post {
 
     public static function registerPost($image_tmp, $text){
         if (is_file($image_tmp) and exif_imagetype($image_tmp) !== false) {
-            $owner = Session::$user;
+            $owner = Session::getUser()->getUsername();
             $image_name = md5($owner.time()) . image_type_to_extension(exif_imagetype($image_tmp));
             $image_path = get_config('upload_path').$image_name;
             if (move_uploaded_file($image_tmp, $image_path)) {
