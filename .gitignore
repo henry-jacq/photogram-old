@@ -4,3 +4,6 @@ project/grunt/node_modules/
 
 # Image uploads
 uploads/
+
+# vendor
+htdocs/vendor/

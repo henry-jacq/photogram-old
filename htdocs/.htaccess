@@ -5,6 +5,7 @@ RewriteEngine On
 RewriteBase /
 
 RewriteRule ^/?files/([^/]+)?$ files.php?name=$1 [L,QSA,NC]
+RewriteRule ^/?logout ?logout
 
 RewriteCond %{REQUEST_FILENAME}\.php -f
 RewriteRule ^([^/.]+)$ $1.php [L]

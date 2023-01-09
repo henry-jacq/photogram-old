@@ -51,6 +51,18 @@ class Session
         return Session::$usersession;
     }
 
+    // Takes an email as an input and returns if the session user has the same email
+    public static function isOwnerOf($owner) {
+        $sess_user = Session::getUser();
+        if ($sess_user){
+            if ($sess_user->getUsername() == $owner) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+    }
+
     public static function loadTemplate($template_name) {
 
         $script = $_SERVER['DOCUMENT_ROOT'] . get_config('base_path') . "_templates/$template_name.php";

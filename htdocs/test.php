@@ -49,8 +49,6 @@ $image_tmp = $_FILES['post_image']['tmp_name'];
 $text = $_POST['post_text'];
 
 echo "Image location: $image_tmp<br>";
-echo "Caption: $text";
+echo "Caption: $text<br><br>";
 
 Post::registerPost($image_tmp, $text);
-
-print("\n<br>Session::$user->username");

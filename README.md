@@ -20,3 +20,9 @@
 - Compile **main.scss** file using sass compiler to generate custom bootstrap CSS. 
 
 - The extension of custom-compiled bootstrap CSS must be named **main.min.css**.
+
+- To install `carbon` library:
+
+- Go to `cd htdocs`
+
+- Run `composer require nesbot/carbon`

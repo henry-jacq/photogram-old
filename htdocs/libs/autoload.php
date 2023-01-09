@@ -1,6 +1,7 @@
 <?php
 
 // Autoload all PHP class files
+require 'vendor/autoload.php';
 include 'core/Database.class.php';
 include 'core/Session.class.php';
 include 'core/User.class.php';
