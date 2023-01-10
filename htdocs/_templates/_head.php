@@ -9,10 +9,10 @@
     <meta property="description"
         content="Create an account or log in to Photogram. Share photos &amp; videos with friends, family and other people you know.">
     <?
-        if (basename($_SERVER['PHP_SELF']) == "login.php" || basename($_SERVER['PHP_SELF']) == "signup.php") {?>
-            <title>Sign in/up · Photogram</title>
-        <?} else {?>
+        if (Session::isAuthenticated()) {?>
             <title>Photogram</title>
+            <?} else {?>
+            <title>Sign in/up · Photogram</title>
         <? } 
     ?>
     <!-- Favicon for photogram -->

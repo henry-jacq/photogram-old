@@ -1,6 +1,6 @@
 <div class="album py-5 border-top border-bottom border-secondary shadow-lg" style="background-color: #242829;">
-    <div class="container p-5">
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+    <div class="container p-3">
+        <div class="row g-3" id="masonry-area">
             <? 
             $posts = Post::getAllPosts();
             use Carbon\Carbon;
@@ -9,17 +9,16 @@
                 $uploaded_time = Carbon::parse($p->getUploadedTime());
                 $uploaded_time_str = $uploaded_time->diffForHumans();
             ?>
-            <div class="col">
+            <div class="col-lg-3 mb-3">
                 <div class="card shadow-lg border-0 text-light">
-                    <img src="<?=$p->getImageUri()?>" alt="Posts" width="100%" height="225">
-
+                    <img src="<?=$p->getImageUri()?>">
                     <div class="card-body" style="background-color: #2a2d2e;">
                         <?
                         if (Session::isAuthenticated()) {
                             if (Session::isOwnerOf($p->getOwner())) {
-                                ?><p class="badge bg-secondary"><?=ucfirst($p->getOwner());?></p><?
+                                ?><p class="badge bg-secondary">@<?=lcfirst($p->getOwner());?></p><?
                             } else {
-                                ?><p class="badge bg-secondary"><?=ucfirst($p->getOwner());?></p><?
+                                ?><p class="badge bg-secondary">@<?=lcfirst($p->getOwner());?></p><?
                             }
                         }
                         ?>

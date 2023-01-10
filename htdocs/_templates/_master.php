@@ -13,12 +13,21 @@
         Session::loadTemplate(Session::currentScript());
     }
     ?>
+   
+   <!-- Jquery -->
+   <script src="<?=get_config('base_path')?>js/jquery/jquery.js"></script>
+   
+   <!-- ImageLoaded -->
+   <script src="https://unpkg.com/imagesloaded@5/imagesloaded.pkgd.min.js"></script>
+   
+   <!-- Masonry -->
+    <script src="https://unpkg.com/masonry-layout@4.2.2/dist/masonry.pkgd.min.js"></script>
 
-    <!-- Jquery -->
-    <script src="<?=get_config('base_path')?>js/jquery.js"></script>
+    <!-- App JS -->
+    <script src="<?=get_config('base_path')?>js/app.min.js"></script>
 
     <!-- Bootstrap JS -->
-    <script src="<?=get_config('base_path')?>js/bootstrap.bundle.min.js"></script>
+    <script src="<?=get_config('base_path')?>js/bootstrap/bootstrap.bundle.js"></script>
 
     <!-- Custom icons from fontawesome -->
     <script src="https://kit.fontawesome.com/cd2caad5e8.js" crossorigin="anonymous"></script>
