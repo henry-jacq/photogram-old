@@ -1,0 +1,181 @@
+/* Processed by Grunt on 10/1/2023 @16:24:29 */
+
+
+.new-bg {
+    background-image: url(../assets/brand/background-webp.jpg);
+    background-size: contain;
+    width: 100%;
+    height: 100%;
+}
+
+.brand-logo {
+    width: 15rem;
+    animation: introLoad 1s forwards;
+}
+
+.top-head {
+    animation: introLoad 1s forwards;
+}
+
+@keyframes introLoad {
+    from {
+        clip-path: polygon(0 0, 100% 0%, 100% 0, 0 0);
+    }
+    to {
+        clip-path: polygon(0 0, 100% 0%, 100% 100%, 0% 100%);
+    }
+}
+/* Custom stylesheet for login and signup page of photogram 
+Colors used:-
+Dracula - #635ca8
+Glassy - #ffffff33
+Glassy-light - #ffffff1a
+*/
+
+html {
+    line-height: 1.15;
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    background-image: url(../assets/brand/background-webp.jpg);
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+}
+
+@keyframes introLoad {
+    from {
+        clip-path: polygon(0 0, 100% 0%, 100% 0, 0 0);
+    }
+    to {
+        clip-path: polygon(0 0, 100% 0%, 100% 100%, 0% 100%);
+    }
+}
+
+.container {
+    z-index: 10;
+    position: relative;
+}
+
+.content {
+    height: 100vh;
+    animation: introLoad 2s forwards;
+}
+
+.form-check-input:checked {
+    background: #635ca8;
+    border: none;
+}
+
+.form-input,
+.form-check-input,
+.form-input:focus-visible {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.brand-logo {
+    width: 90%;
+    /* animation: introLoad 2s forwards; */
+
+    max-width: none;
+    min-width: auto;
+}
+
+.fab {
+    padding: 5px;
+    width: 38px;
+    text-align: center;
+    text-decoration: none;
+    margin: 1px 3px;
+    border-radius: 50%;
+}
+
+.fa-facebook,
+.fa-twitter,
+.fa-google,
+.fa-github {
+    background: #645dab;
+    color: #fff;
+}
+
+.box {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+#popup-error {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 206, 206, 0.2);
+}
+
+/* Custom stylesheet for login and signup page of photogram 
+Colors used:-
+Dracula - #635ca8
+Glassy - #ffffff33
+Glassy-light - #ffffff1a
+*/
+
+html {
+    line-height: 1.15;
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    background-image: url(../assets/brand/background-webp.jpg);
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+}
+
+.container {
+    z-index: 10;
+    position: relative;
+}
+
+.content {
+    height: 100vh;
+}
+
+.form-check-input:checked {
+    background: #635ca8;
+    border: none;
+}
+
+.form-input,
+.form-check-input,
+.form-input:focus-visible {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.brand-logo {
+    width: 90%;
+    max-width: none;
+    min-width: auto;
+}
+
+.fab {
+    padding: 5px;
+    width: 38px;
+    text-align: center;
+    text-decoration: none;
+    margin: 1px 3px;
+    border-radius: 50%;
+}
+
+.fa-facebook,
+.fa-twitter,
+.fa-google,
+.fa-github {
+    background: #645dab;
+    color: #fff;
+}
+
+.box {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+#popup-error {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 206, 206, 0.2);
+}
+/*# sourceMappingURL=style.css.map */

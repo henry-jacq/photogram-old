@@ -20,7 +20,7 @@
     <!-- Custom-compiled bootstrap css -->
     <link href="<?=get_config('base_path')?>css/main.min.css" rel="stylesheet">
     <!-- Hover css -->
-    <link rel="stylesheet" href="<?=get_config('base_path')?>css/hover-min.css">
+    <link rel="stylesheet" href="<?=get_config('base_path')?>css/hover.css">
 
     <?
     // It allows us to load the css for the respective web pages

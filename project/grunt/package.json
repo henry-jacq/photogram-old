@@ -1,10 +1,10 @@
 {
-  "name": "grunt",
-  "version": "2.0.0",
+  "name": "photogram",
+  "version": "3.0.0",
   "description": "",
   "main": "Gruntfile.js",
   "scripts": {
-    "grunt": "grunt"
+    "grunt": "cd /home/Henry/htdocs/photogram/project/grunt/ && grunt"
   },
   "repository": {
     "type": "git",

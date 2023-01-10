@@ -112,7 +112,7 @@ module.exports = function(grunt) {
                 },
             },
             js: {
-                files: ['../css/**/*.js'],
+                files: ['../js/**/*.js'],
                 tasks: ['concat:js', 'uglify', 'obfuscator'],
                 options: {
                     spawn: false,
