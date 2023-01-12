@@ -5,9 +5,9 @@
 
 > Before starting the project, make sure you install NPM
 
-- Install project dependencies from package.json
+- Install the project dependencies from package.json
 
-- Change directory
+- Change directory to grunt
 
 - `cd project/grunt/`
 
@@ -21,7 +21,7 @@
 
 - The extension of custom-compiled bootstrap CSS must be named **main.min.css**.
 
-- To install `carbon` library:
+- Install `carbon` library with composer:
 
 - Go to `cd htdocs`
 
