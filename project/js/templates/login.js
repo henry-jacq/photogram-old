@@ -1,17 +1,3 @@
-/* Processed by Grunt on 14/1/2023 @7:57:47 */
-
-
-// init Masonry
-var $grid = $('#masonry-area').masonry({
-    // itemSelector: '.col',
-    // columnWidth: '.col',
-    percentPosition: true
-});
-// layout Masonry after each image loads
-$grid.imagesLoaded().progress( function() {
-    $grid.masonry('layout');
-});
-
 // Password Toggle Button
 const togglePassword = document.querySelector("#togglePassword");
 const password = document.querySelector("#floatingPassword");
@@ -45,4 +31,3 @@ const toggleConfirmPasswordbtn = document.querySelector(
 toggleConfirmPasswordbtn.classList.toggle("fa-eye");
 toggleConfirmPasswordbtn.classList.toggle("fa-eye-slash");
 });
-//# sourceMappingURL=app.js.map

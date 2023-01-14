@@ -12,10 +12,10 @@
             placeholder="Email or Username" name="username_or_email" required>
         <label class="text-secondary" for="floatingInput">Email or Username</label>
     </div>
-    <div class="form-floating mb-4">
-        <input type="password" class="form-control rounded-0 form-input border-secondary text-light" id="floatingPassword"
-            placeholder="Enter your password" name="password" required>
-        <label class="text-secondary" for="floatingPassword">Password</label>
+    <div class="form-floating mb-4 input-group">
+            <input type="password" name="password" class="form-control rounded-0 form-input border-secondary text-light" id="floatingPassword" placeholder="Enter your password" required>
+            <span class="input-group-text rounded-0 form-input border-secondary text-light" id="togglePassword"><i id="togglePasswordbtn" class="fa fa-eye-slash"></i></span>
+            <label class="text-secondary" for="floatingPassword">Password</label>
     </div>
     <!-- Fingerprint -->
     <input name="visitor_id" type="hidden" class="form-control" id="fingerprint" value="">
@@ -27,7 +27,6 @@
         <button type="submit" class="btn btn-dracula w-100 rounded-0 hvr-grow">Sign in</button>
     </div>
     <div class="text-white">
-        <label for="">Want to join photogram? <a href="signup.php" class="text-decoration-none">Register
-                now</a>.</label>
+        <label for="">Want to join photogram? <a href="signup.php" class="text-decoration-none">Register now</a>.</label>
     </div>
 </form>

@@ -2,7 +2,7 @@
     <nav class="navbar p-1 border-bottom border-secondary navbar-expand-lg navbar-dark shadow-lg" style="background-color: #242829;">
         <div class="container-fluid my-0 ml-auto">
             <a class="navbar-brand display-6 text-dracula" href="/">
-            <img src="/assets/brand/photogram-logo.png" alt="Logo" width="28" height="30" class="d-inline-block align-text-top"> Photogram</a>
+            <img src="/assets/brand/photogram-logo.png" alt="Logo" width="28" height="30" class="d-inline-block align-text-top"><b> Photogram</b></a>
 
             <? if (Session::isAuthenticated()) { ?>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -20,7 +20,7 @@
                                     <li><a class="dropdown-item" href="#"><i class="fa-solid fa-pen-to-square"></i> Edit profile</a></li>
                                     <li><a class="dropdown-item" href="#"><i class="fa-solid fa-gear"></i> Settings</a></li>
                                     <li><hr class="dropdown-divider border-secondary"></li>
-                                    <li><a class="dropdown-item" href="/?logout"><i class="fa-sharp fa-solid fa-arrow-right-from-bracket"></i> Sign out</a></li>
+                                    <li><a class="dropdown-item" href="/logout"><i class="fa-sharp fa-solid fa-arrow-right-from-bracket"></i> Sign out</a></li>
                                 </ul>
                             </li>
                         </ul>
