@@ -2,24 +2,27 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- SEO -->
     <meta property="og:image" content="<?=get_config('base_path')?>assets/brand/photogram-icon.png">
     <meta property="site_name" content="Photogram">
     <meta property="og:title" content="Photogram · Gallery of Memories">
     <meta property="description"
         content="Create an account or log in to Photogram. Share photos &amp; videos with friends, family and other people you know.">
-    <?
-        if (Session::isAuthenticated()) {?>
-            <title>Photogram</title>
-            <?} else {?>
+    <? if (Session::isAuthenticated()) { ?>
+            <? if (Session::currentScript() == "index") { ?>
+                <title>Home · Photogram</title>
+            <? } elseif (Session::currentScript() == "profile") { ?>
+                <title>Profile · Photogram</title>
+            <? } else { ?>
+                <title>Photogram</title>
+            <? } ?>
+        <? } else { ?>
             <title>Sign in/up · Photogram</title>
-        <? } 
-    ?>
+        <? } ?>
     <!-- Favicon for photogram -->
     <link rel="shortcut icon" href="<?=get_config('base_path')?>assets/brand/favicon.ico">
-    <!-- Custom-compiled bootstrap css -->
+    <!-- Custom-compiled bootstrap CSS -->
     <link href="<?=get_config('base_path')?>css/main.min.css" rel="stylesheet">
-    <!-- Hover css -->
+    <!-- Hover CSS -->
     <link rel="stylesheet" href="<?=get_config('base_path')?>css/hover.css">
 
     <?

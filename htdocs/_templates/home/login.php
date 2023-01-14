@@ -4,7 +4,7 @@
             <h1 class="display-6 text-light">Create an Account on Photogram <br> Share Memories with the World.</h1>
             <p class="lead text-muted">It's a Gallery of Memories. We remember even when you forget.</p>
             <div>
-                <a href="/login.php" class="btn btn-outline-success my-4">Join Photogram!</a>
+                <a href="/login" class="btn btn-outline-success my-4">Join Photogram!</a>
             </div>
         </div>
     </div>

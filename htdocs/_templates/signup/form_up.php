@@ -1,7 +1,7 @@
 <!-- This file contains brand-logo and required form-input-fields -->
 <!-- It also has login link and sign up button -->
 
-<form method="post" action="signup.php">
+<form method="post" action="/signup">
     <!-- Brand Logo -->
     <img class="brand-logo img-fluid mb-3 mx-auto d-block" src="<?=get_config('base_path')?>assets/brand/photogram-brand-big.png"
         alt="Photogram logo">
@@ -31,7 +31,7 @@
         <button type="submit" class="btn btn-dracula w-100 rounded-0 hvr-grow">Create account</button>
     </div>
     <div class="text-white">
-        <label>Do you already have an account? <a href="login.php" class="text-decoration-none">Login now</a>.</label>
+        <label>Do you already have an account? <a href="/login" class="text-decoration-none">Login now</a>.</label>
     </div>
 
     <!-- Additional sign up options -->

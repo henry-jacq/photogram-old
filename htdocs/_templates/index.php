@@ -3,10 +3,10 @@
 Session::loadTemplate('_header');
 
 if (Session::isAuthenticated()) {
-    Session::loadTemplate('index/calltoaction');
+    Session::loadTemplate('home/calltoaction');
 } else {
-    Session::loadTemplate('index/login');
+    Session::loadTemplate('home/login');
 }
 
-Session::loadTemplate('index/photogram');
+Session::loadTemplate('home/photogram');
 Session::loadTemplate('_footer');
