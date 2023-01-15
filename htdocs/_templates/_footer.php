@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container mt-auto">
   <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-2">
     <p class="col-md-4 mb-0 text-muted">© 2022 - 2023 Photogram, Inc</p>
     

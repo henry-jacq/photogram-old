@@ -70,7 +70,7 @@ class UserSession {
                 }
             } else throw new Exception("User agent and IP address is NULL.");
         } catch(Exception $e){
-            throw new Exception("Something is wrong");
+            throw new Exception($e->getMessage());
         }
     }
 
