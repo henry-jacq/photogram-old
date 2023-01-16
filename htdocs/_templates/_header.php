@@ -12,10 +12,10 @@
                     <div class="collapse navbar-collapse" id="navbarNavDropdown">
                         <ul class="navbar-nav">
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-sharp fa-solid fa-user"></i> Your Profile </a>
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-sharp fa-solid fa-user"></i> Your Account </a>
                                 <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end">
                                     <? $userobj = new User(Session::get('session_UsernameOrEmail'));?>
-                                    <li><a href="#" class="dropdown-item" href="">@<?=ucfirst($userobj->getUsername());?></a></li>
+                                    <li><a href="/profile" class="dropdown-item" href="">@<?=ucfirst($userobj->getUsername());?></a></li>
                                     <li><hr class="dropdown-divider border-secondary"></li>
                                     <li><a class="dropdown-item" href="#"><i class="fa-solid fa-pen-to-square"></i> Edit profile</a></li>
                                     <li><a class="dropdown-item" href="#"><i class="fa-solid fa-gear"></i> Settings</a></li>
@@ -28,8 +28,8 @@
                 </div>
             <? } else { ?>
             <div>
-                <a href="/login.php" class="btn btn-sm btn-success float-right">Sign in</a>
-                <a href="./signup.php" class="btn btn-sm btn-secondary">Register</a>
+                <a href="/login" class="btn btn-sm btn-success float-right">Sign in</a>
+                <a href="/signup" class="btn btn-sm btn-secondary">Register</a>
             </div>
             <? } ?>
         </div>

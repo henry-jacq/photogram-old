@@ -37,6 +37,13 @@ class Post {
         $result = $db->query($sql);
         return iterator_to_array($result);
     }
+
+    public static function getUserPosts($user){
+        $db = Database::getConnection();
+        $sql = "SELECT * FROM `posts` WHERE `owner` = '$user' ORDER BY `uploaded_time` DESC";
+        $result = $db->query($sql);
+        return iterator_to_array($result);
+    }    
     
     public function __construct($id){
         if (!$this->conn) {
