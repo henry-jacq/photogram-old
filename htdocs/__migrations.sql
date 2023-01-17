@@ -1,8 +1,13 @@
--- 8 Dec, 2022 Migrations
-ALTER TABLE `auth` ADD `sec_email` varchar(256) NULL;
+-- 15 Jan, 2023 Migrations
+-- Adminer 4.8.1 MySQL 8.0.30 dump
 
--- Creating tables
-DROP TABLE IF EXISTS `auth`;
+SET NAMES utf8;
+SET time_zone = '+00:00';
+SET foreign_key_checks = 0;
+SET sql_mode = 'NO_AUTO_VALUE_ON_ZERO';
+
+SET NAMES utf8mb4;
+
 CREATE TABLE `auth` (
   `id` int NOT NULL AUTO_INCREMENT,
   `username` varchar(32) NOT NULL,
@@ -11,7 +16,7 @@ CREATE TABLE `auth` (
   `phone` varchar(16) NOT NULL,
   `active` int NOT NULL DEFAULT '1',
   `blocked` int NOT NULL DEFAULT '0',
-  `sec_email` varchar(256) NOT NULL,
+  `sec_email` varchar(256) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '',
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`),
   UNIQUE KEY `email` (`email`),
@@ -19,7 +24,43 @@ CREATE TABLE `auth` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 
-DROP TABLE IF EXISTS `users`;
+CREATE TABLE `post_images` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `post_id` int NOT NULL,
+  `image_uri` varchar(2048) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `post_id` (`post_id`),
+  CONSTRAINT `post_images_ibfk_1` FOREIGN KEY (`post_id`) REFERENCES `post_images` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+
+CREATE TABLE `posts` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `post_text` varchar(160) NOT NULL,
+  `multiple_images` int NOT NULL DEFAULT '0',
+  `image_uri` varchar(1024) NOT NULL,
+  `like_count` int NOT NULL,
+  `uploaded_time` timestamp NOT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `owner` varchar(128) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+
+CREATE TABLE `session` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `uid` int NOT NULL,
+  `token` varchar(32) NOT NULL,
+  `login_time` datetime NOT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `ip` varchar(20) NOT NULL,
+  `user_agent` varchar(256) NOT NULL,
+  `active` int NOT NULL DEFAULT '1',
+  `visitor_id` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `uid` (`uid`),
+  CONSTRAINT `session_ibfk_1` FOREIGN KEY (`uid`) REFERENCES `auth` (`id`) ON DELETE RESTRICT
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+
 CREATE TABLE `users` (
   `id` int NOT NULL,
   `bio` longtext NOT NULL,
@@ -33,3 +74,6 @@ CREATE TABLE `users` (
   KEY `id` (`id`),
   CONSTRAINT `users_ibfk_1` FOREIGN KEY (`id`) REFERENCES `auth` (`id`) ON DELETE RESTRICT
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+
+-- 2023-01-15 16:51:00

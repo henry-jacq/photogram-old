@@ -63,7 +63,10 @@ class UserSession {
                             Session::$user = $session->getUser();
                             return $session;
                         }
-                    } else throw new Exception("Session is invalid.");
+                    } else {
+                        $session::removeSession($token);
+                        throw new Exception("Session is invalid.");
+                    }
                 } else {
                     $session::removeSession($token);
                     throw new Exception("User agent and IP address doesn't match.");
