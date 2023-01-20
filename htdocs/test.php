@@ -45,10 +45,36 @@ include 'libs/autoload.php';
 
 // print($p->getOwner());
 
-$image_tmp = $_FILES['post_image']['tmp_name'];
-$text = $_POST['post_text'];
+// $image_tmp = $_FILES['post_image']['tmp_name'];
+// $text = $_POST['post_text'];
 
-echo "Image location: $image_tmp<br>";
-echo "Caption: $text<br><br>";
+// echo "Image location: $image_tmp<br>";
+// echo "Caption: $text<br><br>";
 
-Post::registerPost($image_tmp, $text);
+// Post::registerPost($image_tmp, $text);
+
+// $filename = $_SERVER['DOCUMENT_ROOT']."/../uploads/0a8bab831341a9f893e9f21214bbbfa2.png";
+
+// if (file_exists($filename)) {
+//     if (!unlink($filename)) {
+//         echo "File '$filename' cannot be deleted.\n";
+//     } else {
+//         echo "File '$filename' deleted !\n";
+//     }
+// } else {
+//     echo "File '$filename' not found !\n";
+// }
+
+// Getting the files name
+// $filenames = array("/files/9f027206802862f9661eb1b0566ff82e.jpeg", "/files/d75c1bef31855589f02566ebf646eafe.png");
+
+// foreach ($filenames as $filename) {
+//     echo(get_config('upload_path').basename($filename));
+//     echo "\n";
+// }
+
+// $p = new Post(110);
+
+// $p->deletePost();
+
+// echo "\n";
