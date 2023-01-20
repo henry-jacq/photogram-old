@@ -7,7 +7,7 @@
                 <img src="/assets/brand/pic.jpg" class="img-fluid rounded-circle mb-3" alt="Profile Picture" width="200" height="200">
                 <h2 class="text-light"><?=ucfirst(Session::getUser()->getUsername());?></h2>
                 <p class="text-muted">Web Developer</p>
-                <button class="btn btn-sm btn-dracula">Change profile icon</button>
+                <button class="btn btn-sm btn-dracula" onclick="dialog('Not Implemented!',' This feature is not implemented');">Change profile icon</button>
             </div>
             <div class="col-md-8">
                 <ul class="list-group border-0 my-3">
@@ -23,8 +23,9 @@
                         <i class="text-primary">#IoT #electronics #hacking</i>
                     </div>
                 </div>
+                <i class="text-bg-dark">You can edit your details in <a href="#" class="text-decoration-none">Here</a>.</i>
             </div>
-            <h3 class="text-light my-3">Your Memories</h3>
+            <h3 class="text-light my-3">Your Posts</h3>
             <hr class="hr text-light p-4">
             <?=Session::loadTemplate('home/show_posts');?>
         </div>

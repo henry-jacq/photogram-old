@@ -13,6 +13,23 @@
         Session::loadTemplate(Session::currentScript());
     }
     ?>
+
+	<div id="modalsGarbage">
+		<div class="modal fade animate__animated" id="dummy-dialog-modal" tabindex="-1" role="dialog" aria-labelledby=""
+			aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+				<div class="modal-content blur text-bg-dark" style="box-shadow: rgba(99, 92, 168, 0.3) 0px 0px 0px 3px">
+					<div class="modal-header">
+						<h4 class="modal-title"></h4>
+					</div>
+					<div class="modal-body">
+					</div>
+					<div class="modal-footer">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
    
    <!-- Jquery -->
    <script src="<?=get_config('base_path')?>js/jquery/jquery.js"></script>
@@ -22,31 +39,19 @@
    
    <!-- Masonry -->
     <script src="https://unpkg.com/masonry-layout@4.2.2/dist/masonry.pkgd.min.js"></script>
+    
+    <!-- Bootstrap JS -->
+    <script src="<?=get_config('base_path')?>js/bootstrap/bootstrap.bundle.js"></script>
+    
+    <!-- Custom icons from fontawesome -->
+    <script src="https://kit.fontawesome.com/cd2caad5e8.js" crossorigin="anonymous"></script>
 
     <!-- App JS -->
     <script src="<?=get_config('base_path')?>js/app.min.js"></script>
 
-    <!-- Bootstrap JS -->
-    <script src="<?=get_config('base_path')?>js/bootstrap/bootstrap.bundle.js"></script>
+    <!-- Dialog JS -->
+    <script src="<?=get_config('base_path')?>js/dialog/dialog.js"></script>
 
-    <!-- Custom icons from fontawesome -->
-    <script src="https://kit.fontawesome.com/cd2caad5e8.js" crossorigin="anonymous"></script>
-
-    <script>
-        // Initialize the agent at application startup.
-        const fpPromise = import('https://openfpcdn.io/fingerprintjs/v3')
-            .then(FingerprintJS => FingerprintJS.load())
-
-        // Get the visitor identifier when you need it.
-        fpPromise
-            .then(fp => fp.get())
-            .then(result => {
-                // This is the visitor identifier:
-                const visitorId = result.visitorId;
-                console.log(visitorId);
-                $("#fingerprint").val(visitorId);
-            })
-    </script>
 </body>
 
 </html>

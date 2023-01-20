@@ -20,6 +20,7 @@ class WebAPI {
     }
 
     public function initiateSession(){
+        session_cache_limiter('none');
         Session::start();
         if (Session::isset('session_token')) {
             try {

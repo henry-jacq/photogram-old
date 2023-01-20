@@ -17,8 +17,8 @@
                                     <? $userobj = new User(Session::get('session_UsernameOrEmail'));?>
                                     <li><a href="/profile" class="dropdown-item" href="">@<?=ucfirst($userobj->getUsername());?></a></li>
                                     <li><hr class="dropdown-divider border-secondary"></li>
-                                    <li><a class="dropdown-item" href="#"><i class="fa-solid fa-pen-to-square"></i> Edit profile</a></li>
-                                    <li><a class="dropdown-item" href="#"><i class="fa-solid fa-gear"></i> Settings</a></li>
+                                    <li><a class="dropdown-item" href="#" onclick="dialog('Not Implemented!',' This feature is not implemented');"><i class="fa-solid fa-pen-to-square"></i> Edit profile</a></li>
+                                    <li><a class="dropdown-item" href="#" onclick="dialog('Not Implemented!',' This feature is not implemented');"><i class="fa-solid fa-gear"></i> Settings</a></li>
                                     <li><hr class="dropdown-divider border-secondary"></li>
                                     <li><a class="dropdown-item" href="/logout"><i class="fa-sharp fa-solid fa-arrow-right-from-bracket"></i> Sign out</a></li>
                                 </ul>

@@ -20,7 +20,7 @@ if(isset($_FILES['post_image']) and isset($_POST['post_text'])){
                     <label for="floatingTextarea2">Write your Description</label>
                 </div>
                 <button type="submit" class="btn btn-success my-4"><i class="fa-sharp fa-solid fa-arrow-up-from-bracket"></i> Upload</button>
-                <a href="" class="btn btn-secondary my-2">Remove</a>
+                <a class="btn btn-secondary my-2" onclick="dialog('Remove picture ?',' It removes the upload picture');">Remove</a>
             </form>
 
         </div>
