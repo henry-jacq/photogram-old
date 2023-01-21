@@ -1,7 +1,5 @@
 <?php
 
-use Carbon\Carbon;
-
 include_once __DIR__ . "/../traits/SQLGetterSetter.trait.php";
 
 class Post {
@@ -10,6 +8,7 @@ class Post {
 
     use SQLGetterSetter;
 
+    // Register a post in database and save image in 'uploads' directory
     public static function registerPost($image_tmp, $text){
         if (is_file($image_tmp) and exif_imagetype($image_tmp) !== false) {
             $owner = Session::getUser()->getUsername();
@@ -31,6 +30,45 @@ class Post {
         }        
     }
 
+    // Delete the post's image from 'uploads' directory
+    public function deletePostImage(){
+        try {
+            $image_name = basename($this->getImageUri());
+            $image_path = get_config('upload_path').$image_name;
+            if (file_exists($image_path)) {
+                if (unlink($image_path)) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        } catch (Exception $e) {
+            throw new Exception($e->getMessage());
+        }
+    }
+
+    // It will remove the database entry as well as the image in 'uploads'.
+    public function remove_post(){
+        echo "Hahhahahahahahaha";
+        if (!$this->conn) {
+            $this->conn = Database::getConnection();
+        }
+        try {
+            if ($this->deletePostImage()) {
+                $sql = "DELETE FROM `$this->table` WHERE `id`=$this->id;";
+                if ($this->conn->query($sql)) {
+                    header("Location: /profile.php");
+                    // return true;
+                } else {
+                    return false;
+                }
+            } 
+        } catch (Exception $e) {
+            throw new Exception(__CLASS__."::delete, cannot delete the post.");
+        }
+    }
+
+    // Dump all posts from database
     public static function getAllPosts(){
         $db = Database::getConnection();
         $sql = "SELECT * FROM `posts` ORDER BY `uploaded_time` DESC";
@@ -38,6 +76,7 @@ class Post {
         return iterator_to_array($result);
     }
 
+    // Dump only this user's posts 
     public static function getUserPosts($user){
         $db = Database::getConnection();
         $sql = "SELECT * FROM `posts` WHERE `owner` = '$user' ORDER BY `uploaded_time` DESC";
