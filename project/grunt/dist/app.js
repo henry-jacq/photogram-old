@@ -41,7 +41,10 @@ $('.btn-delete').on('click', function(){
                         $(`#post-${post_id}`).remove();
                         // window.location.href = "/";
                         $grid.masonry('layout');
-                    } // else create toast and alert the user
+                        new Toast("Photogram", "1 seconds ago", "Your post was successfully deleted!", {}).show();
+                    } else {
+                        new Toast("Photogram", "1 seconds ago", "cannot delete your post!", {}).show();
+                    }
                 });
 
                 $(event.data.modal).modal('hide')
