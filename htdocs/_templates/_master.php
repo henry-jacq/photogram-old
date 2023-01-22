@@ -52,6 +52,14 @@
     <!-- Dialog JS -->
     <script src="<?=get_config('base_path')?>js/dialog/dialog.js"></script>
 
+    <?
+    if (!Session::isAuthenticated()) {
+        if (Session::currentScript() == "login") {
+            ?><script src="<?=get_config('base_path')?>js/login.js"></script><?
+        }
+    }
+    ?>
+
 </body>
 
 </html>

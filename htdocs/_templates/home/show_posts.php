@@ -19,7 +19,7 @@
             $uploaded_time = Carbon::parse($p->getUploadedTime());
             $uploaded_time_str = $uploaded_time->diffForHumans();
         ?>
-        <div class="col-lg-3 mb-3" id="post-<?=$post['id']?>">
+        <div class="col-lg-3" id="post-<?=$post['id']?>">
             <div class="card shadow-lg border-0 text-light">
                 <img src="<?=$p->getImageUri()?>">
                 <div class="card-body" style="background-color: #2a2d2e;">
@@ -36,14 +36,14 @@
                     <div class="d-flex justify-content-between align-items-center">
                         <div class="btn-group p-2" data-id="<?=$post['id']?>">
                                 
-                                <? if (!Session::isAuthenticated()) { ?>
-                                    <button type="button" class="btn btn-sm btn-outline-primary btn-like" onclick="dialog('Login Now!',' Login to photogram to view and like the post.');"><i class="fa-regular fa-heart"></i> Like</button>
-                                <? } else { ?>
-                                    <button type="button" class="btn btn-sm btn-outline-primary btn-like" onclick="dialog('Not Implemented!',' This feature is not implemented');"><i class="fa-regular fa-heart"></i> Like</button>
-                                <? } ?>
+                            <? if (!Session::isAuthenticated()) { ?>
+                                <button type="button" class="btn btn-sm btn-outline-primary btn-like" onclick="dialog('Login Now!',' Login to photogram to view and like the post.');"><i class="fa-regular fa-heart"></i> Like</button>
+                            <? } else { ?>
+                                <button type="button" class="btn btn-sm btn-outline-primary btn-like" onclick="dialog('Not Implemented!',' This feature is not implemented');"><i class="fa-regular fa-heart"></i> Like</button>
+                            <? } ?>
 
-                                <!-- <button type="button" class="btn btn-sm btn-outline-secondary"><i class="fa-regular fa-paper-plane"></i> Share</button> -->
-                                <? if (Session::isOwnerOf($p->getOwner())) { ?>
+                            <!-- <button type="button" class="btn btn-sm btn-outline-secondary"><i class="fa-regular fa-paper-plane"></i> Share</button> -->
+                            <? if (Session::isOwnerOf($p->getOwner())) { ?>
                                 <button type="button" class="btn btn-sm btn-outline-danger btn-delete"><i class="fa-solid fa-trash"></i> Delete</button>
                             <? } ?>
                         </div>

@@ -1,10 +1,8 @@
-/* Processed by Grunt on 19/1/2023 @13:48:18 */
+/* Processed by Grunt on 22/1/2023 @6:1:32 */
 
 
 // init Masonry
 var $grid = $('#masonry-area').masonry({
-    // itemSelector: '.col',
-    // columnWidth: '.col',
     percentPosition: true
 });
 
@@ -12,6 +10,7 @@ var $grid = $('#masonry-area').masonry({
 $grid.imagesLoaded().progress( function() {
     $grid.masonry('layout');
 });
+
 
 // Fingerprint
 // Initialize the agent at application startup.
@@ -21,7 +20,6 @@ const fpPromise = import('https://openfpcdn.io/fingerprintjs/v3').then(Fingerpri
 fpPromise.then(fp => fp.get()).then(result => {
     // This is the visitor identifier:
     const visitorId = result.visitorId;
-    console.log(visitorId);
     $("#fingerprint").val(visitorId);
 })
 
@@ -34,20 +32,16 @@ $('.btn-delete').on('click', function(){
         {
             'name': "Delete",
             "class": "btn-danger",
-            "onClick": function(event){
-                console.log(`Assume this post ${post_id} is deleted`);
-                // $(`#post-${post_id}`).remove();
-                
+            "onClick": function(event){             
                 $.post('/api/posts/delete',
                 {
                     id: post_id
-                }, function(data, textSuccess, xhr){
-                    console.log(textSuccess);
-                    console.log(data);
-
-                    if(textSuccess =="success" ){ //means 200
+                }, function(data, textSuccess){
+                    if(textSuccess =="success" ){
                         $(`#post-${post_id}`).remove();
-                    }
+                        // window.location.href = "/";
+                        $grid.masonry('layout');
+                    } // else create toast and alert the user
                 });
 
                 $(event.data.modal).modal('hide')
@@ -64,37 +58,4 @@ $('.btn-delete').on('click', function(){
     d.show();
 });
 
-// Password Toggle Button
-const togglePassword = document.querySelector("#togglePassword");
-const password = document.querySelector("#floatingPassword");
-
-togglePassword.addEventListener("click", function () {
-// toggle the type attribute
-const type = password.getAttribute("type") === "password" ? "text" : "password";
-password.setAttribute("type", type);
-
-// toggle the eye icon
-const togglePasswordbtn = document.querySelector("#togglePasswordbtn");
-
-togglePasswordbtn.classList.toggle("fa-eye");
-togglePasswordbtn.classList.toggle("fa-eye-slash");
-});
-
-// Confirm Password Toggle Button
-const toggleConfirmPassword = document.querySelector("#toggleConfirmPassword");
-const Confirmpassword = document.querySelector("#floatingConfirmPassword");
-
-toggleConfirmPassword.addEventListener("click", function () {
-// toggle the type attribute
-const type = Confirmpassword.getAttribute("type") === "password" ? "text" : "password";
-Confirmpassword.setAttribute("type", type);
-
-// toggle the eye icon
-const toggleConfirmPasswordbtn = document.querySelector(
-    "#toggleConfirmPasswordbtn"
-);
-
-toggleConfirmPasswordbtn.classList.toggle("fa-eye");
-toggleConfirmPasswordbtn.classList.toggle("fa-eye-slash");
-});
 //# sourceMappingURL=app.js.map

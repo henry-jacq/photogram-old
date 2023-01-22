@@ -39,7 +39,7 @@ class Post {
                 if (unlink($image_path)) {
                     return true;
                 } else {
-                    return false;
+                    throw new Exception(__CLASS__."::".__FUNCTION__.", can't delete the post image.Image path: $image_path");
                 }
             }
         } catch (Exception $e) {
@@ -49,22 +49,22 @@ class Post {
 
     // It will remove the database entry as well as the image in 'uploads'.
     public function remove_post(){
-        echo "Hahhahahahahahaha";
+
         if (!$this->conn) {
             $this->conn = Database::getConnection();
         }
+        
         try {
             if ($this->deletePostImage()) {
                 $sql = "DELETE FROM `$this->table` WHERE `id`=$this->id;";
                 if ($this->conn->query($sql)) {
-                    header("Location: /profile.php");
-                    // return true;
+                    return true;
                 } else {
                     return false;
                 }
             } 
         } catch (Exception $e) {
-            throw new Exception(__CLASS__."::delete, cannot delete the post.");
+            throw new Exception(__CLASS__."::remove_post, cannot remove the post.");
         }
     }
 

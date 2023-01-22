@@ -1,7 +1,5 @@
 // init Masonry
 var $grid = $('#masonry-area').masonry({
-    // itemSelector: '.col',
-    // columnWidth: '.col',
     percentPosition: true
 });
 
@@ -9,6 +7,7 @@ var $grid = $('#masonry-area').masonry({
 $grid.imagesLoaded().progress( function() {
     $grid.masonry('layout');
 });
+
 
 // Fingerprint
 // Initialize the agent at application startup.
@@ -18,7 +17,6 @@ const fpPromise = import('https://openfpcdn.io/fingerprintjs/v3').then(Fingerpri
 fpPromise.then(fp => fp.get()).then(result => {
     // This is the visitor identifier:
     const visitorId = result.visitorId;
-    console.log(visitorId);
     $("#fingerprint").val(visitorId);
 })
 
@@ -31,20 +29,16 @@ $('.btn-delete').on('click', function(){
         {
             'name': "Delete",
             "class": "btn-danger",
-            "onClick": function(event){
-                console.log(`Assume this post ${post_id} is deleted`);
-                // $(`#post-${post_id}`).remove();
-                
+            "onClick": function(event){             
                 $.post('/api/posts/delete',
                 {
                     id: post_id
-                }, function(data, textSuccess, xhr){
-                    console.log(textSuccess);
-                    console.log(data);
-
-                    if(textSuccess =="success" ){ //means 200
+                }, function(data, textSuccess){
+                    if(textSuccess =="success" ){
                         $(`#post-${post_id}`).remove();
-                    }
+                        // window.location.href = "/";
+                        $grid.masonry('layout');
+                    } // else create toast and alert the user
                 });
 
                 $(event.data.modal).modal('hide')
