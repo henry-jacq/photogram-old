@@ -1,5 +1,5 @@
 <header>
-    <nav class="navbar p-1 border-bottom border-secondary navbar-expand-lg navbar-dark shadow-lg" style="background-color: #242829;">
+    <nav class="navbar p-1 border-bottom border-secondary navbar-expand-lg">
         <div class="container-fluid my-0 ml-auto">
             <a class="navbar-brand display-6 text-dracula" href="/">
             <img src="/assets/brand/photogram-logo.png" alt="Logo" width="28" height="30" class="d-inline-block align-text-top"><b> Photogram</b></a>
@@ -12,8 +12,11 @@
                     <div class="collapse navbar-collapse" id="navbarNavDropdown">
                         <ul class="navbar-nav">
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-sharp fa-solid fa-user"></i> Your Account </a>
-                                <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end">
+                                <!-- <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-sharp fa-solid fa-user"></i> Your Account </a> -->
+                                <a href="#" class="nav-link d-block border border-secondary rounded link-dark text-decoration-none dropdown-toggle container p-1" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <img src="/assets/brand/pic.jpg" alt="mdo" width="32" height="32" class="rounded-circle">
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end text-small shadow">
                                     <? $userobj = new User(Session::get('session_UsernameOrEmail'));?>
                                     <li><a href="/profile" class="dropdown-item" href="">@<?=ucfirst($userobj->getUsername());?></a></li>
                                     <li><hr class="dropdown-divider border-secondary"></li>
