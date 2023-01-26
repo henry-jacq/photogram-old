@@ -57,15 +57,17 @@ class Toast{
 
     show(){
         var toast_template = `
-        <div class="toast border" id="${this.id}" role="alert" aria-live="assertive" aria-atomic="true">
-            <div class="toast-header">
-                <img class="rounded me-2" src="/assets/brand/photogram-logo.png" width=23 height=25 >
-                <strong class="me-auto">${this.title}</strong>
-                <small class="text-muted">${this.subtitle}</small>
-                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-            </div>
-            <div class="toast-body">
-                ${this.message}
+        <div class="p-2 mt-3" id="${this.id}">
+            <div class="toast border" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="toast-header">
+                    <img class="rounded me-2" src="/assets/brand/photogram-logo.png" width=23 height=25 >
+                    <strong class="me-auto">${this.title}</strong>
+                    <small class="text-muted">${this.subtitle}</small>
+                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+                <div class="toast-body">
+                    ${this.message}
+                </div>
             </div>
         </div>
         `;

@@ -144,7 +144,7 @@ class Dialog {
 		this.buttons = buttons;
 	}
 
-	show(theme="dracula"){
+	show(theme="primary"){
 		this.clone.prop('id', this.cloneId);
 		this.clone.appendTo('#modalsGarbage');
 		if(typeof this.options.size !== "undefined"){
