@@ -1,3 +1,0 @@
-<?
-
-Session::loadTemplate('signup/index');
