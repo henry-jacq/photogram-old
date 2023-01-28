@@ -3,7 +3,7 @@
 ### To start the project:
 
 
-> Before starting the project, make sure you install NPM
+> Before starting the project, make sure you install NPM and Composer
 
 - Install the project dependencies from package.json
 
