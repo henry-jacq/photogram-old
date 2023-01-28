@@ -21,7 +21,7 @@
     <!-- Favicon for photogram -->
     <link rel="shortcut icon" href="<?=get_config('base_path')?>assets/brand/favicon.ico">
     <!-- Custom-compiled bootstrap CSS -->
-    <link href="<?=get_config('base_path')?>css/main.min.css" rel="stylesheet">
+    <link href="<?=get_config('base_path')?>css/bootstrap.min.css" rel="stylesheet">
     <!-- Hover CSS -->
     <link rel="stylesheet" href="<?=get_config('base_path')?>css/hover.css">
 

@@ -1,4 +1,4 @@
-<div class="container p-3">
+<div class="container p-3 mb-5">
     <div class="row g-3" id="masonry-area">
         <? 
         use Carbon\Carbon;
