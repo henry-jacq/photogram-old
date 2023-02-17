@@ -20,34 +20,76 @@
             $uploaded_time_str = $uploaded_time->diffForHumans();
         ?>
         <div class="col-lg-3" id="post-<?=$post['id']?>">
-            <div class="card shadow-lg border-0 text-light">
+            <div class="card">
+                <? if(Session::isAuthenticated()) { ?>
+                    <header class="card-header p-2">
+                        <div class="d-flex align-items-center justify-content-between">
+                            <div class="d-flex align-items-center">
+                                <!-- Avatar -->
+                                <div class="avatar avatar-story me-2">
+                                    <a href="#" class="d-block link-dark text-decoration-none" aria-expanded="false">
+                                        <img src="https://avatars.githubusercontent.com/u/89177279" alt="mdo" width="35"
+                                            height="35" class="rounded-circle"></a>
+                                </div>
+                                <!-- Info -->
+                                <div>
+                                    <div class="nav nav-divider">
+                                        
+                                        <? if (Session::isOwnerOf($p->getOwner())) { ?>
+                                            <h7 class="nav-item card-title mb-0"> <a href="#!" class="text-decoration-none" style="color: var(--bs-dark-text)"><?=ucfirst($p->getOwner());?></a></h7>
+                                        <? } else { ?>
+                                            <h7 class="nav-item card-title mb-0"> <a href="#!" class="text-decoration-none" style="color: var(--bs-dark-text)"><?=ucfirst($p->getOwner());?></a></h7>
+                                        <? } ?>
+
+                                        <div class="ms-1 align-items-center justify-content-between">
+                                            <span class="nav-item small fw-light"> • <?=$uploaded_time_str?></span>
+                                        </div>
+                                    </div>
+                                    <p class="mb-0 small fw-light">Web Developer</p>
+                                </div>
+                            </div>
+                            <div class="dropdown">
+                                <a href="#" class="text-secondary btn btn-secondary-soft-hover py-1 px-2"
+                                    id="cardFeedAction1" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="bi bi-three-dots-vertical"></i>
+                                </a>
+                                <!-- Card feed action dropdown menu -->
+                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="cardFeedAction1">
+                                    <li><a class="dropdown-item" href="#"> <i class="bi bi-download fa-fw pe-2"></i>Download</a></li>
+                                    <li><a class="dropdown-item" href="#"> <i class="bi bi-link-45deg fa-fw pe-2"></i>Copy link</a></li>
+                                    <li><a class="dropdown-item" href="#"> <i class="bi bi-bookmark fa-fw pe-2"></i>Bookmark</a></li>
+                                    <? if (Session::isOwnerOf($p->getOwner())) { ?>
+                                        <li><a class="dropdown-item" href="#"> <i class="bi bi-pencil fa-fw pe-2"></i>Edit post</a></li>
+                                        <!-- <li><a class="dropdown-item" href="#"> <i class="bi bi-archive fa-fw pe-2"></i>Archive post</a></li> -->
+                                        
+                                        <? if (Session::isOwnerOf($p->getOwner())) { ?>
+                                            <li>
+                                                <hr class="dropdown-divider">
+                                            </li>
+                                            <li data-id="<?=$post['id']?>"><a class="dropdown-item btn btn-delete"><i class="bi bi-trash fa-fw pe-2 text-danger"></i> Delete</a></li>
+                                        <? } ?>
+                                        
+                                        
+                                    <? } ?>
+                                </ul>
+                            </div>
+                        </div>
+                    </header>
+                <? } ?>
                 <img src="<?=$p->getImageUri()?>">
                 <div class="card-body" style="background-color: #2a2d2e;">
-                    <?
-                    if (Session::isAuthenticated()) {
-                        if (Session::isOwnerOf($p->getOwner())) {
-                            ?><p class="badge bg-secondary">@<?=lcfirst($p->getOwner());?></p><?
-                        } else {
-                            ?><p class="badge bg-secondary">@<?=lcfirst($p->getOwner());?></p><?
-                        }
-                    }
-                    ?>
                     <p class="card-text"><?=$p->getPostText()?></p>
                     <div class="d-flex justify-content-between align-items-center">
-                        <div class="btn-group p-2" data-id="<?=$post['id']?>">
+                        <!-- <div class="btn-group p-2"> -->
                                 
                             <? if (!Session::isAuthenticated()) { ?>
                                 <button type="button" class="btn btn-sm btn-outline-primary btn-like" onclick="dialog('Login Now!',' Login to photogram to view and like the post.');"><i class="fa-regular fa-heart"></i> Like</button>
                             <? } else { ?>
-                                <button type="button" class="btn btn-sm btn-outline-primary btn-like" onclick="dialog('Not Implemented!',' This feature is not implemented');"><i class="fa-regular fa-heart"></i> Like</button>
+                                <button type="button" class="btn btn-sm btn-outline-secondary btn-like"><i class="fa-regular fa-heart"></i> Like</button>
                             <? } ?>
 
                             <!-- <button type="button" class="btn btn-sm btn-outline-secondary"><i class="fa-regular fa-paper-plane"></i> Share</button> -->
-                            <? if (Session::isOwnerOf($p->getOwner())) { ?>
-                                <button type="button" class="btn btn-sm btn-outline-danger btn-delete"><i class="fa-solid fa-trash"></i> Delete</button>
-                            <? } ?>
-                        </div>
-                        <small class="text-muted"><?=$uploaded_time_str?></small>
+                        <!-- </div> -->
                     </div>
                 </div>
             </div>

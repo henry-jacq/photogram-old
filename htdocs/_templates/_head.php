@@ -24,6 +24,8 @@
     <link href="<?=get_config('base_path')?>css/bootstrap.min.css" rel="stylesheet">
     <!-- Hover CSS -->
     <link rel="stylesheet" href="<?=get_config('base_path')?>css/hover.css">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
 
     <?
     // It allows us to load the css for the respective web pages
