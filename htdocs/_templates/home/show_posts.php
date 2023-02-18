@@ -55,11 +55,11 @@
                                 </a>
                                 <!-- Card feed action dropdown menu -->
                                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="cardFeedAction1">
-                                    <li><a class="dropdown-item" href="#"> <i class="bi bi-download fa-fw pe-2"></i>Download</a></li>
-                                    <li><a class="dropdown-item" href="#"> <i class="bi bi-link-45deg fa-fw pe-2"></i>Copy link</a></li>
-                                    <li><a class="dropdown-item" href="#"> <i class="bi bi-bookmark fa-fw pe-2"></i>Bookmark</a></li>
+                                    <li onclick="dialog('Not Implemented!',' This feature is not implemented');"><a class="dropdown-item" href="#"> <i class="bi bi-download fa-fw pe-2"></i>Download</a></li>
+                                    <li onclick="dialog('Not Implemented!',' This feature is not implemented');"><a class="dropdown-item" href="#"> <i class="bi bi-link-45deg fa-fw pe-2"></i>Copy link</a></li>
+                                    <li onclick="dialog('Not Implemented!',' This feature is not implemented');"><a class="dropdown-item" href="#"> <i class="bi bi-bookmark fa-fw pe-2"></i>Bookmark</a></li>
                                     <? if (Session::isOwnerOf($p->getOwner())) { ?>
-                                        <li><a class="dropdown-item" href="#"> <i class="bi bi-pencil fa-fw pe-2"></i>Edit post</a></li>
+                                        <li onclick="dialog('Not Implemented!',' This feature is not implemented');"><a class="dropdown-item" href="#"> <i class="bi bi-pencil fa-fw pe-2"></i>Edit post</a></li>
                                         <!-- <li><a class="dropdown-item" href="#"> <i class="bi bi-archive fa-fw pe-2"></i>Archive post</a></li> -->
                                         
                                         <? if (Session::isOwnerOf($p->getOwner())) { ?>
@@ -85,7 +85,7 @@
                             <? if (!Session::isAuthenticated()) { ?>
                                 <button type="button" class="btn btn-sm btn-outline-primary btn-like" onclick="dialog('Login Now!',' Login to photogram to view and like the post.');"><i class="fa-regular fa-heart"></i> Like</button>
                             <? } else { ?>
-                                <button type="button" class="btn btn-sm btn-outline-secondary btn-like"><i class="fa-regular fa-heart"></i> Like</button>
+                                <button type="button" class="btn btn-sm btn-outline-secondary btn-like" onclick="dialog('Not Implemented!',' This feature is not implemented');"><i class="fa-regular fa-heart"></i> Like</button>
                             <? } ?>
 
                             <!-- <button type="button" class="btn btn-sm btn-outline-secondary"><i class="fa-regular fa-paper-plane"></i> Share</button> -->
