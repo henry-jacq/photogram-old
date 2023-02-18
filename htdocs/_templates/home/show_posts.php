@@ -79,16 +79,21 @@
                 <div class="card-body" style="background-color: #2a2d2e;">
                     <p class="card-text"><?=$p->getPostText()?></p>
                     <div class="d-flex justify-content-between align-items-center">
-                        <!-- <div class="btn-group p-2"> -->
-                                
+                        <div class="btn-group" data-id="<?=$post['id']?>">
                             <? if (!Session::isAuthenticated()) { ?>
-                                <button type="button" class="btn btn-sm btn-outline-primary btn-like" onclick="dialog('Login Now!',' Login to photogram to view and like the post.');"><i class="fa-regular fa-heart"></i> Like</button>
+                                <!-- <button type="button" class="btn btn-sm btn-outline-primary btn-like" onclick="dialog('Login Now!',' Login to photogram to view and like the post.');"><i class="fa-regular fa-heart"></i> Like</button> -->
+                                <span><i class="fa like-btn fa-heart-o me-1" id="like-<?=$post['id']?>" aria-hidden="true"></i></span>
+                                <span class="me-3">
+                                <span id="like-count-<?=$post['id']?>">0</span> Likes</span>
                             <? } else { ?>
-                                <button type="button" class="btn btn-sm btn-outline-secondary btn-like" onclick="dialog('Not Implemented!',' This feature is not implemented');"><i class="fa-regular fa-heart"></i> Like</button>
+                                <!-- <button type="button" class="btn btn-sm btn-outline-secondary btn-like" onclick="dialog('Not Implemented!',' This feature is not implemented');"><i class="fa-regular fa-heart"></i> Like</button> -->
+                                <span><i class="fa like-btn fa-heart-o me-1" id="like-<?=$post['id']?>" aria-hidden="true"></i></span>
+                                <span class="me-3">
+                                <span id="like-count-<?=$post['id']?>">0</span> Likes</span>
                             <? } ?>
 
-                            <!-- <button type="button" class="btn btn-sm btn-outline-secondary"><i class="fa-regular fa-paper-plane"></i> Share</button> -->
-                        <!-- </div> -->
+                            <span style="color: var(--bs-primary-text);" class="card-items"><i class="bi bi-send me-1"></i>Share</span>
+                        </div>
                     </div>
                 </div>
             </div>
