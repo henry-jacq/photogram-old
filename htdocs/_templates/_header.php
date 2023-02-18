@@ -14,7 +14,7 @@
                             <li class="nav-item dropdown">
                                 <!-- <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-sharp fa-solid fa-user"></i> Your Account </a> -->
                                 <a href="#" class="nav-link d-block border border-secondary rounded text-decoration-none dropdown-toggle container p-1" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <img src="/assets/brand/pic.jpg" alt="mdo" width="32" height="32" class="rounded-circle">
+                                    <img src="https://api.dicebear.com/5.x/identicon/svg?seed=<?=ucfirst(Session::getUser()->getUsername())?>" alt="mdo" width="32" height="32" class="rounded-circle">
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-end text-small shadow">
                                     <? $userobj = new User(Session::get('session_UsernameOrEmail'));?>

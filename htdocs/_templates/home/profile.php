@@ -4,7 +4,7 @@
         <hr class="hr text-light p-4">
         <div class="row">
             <div class="col-md-4 text-center">
-                <img src="/assets/brand/pic.jpg" class="img-fluid rounded-circle mb-3" alt="Profile Picture" width="200" height="200">
+                <img src="https://api.dicebear.com/5.x/identicon/svg?seed=<?=ucfirst(Session::getUser()->getUsername())?>" class="img-fluid rounded-circle mb-3" alt="Profile Picture" width="200" height="200">
                 <h2 class="text-light"><?=ucfirst(Session::getUser()->getUsername());?></h2>
                 <p class="text-light">Web Developer</p>
                 <button class="btn btn-sm btn-secondary" onclick="dialog('Not Implemented!',' This feature is not implemented');">Change profile icon</button>

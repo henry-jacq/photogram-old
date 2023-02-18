@@ -28,8 +28,7 @@
                                 <!-- Avatar -->
                                 <div class="avatar avatar-story me-2">
                                     <a href="#" class="d-block link-dark text-decoration-none" aria-expanded="false">
-                                        <img src="https://avatars.githubusercontent.com/u/89177279" alt="mdo" width="35"
-                                            height="35" class="rounded-circle"></a>
+                                        <img class="avatar-img rounded-circle" src="https://api.dicebear.com/5.x/identicon/svg?seed=<?=ucfirst($p->getOwner())?>" width="35" height="35"></a>
                                 </div>
                                 <!-- Info -->
                                 <div>
