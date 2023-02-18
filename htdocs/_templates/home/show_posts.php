@@ -20,7 +20,7 @@
             $uploaded_time_str = $uploaded_time->diffForHumans();
         ?>
         <div class="col-lg-3" id="post-<?=$post['id']?>">
-            <div class="card">
+            <div class="card shadow-lg">
                 <? if(Session::isAuthenticated()) { ?>
                     <header class="card-header p-2">
                         <div class="d-flex align-items-center justify-content-between">
