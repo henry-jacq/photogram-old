@@ -1,4 +1,4 @@
-<? 
+<?
 
 Session::loadTemplate('_header');
 

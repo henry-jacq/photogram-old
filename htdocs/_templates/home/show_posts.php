@@ -92,7 +92,7 @@
                                 <span id="like-count-<?=$post['id']?>">0</span> Likes</span>
                             <? } ?>
 
-                            <span style="color: var(--bs-primary-text);" class="card-items"><i class="bi bi-send me-1"></i>Share</span>
+                            <span style="color: var(--bs-primary-text);" class="card-items"><i class="bi bi-send me-1 small"></i>Share</span>
                         </div>
                     </div>
                 </div>

@@ -1,15 +1,15 @@
 <?
-if(isset($_FILES['post_image']) and isset($_POST['post_text'])){
+if (isset($_FILES['post_image']) and isset($_POST['post_text'])) {
     $image_tmp = $_FILES['post_image']['tmp_name'];
     $text = $_POST['post_text'];
     Post::registerPost($image_tmp, $text);
 }
 ?>
 
-<section class="py-3 text-center bg-dark">
+<section class="py-4 text-center bg-dark">
     <div class="row py-lg-5">
         <div class="col-lg-7 col-md-8 mx-auto">
-            <h1 class="display-6 text-light">What's on your mind, <?=strtolower(Session::getUser()->getUsername());?>?</h1>
+            <h1 class="display-6 text-light">What's on your mind, <?= strtolower(Session::getUser()->getUsername()); ?>?</h1>
             <p class="lead text-muted">Share a photo that talks about it</p>
             <form class="my-3" action="/" method="POST" enctype="multipart/form-data">
                 <div class="mb-2">
