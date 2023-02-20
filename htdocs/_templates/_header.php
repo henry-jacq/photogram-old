@@ -1,41 +1,66 @@
 <header>
-    <nav class="navbar p-1 border-bottom border-secondary navbar-expand-lg">
-        <div class="container-fluid my-0 ml-auto">
-            <a class="navbar-brand display-6 text-dracula" href="/">
-            <img src="/assets/brand/photogram-logo.png" alt="Logo" width="28" height="30" class="d-inline-block align-text-top"><b> Photogram</b></a>
+    <!-- Logo Nav START -->
+    <nav class="navbar navbar-expand-lg px-3 border-bottom shadow shadow-bottom">
+        <!-- Logo START -->
+        <a class="navbar-brand display-6 me-auto" href="/">
+            <img src="/assets/brand/photogram-logo.png" alt="Logo" width="27" height="31" class="d-inline-block align-text-top"><b> Photogram</b></a>
+        <!-- Logo END -->
+        <? if (Session::isAuthenticated()) { ?>
+            <!-- Nav right START -->
+            <ul class="nav flex-nowrap align-items-center ms-sm-3 list-unstyled">
+                <li class="nav-item ms-2">
+                    <a class="nav-link btn btn-dark border py-1 px-2" href="/">
+                        <i class="bi bi-upload fs-6"></i>
+                    </a>
+                </li>
+                <li class="nav-item ms-2">
+                    <a class="nav-link btn btn-dark border py-1 px-2" href="#">
+                        <i class="bi bi-heart fs-6"></i>
+                    </a>
+                </li>
 
-            <? if (Session::isAuthenticated()) { ?>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div>
-                    <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                        <ul class="navbar-nav">
-                            <li class="nav-item dropdown">
-                                <!-- <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-sharp fa-solid fa-user"></i> Your Account </a> -->
-                                <a href="#" class="nav-link d-block border border-secondary rounded text-decoration-none dropdown-toggle container p-1" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <img src="https://api.dicebear.com/5.x/identicon/svg?seed=<?=ucfirst(Session::getUser()->getUsername())?>" alt="mdo" width="32" height="32" class="rounded-circle">
-                                </a>
-                                <ul class="dropdown-menu dropdown-menu-end text-small shadow">
-                                    <? $userobj = new User(Session::get('session_UsernameOrEmail'));?>
-                                    <li><a href="/profile" class="dropdown-item" href="">@<?=ucfirst($userobj->getUsername());?></a></li>
-                                    <li><hr class="dropdown-divider border-secondary"></li>
-                                    <li><a class="dropdown-item" href="#" onclick="dialog('Not Implemented!',' This feature is not implemented');"><i class="fa-solid fa-pen-to-square"></i> Edit profile</a></li>
-                                    <li><a class="dropdown-item" href="#" onclick="dialog('Not Implemented!',' This feature is not implemented');"><i class="fa-solid fa-gear"></i> Settings</a></li>
-                                    <li><hr class="dropdown-divider border-secondary"></li>
-                                    <li><a class="dropdown-item" href="/logout"><i class="fa-sharp fa-solid fa-arrow-right-from-bracket"></i> Sign out</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            <? } else { ?>
+                <li class="nav-item ms-3 dropdown">
+                    <a class="nav-link btn icon-md p-0 border" href="#" id="profileDropdown" role="button" data-bs-auto-close="outside" data-bs-display="static" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img class="avatar-img rounded-2" src="https://api.dicebear.com/5.x/identicon/svg?seed=<?= ucfirst(Session::getUser()->getUsername()) ?>" alt="<?= ucfirst(Session::getUser()->getUsername()) ?> avatar" width="32" height="32">
+                    </a>
+                    <ul class="dropdown-menu dropdown-animation dropdown-menu-end pt-2 small mt-2" aria-labelledby="profileDropdown">
+                        <!-- Profile info -->
+                        <li class="px-2">
+                            <div class="d-flex align-items-center position-relative btn btn-primary-soft">
+                                <!-- Avatar -->
+                                <div class="avatar me-3">
+                                    <img class="avatar-img rounded-circle" src="https://api.dicebear.com/5.x/identicon/svg?seed=<?= ucfirst(Session::getUser()->getUsername()) ?>" alt="<?= ucfirst(Session::getUser()->getUsername()) ?> avatar" width="35" height="35">
+                                </div>
+                                <div>
+                                    <a class="h6 stretched-link text-decoration-none" href="/profile"><?= ucfirst(Session::getUser()->getUsername()) ?></a>
+                                    <!-- <p class="small m-0">Web Developer</p> -->
+                                </div>
+                            </div>
+                            <hr class="mt-1 mb-1">
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#" onclick="dialog('Not Implemented!',' This feature is not implemented');">
+                                <i class="fa-fw bi bi-pencil me-2"></i>Edit profile</a>
+                        </li>
+                        <!-- Links -->
+                        <li><a class="dropdown-item" href="#" onclick="dialog('Not Implemented!',' This feature is not implemented');"><i class="bi bi-gear fa-fw me-2"></i>Settings</a></li>
+                        <li>
+                            <a class="dropdown-item" href="#" onclick="dialog('Not Implemented!',' This feature is not implemented');">
+                                <i class="fa-fw bi bi-life-preserver me-2"></i>Support us
+                            </a>
+                        </li>
+                        <li class="dropdown-divider"></li>
+                        <li><a class="dropdown-item bg-danger-soft-hover" href="/logout"><i class="bi bi-box-arrow-left fa-fw me-2"></i>Sign Out</a></li>
+                    </ul>
+                </li>
+                <!-- Profile START -->
+            </ul>
+        <? } else { ?>
             <div>
-                <a href="/login" class="btn btn-sm btn-success float-right">Sign in</a>
-                <a href="/signup" class="btn btn-sm btn-secondary">Register</a>
+                <a href="/login" class="btn btn-success">Sign in</a>
+                <a href="/signup" class="btn btn-secondary">Register</a>
             </div>
-            <? } ?>
-        </div>
+        <? } ?>
     </nav>
+    <!-- Logo Nav END -->
 </header>
-
