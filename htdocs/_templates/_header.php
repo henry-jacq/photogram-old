@@ -22,6 +22,7 @@
                 <li class="nav-item ms-3 dropdown">
                     <a class="nav-link btn icon-md p-0 border" href="#" id="profileDropdown" role="button" data-bs-auto-close="outside" data-bs-display="static" data-bs-toggle="dropdown" aria-expanded="false">
                         <img class="avatar-img rounded-2" src="https://api.dicebear.com/5.x/identicon/svg?seed=<?= ucfirst(Session::getUser()->getUsername()) ?>" alt="<?= ucfirst(Session::getUser()->getUsername()) ?> avatar" width="32" height="32">
+                        <span class="position-absolute bottom-0 mt-2 start-0 p-1 bg-success border border-light rounded-circle"></span>
                     </a>
                     <ul class="dropdown-menu dropdown-animation dropdown-menu-end pt-2 small mt-2" aria-labelledby="profileDropdown">
                         <!-- Profile info -->
