@@ -18,6 +18,74 @@
                         <i class="bi bi-heart fs-6"></i>
                     </a>
                 </li>
+                <li class="nav-item dropdown ms-2">
+                    <a class="nav-link btn btn-dark border py-1 px-2" href="#" id="notifDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
+                        <i class="bi bi-bell fs-6"></i>
+                    </a>
+                    <div class="dropdown-menu dropdown-animation dropdown-menu-end dropdown-menu-size-md p-0 shadow-lg border-0 mt-2" aria-labelledby="notifDropdown">
+                        <div class="card" style="width: 21em;">
+                            <div class="card-header d-flex justify-content-between align-items-center py-3">
+                                <h6 class="m-0">Notifications <span class="badge bg-danger bg-opacity-10 text-danger ms-2">3 new</span></h6>
+                                <a class="small text-decoration-none" href="#">Clear all</a>
+                            </div>
+                            <div class="card-body p-0">
+                                <ul class="list-group list-group-flush list-unstyled p-2">
+                                    <!-- Notif item -->
+                                    <li>
+                                        <div class="list-group-item list-group-item-action rounded badge-unread d-flex border-0 mb-1 p-3">
+                                            <div class="avatar text-center d-none d-sm-inline-block">
+                                                <img class="avatar-img rounded-circle" src="http://pm1.narvii.com/6755/5f24d1935bfb1d511efbd5be0a131df6082da7e3v2_00.jpg" alt="" width="28" height="30">
+                                            </div>
+                                            <div class="ms-sm-3">
+                                                <div class=" d-flex">
+                                                    <p class="small mb-2"><b>CJ</b> sent you a friend request.</p>
+                                                    <p class="small ms-3 text-nowrap">Just now</p>
+                                                </div>
+                                                <div class="d-flex">
+                                                    <button class="btn btn-sm py-1 btn-primary me-2">Accept </button>
+                                                    <button class="btn btn-sm py-1 btn-outline-danger">Delete </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <!-- Notif item -->
+                                    <li>
+                                        <div class="list-group-item list-group-item-action rounded badge-unread d-flex border-0 mb-1 p-3 position-relative">
+                                            <div class="avatar text-center d-none d-sm-inline-block">
+                                                <img class="avatar-img rounded-circle" src="https://upload.wikimedia.org/wikipedia/az/thumb/6/60/Kratos_PS4.jpg/800px-Kratos_PS4.jpg" alt="" width="28" height="30">
+                                            </div>
+                                            <div class="ms-sm-3">
+                                                <div class=" d-flex">
+                                                    <p class="small mb-2"><b>Kratos</b> liked your post. Do you want to follow him?</p>
+                                                    <p class="small ms-3 text-nowrap">4 hr</p>
+                                                </div>
+                                                <div class="d-flex">
+                                                    <button class="btn btn-sm py-1 btn-primary me-2">Follow </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <!-- Notif item -->
+                                    <li>
+                                        <a href="#" class="list-group-item list-group-item-action rounded d-flex border-0 p-3 mb-1">
+                                            <div class="avatar text-center d-none d-sm-inline-block">
+                                                <img class="avatar-img p-1" src="/assets/brand/photogram-logo.png" alt="" width="30" height="34">
+                                            </div>
+                                            <div class="ms-sm-3 d-flex">
+                                                <p class="small mb-2"><b>Photogram updates:</b><br> We updated the post card design to include the header as well as a dropdown menu that has some key features that will be added soon.</p>
+                                                <p class="small ms-3 text-nowrap">4hr</p>
+                                            </div>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="card-footer text-center">
+                                <a href="#" class="btn btn-sm btn-outline-secondary">See all incoming notifications</a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <!-- Notification dropdown END -->
 
                 <li class="nav-item ms-3 dropdown">
                     <a class="nav-link btn icon-md p-0 border" href="#" id="profileDropdown" role="button" data-bs-auto-close="outside" data-bs-display="static" data-bs-toggle="dropdown" aria-expanded="false">
