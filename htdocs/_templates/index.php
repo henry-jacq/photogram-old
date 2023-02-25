@@ -3,6 +3,7 @@
 Session::loadTemplate('_header');
 
 if (Session::isAuthenticated()) {
+    Session::loadTemplate('home/breadcrumb');
     Session::loadTemplate('home/calltoaction');
 } else {
     Session::loadTemplate('home/login');

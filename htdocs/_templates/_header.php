@@ -113,7 +113,7 @@
                                 <i class="fa-fw bi bi-pencil me-2"></i>Edit profile</a>
                         </li>
                         <!-- Links -->
-                        <li><a class="dropdown-item" href="#" onclick="dialog('Not Implemented!',' This feature is not implemented');"><i class="bi bi-gear fa-fw me-2"></i>Settings</a></li>
+                        <li><a class="dropdown-item" href="/settings"><i class="bi bi-gear fa-fw me-2"></i>Settings</a></li>
                         <li>
                             <a class="dropdown-item" href="#" onclick="dialog('Not Implemented!',' This feature is not implemented');">
                                 <i class="fa-fw bi bi-life-preserver me-2"></i>Support us
