@@ -1,15 +1,15 @@
-<div class="container mt-4">
+<div class="container mt-3">
     <div class="row gutters-lg">
         <div class="col-md-3 d-none d-md-block">
-            <div class="card">
+            <div class="card border-0">
                 <div class="card-body">
-                    <h4 class="fs-5 fw-normal ms-3 mt-3"><i class="bi bi-gear me-1"></i> Settings</h4>
+                    <h4 class="fs-5 fw-normal ms-3"><i class="bi bi-gear me-1"></i> Settings</h4>
                     <hr>
                     <nav class="nav flex-column nav-pills nav-gap-y-1">
                         <a href="#profile" data-toggle="tab" class="nav-item nav-link has-icon nav-link-faded bi bi-person active">
                             Profile Details
                         </a>
-                        <a href="#account" data-toggle="tab" class="nav-item nav-link has-icon nav-link-faded bi bi-person-gear">
+                        <a href="#account" data-toggle="tab" class="nav-item nav-link has-icon nav-link-faded bi bi-person-circle">
                             Account Settings
                         </a>
                         <a href="#email" data-toggle="tab" class="nav-item nav-link has-icon nav-link-faded bi bi-envelope">
@@ -21,8 +21,8 @@
                         <a href="#notification" data-toggle="tab" class="nav-item nav-link has-icon nav-link-faded bi bi-bell">
                             Notifications
                         </a>
-                        <a href="#security" data-toggle="tab" class="nav-item nav-link has-icon nav-link-faded bi bi-shield">
-                            Security
+                        <a href="#sessions" data-toggle="tab" class="nav-item nav-link has-icon nav-link-faded bi bi-display">
+                            Active Sessions
                         </a>
                     </nav>
                 </div>
@@ -33,84 +33,117 @@
                 <div class="card-header border-bottom mb-3 d-flex d-md-none">
                     <ul class="nav nav-tabs card-header-tabs nav-gap-x-1" role="tablist">
                         <li class="nav-item">
-                            <a href="#profile" data-toggle="tab" class="nav-link has-icon active"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user">
-                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                                    <circle cx="12" cy="7" r="4"></circle>
-                                </svg></a>
+                            <a href="#profile" data-toggle="tab" class="nav-link has-icon active"><i class="bi bi-person"></i></a>
                         </li>
                         <li class="nav-item">
-                            <a href="#account" data-toggle="tab" class="nav-link has-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-settings">
-                                    <circle cx="12" cy="12" r="3"></circle>
-                                    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
-                                </svg></a>
+                            <a href="#account" data-toggle="tab" class="nav-link has-icon"><i class="bi bi-person-circle"></i></a>
                         </li>
                         <li class="nav-item">
-                            <a href="#password" data-toggle="tab" class="nav-link has-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shield">
-                                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-                                </svg></a>
+                            <a href="#email" data-toggle="tab" class="nav-link has-icon"><i class="bi bi-envelope"></i></a>
                         </li>
                         <li class="nav-item">
-                            <a href="#notification" data-toggle="tab" class="nav-link has-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bell">
-                                    <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
-                                    <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
-                                </svg></a>
+                            <a href="#password" data-toggle="tab" class="nav-link has-icon"><i class="bi bi-key"></i></a>
                         </li>
                         <li class="nav-item">
-                            <a href="#security" data-toggle="tab" class="nav-link has-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-credit-card">
-                                    <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
-                                    <line x1="1" y1="10" x2="23" y2="10"></line>
-                                </svg></a>
+                            <a href="#notification" data-toggle="tab" class="nav-link has-icon"><i class="bi bi-bell"></i></a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#sessions" data-toggle="tab" class="nav-link has-icon"><i class="bi bi-shield"></i></a>
                         </li>
                     </ul>
                 </div>
                 <div class="card-body tab-content">
                     <div class="tab-pane active" id="profile">
-                        <h6>Your profile Information</h6>
+                        <h6>Your Profile Information</h6>
                         <hr>
                         <form>
                             <div class="form-group mb-3">
-                                <label for="fullName">Full Name</label>
+                                <label for="fullName" class="form-label">Full Name</label>
                                 <input type="text" class="form-control" id="fullName" aria-describedby="fullNameHelp" placeholder="Enter your fullname" value="Thomas Shelby">
                                 <small id="fullNameHelp" class="form-text text-muted">Your name may appear around here where you are mentioned. You can change or remove it at any time.</small>
                             </div>
                             <div class="form-group mb-3">
-                                <label for="bio">Your Bio</label>
+                                <label for="bio" class="form-label">Your Bio</label>
                                 <textarea class="form-control" id="bio" placeholder="Write something about you">A front-end developer that focus more on user interface design, a web interface wizard, a connector of awesomeness.</textarea>
                             </div>
                             <div class="form-group mb-3">
-                                <label for="url">URL</label>
+                                <label for="url" class="form-label">URL</label>
                                 <input type="text" class="form-control" id="url" placeholder="Enter your website address" value="https://instagram.com/being_henry">
                             </div>
                             <div class="form-group mb-3">
-                                <label for="location">Location</label>
+                                <label for="location" class="form-label">Location</label>
                                 <input type="text" class="form-control" id="location" placeholder="Enter your location" value="Bay Area, San Francisco, CA">
                             </div>
                             <div class="form-group small text-muted mb-3">
                                 All of the fields on this page are optional and can be deleted at any time, and by filling them out, you're giving us consent to share this data wherever your user profile appears.
                             </div>
-                            <button type="button" class="btn btn-primary">Update Profile</button>
+                            <button type="button" class="btn btn-primary">Save changes</button>
                         </form>
                     </div>
                     <div class="tab-pane" id="account">
                         <h6>Account settings</h6>
                         <hr>
+                        <h6>Change username</h6>
+                        <p>Changing your username can have unintended side effects.</p>
                         <form>
-                            <div class="form-group">
-                                <label for="username">Username</label>
+                            <div class="form-group input-group">
+                                <span class="input-group-text">@</span>
                                 <input type="text" class="form-control" id="username" aria-describedby="usernameHelp" placeholder="Enter your username" value="thomas">
-                                <small id="usernameHelp" class="form-text text-muted">After changing your username, your old username becomes available for anyone else to claim.</small>
                             </div>
+                            <small id="usernameHelp" class="form-text text-muted">After changing your username, your old username becomes available for anyone else to claim.</small>
                             <hr>
+                            <form>
+                                <div class="form-group">
+                                    <h6 class="d-block"><i class="bi bi-shield-lock me-2"></i> Two Factor Authentication</h6>
+                                    <p class="small text-muted mt-2">Two-factor authentication adds an additional layer of security to your account by requiring more than just a password to log in.</p>
+                                    <p class="small text-muted mt-2">Status: <b class="text-danger">Disabled</b></p>
+                                    <button class="btn btn-outline-primary" type="button">Enable two-factor authentication</button>
+                                </div>
+                            </form>
+                            <hr>
+                            <h6>Delete account</h6>
                             <div class="form-group">
-                                <label class="d-block text-danger">Delete Account</label>
-                                <p class="text-muted font-size-sm">Once you delete your account, there is no going back. Please be certain.</p>
+                                <p>Deleting an account has the following effects:</p>
+                                <ul>
+                                    <li>Certain user content will be moved to a system-wide "Ghost User" in order to maintain content for posterity.</li>
+                                    <li>Your all posts will be removed and cannot be restored.</li>
+                                    <li>Once you delete your account, there is no going back. Please be certain.</li>
+                                </ul>
+                                <p>Before deleting your account, take a backup of your data <a href="#" class="text-decoration-none">here.</a></p>
                             </div>
-                            <button class="btn btn-danger" type="button">Delete Account</button>
+                            <button class="btn btn-danger" type="button" onclick="dialog('Delete account?',' Are you sure want to delete your account ?');" id="delete-account-button" data-qa-selector="delete_account_button">Delete Account</button>
+                        </form>
+                    </div>
+                    <div class="tab-pane" id="email">
+                        <h6>Email</h6>
+                        <div class="mb-3">
+                            <p class="text-muted">You can control emails linked to your account</p>
+                        </div>
+                        <!-- <h6>Add email address</h6> -->
+                        <form>
+                            <div class="form-group mb-3">
+                                <label class="d-block mb-1">Add email address</label>
+                                <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter your email">
+                            </div>
+                            <button class="btn btn-primary">Add email address</button>
                         </form>
                     </div>
                     <div class="tab-pane" id="password">
                         <h6>Password</h6>
                         <hr>
+                        <p>After a successful password update, you will be redirected to the login page where you can log in with your new password.</p>
+                        <div class="mb-4">
+                            <p class="mb-2"><b>Password requirements</b></p>
+                            <p class="small text-muted mb-2">To create a new password, you have to meet all of the following requirements:</p>
+                            <ul class="small text-muted pl-4 mb-0">
+                                <li>Minimum 8 characters</li>
+                                <li>At least one special character</li>
+                                <li>At least one number</li>
+                                <li>Can’t be the same as a previous password</li>
+                            </ul>
+                        </div>
+                        <p><b>Change your password or recover your current one</b></p>
+                        <!-- <hr> -->
                         <form class="" method="post" action="update.php">
                             <div class="mb-3">
                                 <label for="currentPassword" class="form-label">Current password</label>
@@ -128,93 +161,138 @@
                                 <input type="password" class="form-control" id="confirm-password" name="password-confirm" required autocomplete="">
                             </div>
                             <div class="mb-3">
-                                <a class="p-1 btn btn-link " rel=" nofollow" data-method="put" href="/-/profile/password/reset">
+                                <button type="submit" id="save-password" class="btn btn-success">Change password</button>
+                                <a class="p-1 btn btn-link text-decoration-none float-end" rel=" nofollow" data-method="put" href="/-/profile/password/reset">
                                     <span>I forgot my password</span>
                                 </a>
                             </div>
-                            <button type="submit" id="save-password" class="btn btn-success">Change password</button>
                         </form>
                     </div>
                     <div class="tab-pane" id="notification">
                         <h6>Notification Settings</h6>
                         <hr>
                         <form>
-                            <div class="form-group">
-                                <label class="d-block mb-0">Security Alerts</label>
-                                <div class="small text-muted mb-3">Receive security alert notifications via email</div>
-                                <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="customCheck1" checked="">
-                                    <label class="custom-control-label" for="customCheck1">Email each time a vulnerability is found</label>
+                            <div class="form-group mb-3">
+                                <label class="d-block mb-0">Email notifications</label>
+                                <div class="small text-muted mb-3">Receive alert notifications via email</div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="mailIfUserPosted">
+                                    <label class="form-check-label" for="mailIfUserPosted">
+                                        Email when a user is posted
+                                    </label>
                                 </div>
-                                <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="customCheck2" checked="">
-                                    <label class="custom-control-label" for="customCheck2">Email a digest summary of vulnerability</label>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="mailProductUpdates">
+                                    <label class="form-check-label" for="mailProductUpdates">
+                                        Send me the product updates
+                                    </label>
                                 </div>
                             </div>
-                            <div class="form-group mb-0">
-                                <label class="d-block">SMS Notifications</label>
+                            <div class="form-group mb-3">
+                                <label class="d-block mb-2">Notification Email</label>
+                                <select class="form-select" aria-label="Default select example">
+                                    <option selected>Use primary email</option>
+                                    <option value="2">thomas@peakyblinders.com</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="d-block mb-2">Notifications</label>
                                 <ul class="list-group list-group-sm">
                                     <li class="list-group-item has-icon">
-                                        Comments
-                                        <div class="custom-control custom-control-nolabel custom-switch ml-auto">
-                                            <input type="checkbox" class="custom-control-input" id="customSwitch1" checked="">
-                                            <label class="custom-control-label" for="customSwitch1"></label>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="checkComments">
+                                            <label class="form-check-label" for="checkComments">
+                                                Comments
                                         </div>
+                                        <label class="form-text" for="checkComments">
+                                            Send me an email if someone commented on my post.
+                                        </label>
                                     </li>
                                     <li class="list-group-item has-icon">
-                                        Updates From People
-                                        <div class="custom-control custom-control-nolabel custom-switch ml-auto">
-                                            <input type="checkbox" class="custom-control-input" id="customSwitch2">
-                                            <label class="custom-control-label" for="customSwitch2"></label>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="checkFollows">
+                                            <label class="form-check-label" for="checkFollows">
+                                                Follows
                                         </div>
+                                        <label class="form-text" for="checkFollows">
+                                            Send me an email if someone starts following me.
+                                        </label>
                                     </li>
                                     <li class="list-group-item has-icon">
-                                        Reminders
-                                        <div class="custom-control custom-control-nolabel custom-switch ml-auto">
-                                            <input type="checkbox" class="custom-control-input" id="customSwitch3" checked="">
-                                            <label class="custom-control-label" for="customSwitch3"></label>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="checkDeletePost">
+                                            <label class="form-check-label" for="checkDeletePost">
+                                                Post deletion
                                         </div>
-                                    </li>
-                                    <li class="list-group-item has-icon">
-                                        Events
-                                        <div class="custom-control custom-control-nolabel custom-switch ml-auto">
-                                            <input type="checkbox" class="custom-control-input" id="customSwitch4" checked="">
-                                            <label class="custom-control-label" for="customSwitch4"></label>
-                                        </div>
-                                    </li>
-                                    <li class="list-group-item has-icon">
-                                        Pages You Follow
-                                        <div class="custom-control custom-control-nolabel custom-switch ml-auto">
-                                            <input type="checkbox" class="custom-control-input" id="customSwitch5">
-                                            <label class="custom-control-label" for="customSwitch5"></label>
-                                        </div>
+                                        <label class="form-text" for="checkDeletePost">
+                                            Send me an email, if post was deleted.
+                                        </label>
                                     </li>
                                 </ul>
                             </div>
                         </form>
                     </div>
-                    <div class="tab-pane" id="security">
-                        <h6>Security</h6>
+                    <div class="tab-pane" id="sessions">
+                        <h6>Active Sessions</h6>
                         <hr>
                         <form>
                             <div class="form-group">
-                                <label class="d-block">Two Factor Authentication</label>
-                                <button class="btn btn-info" type="button">Enable two-factor authentication</button>
-                                <p class="small text-muted mt-2">Two-factor authentication adds an additional layer of security to your account by requiring more than just a password to log in.</p>
-                            </div>
-                        </form>
-                        <hr>
-                        <form>
-                            <div class="form-group mb-0">
                                 <label class="d-block">Sessions</label>
                                 <p class="font-size-sm text-secondary">This is a list of devices that have logged into your account. Revoke any sessions that you do not recognize.</p>
                                 <ul class="list-group list-group-sm">
-                                    <li class="list-group-item has-icon">
-                                        <div>
-                                            <h6 class="mb-0">San Francisco City 190.24.335.55</h6>
-                                            <small class="text-muted">Your current session seen in United States</small>
+                                    <li class="list-group-item">
+                                        <div class="d-flex align-items-center justify-content-between">
+                                            <div class="d-flex align-items-center">
+                                                <div class="mb-5 me-3 p-1" data-toggle="tooltip" title="Desktop"><i class="bi bi-display"></i></div>
+                                                <div class="float-left my-3">
+                                                    <div>
+                                                        <h6 class="mb-1">223.228.184.131</h6>
+                                                    </div>
+                                                    <div>
+                                                        Last accessed on 22 Feb 17:11
+                                                    </div>
+                                                    <div>
+                                                        <strong>Brave</strong>
+                                                        on
+                                                        <strong>Windows</strong>
+                                                    </div>
+                                                    <div>
+                                                        <strong>Signed in</strong>
+                                                        on 22 Feb 17:11
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="float-right">
+                                                <a class="btn btn-danger btn-sm ms-3"><span class="sr-only">Revoke</span>Revoke</a>
+                                            </div>
                                         </div>
-                                        <button class="btn btn-light btn-sm ml-auto" type="button">More info</button>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <div class="d-flex align-items-center justify-content-between">
+                                            <div class="d-flex align-items-center">
+                                                <div class="mb-5 me-3 p-1" data-toggle="tooltip" title="Phone"><i class="bi bi-phone"></i></div>
+                                                <div class="float-left my-3">
+                                                    <div>
+                                                        <h6 class="mb-1">137.212.56.223</h6>
+                                                    </div>
+                                                    <div>
+                                                        Last accessed on 23 Feb 13:32
+                                                    </div>
+                                                    <div>
+                                                        <strong>Chrome</strong>
+                                                        on
+                                                        <strong>Android</strong>
+                                                    </div>
+                                                    <div>
+                                                        <strong>Signed in</strong>
+                                                        on 23 Feb 13:32
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="float-right">
+                                                <a class="btn btn-danger btn-sm ms-3"><span class="sr-only">Revoke</span>Revoke</a>
+                                            </div>
+                                        </div>
                                     </li>
                                 </ul>
                             </div>
