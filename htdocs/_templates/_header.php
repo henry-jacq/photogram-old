@@ -35,7 +35,7 @@
                                     <li>
                                         <div class="list-group-item list-group-item-action rounded badge-unread d-flex border-0 mb-1 p-3">
                                             <div class="avatar text-center d-none d-sm-inline-block">
-                                                <img class="avatar-img rounded-circle" src="http://pm1.narvii.com/6755/5f24d1935bfb1d511efbd5be0a131df6082da7e3v2_00.jpg" alt="" width="28" height="30">
+                                                <img class="avatar-img rounded-circle" src="/assets/random_images/cj.jpg" alt="CJ" width="28" height="30">
                                             </div>
                                             <div class="ms-sm-3">
                                                 <div class=" d-flex">
@@ -53,7 +53,7 @@
                                     <li>
                                         <div class="list-group-item list-group-item-action rounded badge-unread d-flex border-0 mb-1 p-3 position-relative">
                                             <div class="avatar text-center d-none d-sm-inline-block">
-                                                <img class="avatar-img rounded-circle" src="https://upload.wikimedia.org/wikipedia/az/thumb/6/60/Kratos_PS4.jpg/800px-Kratos_PS4.jpg" alt="" width="28" height="30">
+                                                <img class="avatar-img rounded-circle" src="/assets/random_images/kratos.jpg" alt="kratos" width="28" height="30">
                                             </div>
                                             <div class="ms-sm-3">
                                                 <div class=" d-flex">
