@@ -9,22 +9,22 @@
             <!-- Nav right START -->
             <ul class="nav flex-nowrap align-items-center ms-sm-3 list-unstyled">
                 <li class="nav-item ms-2">
-                    <a class="nav-link btn btn-dark border py-1 px-2" href="/">
+                    <a class="nav-link btn border py-1 px-2" href="/">
                         <i class="bi bi-upload fs-6"></i>
                     </a>
                 </li>
                 <li class="nav-item ms-2">
-                    <a class="nav-link btn btn-dark border py-1 px-2" href="#">
+                    <a class="nav-link btn border py-1 px-2" href="#">
                         <i class="bi bi-heart fs-6"></i>
                     </a>
                 </li>
                 <li class="nav-item dropdown ms-2">
-                    <a class="nav-link btn btn-dark border py-1 px-2" href="#" id="notifDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
+                    <a class="nav-link btn border py-1 px-2" href="#" id="notifDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
                         <i class="bi bi-bell fs-6"></i>
                         <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">3<span class="visually-hidden">unread messages</span></span>
                     </a>
                     <div class="dropdown-menu dropdown-animation dropdown-menu-end dropdown-menu-size-md p-0 shadow-lg border-0 mt-2" aria-labelledby="notifDropdown">
-                        <div class="card" style="width: 21em;">
+                        <div class="card" style="width:310px;">
                             <div class="card-header d-flex justify-content-between align-items-center py-3">
                                 <h6 class="m-0">Notifications <span class="badge bg-danger bg-opacity-10 text-danger ms-2">3 new</span></h6>
                                 <a class="small text-decoration-none" href="#">Clear all</a>
@@ -51,7 +51,7 @@
                                     </li>
                                     <!-- Notif item -->
                                     <li>
-                                        <div class="list-group-item list-group-item-action rounded badge-unread d-flex border-0 mb-1 p-3 position-relative">
+                                        <div class="list-group-item list-group-item-action rounded d-flex border-0 mb-1 p-3 position-relative">
                                             <div class="avatar text-center d-none d-sm-inline-block">
                                                 <img class="avatar-img rounded-circle" src="/assets/random_images/kratos.jpg" alt="kratos" width="28" height="30">
                                             </div>
@@ -81,7 +81,7 @@
                                 </ul>
                             </div>
                             <div class="card-footer text-center">
-                                <a href="#" class="btn btn-sm btn-outline-secondary">See all incoming notifications</a>
+                                <a href="#" class="btn btn-sm btn-outline-secondary">View all notifications</a>
                             </div>
                         </div>
                     </div>
@@ -90,7 +90,7 @@
 
                 <li class="nav-item ms-3 dropdown">
                     <a class="nav-link btn icon-md p-0 border" href="#" id="profileDropdown" role="button" data-bs-auto-close="outside" data-bs-display="static" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img class="avatar-img rounded-2" src="https://api.dicebear.com/5.x/identicon/svg?seed=<?= ucfirst(Session::getUser()->getUsername()) ?>" alt="<?= ucfirst(Session::getUser()->getUsername()) ?> avatar" width="32" height="32">
+                        <img class="rounded-2" src="https://api.dicebear.com/5.x/identicon/svg?seed=<?= ucfirst(Session::getUser()->getUsername()) ?>" alt="<?= ucfirst(Session::getUser()->getUsername()) ?> avatar" width="32" height="32">
                         <span class="position-absolute bottom-0 mt-2 start-0 p-1 bg-success border border-light rounded-circle"></span>
                     </a>
                     <ul class="dropdown-menu dropdown-animation dropdown-menu-end pt-2 small mt-2" aria-labelledby="profileDropdown">
@@ -99,7 +99,7 @@
                             <div class="d-flex align-items-center position-relative btn btn-primary-soft">
                                 <!-- Avatar -->
                                 <div class="avatar me-3">
-                                    <img class="avatar-img rounded-circle" src="https://api.dicebear.com/5.x/identicon/svg?seed=<?= ucfirst(Session::getUser()->getUsername()) ?>" alt="<?= ucfirst(Session::getUser()->getUsername()) ?> avatar" width="35" height="35">
+                                    <img class="border rounded-circle" src="https://api.dicebear.com/5.x/identicon/svg?seed=<?= ucfirst(Session::getUser()->getUsername()) ?>" alt="<?= ucfirst(Session::getUser()->getUsername()) ?> avatar" width="35" height="35">
                                 </div>
                                 <div>
                                     <a class="h6 stretched-link text-decoration-none" href="/profile"><?= ucfirst(Session::getUser()->getUsername()) ?></a>
