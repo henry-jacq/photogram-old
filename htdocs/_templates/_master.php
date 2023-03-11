@@ -4,7 +4,7 @@
 <!-- Load header -->
 <? Session::loadTemplate('_head'); ?>
 
-<body class="bg-dark d-flex flex-column min-vh-100">
+<body class="d-flex flex-column min-vh-100">
 
     <?
     if (Session::$isError) {
@@ -15,9 +15,9 @@
     ?>
 
     <div id="modalsGarbage">
-        <div class="modal fade animate__animated" id="dummy-dialog-modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+        <div class="modal fade" id="dummy-dialog-modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-                <div class="modal-content blur text-bg-dark" style="box-shadow: rgba(99, 92, 168, 0.3) 0px 0px 0px 3px">
+                <div class="modal-content blur">
                     <div class="modal-header">
                         <h4 class="modal-title"></h4>
                     </div>
