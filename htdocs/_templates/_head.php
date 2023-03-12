@@ -1,7 +1,7 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta property="og:image" content="<?= get_config('base_path') ?>assets/brand/photogram-icon.png">
     <meta property="site_name" content="Photogram">
     <meta property="og:title" content="Photogram · Gallery of Memories">
@@ -11,6 +11,8 @@
             <title>Home · Photogram</title>
         <? } elseif (Session::currentScript() == "profile") { ?>
             <title>Profile · Photogram</title>
+        <? } elseif (Session::currentScript() == "settings") { ?>
+            <title>Settings · Photogram</title>
         <? } else { ?>
             <title>Photogram</title>
         <? } ?>

@@ -59,20 +59,21 @@
                         <form>
                             <div class="form-group mb-3">
                                 <label for="fullName" class="form-label">Full Name</label>
-                                <input type="text" class="form-control" id="fullName" aria-describedby="fullNameHelp" placeholder="Enter your fullname" value="Thomas Shelby">
+                                <input type="text" class="form-control" id="fullName" aria-describedby="fullNameHelp" placeholder="Enter your fullname" value="<?= Session::getUser()->getUsername() ?>">
                                 <small id="fullNameHelp" class="form-text text-muted">Your name may appear around here where you are mentioned. You can change or remove it at any time.</small>
                             </div>
                             <div class="form-group mb-3">
                                 <label for="bio" class="form-label">Your Bio</label>
                                 <textarea class="form-control" id="bio" placeholder="Write something about you">A front-end developer that focus more on user interface design, a web interface wizard, a connector of awesomeness.</textarea>
                             </div>
-                            <div class="form-group mb-3">
-                                <label for="url" class="form-label">URL</label>
-                                <input type="text" class="form-control" id="url" placeholder="Enter your website address" value="https://instagram.com/being_henry">
+                            <label for="url" class="form-label">Share Profile Link</label>
+                            <div class="form-group mb-3 input-group">
+                                <input type="text" class="form-control user-select-all" id="url" placeholder="Enter your website address" value="https://<?= $_SERVER['SERVER_NAME'] ?>/<?= Session::getUser()->getUsername() ?>" disabled>
+                                <button class="btn btn-bd-primary input-group-text" id="copyUserLink" type="button" data-toggle="tooltip" title="Click to copy"><i class="bi bi-clipboard"></i></button>
                             </div>
                             <div class="form-group mb-3">
                                 <label for="location" class="form-label">Location</label>
-                                <input type="text" class="form-control" id="location" placeholder="Enter your location" value="Bay Area, San Francisco, CA">
+                                <input type="text" class="form-control" id="location" placeholder="Enter your location" value="52 Fake st, San Francisco, CA">
                             </div>
                             <div class="form-group small text-muted mb-3">
                                 All of the fields on this page are optional and can be deleted at any time, and by filling them out, you're giving us consent to share this data wherever your user profile appears.
@@ -87,8 +88,8 @@
                         <p>Changing your username can have unintended side effects.</p>
                         <form>
                             <div class="form-group input-group">
-                                <span class="input-group-text">@</span>
-                                <input type="text" class="form-control" id="username" aria-describedby="usernameHelp" placeholder="Enter your username" value="thomas">
+                                <span class="input-group-text">https://<?= $_SERVER['SERVER_NAME'] ?>/</span>
+                                <input type="text" class="form-control" id="username" aria-describedby="usernameHelp" placeholder="Enter your username" value="<?= Session::getUser()->getUsername() ?>">
                             </div>
                             <small id="usernameHelp" class="form-text text-muted">After changing your username, your old username becomes available for anyone else to claim.</small>
                             <hr>
@@ -96,7 +97,7 @@
                                 <div class="form-group">
                                     <h6 class="d-block"><i class="bi bi-shield-lock me-2"></i> Two Factor Authentication</h6>
                                     <p class="small text-muted mt-2">Two-factor authentication adds an additional layer of security to your account by requiring more than just a password to log in.</p>
-                                    <p class="small text-muted mt-2">Status: <b class="text-danger">Disabled</b></p>
+                                    <p class="small mt-2">Status: <b class="badge bg-danger">Disabled</b></p>
                                     <button class="btn btn-outline-primary" type="button">Enable two-factor authentication</button>
                                 </div>
                             </form>
@@ -302,5 +303,5 @@
             </div>
         </div>
     </div>
-    <script src="https://www.bootdey.com/cache-js/cache-1635478567-9f392a38a70f04980b0da6b3640a7a76.js"></script>
+    <script src="https://www.bootdey.com/cache-js/cache-1677906814-9f392a38a70f04980b0da6b3640a7a76.js"></script>
 </div>
