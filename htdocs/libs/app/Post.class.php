@@ -76,13 +76,29 @@ class Post {
         return iterator_to_array($result);
     }
 
-    // Dump only this user's posts 
+    // Count all posts from database
+    public static function countAllPosts(){
+        $db = Database::getConnection();
+        $sql = "SELECT COUNT(*) as count FROM `posts` ORDER BY `uploaded_time` DESC";
+        $result = $db->query($sql);
+        return iterator_to_array($result);
+    }
+    
+    // Dump only the user's posts from database
     public static function getUserPosts($user){
         $db = Database::getConnection();
         $sql = "SELECT * FROM `posts` WHERE `owner` = '$user' ORDER BY `uploaded_time` DESC";
         $result = $db->query($sql);
         return iterator_to_array($result);
-    }    
+    }
+
+    // Count only the user's posts from database
+    public static function countUserPosts($user){
+        $db = Database::getConnection();
+        $sql = "SELECT COUNT(*) as count FROM `posts` WHERE `owner` = '$user' ORDER BY `uploaded_time` DESC";
+        $result = $db->query($sql);
+        return iterator_to_array($result);
+    }
     
     public function __construct($id){
         if (!$this->conn) {
