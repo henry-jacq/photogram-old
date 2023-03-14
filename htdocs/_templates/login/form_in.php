@@ -1,30 +1,35 @@
-<!-- This file contains brand-logo and required form-input-fields -->
-<!-- It also has signup link and login button -->
+<form action="/login" method="post">
+    <div class="form-control p-4 bg-black bg-opacity-25">
+        <img src="<?= get_config('base_path') ?>assets/brand/photogram-logo.png" alt="logo" class="img-fluid mx-auto d-block mb-2" width="63" height="63">
+        <h4 class="fw-light text-center mb-4">Photogram</h4>
+        <hr class="mb-5">
+        <h5 class="fw-semi-bold mb-4">Sign In</h5>
+        <h6 class="fw-normal">Username</h6>
+        <input type="text" id="user" name="username_or_email" class="form-control mb-3 bg-transparent" required>
+        <h6 class="fw-normal">Password</h6>
+        <div class="input-group mb-3">
+            <input type="password" id="pass" name="password" class="form-control bg-transparent" required>
+            <span class="input-group-text bg-transparent" id="icon-click">
+                <i class="bi-eye-slash" id="icon"></i>
+            </span>
+        </div>
+        <!-- Fingerprint -->
+        <input name="visitor_id" type="hidden" class="form-control" id="fingerprint" value="">
 
-<form method="post" action="/login">
-    <!-- Brand Logo -->
-    <img class="brand-logo img-fluid mb-3 mx-auto d-block" src="<?= get_config('base_path') ?>assets/brand/photogram-brand-big.png" alt="Photogram logo">
+        <div class="row mb-3">
+            <div class="col text-start">
+                <div class="form-check">
+                    <input class="form-check-input bg-transparent" type="checkbox" id="rememberMe">
+                    <label class="form-check-label" for="rememberMe">Remember me</label>
+                </div>
+            </div>
+            <div class="col text-end">
+                <a class="text-decoration-none text-primary-emphasis" href="#">Forgot password?</a>
+            </div>
+        </div>
 
-    <h4 class="text-light mb-3 fw-semibold">Sign in</h4>
-    <div class="form-floating mb-3">
-        <input type="text" class="form-control rounded-0 form-input border-secondary text-lowercase text-light" id="floatingInput" placeholder="Email or Username" name="username_or_email" required>
-        <label class="text-secondary" for="floatingInput">Email or Username</label>
-    </div>
-    <div class="form-floating mb-4 input-group">
-        <input type="password" name="password" class="form-control rounded-0 form-input border-secondary text-light" id="floatingPassword" placeholder="Enter your password" required>
-        <span class="input-group-text rounded-0 form-input border-secondary text-light" id="togglePassword"><i id="togglePasswordbtn" class="fa fa-eye-slash"></i></span>
-        <label class="text-secondary" for="floatingPassword">Password</label>
-    </div>
-    <!-- Fingerprint -->
-    <input name="visitor_id" type="hidden" class="form-control" id="fingerprint" value="">
-    <div class="form-check mb-3">
-        <input type="checkbox" class="form-check-input border-secondary" id="autoSizingCheck2">
-        <label class="text-light">Remember me</label>
-    </div>
-    <div class="d-grid gap-2 mb-4">
-        <button type="submit" class="btn bg-primary hvr-grow w-100 rounded-0">Sign in</button>
-    </div>
-    <div class="text-white">
-        <label for="">Want to join photogram? <a href="/signup" class="text-decoration-none">Register now</a>.</label>
+        <button type="submit" class="btn btn-primary mb-3 hvr-grow">Sign In</button>
+        <p class="text-center text-muted">Want to join Photogram? <a href="/signup" class="text-decoration-none">Register now</a>.</p>
+        <!-- <p class="text-center text-muted">All rights reserved &copy;2022-2023</p> -->
     </div>
 </form>
