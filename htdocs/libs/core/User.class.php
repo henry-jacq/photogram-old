@@ -10,7 +10,7 @@ class User {
     use SQLGetterSetter;
 
     // Signup
-    public static function signup($username, $password, $email, $phone) {
+    public static function signup($username, $password, $email, $fname, $lname) {
         
         $username = strtolower($username);
         
@@ -29,8 +29,8 @@ class User {
 
         // Insert values into the database
         // Todo: In future, change the sql query table to class variable which is declared in database_class_php file
-        $sql = "INSERT INTO `auth` (`username`, `password`, `email`, `phone`, `sec_email`)
-        VALUES ('$username', '$password', '$email', '$phone', '0');";
+        $sql = "INSERT INTO `auth` (`username`, `password`, `email`, `first_name`, `last_name`, `sec_email`)
+        VALUES ('$username', '$password', '$email', '$fname', '$lname', '0');";
 
         // Sending the query to the database and checking if it is true or false
         //PHP 7.4 -

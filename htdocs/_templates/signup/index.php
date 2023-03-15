@@ -1,12 +1,13 @@
 <?php
 
 // Try to register, if the user has submitted the form
-if (isset($_POST['username']) and isset($_POST['password']) and isset($_POST['email_address']) and isset($_POST['phone'])) {
+if (isset($_POST['username']) and isset($_POST['password']) and isset($_POST['email_address']) and isset($_POST['first_name']) and isset($_POST['last_name'])) {
     $username = $_POST['username'];
     $password = $_POST['password'];
     $email = $_POST['email_address'];
-    $phone = $_POST['phone'];
-    $result = User::signup($username, $password, $email, $phone);
+    $fname = $_POST['first_name'];
+    $lname = $_POST['last_name'];
+    $result = User::signup($username, $password, $email, $fname, $lname);
     $signup = true;
 } else {
     $signup = false;
@@ -15,48 +16,51 @@ if (isset($_POST['username']) and isset($_POST['password']) and isset($_POST['em
 // If user submitted the form
 if ($signup) {
     // Sign up success, if result has no error
-    if (!$result) { ?>
-<div class="text-bg-dark rounded-3 p-5 mt-4 text-center">
-    <h1 class="display-4">Welcome to Photogram</h1>
-    <p class="lead mb-4">Your account has been created.</p>
-    <a class="text-decoration-none" href="login.php">
-        <button class="btn btn-success">Continue</button>
-    </a>
-</div>
+    if ($result) { ?>
+        <section class="container">
+            <div class="d-flex align-items-center justify-content-center min-vh-100">
+                <div class="py-3 col-sm-10 col-md-10 col-lg-8 col-xl-6">
+                    <div class="bg-black bg-opacity-25 rounded-3 p-5 text-center border">
+                        <img src="<?= get_config('base_path') ?>assets/brand/photogram-logo.png" alt="logo" class="img-fluid mx-auto d-block mb-4" width="63" height="63">
+                        <h3 class="display-6">Welcome to Photogram!</h3>
+                        <p class="lead mb-4">Your account has been created.</p>
+                        <a class="text-decoration-none" href="/login">
+                            <button class="btn btn-success hvr-icon-forward">Continue to login <i class="fa fa-arrow-right hvr-icon" aria-hidden="true"></i></button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-<?php
-    // If any error, load the same page with popup error
+    <?php
+        // If any error, load the same page with popup error
     } else { ?>
 
-<section class="container">
-    <div class="row content d-flex justify-content-center align-items-center">
-        <div class="col-md-4 ">
-            <!-- This will popup the alert -->
-            <div id="popup-error" class="alert text-tomato alert-dismissible fade show border border-secondary" role="alert">
-                <strong>Signup Failed!</strong><br>Username is not available.
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        <section class="container">
+            <div class="h-100 d-flex align-items-center justify-content-center row min-vh-100">
+                <div class="py-3 col-sm-10 col-md-8 col-lg-6 col-xl-5 col-xxl-4">
+                    <!-- This will popup the alert -->
+                    <div id="popup-error" class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <strong>Signup Failed!</strong><br>Username is not available.
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                    <? // Load Sign up form
+                    Session::loadTemplate('signup/form_up'); ?>
+                </div>
             </div>
-            <div class="box shadow p-5 rounded border border-secondary">
-                <!-- Load Sign up form -->
-                <?php Session::loadTemplate('signup/form_up'); ?>
-            </div>
-        </div>
-    </div>
-</section>
+        </section>
 
-<?php }
+    <?php }
     // If the user doesn't submit the form, load the same page
 } else { ?>
 
-<section class="container">
-    <div class="row content d-flex justify-content-center align-items-center">
-        <div class="col-md-4 ">
-            <div class="box shadow p-5 rounded border border-secondary">
-                <!-- Load Sign up form -->
-                <?php Session::loadTemplate('signup/form_up'); ?>
+    <section class="container">
+        <div class="h-100 d-flex align-items-center justify-content-center row min-vh-100">
+            <div class="py-3 col-sm-10 col-md-8 col-lg-6 col-xl-5 col-xxl-4">
+                <? // Load Sign up form
+                Session::loadTemplate('signup/form_up'); ?>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
 <?php } ?>

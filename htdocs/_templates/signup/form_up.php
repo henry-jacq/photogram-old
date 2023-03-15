@@ -1,42 +1,32 @@
-<!-- This file contains brand-logo and required form-input-fields -->
-<!-- It also has login link and sign up button -->
+<form action="/signup" method="post">
+    <div class="form-control p-4 bg-black bg-opacity-25">
+        <img src="<?= get_config('base_path') ?>assets/brand/photogram-logo.png" alt="logo" class="img-fluid mx-auto d-block mb-2" width="63" height="63">
+        <h4 class="fw-light text-center mb-4">Photogram</h4>
+        <hr class="mb-4">
+        <h5 class="fw-semi-bold mb-4">Register</h5>
 
-<form method="post" action="/signup">
-    <!-- Brand Logo -->
-    <img class="brand-logo img-fluid mb-3 mx-auto d-block" src="<?= get_config('base_path') ?>assets/brand/photogram-brand-big.png" alt="Photogram logo">
-
-    <h4 class="text-light mb-3 fw-semibold">Register</h4>
-    <div class="form-floating mb-2">
-        <input type="text" class="form-control rounded-0 form-input border-secondary text-lowercase text-light" id="floatingInput" placeholder="Username" name="username" required>
-        <label class="text-secondary" for="floatingInput">Username</label>
-    </div>
-    <div class="form-floating mb-2">
-        <input type="password" class="form-control rounded-0 form-input border-secondary text-light" id="floatingPassword" placeholder="Password" name="password" required>
-        <label class="text-secondary" for="floatingPassword">Password</label>
-    </div>
-    <div class="form-floating mb-2">
-        <input type="email" class="form-control rounded-0 form-input border-secondary text-light" id="floatingInput" placeholder="Email" name="email_address" required>
-        <label class="text-secondary" for="floatingEmail">Email</label>
-    </div>
-    <div class="form-floating mb-4">
-        <input type="text" class="form-control rounded-0 form-input border-secondary text-light" id="floatingInput" placeholder="Phone Number" name="phone" required>
-        <label class="text-secondary" for="floatingInput">Phone Number</label>
-    </div>
-    <div class="d-grid gap-2 mb-3">
-        <button type="submit" class="btn btn-primary w-100 rounded-0 hvr-grow">Create account</button>
-    </div>
-    <div class="text-white">
-        <label>Do you already have an account? <a href="/login" class="text-decoration-none">Login now</a>.</label>
-    </div>
-
-    <!-- Additional sign up options -->
-    <!-- <div class="sign-up-accounts">
-        <p class="text-center">Register with:</p>
-        <div class="social-accounts d-flex justify-content-center">
-            <a href=""><i class='fab fa-google' style='font-size:24px'></i></a>
-            <a href=""><i class='fab fa-twitter' style='font-size:24px'></i></a>
-            <a href=""><i class='fab fa-github' style='font-size:24px'></i></a>
-            <a href=""><i class='fab fa-facebook' style='font-size:24px'></i></a>
+        <div class="row g-3 mb-3">
+            <div class="col-md-6">
+                <label for="firstName" class="form-label">First name</label>
+                <input type="text" name="first_name" class="form-control bg-transparent" id="firstName" required>
+            </div>
+            <div class="col-md-6">
+                <label for="lastName" class="form-label">Last name</label>
+                <input type="text" name="last_name" class="form-control bg-transparent" id="lastName" required>
+            </div>
         </div>
-    </div> -->
+
+        <label for="userName" class="form-label">Username</label>
+        <input type="text" id="userName" name="username" class="form-control mb-3 bg-transparent" required>
+        <label for="email" class="form-label">Email</label>
+        <input type="text" id="email" name="email_address" class="form-control mb-3 bg-transparent" required>
+        <label for="password" class="form-label">Password</label>
+        <input type="password" id="password" name="password" class="form-control mb-3 bg-transparent" required>
+        <!-- Fingerprint -->
+        <input name="visitor_id" type="hidden" class="form-control" id="fingerprint" value="">
+
+        <button type="submit" class="btn btn-primary mb-3 hvr-grow">Register</button>
+        <p class="text-center text-muted mb-0">Do you already have an account? <a href="/login" class="text-decoration-none">Login now</a>.</p>
+        <!-- <p class="text-center text-muted">All rights reserved &copy;2022-2023</p> -->
+    </div>
 </form>
