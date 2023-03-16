@@ -1,24 +1,27 @@
-<div class="container p-3 mb-5">
+<div class="container p-3">
     <div class="row g-3" id="masonry-area">
         <?
+
         use Carbon\Carbon;
 
         if (Session::currentScript() == "profile") {
             $posts = Post::getUserPosts(Session::getUser()->getUsername());
+            // If user has no posts  uploaded, print this message.
+            if (empty($posts)) { ?>
+                <p class="text-muted text-center align-items-center mb-0">You haven't posted pictures. When you share photos, they'll appear on your profile.</p>
+        <? } 
         } else {
             $posts = Post::getAllPosts();
-        }
+            // If no posts are uploaded, print this message.
+            if (empty($posts)) { ?>
+                <p class="text-muted text-center align-items-center mb-0">Memories are unavailable. Try to share some photos.</p>
+        <? } } ?>
 
-        // If no posts are uploaded, print this message.
-        if (empty($posts)) {
-        ?><p class="text-muted text-center align-items-center">Memories are Unavailable. Try to upload new one.</p><?
-                                                                                                                    }
+        <? foreach ($posts as $post) {
+            $p = new Post($post['id']);
+            $uploaded_time = Carbon::parse($p->getUploadedTime());
+            $uploaded_time_str = $uploaded_time->diffForHumans(); ?>
 
-                                                                                                                    foreach ($posts as $post) {
-                                                                                                                        $p = new Post($post['id']);
-                                                                                                                        $uploaded_time = Carbon::parse($p->getUploadedTime());
-                                                                                                                        $uploaded_time_str = $uploaded_time->diffForHumans();
-                                                                                                                        ?>
             <div class="col-lg-3" id="post-<?= $post['id'] ?>">
                 <div class="card shadow-lg">
                     <? if (Session::isAuthenticated()) { ?>
@@ -61,8 +64,6 @@
                                                 </li>
                                                 <li data-id="<?= $post['id'] ?>"><a class="dropdown-item btn btn-delete"><i class="bi bi-trash fa-fw pe-2 text-danger"></i> Delete</a></li>
                                             <? } ?>
-
-
                                         <? } ?>
                                     </ul>
                                 </div>

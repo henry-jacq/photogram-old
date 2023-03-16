@@ -17,7 +17,6 @@
             <ul class="list-group border-0 my-3">
                 <li class="list-group-item border-0">Username<br><b>@<?= Session::getUser()->getUsername(); ?></b></li>
                 <li class="list-group-item border-0">Email address<br><b><?= Session::getUser()->getEmail() ?></b></li>
-                <li class="list-group-item border-0">Phone number<br><b><?= Session::getUser()->getPhone(); ?></b></li>
             </ul>
             <div class="container border p-3 rounded">
                 <h5 class="fw-normal">About Me</h5>

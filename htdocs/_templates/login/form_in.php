@@ -2,9 +2,9 @@
     <div class="form-control p-4 bg-black bg-opacity-25">
         <img src="<?= get_config('base_path') ?>assets/brand/photogram-logo.png" alt="logo" class="img-fluid mx-auto d-block mb-2" width="63" height="63">
         <h4 class="fw-light text-center mb-4">Photogram</h4>
-        <hr class="mb-5">
+        <hr class="mb-4">
         <h5 class="fw-semi-bold mb-4">Sign In</h5>
-        <h6 class="fw-normal">Username</h6>
+        <h6 class="fw-normal">Username or email</h6>
         <input type="text" id="user" name="username_or_email" class="form-control mb-3 bg-transparent" required>
         <h6 class="fw-normal">Password</h6>
         <div class="input-group mb-3">
