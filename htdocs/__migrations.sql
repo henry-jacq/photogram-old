@@ -1,4 +1,4 @@
--- 15 Jan, 2023 Migrations
+-- 15 Mar, 2023 Migrations
 -- Adminer 4.8.1 MySQL 8.0.30 dump
 
 SET NAMES utf8;
@@ -13,14 +13,14 @@ CREATE TABLE `auth` (
   `username` varchar(32) NOT NULL,
   `password` varchar(256) NOT NULL,
   `email` varchar(256) NOT NULL,
-  `phone` varchar(16) NOT NULL,
+  `first_name` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `last_name` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `active` int NOT NULL DEFAULT '1',
   `blocked` int NOT NULL DEFAULT '0',
   `sec_email` varchar(256) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '',
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`),
-  UNIQUE KEY `email` (`email`),
-  UNIQUE KEY `phone` (`phone`)
+  UNIQUE KEY `email` (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 
@@ -76,4 +76,4 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 
--- 2023-01-15 16:51:00
+-- 2023-03-15 15:39:42
