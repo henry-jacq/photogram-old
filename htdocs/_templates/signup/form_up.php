@@ -19,7 +19,7 @@
         <label for="userName" class="form-label">Username</label>
         <input type="text" id="userName" name="username" class="form-control mb-3 bg-transparent" required>
         <label for="email" class="form-label">Email</label>
-        <input type="text" id="email" name="email_address" class="form-control mb-3 bg-transparent" required>
+        <input type="email" id="email" name="email_address" class="form-control mb-3 bg-transparent" required>
         <label for="password" class="form-label">Password</label>
         <input type="password" id="password" name="password" class="form-control mb-3 bg-transparent" required>
         <!-- Fingerprint -->

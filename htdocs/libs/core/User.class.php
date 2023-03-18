@@ -44,7 +44,7 @@ class User {
         try {
             return $conn->query($sql);
         } catch (Exception $e) {
-            echo "Error: " . $sql . "<br>" . $conn->error;
+            // echo "Error: " . $sql . "<br>" . $conn->error;
             return false;
         }
 

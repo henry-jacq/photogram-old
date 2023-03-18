@@ -4,9 +4,9 @@
         <h4 class="fw-light text-center mb-4">Photogram</h4>
         <hr class="mb-4">
         <h5 class="fw-semi-bold mb-4">Sign In</h5>
-        <h6 class="fw-normal">Username or email</h6>
+        <label class="form-label">Username or email</label>
         <input type="text" id="user" name="username_or_email" class="form-control mb-3 bg-transparent" required>
-        <h6 class="fw-normal">Password</h6>
+        <label class="form-label">Password</label>
         <div class="input-group mb-3">
             <input type="password" id="pass" name="password" class="form-control bg-transparent" required>
             <span class="input-group-text bg-transparent" id="icon-click">

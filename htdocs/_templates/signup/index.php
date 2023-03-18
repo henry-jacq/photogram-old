@@ -41,7 +41,7 @@ if ($signup) {
                 <div class="py-3 col-sm-10 col-md-8 col-lg-6 col-xl-5 col-xxl-4">
                     <!-- This will popup the alert -->
                     <div id="popup-error" class="alert alert-danger alert-dismissible fade show" role="alert">
-                        <strong>Signup Failed!</strong><br>Username is not available.
+                        <strong>Signup Failed!</strong><br>Username or email already exists in database.
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
                     <? // Load Sign up form
