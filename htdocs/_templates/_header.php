@@ -10,17 +10,17 @@
             <ul class="nav flex-nowrap align-items-center ms-sm-3 list-unstyled">
                 <li class="nav-item ms-2">
                     <a class="nav-link btn border py-1 px-2" href="/">
-                        <i class="bi bi-upload fs-6"></i>
+                        <i class="fa-solid fa-arrow-up-from-bracket fs-6"></i>
                     </a>
                 </li>
                 <li class="nav-item ms-2">
                     <a class="nav-link btn border py-1 px-2" href="#">
-                        <i class="bi bi-heart fs-6"></i>
+                        <i class="fa-regular fa-heart fs-6"></i>
                     </a>
                 </li>
                 <li class="nav-item dropdown ms-2">
                     <a class="nav-link btn border py-1 px-2" href="#" id="notifDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
-                        <i class="bi bi-bell fs-6"></i>
+                        <i class="fa-regular fa-bell fs-6"></i>
                         <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">3<span class="visually-hidden">unread messages</span></span>
                     </a>
                     <div class="dropdown-menu dropdown-animation dropdown-menu-end dropdown-menu-size-md p-0 shadow-lg border-0 mt-2" aria-labelledby="notifDropdown">

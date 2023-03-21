@@ -4,8 +4,8 @@
             <span class="display-1 d-block">404</span>
             <span class="display-4 d-block mb-3">Error</span>
             <div class="mb-4 lead">The page you are looking for was not found or other error occured.</div>
-            <div class="d-grid col-sm-8 col-md-5 mx-auto">
-                <a href="/" class="btn btn-link text-decoration-none"><i class="bi bi-arrow-left me-2"></i>Back to Photogram</a>
+            <div class="d-grid col-sm-8 col-md-5 col-lg-3 mx-auto">
+                <a href="/" class="btn text-secondary-emphasis border-0 text-decoration-none hvr-icon-back"><i class="fa fa-arrow-left me-2 hvr-icon"></i>Back to Photogram</a>
             </div>
         </div>
     </div>

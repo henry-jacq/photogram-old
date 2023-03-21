@@ -9,13 +9,14 @@
             // If user has no posts  uploaded, print this message.
             if (empty($posts)) { ?>
                 <p class="text-muted text-center align-items-center mb-0">You haven't posted pictures. When you share photos, they'll appear on your profile.</p>
-        <? } 
+            <? }
         } else {
             $posts = Post::getAllPosts();
             // If no posts are uploaded, print this message.
             if (empty($posts)) { ?>
                 <p class="text-muted text-center align-items-center mb-0">Memories are unavailable. Try to share some photos.</p>
-        <? } } ?>
+        <? }
+        } ?>
 
         <? foreach ($posts as $post) {
             $p = new Post($post['id']);
@@ -51,7 +52,7 @@
                                     </a>
                                     <!-- Card feed action dropdown menu -->
                                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="cardFeedAction1">
-                                        <li onclick="dialog('Not Implemented!',' This feature is not implemented');"><a class="dropdown-item" href="#"> <i class="bi bi-download fa-fw pe-2"></i>Download</a></li>
+                                        <li><a class="dropdown-item" href="<? echo($p->getImageUri()) ?>"> <i class="bi bi-download fa-fw pe-2"></i>Download</a></li>
                                         <li onclick="dialog('Not Implemented!',' This feature is not implemented');"><a class="dropdown-item" href="#"> <i class="bi bi-link-45deg fa-fw pe-2"></i>Copy link</a></li>
                                         <li onclick="dialog('Not Implemented!',' This feature is not implemented');"><a class="dropdown-item" href="#"> <i class="bi bi-bookmark fa-fw pe-2"></i>Bookmark</a></li>
                                         <? if (Session::isOwnerOf($p->getOwner())) { ?>

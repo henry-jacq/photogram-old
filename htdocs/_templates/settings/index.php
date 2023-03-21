@@ -3,7 +3,7 @@
         <div class="col-md-3 d-none d-md-block">
             <div class="card border-0">
                 <div class="card-body">
-                    <h4 class="fs-5 fw-normal ms-3"><i class="bi bi-gear me-1"></i> Settings</h4>
+                    <h4 class="fs-5 fw-normal ms-3"><i class="bi bi-gear me-2"></i>Settings</h4>
                     <hr>
                     <nav class="nav flex-column nav-pills nav-gap-y-1">
                         <a href="#profile" data-toggle="tab" class="nav-item nav-link has-icon nav-link-faded bi bi-person active">
@@ -33,22 +33,22 @@
                 <div class="card-header border-bottom mb-3 d-flex d-md-none">
                     <ul class="nav nav-tabs card-header-tabs nav-gap-x-1" role="tablist">
                         <li class="nav-item">
-                            <a href="#profile" data-toggle="tab" class="nav-link has-icon active"><i class="bi bi-person"></i></a>
+                            <a href="#profileSection" data-toggle="tab" class="nav-link has-icon active"><i class="fa-regular fa-user"></i></a>
                         </li>
                         <li class="nav-item">
-                            <a href="#account" data-toggle="tab" class="nav-link has-icon"><i class="bi bi-person-circle"></i></a>
+                            <a href="#accountSection" data-toggle="tab" class="nav-link has-icon"><i class="fa-regular fa-circle-user"></i></a>
                         </li>
                         <li class="nav-item">
-                            <a href="#email" data-toggle="tab" class="nav-link has-icon"><i class="bi bi-envelope"></i></a>
+                            <a href="#emailSection" data-toggle="tab" class="nav-link has-icon"><i class="fa-regular fa-envelope"></i></a>
                         </li>
                         <li class="nav-item">
-                            <a href="#password" data-toggle="tab" class="nav-link has-icon"><i class="bi bi-key"></i></a>
+                            <a href="#passwordSection" data-toggle="tab" class="nav-link has-icon"><i class="fa-sharp fa-regular fa-key"></i></a>
                         </li>
                         <li class="nav-item">
-                            <a href="#notification" data-toggle="tab" class="nav-link has-icon"><i class="bi bi-bell"></i></a>
+                            <a href="#notificationSection" data-toggle="tab" class="nav-link has-icon"><i class="fa-regular fa-bell"></i></a>
                         </li>
                         <li class="nav-item">
-                            <a href="#sessions" data-toggle="tab" class="nav-link has-icon"><i class="bi bi-shield"></i></a>
+                            <a href="#sessions" data-toggle="tab" class="nav-link has-icon"><i class="fa-sharp fa-regular fa-desktop"></i></i></a>
                         </li>
                     </ul>
                 </div>
@@ -69,7 +69,7 @@
                             <label for="url" class="form-label">Share Profile Link</label>
                             <div class="form-group mb-3 input-group">
                                 <input type="text" class="form-control user-select-all" id="url" placeholder="Enter your website address" value="https://<?= $_SERVER['SERVER_NAME'] ?>/<?= Session::getUser()->getUsername() ?>" disabled>
-                                <button class="btn btn-bd-primary input-group-text" id="copyUserLink" type="button" data-toggle="tooltip" title="Click to copy"><i class="bi bi-clipboard"></i></button>
+                                <button class="btn btn-outline-secondary input-group-text" id="copyUserLink" type="button" data-toggle="tooltip" title="Click to copy"><i class="bi bi-clipboard"></i></button>
                             </div>
                             <div class="form-group mb-3">
                                 <label for="location" class="form-label">Location</label>
