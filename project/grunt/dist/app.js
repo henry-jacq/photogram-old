@@ -1,4 +1,4 @@
-/* Processed by Grunt on 18/2/2023 @8:56:44 */
+/* Processed by Grunt on 22/3/2023 @16:34:51 */
 
 
 // init Masonry
@@ -22,7 +22,19 @@ fpPromise.then(fp => fp.get()).then(result => {
     const visitorId = result.visitorId;
     $("#fingerprint").val(visitorId);
 })
+$("#icon-click").on("click", function (data) {
+  let icon = $("#icon");
 
+  if (icon.hasClass("bi-eye-slash")) {
+    $("#pass").attr("type", "text");
+    icon.removeClass("bi-eye-slash");
+    icon.addClass("bi-eye");
+  } else if (icon.hasClass("bi-eye")) {
+    $("#pass").attr("type", "password");
+    icon.removeClass("bi-eye");
+    icon.addClass("bi-eye-slash");
+  }
+});
 
 // Delete post
 $('.btn-delete').on('click', function(){
