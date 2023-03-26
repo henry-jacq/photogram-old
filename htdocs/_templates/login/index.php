@@ -23,12 +23,10 @@ if ($login) {
         }
 
         // Save username or email in session
-        Session::set('session_UsernameOrEmail', $_POST['username_or_email']); ?>
+        Session::set('session_UsernameOrEmail', $_POST['username_or_email']); 
 
-        <script>
-            window.location.href = "<?= $redirect_to ?>"
-        </script>
-    <?
+        header($redirect_to);
+
         // If any error, load the same page with popup error
     } else { ?>
 
