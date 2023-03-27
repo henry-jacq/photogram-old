@@ -2,7 +2,7 @@
 <?php
 
 /**
- * 
+ *
  * Author: Henry
  *
  * This script will generate a JSON file for photogram
