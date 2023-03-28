@@ -3,17 +3,19 @@
 require_once 'Database.class.php';
 include_once __DIR__ . "/../traits/SQLGetterSetter.trait.php";
 
-class User {
-    private $conn;
-    public $username, $id, $table;
-
+class User
+{
     use SQLGetterSetter;
+    private $conn;
+    public $username;
+    public $id;
+    public $table;
 
     // Signup
-    public static function signup($username, $password, $email, $fname, $lname) {
-        
+    public static function signup($username, $password, $email, $fname, $lname)
+    {
         $username = strtolower($username);
-        
+
         // Amount of cost requires to generate a random hash
         $options = [
             'cost' => 8
@@ -29,8 +31,7 @@ class User {
 
         // Insert values into the database
         // Todo: In future, change the sql query table to class variable which is declared in database_class_php file
-        $sql = "INSERT INTO `auth` (`username`, `password`, `email`, `first_name`, `last_name`, `sec_email`)
-        VALUES ('$username', '$password', '$email', '$fname', '$lname', '0');";
+        $sql = "INSERT INTO `auth` (`username`, `password`, `email`, `first_name`, `last_name`, `active`, `signup_time`) VALUES ('$username', '$password', '$email', '$fname', '$lname', '0', now());";
 
         // Sending the query to the database and checking if it is true or false
         //PHP 7.4 -
@@ -47,23 +48,21 @@ class User {
             // echo "Error: " . $sql . "<br>" . $conn->error;
             return false;
         }
-
-
     }
 
     // Login
-    public static function login($username_or_email, $password) {
-
+    public static function login($username_or_email, $password)
+    {
         $username_or_email = strtolower($username_or_email);
 
         // Query to fetch the user data
         // Check if the $username_or_email field has email
-        if(filter_var($username_or_email, FILTER_VALIDATE_EMAIL)) {
+        if (filter_var($username_or_email, FILTER_VALIDATE_EMAIL)) {
             $query = "SELECT * FROM `auth` WHERE `email` = '$username_or_email'";
         } else {
             $query = "SELECT * FROM `auth` WHERE `username` = '$username_or_email'";
         }
-        
+
         // Create a connection to database
         $conn = Database::getConnection();
         // Get the user details [1 row] by sending this query to database.
@@ -84,13 +83,39 @@ class User {
         }
     }
 
-    public function __construct($user_or_email) {
+    // Check if the provided mail exist in database or not
+    public static function mail_exists($email)
+    {
+        if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $query = "SELECT * FROM `auth` WHERE `email` = '$email'";
+
+            // Create a connection to database
+            $conn = Database::getConnection();
+
+            // Get the user details [1 row] by sending this query to database.
+            $result = $conn->query($query);
+
+            if ($result->num_rows) {
+                $row = $result->fetch_assoc();
+                if ($row['email']) {
+                    return true;
+                } else {
+                    throw new Exception("Email is not available");
+                }
+            } else {
+                return false;
+            }
+        }
+    }
+
+    public function __construct($user_or_email)
+    {
         /**
          * User object can be constructed with either username or email
          * Check if the $user_or_email has email or not
          * Query returns userID and username
          */
-        
+
         if (filter_var($user_or_email, FILTER_VALIDATE_EMAIL)) {
             // Query to fetch data using email
             $sql = "SELECT `id`, `email` FROM `auth` WHERE `email`= '$user_or_email' OR `id` = '$user_or_email' LIMIT 1";
@@ -98,7 +123,7 @@ class User {
             // Query to fetch data using username
             $sql = "SELECT `id`, `username`  FROM `auth` WHERE `username`= '$user_or_email' OR `id` = '$user_or_email' LIMIT 1";
         }
-        
+
         $this->conn = Database::getConnection();
         $this->username = $user_or_email;
         $this->id = null;
@@ -108,14 +133,15 @@ class User {
         if ($result->num_rows) {
             $row = $result->fetch_assoc();
             // Updating this from database
-            $this->id = $row['id']; 
-            // $this->username = $row['username'];
+            $this->id = $row['id'];
+        // $this->username = $row['username'];
         } else {
             throw new Exception("Username is not available");
         }
     }
 
-    public function setDob($year, $month, $day) {
+    public function setDob($year, $month, $day)
+    {
         // checking data is valid or not
         if (checkdate($month, $day, $year)) {
             return $this->_set_data('dob', "$year.$month.$day");
