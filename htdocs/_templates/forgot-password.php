@@ -1,0 +1,3 @@
+<?
+
+Session::loadTemplate('auth/index');
