@@ -1,9 +1,12 @@
 <?php
 
-class UserSession {
+class UserSession
+{
+    public $conn;
+    public $token;
+    public $data;
+    public $uid;
 
-    public $conn, $token, $data, $uid;
-    
     // This function will return session_token if the username and password is correct.
     public static function authenticate($username_or_email, $password)
     {
@@ -20,7 +23,7 @@ class UserSession {
             // NOTE:
             // Fingerprint is optional
             // If the user is using any adblocker, the fingerprint will not be generated
-            if (!is_null($_POST['visitor_id'])){
+            if (!is_null($_POST['visitor_id'])) {
                 $visitor_id = $_POST['visitor_id'];
             } else {
                 $visitor_id = null;
@@ -40,7 +43,8 @@ class UserSession {
         }
     }
 
-    public static function authorize($token) {
+    public static function authorize($token)
+    {
         $session = new UserSession($token);
 
         $ip = $_SERVER['REMOTE_ADDR'];
@@ -48,17 +52,19 @@ class UserSession {
 
         try {
             // Preventive measures for session hijacking
-            if (isset($agent) and isset($ip)){
-                if ($agent == $session->getUserAgent() and $ip == $session->getIP()){
+            if (isset($agent) and isset($ip)) {
+                if ($agent == $session->getUserAgent() and $ip == $session->getIP()) {
                     // If the session is active and valid
-                    if ($session->isValid() and $session->isActive()){
+                    if ($session->isValid() and $session->isActive()) {
                         // NOTE: Fingerprint (or) visitorID is Optional
                         if (Session::isset('visitor_id') and $session->getVisitorId()) {
                             // If fingerprint exists, check both equal or not
                             if (Session::get('visitor_id') == $session->getVisitorId()) {
                                 Session::$user = $session->getUser();
                                 return $session;
-                            } else throw new Exception("Fingerprint doesn't match.");
+                            } else {
+                                throw new Exception("Fingerprint doesn't match.");
+                            }
                         } else {
                             Session::$user = $session->getUser();
                             return $session;
@@ -71,8 +77,10 @@ class UserSession {
                     $session::removeSession($token);
                     throw new Exception("User agent and IP address doesn't match.");
                 }
-            } else throw new Exception("User agent and IP address is NULL.");
-        } catch(Exception $e){
+            } else {
+                throw new Exception("User agent and IP address is NULL.");
+            }
+        } catch(Exception $e) {
             throw new Exception($e->getMessage());
         }
     }
@@ -98,24 +106,25 @@ class UserSession {
         return new User($this->uid);
     }
 
-    // Check if the validity of the session is within one hour, else it is inactive.
+    // Check if the validity of the session is within two hour, else it is inactive.
     public function isValid()
     {
         if (isset($this->data['login_time'])) {
             $login_time = DateTime::createFromFormat('Y-m-d H:i:s', $this->data['login_time']);
-            if (3600 > time() - $login_time->getTimestamp()) {
+            if (7200 > time() - $login_time->getTimestamp()) {
                 return true;
             } else {
                 return false;
             }
-        } else throw new Exception("login time is not available!");
-
+        } else {
+            throw new Exception("login time is not available!");
+        }
     }
 
     // User IP stored in database
     public function getIP()
     {
-        if (isset($this->data['ip'])){
+        if (isset($this->data['ip'])) {
             return $this->data['ip'];
         } else {
             return false;
@@ -125,7 +134,7 @@ class UserSession {
     // User agent stored in database
     public function getUserAgent()
     {
-        if (isset($this->data['user_agent'])){
+        if (isset($this->data['user_agent'])) {
             return $this->data['user_agent'];
         } else {
             return false;
@@ -133,8 +142,9 @@ class UserSession {
     }
 
     // Fingerprint (or) Visitor ID stored in database
-    public function getVisitorId(){
-        if (isset($this->data['visitor_id'])){
+    public function getVisitorId()
+    {
+        if (isset($this->data['visitor_id'])) {
             return $this->data['visitor_id'];
         } else {
             return false;
@@ -142,8 +152,9 @@ class UserSession {
     }
 
     // This change the value of active '1' to '0' in database
-    public function deactivate(){
-        if (!$this->conn){
+    public function deactivate()
+    {
+        if (!$this->conn) {
             $this->conn = Database::getConnection();
         }
         $sql  = "UPDATE `session` SET `active` = '0' WHERE `id` = '$this->uid';";
@@ -151,7 +162,8 @@ class UserSession {
     }
 
     // Checks if the session is active or not
-    public function isActive() {
+    public function isActive()
+    {
         if (isset($this->data['active'])) {
             return $this->data['active'];
         } else {
@@ -160,19 +172,19 @@ class UserSession {
     }
 
     // It removes the current Session
-    public static function removeSession($token){
-
+    public static function removeSession($token)
+    {
         $session = new UserSession($token);
 
         if (isset($session->data['id'])) {
             $id = $session->data['id'];
             // If there is no database connection create one.
-            if (!$session->conn){
+            if (!$session->conn) {
                 Database::getConnection();
             }
             // SQL query to delete the session
             $sql = "DELETE FROM `session` WHERE `id` = '$id';";
-            if($session->conn->query($sql)){
+            if ($session->conn->query($sql)) {
                 return true;
             } else {
                 return false;
