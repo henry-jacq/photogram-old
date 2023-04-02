@@ -11,11 +11,16 @@ class User
     public $id;
     public $table;
 
-    // Signup
-    public static function signup($username, $password, $email, $fname, $lname)
+    // Escapes special characters in an SQL statement
+    public static function check_sql_errors($value): string
     {
-        $username = strtolower($username);
+        $conn = Database::getConnection();
+        return mysqli_real_escape_string($conn, $value);
+    }
 
+    // Register User
+    public static function signup($username, $password, $email, $fname, $lname): string
+    {
         // Amount of cost requires to generate a random hash
         $options = [
             'cost' => 8
@@ -27,7 +32,14 @@ class User
         // $password = md5(strrev(md5($password))); // Security through obscurity
 
         // Create a connection to database
-        $conn = Database::getconnection();
+        $conn = Database::getConnection();
+
+        // Check for special characters in these values
+        $username = strtolower(self::check_sql_errors($username));
+        $password = self::check_sql_errors($password);
+        $email = self::check_sql_errors($email);
+        $fname = self::check_sql_errors($fname);
+        $lname = self::check_sql_errors($lname);
 
         // Insert values into the database
         // Todo: In future, change the sql query table to class variable which is declared in database_class_php file
@@ -50,11 +62,9 @@ class User
         }
     }
 
-    // Login
-    public static function login($username_or_email, $password)
+    // Login User
+    public static function login($username_or_email, $password): string
     {
-        $username_or_email = strtolower($username_or_email);
-
         // Query to fetch the user data
         // Check if the $username_or_email field has email
         if (filter_var($username_or_email, FILTER_VALIDATE_EMAIL)) {
@@ -65,6 +75,9 @@ class User
 
         // Create a connection to database
         $conn = Database::getConnection();
+
+        $username_or_email = strtolower(self::check_sql_errors($username_or_email));
+
         // Get the user details [1 row] by sending this query to database.
         $result = $conn->query($query);
         // Checking the query has a row or not
@@ -84,7 +97,7 @@ class User
     }
 
     // Check if the provided mail exist in database or not
-    public static function mail_exists($email)
+    public static function mail_exists($email): string
     {
         if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
             $query = "SELECT * FROM `auth` WHERE `email` = '$email'";
@@ -140,7 +153,7 @@ class User
         }
     }
 
-    public function setDob($year, $month, $day)
+    public function setDob($year, $month, $day): string
     {
         // checking data is valid or not
         if (checkdate($month, $day, $year)) {
