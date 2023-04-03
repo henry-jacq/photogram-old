@@ -2,7 +2,7 @@
 
 if (isset($_POST['email']) and !empty($_POST['email'])) {
     $email = $_POST['email'];
-    $result = User::mail_exists($email);
+    $result = Mailer::mail_exists($email);
     $fp = true;
 } else {
     $fp = false;

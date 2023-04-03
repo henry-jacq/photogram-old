@@ -8,6 +8,7 @@ include 'core/User.class.php';
 include 'core/UserSession.class.php';
 include 'core/WebAPI.class.php';
 include 'core/API.class.php';
+include 'core/Mailer.class.php';
 include 'app/Post.class.php';
 
 // Error handling
