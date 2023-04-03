@@ -1,7 +1,7 @@
 <?php
 
 // Autoload all PHP class files
-require 'vendor/autoload.php';
+require __DIR__ . "/../../vendor/autoload.php";
 include 'core/Database.class.php';
 include 'core/Session.class.php';
 include 'core/User.class.php';
@@ -22,7 +22,8 @@ $wapi->initiateSession();
 
 
 // Get credentials from config
-function get_config($key, $default=null){
+function get_config($key, $default=null)
+{
     global $__site_config;
     $array = json_decode($__site_config, true);
     if (isset($array[$key])) {
