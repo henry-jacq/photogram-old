@@ -31,12 +31,11 @@
 	<link
 		href="<?= get_config('base_path') ?>css/bootstrap.min.css"
 		rel="stylesheet">
-	<?php if (Session::isAuthenticated()) {?>
+
 	<!-- App CSS -->
-	<link
-		href="<?= get_config('base_path') ?>css/app.min.css"
-		rel="stylesheet">
-	<?}?>
+	<link rel="stylesheet"
+		href="<?= get_config('base_path') ?>css/app.min.css">
+
 	<!-- Hover CSS -->
 	<link rel="stylesheet"
 		href="<?= get_config('base_path') ?>css/hover.css">

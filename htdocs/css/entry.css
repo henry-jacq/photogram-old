@@ -7,13 +7,7 @@ Glassy-light - #ffffff1a
 
 html {
     line-height: 1.15;
-    scrollbar-width: none;
     -webkit-text-size-adjust: 100%;
-}
-
-/* Hide scrollbar in chrome, safari and opera */
-body::-webkit-scrollbar {
-    display: none;
 }
 
 /* Background image for register or login page */
