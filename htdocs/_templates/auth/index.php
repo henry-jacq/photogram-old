@@ -2,7 +2,7 @@
 
 if (isset($_POST['email']) and !empty($_POST['email'])) {
     $email = $_POST['email'];
-    $result = Mailer::mail_exists($email);
+    $result = Mailer::mailExists($email);
     $fp = true;
 } else {
     $fp = false;
