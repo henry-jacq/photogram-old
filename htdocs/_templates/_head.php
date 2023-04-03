@@ -31,6 +31,12 @@
 	<link
 		href="<?= get_config('base_path') ?>css/bootstrap.min.css"
 		rel="stylesheet">
+	<?php if (Session::isAuthenticated()) {?>
+	<!-- App CSS -->
+	<link
+		href="<?= get_config('base_path') ?>css/app.min.css"
+		rel="stylesheet">
+	<?}?>
 	<!-- Hover CSS -->
 	<link rel="stylesheet"
 		href="<?= get_config('base_path') ?>css/hover.css">
@@ -40,9 +46,9 @@
 	<?php
 	// Load the CSS file if the current script matches the following
 	if (Session::currentScript() == "login" or Session::currentScript() == "signup" or Session::currentScript() == "forgot-password") {
-	    if (file_exists(($_SERVER['DOCUMENT_ROOT'] . get_config('base_path') . "css/index.css"))) { ?>
+	    if (file_exists(($_SERVER['DOCUMENT_ROOT'] . get_config('base_path') . "css/entry.css"))) { ?>
 	<link rel="stylesheet"
-		href="<?= get_config('base_path') . "css/index.css" ?>">
+		href="<?= get_config('base_path') . "css/entry.css" ?>">
 	<?php }
 	    } ?>
 
