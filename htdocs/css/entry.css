@@ -1,4 +1,4 @@
-/* Custom stylesheet for login and signup page of photogram 
+/* Hex colors used for photogram 
 Colors used:-
 Dracula - #635ca8
 Glassy - #ffffff33
@@ -7,9 +7,16 @@ Glassy-light - #ffffff1a
 
 html {
     line-height: 1.15;
+    scrollbar-width: none;
     -webkit-text-size-adjust: 100%;
 }
 
+/* Hide scrollbar in chrome, safari and opera */
+body::-webkit-scrollbar {
+    display: none;
+}
+
+/* Background image for register or login page */
 body {
     background-image: url(../assets/brand/background-webp.jpg);
     background-size: cover;

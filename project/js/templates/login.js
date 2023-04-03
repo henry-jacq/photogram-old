@@ -1,3 +1,4 @@
+// show/hide password field in login form
 $("#icon-click").on("click", function (data) {
   let icon = $("#icon");
 

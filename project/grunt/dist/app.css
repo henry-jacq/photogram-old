@@ -1,0 +1,13 @@
+/* Processed by Grunt on 3/4/2023 @6:24:2 */
+
+
+/* Hide scrollbar in chrome, safari and opera */
+body::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbar in firefox */
+html {
+    scrollbar-width: none;
+}
+/*# sourceMappingURL=app.css.map */
