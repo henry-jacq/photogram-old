@@ -84,7 +84,7 @@ class Mailer
     /**
      * An HTML or plain text message body.
      */
-    public function addBody(string $body)
+    public function addBody(mixed $body)
     {
         $this->mailer->Body = $body;
     }
