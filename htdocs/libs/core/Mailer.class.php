@@ -12,15 +12,15 @@ use PHPMailer\PHPMailer\PHPMailer;
 class Mailer
 {
     public $mailer;
-    public $senderName = "Photogram";
-    public $SMTPHost = "";
-    public $SMTPPort = 587;
-    public $fromAddress = "noreply@photogram.com";
-    public $SMTPAuthUser = "";
-    public $SMTPAuthPass = "";
 
     public function __construct()
     {
+        $fromName = "Photogram";
+        $fromAddress = "noreply@photogram.com";
+        $smtpHost = get_config('smtp_host');
+        $smtpPort = 587;
+        $smtpAuthUser = get_config('smtp_auth_user');
+        $smtpAuthPass = get_config('smtp_auth_pass');
         // Initialize PHPMailer with enabled exceptions.
         $this->mailer = new PHPMailer(true);
 
@@ -28,14 +28,14 @@ class Mailer
         // Enable verbose debug output
         // $this->mailer->SMTPDebug = SMTP::DEBUG_SERVER;
         $this->mailer->isSMTP();
-        $this->mailer->Host       = $this->SMTPHost;
+        $this->mailer->Host       = $smtpHost;
         $this->mailer->SMTPAuth   = true;
-        $this->mailer->Username   = $this->SMTPAuthUser;
-        $this->mailer->Password   = $this->SMTPAuthPass;
+        $this->mailer->Username   = $smtpAuthUser;
+        $this->mailer->Password   = $smtpAuthPass;
         $this->mailer->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-        $this->mailer->Port       = $this->SMTPPort;
+        $this->mailer->Port       = $smtpPort;
 
-        $this->mailer->setFrom($this->fromAddress, $this->senderName);
+        $this->mailer->setFrom($fromAddress, $fromName);
     }
 
     /**
@@ -91,7 +91,7 @@ class Mailer
 
     /**
      * The plain-text message body.
-     * 
+     *
      * This body can be read by mail clients that do not have HTML email capability such as mutt & Eudora. Clients that can read HTML will view the normal Body.
      */
     public function addAltBody(string $altBody)
@@ -102,25 +102,24 @@ class Mailer
     /**
      * Add an attachment from a path on the filesystem.
      */
-    public function addAttachment($attachment, $name = NULL)
+    public function addAttachment($attachment, $name = null)
     {
         $this->mailer->addAttachment($attachment, $name);
     }
 
     /**
      * Add a "To" address.
-     * 
+     *
      * true on success, false if address already used or invalid in some way
      */
-    public function addRecipient(string $address, $name = NULL)
+    public function addRecipient(string $address, $name = null)
     {
-        $this->mailer->setFrom($this->fromAddress, 'Photogram');
         $this->mailer->addAddress($address, $name);
     }
 
     /**
      * Create a message and send it.
-     * 
+     *
      * @return bool — false on error - See the ErrorInfo property for details of the error
      * @throws Exception
      */
