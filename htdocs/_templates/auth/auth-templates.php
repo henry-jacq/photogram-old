@@ -51,18 +51,20 @@ function loadPasswordResetForm(string $value = null)
 /**
  * This contains HTML body for sending mail to reset the password.
  */
-function loadPasswordResetMail(): mixed
+function loadPasswordResetMailBody()
 {
-    ?>
-<div style='line-height:1.5rem; margin-bottom:10px;'>
-	<b>Hi Henry,</b><br>
-	We received a request to reset the password for your Photogram account. If you didn't request this, please ignore
-	this email.<br>
-	If you did request it, please click on this link to reset your password: <a href='#'>Reset password</a><br>
-	If you have any questions or concerns, feel free to reach out to us.
-</div>
-Best regards,<br>
-<b>Photogram Team</b>
-<?php
+    $htmlMailBody = "
+	<div style='line-height:1.5rem; margin-bottom:10px;'>
+		<b>Hi Henry,</b><br>
+		We received a request to reset the password for your Photogram account. If you didn't request this, please ignore
+		this email.<br>
+		If you did request it, please click on this link to reset your password: <a href='#'>Reset password</a><br>
+		If you have any questions or concerns, feel free to reach out to us.
+	</div>
+	Best regards,<br>
+	<b>Photogram Team</b>
+	";
+
+    return $htmlMailBody;
 }
 ?>

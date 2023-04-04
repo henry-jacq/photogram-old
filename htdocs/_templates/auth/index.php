@@ -13,7 +13,7 @@ if (isset($_POST['email']) and !empty($_POST['email'])) {
 if ($fp) {
     if ($result) {
         try {
-            $html = loadPasswordResetMail();
+            $html = loadPasswordResetMailBody();
 
             // Initialize mailer instance
             $mailer = new Mailer();
