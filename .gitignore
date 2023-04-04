@@ -7,3 +7,6 @@ uploads/
 
 # vendor
 vendor/
+
+# Photogram config
+project/photogram_config.json
