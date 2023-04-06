@@ -26,10 +26,11 @@ if ($fp) {
         } catch (Exception $e) {
             echo "Mailer Error: {$mailer->mailer->ErrorInfo}";
         }
-        loadPasswordResetForm("success");
+        loadForgotPasswordForm("success");
     } else {
-        loadPasswordResetForm("fail");
+        loadForgotPasswordForm("fail");
     }
 } else {
-    loadPasswordResetForm();
+    // loadForgotPasswordForm();
+    loadChangePasswordForm();
 }

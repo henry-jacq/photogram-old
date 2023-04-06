@@ -1,6 +1,9 @@
 <?php
 
-function loadPasswordResetForm(string $value = null)
+/**
+ * This will load the password reset form
+ */
+function loadForgotPasswordForm(string $value = null)
 {
     if ($value === "success") {
         ?>
@@ -67,4 +70,19 @@ function loadPasswordResetMailBody()
 
     return $htmlMailBody;
 }
+
+
+function loadChangePasswordForm()
+{?>
+<section class="container">
+	<div class="h-100 d-flex align-items-center justify-content-center row" style="min-height: 100vh;">
+		<div class="py-3 col-sm-10 col-md-8 col-lg-6 col-xl-5 col-xxl-4">
+			<?php // Load Login form
+                    Session::loadTemplate('auth/change-password-form'); ?>
+		</div>
+	</div>
+</section>
+<?}
+
+
 ?>
