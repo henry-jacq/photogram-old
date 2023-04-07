@@ -4,9 +4,9 @@ use libs\core\Session;
 /**
  * This will load the password reset form
  */
-function loadForgotPasswordForm(string $value = null)
+function loadForgotPasswordForm(string $status = null, string $value = null)
 {
-    if ($value === "success") {
+    if ($status === "success" and $value === "mail-sent") {
         ?>
 <section class="container">
 	<div class="h-100 d-flex align-items-center justify-content-center row" style="min-height: 100vh;">
@@ -22,7 +22,7 @@ function loadForgotPasswordForm(string $value = null)
 	</div>
 </section>
 <?php
-    } elseif ($value === "fail") {
+    } elseif ($status === "fail" and $value === "invalid-email") {
         ?>
 <section class="container">
 	<div class="h-100 d-flex align-items-center justify-content-center row" style="min-height: 100vh;">
@@ -37,8 +37,25 @@ function loadForgotPasswordForm(string $value = null)
 		</div>
 	</div>
 </section>
+
 <?php
-    } elseif ($value === null) {
+} elseif ($status === "fail" and $value === "invalid-token") {?>
+
+<section class="container">
+	<div class="h-100 d-flex align-items-center justify-content-center row" style="min-height: 100vh;">
+		<div class="py-3 col-sm-10 col-md-8 col-lg-6 col-xl-5 col-xxl-4">
+			<!-- This will popup the alert -->
+			<div id="popup-error" class="alert alert-danger alert-dismissible fade show" role="alert">
+				<strong>Invalid token!</strong><br>Reset token is invalid.
+				<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+			</div>
+			<?php // Load Login form
+                    Session::loadTemplate('auth/password-reset-form'); ?>
+		</div>
+	</div>
+</section>
+
+<? } elseif ($status === null) {
         ?>
 <section class="container">
 	<div class="h-100 d-flex align-items-center justify-content-center row" style="min-height: 100vh;">
@@ -55,14 +72,14 @@ function loadForgotPasswordForm(string $value = null)
 /**
  * This contains HTML body for sending mail to reset the password.
  */
-function loadPasswordResetMailBody()
+function loadPasswordResetMailBody($first_name, $reset_link)
 {
     $htmlMailBody = "
 	<div style='line-height:1.5rem; margin-bottom:10px;'>
-		<b>Hi Henry,</b><br>
+		<b>Hi $first_name,</b><br>
 		We received a request to reset the password for your Photogram account. If you didn't request this, please ignore
 		this email.<br>
-		If you did request it, please click on this link to reset your password: <a href='#'>Reset password</a><br>
+		If you did request it, please click on this link to reset your password: <a href='$reset_link'>Reset password</a><br>
 		If you have any questions or concerns, feel free to reach out to us.
 	</div>
 	Best regards,<br>

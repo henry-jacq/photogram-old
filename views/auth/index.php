@@ -1,38 +1,47 @@
 <?php
 
+use libs\core\User;
 use libs\core\Mailer;
+use libs\core\Session;
 
 require_once 'auth-templates.php';
 
 if (isset($_POST['email']) and !empty($_POST['email'])) {
     $email = $_POST['email'];
     $result = Mailer::mailExists($email);
-    $fp = true;
-} else {
-    $fp = false;
-}
 
-if ($fp) {
     if ($result) {
         try {
-            $html = loadPasswordResetMailBody();
+            $first_name = ucfirst(User::getFirstName($email));
+            if ($first_name) {
+                // Initialize mailer instance
+                $mailer = new Mailer();
 
-            // Initialize mailer instance
-            $mailer = new Mailer();
-
-            $mailer->addRecipient($email);
-            $mailer->isHTML(true);
-            $mailer->addSubject("Security alert!");
-            $mailer->addBody($html);
-            $mailer->sendMail();
+                $mailer->addRecipient($email);
+                $mailer->addSubject("Security alert!");
+                $reset_link = User::createResetPasswordLink($email);
+                $html = loadPasswordResetMailBody($first_name, $reset_link);
+                $mailer->isHTML(true);
+                $mailer->addBody($html);
+                $mailer->sendMail();
+            }
         } catch (Exception $e) {
-            echo "Mailer Error: {$mailer->mailer->ErrorInfo}";
+            echo "Mailer Error: {$e->getMessage()}";
         }
-        loadForgotPasswordForm("success");
+        loadForgotPasswordForm("success", "mail-sent");
     } else {
-        loadForgotPasswordForm("fail");
+        loadForgotPasswordForm("fail", "invalid-email");
+    }
+} else if (isset($_GET['reset_password_token']) and !empty($_GET['reset_password_token'])) {
+    $saved_token = User::retrieveResetToken(Session::get('reset_password_email'));
+
+    if ($saved_token == $_GET['reset_password_token']) {
+        loadChangePasswordForm();
+        // die();
+    } else {
+        loadForgotPasswordForm("fail", "invalid-token");
+        // die();
     }
 } else {
     loadForgotPasswordForm();
-    // loadChangePasswordForm();
 }
