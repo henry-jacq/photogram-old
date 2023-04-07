@@ -1,3 +1,9 @@
+<?php
+
+use libs\core\Session;
+
+?>
+
 <header>
     <!-- Logo Nav START -->
     <nav class="navbar navbar-expand-lg px-3 border-bottom shadow shadow-bottom">

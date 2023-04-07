@@ -1,5 +1,7 @@
 <?
 
+use libs\core\Session;
+
 Session::loadTemplate('_header');
 
 if (Session::isAuthenticated()) {

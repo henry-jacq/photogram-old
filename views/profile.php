@@ -1,6 +1,7 @@
 <?
 
 // Profile Page
+use libs\core\Session;
 
 Session::loadTemplate('_header');
 Session::loadTemplate('home/breadcrumb');

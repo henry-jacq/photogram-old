@@ -2,7 +2,11 @@
 <html lang="en" data-bs-theme="dark">
 
 	<!-- Load header -->
-	<?php Session::loadTemplate('_head'); ?>
+	<?php 
+	
+	use libs\core\Session;
+	
+	Session::loadTemplate('_head'); ?>
 
 	<body class="d-flex flex-column min-vh-100">
 

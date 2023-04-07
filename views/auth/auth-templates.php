@@ -1,4 +1,5 @@
 <?php
+use libs\core\Session;
 
 /**
  * This will load the password reset form

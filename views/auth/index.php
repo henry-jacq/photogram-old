@@ -1,5 +1,7 @@
 <?php
 
+use libs\core\Mailer;
+
 require_once 'auth-templates.php';
 
 if (isset($_POST['email']) and !empty($_POST['email'])) {
@@ -31,6 +33,6 @@ if ($fp) {
         loadForgotPasswordForm("fail");
     }
 } else {
-    // loadForgotPasswordForm();
-    loadChangePasswordForm();
+    loadForgotPasswordForm();
+    // loadChangePasswordForm();
 }

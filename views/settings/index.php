@@ -1,3 +1,6 @@
+<?php
+use libs\core\Session;
+?>
 <div class="container mt-3">
     <div class="row gutters-lg">
         <div class="col-md-3 d-none d-md-block">

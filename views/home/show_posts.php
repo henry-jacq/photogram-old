@@ -1,3 +1,8 @@
+<?php
+use libs\core\Session;
+use libs\app\Post;
+?>
+
 <div class="container p-3">
     <div class="row g-3" id="masonry-area">
         <?

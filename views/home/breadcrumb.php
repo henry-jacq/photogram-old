@@ -1,3 +1,6 @@
+<?php
+use libs\core\Session;
+?>
 <div class="container mt-3">
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb border rounded p-3">

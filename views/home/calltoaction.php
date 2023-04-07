@@ -1,4 +1,8 @@
 <?
+
+use libs\app\Post;
+use libs\core\Session;
+
 if (isset($_FILES['post_image']) and isset($_POST['post_text'])) {
     $image_tmp = $_FILES['post_image']['tmp_name'];
     $text = $_POST['post_text'];

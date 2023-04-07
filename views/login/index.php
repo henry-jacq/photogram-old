@@ -1,5 +1,8 @@
 <?php
 
+use libs\core\Session;
+use libs\core\UserSession;
+
 // Try to login, if the user has submitted the form
 if (isset($_POST['username_or_email']) and !empty($_POST['username_or_email']) and isset($_POST['password']) and !empty($_POST['password'])) {
     $user_or_email = $_POST['username_or_email'];

@@ -1,3 +1,6 @@
+<?php
+use libs\core\Session;
+?>
 <div class="container p-5">
     <h3 class="fw-light">Profile Page</h3>
     <hr class="py-3">
