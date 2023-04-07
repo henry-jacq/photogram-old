@@ -1,11 +1,12 @@
 <?php
 
-
 namespace libs\core;
 
 use Exception;
 
-use \libs\traits\SQLGetterSetter;
+use libs\traits\SQLGetterSetter;
+use Throwable;
+
 // include_once __DIR__ . "/../traits/SQLGetterSetter.trait.php";
 
 class User
@@ -101,6 +102,85 @@ class User
         }
     }
 
+    /**
+     * It fetch first name of user by email
+     */
+    public static function getFirstName($email)
+    {
+        if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $query = "SELECT `first_name` FROM `auth` WHERE `email` = '$email';";
+
+            // Create a connection to database
+            $conn = Database::getConnection();
+
+            $result = $conn->query($query);
+
+            if ($result->num_rows == 1) {
+                $row = $result->fetch_assoc();
+                return $row['first_name'];
+            } else {
+                throw new Exception(__CLASS__ . "::getFirstName() -> $email, first_name is unavailable.");
+            }
+        }
+    }
+
+    /**
+     * Retrieve Password reset token for given email
+     *
+     * Get the token saved in database
+     */
+    public static function retrieveResetToken($email)
+    {
+        if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $query = "SELECT `token` FROM `auth` WHERE `email` = '$email';";
+
+            // Create a connection to database
+            $conn = Database::getConnection();
+
+            $result = $conn->query($query);
+
+            if ($result->num_rows == 1) {
+                $row = $result->fetch_assoc();
+                return $row['token'];
+            } else {
+                throw new Exception(__CLASS__ . "::retrieveResetToken() -> $email, token is unavailable.");
+            }
+        }
+    }
+
+    /**
+     * Generate Password reset token for given email
+     *
+     * The token is saved in database
+     */
+    public static function generateResetToken($email)
+    {
+        $token = bin2hex(random_bytes(8));
+
+        Session::set('reset_password_email', "$email");
+
+        $conn = Database::getConnection();
+
+        $query = "UPDATE `auth` SET `token` = '$token', `updated_time` = now() WHERE `email` = '$email';";
+
+        if ($conn->query($query)) {
+            return $token;
+        } else {
+            throw new Exception("Password reset token cannot be generated!");
+        }
+    }
+
+    /**
+     * This will returns the password reset URL
+     */
+    public static function createResetPasswordLink($email)
+    {
+        $domain = get_config("domain_name");
+        $token = self::generateResetToken($email);
+        $link = $domain . "/forgot-password?reset_password_token=$token";
+        return $link;
+    }
+
     public function __construct($user_or_email)
     {
         /**
@@ -133,15 +213,15 @@ class User
         }
     }
 
-    // public function setDob($year, $month, $day): string
-    // {
-    //     // checking data is valid or not
-    //     if (checkdate($month, $day, $year)) {
-    //         return $this->_set_data('dob', "$year.$month.$day");
-    //     } else {
-    //         return false;
-    //     }
-    // }
+    public function setDob($year, $month, $day): string
+    {
+        // checking data is valid or not
+        if (checkdate($month, $day, $year)) {
+            return $this->_set_data('dob', "$year.$month.$day");
+        } else {
+            return false;
+        }
+    }
 
     // public function getUsername() {
     //     return $this->username;
