@@ -1,5 +1,7 @@
 <?php
 
+use libs\core\Mailer;
+
 include 'libs/autoload.php';
 
 
@@ -21,4 +23,16 @@ $mailer->addRecipient('');
 $mailer->addSubject('Security alert');
 $mailer->isHTML(true);
 $mailer->addBody($html);
-$mailer->sendMail();
+
+try {
+    $mailer->sendMail();
+    echo "Mail sent successfully! /n/n";
+} catch (Exception $e) {
+    echo $e->getMessage();
+}
+//try {
+//    User::setNewPassword("", "");
+//    echo "Password Updated Successfully";
+//} catch (Exception $e) {
+//    echo $e->getMessage();
+//}
