@@ -2,5 +2,10 @@
     "require": {
         "nesbot/carbon": "^2.65",
         "phpmailer/phpmailer": "^6.8"
+    },
+    "autoload": {
+        "psr-4": {
+            "libs\\": "framework/"
+        }
     }
 }

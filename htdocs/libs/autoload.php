@@ -1,26 +1,16 @@
 <?php
 
-// Autoload all PHP class files
+// Autoload all class files using composer
 require __DIR__ . "/../../vendor/autoload.php";
-include 'core/Database.class.php';
-include 'core/Session.class.php';
-include 'core/User.class.php';
-include 'core/UserSession.class.php';
-include 'core/WebAPI.class.php';
-include 'core/API.class.php';
-include 'core/Mailer.class.php';
-include 'app/Post.class.php';
 
-// Error handling
-// error_reporting(E_ALL);
+use libs\core\WebAPI;
 
 // NOTE:
 // Config location in labs: /home/$USER/photogram_config.json
 // Config location in server: /var/www/photogram_config.json
 
-$wapi = new WebAPI();
-$wapi->initiateSession();
-
+$webAPI = new WebAPI();
+$webAPI->initiateSession();
 
 // Get credentials from config
 function get_config($key, $default=null)
