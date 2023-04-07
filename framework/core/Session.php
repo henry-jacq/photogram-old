@@ -1,5 +1,7 @@
 <?php
 
+namespace libs\core;
+
 /**
  * PHP session wrapper
 */
@@ -10,32 +12,39 @@ class Session
     public static $user = null;
     public static $usersession = null;
 
-    public static function start() {
+    public static function start()
+    {
         session_start();
     }
 
-    public static function unset() {
+    public static function unset()
+    {
         session_unset();
     }
 
-    public static function destroy() {
+    public static function destroy()
+    {
         session_destroy();
     }
 
     // Set a new variable in session
-    public static function set($key, $value) {
+    public static function set($key, $value)
+    {
         $_SESSION[$key] = $value;
     }
 
-    public static function delete($key) {
+    public static function delete($key)
+    {
         unset($_SESSION[$key]);
     }
 
-    public static function isset($key) {
+    public static function isset($key)
+    {
         return isset($_SESSION[$key]);
     }
 
-    public static function get($key, $default=false) {
+    public static function get($key, $default=false)
+    {
         if (Session::isset($key)) {
             return $_SESSION[$key];
         } else {
@@ -43,18 +52,21 @@ class Session
         }
     }
 
-    public static function getUser() {
+    public static function getUser()
+    {
         return Session::$user;
     }
 
-    public static function getUserSession() {
+    public static function getUserSession()
+    {
         return Session::$usersession;
     }
 
     // Takes an email as an input and returns if the session user has the same email
-    public static function isOwnerOf($postOwner) {
+    public static function isOwnerOf($postOwner)
+    {
         $sess_user = Session::$user;
-        if ($sess_user){
+        if ($sess_user) {
             if ($sess_user->getUsername() == $postOwner) {
                 return true;
             } else {
@@ -65,9 +77,9 @@ class Session
         }
     }
 
-    public static function loadTemplate($template_name) {
-
-        $script = $_SERVER['DOCUMENT_ROOT'] . get_config('base_path') . "_templates/$template_name.php";
+    public static function loadTemplate($template_name)
+    {
+        $script = $_SERVER['DOCUMENT_ROOT'] . "/../views/$template_name.php";
         if (is_file($script)) {
             include $script;
         } else {
@@ -75,15 +87,18 @@ class Session
         }
     }
 
-    public static function renderPage() {
+    public static function renderPage()
+    {
         Session::loadTemplate('_master');
     }
 
-    public static function currentScript() {
+    public static function currentScript()
+    {
         return basename($_SERVER['SCRIPT_NAME'], '.php');
     }
 
-    public static function isAuthenticated() {
+    public static function isAuthenticated()
+    {
         if (is_object(Session::getUserSession())) {
             return Session::getUserSession()->isValid();
         } else {
@@ -91,12 +106,12 @@ class Session
         }
     }
 
-    public static function ensureLogin(){
-        if(!Session::isAuthenticated()){
+    public static function ensureLogin()
+    {
+        if (!Session::isAuthenticated()) {
             Session::set('_redirect', $_SERVER['REQUEST_URI']);
             header("Location: /login");
             die();
         }
     }
-
 }

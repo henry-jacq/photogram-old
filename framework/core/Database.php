@@ -1,5 +1,7 @@
 <?php
 
+namespace libs\core;
+
 /**
  * This class is used to access the database.
  * We have a static variable set to null.
@@ -24,7 +26,7 @@ class Database
             $dbname = get_config('db_name');
 
             // To establish connection to the mysql database
-            $connection = new mysqli($server, $db_user, $db_pass, $dbname);
+            $connection = new \mysqli($server, $db_user, $db_pass, $dbname);
 
             // Check connection
             if ($connection->connect_error) {

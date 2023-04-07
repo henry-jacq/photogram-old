@@ -1,5 +1,9 @@
 <?php
 
+namespace libs\traits;
+
+use Exception;
+use libs\core\Database;
 /**
  * PHP SQLGetterSetter Trait
  * 

@@ -1,7 +1,10 @@
 <?php
 
+
+namespace libs\core;
+
 // use PHPMailer\PHPMailer\SMTP;
-use PHPMailer\PHPMailer\PHPMailer;
+use \PHPMailer\PHPMailer\PHPMailer;
 
 /**
  * Mailer - PHPMailer wrapper for sending emails

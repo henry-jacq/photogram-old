@@ -1,10 +1,13 @@
 <?php
 
-error_reporting(E_ALL ^ E_DEPRECATED);
-require_once 'REST.class.php';
+namespace libs\core;
 
-class API extends REST {
-    
+use Closure;
+
+error_reporting(E_ALL ^ E_DEPRECATED);
+
+class API extends REST
+{
     public $data = "";
     private $current_call;
 

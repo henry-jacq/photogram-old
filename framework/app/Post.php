@@ -1,6 +1,14 @@
 <?php
 
-include_once __DIR__ . "/../traits/SQLGetterSetter.trait.php";
+
+namespace libs\app;
+
+// include_once __DIR__ . "/../traits/SQLGetterSetter.trait.php";
+
+use Exception;
+use libs\core\Session;
+use libs\core\Database;
+use \libs\traits\SQLGetterSetter;
 
 class Post {
     private $conn;

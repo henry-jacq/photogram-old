@@ -1,9 +1,13 @@
 <?php
 
-require_once 'Database.class.php';
+namespace libs\core;
 
-class WebAPI {
-    public function __construct(){
+use Exception;
+
+class WebAPI
+{
+    public function __construct()
+    {
         // if (php_sapi_name() == "cli") {
         //     global $__site_config;
         //     $__site_config_path = "/home/henry/htdocs/photogram/project/photogram_config.json";
@@ -14,19 +18,19 @@ class WebAPI {
         //     $__site_config = file_get_contents($__site_config_path);
         // }
         global $__site_config;
-        $__site_config_path = __DIR__ . '/../../../project/photogram_config.json';
+        $__site_config_path = __DIR__ . '/../../project/photogram_config.json';
         $__site_config = file_get_contents($__site_config_path);
         Database::getConnection();
     }
 
-    public function initiateSession(){
+    public function initiateSession()
+    {
         session_cache_limiter('none');
         Session::start();
         if (Session::isset('session_token')) {
             try {
                 Session::$usersession = UserSession::authorize(Session::get('session_token'));
-            }
-            catch (Exception $e) {
+            } catch (Exception $e) {
                 // TODO: Handle error
                 print  $e->getMessage();
             }

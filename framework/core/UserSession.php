@@ -1,5 +1,10 @@
 <?php
 
+namespace libs\core;
+
+use DateTime;
+use Exception;
+
 class UserSession
 {
     public $conn;

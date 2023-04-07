@@ -1,5 +1,7 @@
 <?php
 
+namespace libs\core;
+
 class REST {
     
     public $_allow = array();

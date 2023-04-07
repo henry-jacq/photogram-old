@@ -1,7 +1,12 @@
 <?php
 
-require_once 'Database.class.php';
-include_once __DIR__ . "/../traits/SQLGetterSetter.trait.php";
+
+namespace libs\core;
+
+use Exception;
+
+use \libs\traits\SQLGetterSetter;
+// include_once __DIR__ . "/../traits/SQLGetterSetter.trait.php";
 
 class User
 {
@@ -128,15 +133,15 @@ class User
         }
     }
 
-    public function setDob($year, $month, $day): string
-    {
-        // checking data is valid or not
-        if (checkdate($month, $day, $year)) {
-            return $this->_set_data('dob', "$year.$month.$day");
-        } else {
-            return false;
-        }
-    }
+    // public function setDob($year, $month, $day): string
+    // {
+    //     // checking data is valid or not
+    //     if (checkdate($month, $day, $year)) {
+    //         return $this->_set_data('dob', "$year.$month.$day");
+    //     } else {
+    //         return false;
+    //     }
+    // }
 
     // public function getUsername() {
     //     return $this->username;
