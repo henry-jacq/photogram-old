@@ -10,6 +10,8 @@ RewriteBase /
 
 RewriteRule ^/?files/([^/]+)?$ files.php?name=$1 [L,QSA,NC]
 
+RewriteRule ^/?forgot-password/([^/]+)?$ forgot-password.php?reset_password_token=$1 [L,QSA,NC]
+
 RewriteRule ^/?logout ?logout
 
 RewriteRule ^/?api/([^/]+)?$ api.php?rquest=$1 [L,QSA,NC]

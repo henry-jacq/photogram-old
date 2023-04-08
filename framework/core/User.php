@@ -177,7 +177,7 @@ class User
     {
         $domain = get_config("domain_name");
         $token = self::generateResetToken($email);
-        $link = $domain . "/forgot-password?reset_password_token=$token";
+        $link = $domain . "/forgot-password/$token";
         return $link;
     }
 
