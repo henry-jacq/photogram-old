@@ -1,24 +1,26 @@
 <?php
 
-namespace libs\traits;
+namespace app\traits;
 
 use Exception;
-use libs\core\Database;
+use app\core\Database;
+
 /**
  * PHP SQLGetterSetter Trait
- * 
+ *
  * To use this trait, the constructer should have
  * `$id`, `$conn` and `$table` variable set.
- * 
+ *
  * `$id` - The ID of the MySQL row.
  * `$conn` - MySQL connection.
  * `$table` -MySQL Table Name.
- * 
+ *
  */
 
-trait SQLGetterSetter {
-
-    public function __call($name, $arguments) {
+trait SQLGetterSetter
+{
+    public function __call($name, $arguments)
+    {
         $property = preg_replace("/[^0-9a-zA-Z]/", "", substr($name, 3));
         $property = strtolower(preg_replace('/\B([A-Z])/', '_$1', $property));
         if (substr($name, 0, 3) == "get") {
@@ -32,7 +34,8 @@ trait SQLGetterSetter {
     }
 
     // Used to retrieve data from the database
-    private function _get_data($var) {
+    private function _get_data($var)
+    {
         // Create a connection, if it doesn't exist
         if (!$this->conn) {
             $this->conn = Database::getConnection();
@@ -52,7 +55,8 @@ trait SQLGetterSetter {
     }
 
     // Used to set the data in the database
-    private function _set_data($var, $data) {
+    private function _set_data($var, $data)
+    {
         // Create a connection, if it doesn't exist
         if (!$this->conn) {
             $this->conn = Database::getConnection();
@@ -69,5 +73,4 @@ trait SQLGetterSetter {
             throw new Exception(__CLASS__ . "::_set_data -> $var, data unavailable.");
         }
     }
-
 }

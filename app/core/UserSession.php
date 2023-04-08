@@ -1,6 +1,6 @@
 <?php
 
-namespace libs\core;
+namespace app\core;
 
 use DateTime;
 use Exception;

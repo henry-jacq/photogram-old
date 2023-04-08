@@ -1,10 +1,10 @@
 <?php
 
-namespace libs\core;
+namespace app\core;
 
 use Exception;
 
-use libs\traits\SQLGetterSetter;
+use app\traits\SQLGetterSetter;
 use Throwable;
 
 // include_once __DIR__ . "/../traits/SQLGetterSetter.trait.php";

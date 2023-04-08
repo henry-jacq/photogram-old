@@ -1,5 +1,6 @@
-<?
-use libs\core\Session;
+<?php
+use app\core\Session;
+
 ?>
 
 <head>

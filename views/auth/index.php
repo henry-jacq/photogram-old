@@ -1,8 +1,8 @@
 <?php
 
-use libs\core\User;
-use libs\core\Mailer;
-use libs\core\Session;
+use app\core\User;
+use app\core\Mailer;
+use app\core\Session;
 
 require_once 'auth-templates.php';
 
@@ -32,12 +32,12 @@ if (isset($_POST['email']) and !empty($_POST['email'])) {
     } else {
         loadForgotPasswordForm("fail", "invalid-email");
     }
-} else if (isset($_GET['reset_password_token']) and !empty($_GET['reset_password_token'])) {
+} elseif (isset($_GET['reset_password_token']) and !empty($_GET['reset_password_token'])) {
     $saved_token = User::retrieveResetToken(Session::get('reset_password_email'));
 
     if ($saved_token == $_GET['reset_password_token']) {
         loadChangePasswordForm();
-        // die();
+    // die();
     } else {
         loadForgotPasswordForm("fail", "invalid-token");
         // die();

@@ -2,20 +2,20 @@
 <html lang="en" data-bs-theme="dark">
 
 	<!-- Load header -->
-	<?php 
-	
-	use libs\core\Session;
-	
+	<?php
+
+    use app\core\Session;
+
 	Session::loadTemplate('_head'); ?>
 
 	<body class="d-flex flex-column min-vh-100">
 
 		<?php
-    if (Session::$isError) {
-        Session::loadTemplate('_error');
-    } else {
-        Session::loadTemplate(Session::currentScript());
-    }
+	if (Session::$isError) {
+	    Session::loadTemplate('_error');
+	} else {
+	    Session::loadTemplate(Session::currentScript());
+	}
 	?>
 
 		<div id="modalsGarbage">

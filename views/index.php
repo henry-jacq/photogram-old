@@ -1,6 +1,6 @@
-<?
+<?php
 
-use libs\core\Session;
+use app\core\Session;
 
 Session::loadTemplate('_header');
 

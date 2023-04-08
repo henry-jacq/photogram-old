@@ -1,13 +1,13 @@
 <?php
 
-namespace libs\app;
+namespace app\models;
 
 // include_once __DIR__ . "/../traits/SQLGetterSetter.trait.php";
 
 use Exception;
-use libs\core\Session;
-use libs\core\Database;
-use libs\traits\SQLGetterSetter;
+use app\core\Session;
+use app\core\Database;
+use app\traits\SQLGetterSetter;
 
 class Post
 {

@@ -1,7 +1,8 @@
 <?php
-use libs\core\Session;
+use app\core\Session;
+
 ?>
 
 <div class="album py-5">
-    <?=Session::loadTemplate('home/show_posts');?>
+	<?=Session::loadTemplate('home/show_posts');?>
 </div>

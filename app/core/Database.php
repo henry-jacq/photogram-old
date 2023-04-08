@@ -1,6 +1,6 @@
 <?php
 
-namespace libs\core;
+namespace app\core;
 
 /**
  * This class is used to access the database.

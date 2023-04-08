@@ -1,9 +1,9 @@
 <?php
 
-namespace libs\core;
+namespace app\core;
 
-class REST {
-    
+class REST
+{
     public $_allow = array();
     public $_content_type = "application/json";
     public $_request = array();

@@ -1,5 +1,5 @@
 <?php
-use libs\core\Session;
+use app\core\Session;
 
 /**
  * This will load the password reset form
@@ -39,7 +39,7 @@ function loadForgotPasswordForm(string $status = null, string $value = null)
 </section>
 
 <?php
-} elseif ($status === "fail" and $value === "invalid-token") {?>
+    } elseif ($status === "fail" and $value === "invalid-token") {?>
 
 <section class="container">
 	<div class="h-100 d-flex align-items-center justify-content-center row" style="min-height: 100vh;">
@@ -50,23 +50,23 @@ function loadForgotPasswordForm(string $status = null, string $value = null)
 				<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 			</div>
 			<?php // Load Login form
-                    Session::loadTemplate('auth/password-reset-form'); ?>
+                        Session::loadTemplate('auth/password-reset-form'); ?>
 		</div>
 	</div>
 </section>
 
-<? } elseif ($status === null) {
-        ?>
+<?php } elseif ($status === null) {
+    ?>
 <section class="container">
 	<div class="h-100 d-flex align-items-center justify-content-center row" style="min-height: 100vh;">
 		<div class="py-3 col-sm-10 col-md-8 col-lg-6 col-xl-5 col-xxl-4">
 			<?php // Load Login form
-                    Session::loadTemplate('auth/password-reset-form'); ?>
+                Session::loadTemplate('auth/password-reset-form'); ?>
 		</div>
 	</div>
 </section>
 <?php
-    }
+}
 }
 
 /**
