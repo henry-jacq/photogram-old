@@ -18,7 +18,7 @@ class WebAPI
         //     $__site_config = file_get_contents($__site_config_path);
         // }
         global $__site_config;
-        $__site_config_path = __DIR__ . '/../../project/photogram_config.json';
+        $__site_config_path = __DIR__ . '/../config/photogram_config.json';
         $__site_config = file_get_contents($__site_config_path);
         Database::getConnection();
     }
