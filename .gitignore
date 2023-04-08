@@ -1,5 +1,4 @@
 # Node modules
-workspace/styles/node_modules/
 project/grunt/node_modules/
 
 # Image uploads
@@ -8,5 +7,5 @@ uploads/
 # vendor
 vendor/
 
-# Photogram config
-project/photogram_config.json
+# Photogram configuration
+app/config/photogram.json
