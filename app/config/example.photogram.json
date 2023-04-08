@@ -1,0 +1,12 @@
+{
+    "db_server": "localhost",
+    "db_user": "root",
+    "db_pass": "",
+    "db_name": "photogram_db",
+    "base_path": "/",
+    "upload_path": "",
+    "smtp_host": "",
+    "smtp_auth_user": "",
+    "smtp_auth_pass": "",
+    "domain_name": "https://example.com"
+}
