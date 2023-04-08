@@ -8,4 +8,4 @@ uploads/
 vendor/
 
 # Photogram configuration
-app/config/photogram.json
+config/photogram.json
