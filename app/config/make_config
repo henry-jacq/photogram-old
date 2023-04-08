@@ -14,7 +14,7 @@ if (php_sapi_name() !== 'cli') {
 }
 
 // Config name
-$config = "photogram_config.json";
+$config = "photogram.json";
 
 // Warn user if the config exists and allowed to override
 if (file_exists($config)) {
@@ -45,6 +45,7 @@ $smtp_host = readline("-> Enter SMTP Host: ");
 $smtp_auth_user = readline("-> Enter SMTP auth user: ");
 $smtp_auth_pass = readline("-> Enter SMTP auth pass: ");
 
+$domain_name = readline("-> Enter domain name: ");
 
 // If base path is empty, it sets to default value
 if ($base_path == "") {
@@ -60,7 +61,8 @@ $contents = "{
     \"upload_path\": \"{$upload_path}\",
     \"smtp_host\": \"{$smtp_host}\",
     \"smtp_auth_user\": \"{$smtp_auth_user}\",
-    \"smtp_auth_pass\": \"{$smtp_auth_pass}\"
+    \"smtp_auth_pass\": \"{$smtp_auth_pass}\",
+    \"domain_name\": \"{$domain_name}\"
 }
 ";
 
