@@ -1,10 +1,9 @@
 <?php
 
-
 namespace libs\core;
 
 // use PHPMailer\PHPMailer\SMTP;
-use \PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\PHPMailer;
 
 /**
  * Mailer - PHPMailer wrapper for sending emails
@@ -46,6 +45,7 @@ class Mailer
      */
     public static function mailExists(string $email): bool
     {
+        $email = User::check_sql_errors($email);
         if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
             $query = "SELECT * FROM `auth` WHERE `email` = '$email'";
 
