@@ -1,7 +1,7 @@
-<?
+<?php
 
 include 'libs/autoload.php';
-use libs\core\Session;
+use app\core\Session;
 
 Session::$isError = true;
 

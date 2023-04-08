@@ -1,5 +1,6 @@
 <?php
 
+use libs\core\User;
 use libs\core\Mailer;
 
 include 'libs/autoload.php';
@@ -17,22 +18,23 @@ Best regards,<br>
 ";
 
 
-$mailer = new Mailer();
+// $mailer = new Mailer();
 
-$mailer->addRecipient('');
-$mailer->addSubject('Security alert');
-$mailer->isHTML(true);
-$mailer->addBody($html);
+// $mailer->addRecipient('');
+// $mailer->addSubject('Security alert');
+// $mailer->isHTML(true);
+// $mailer->addBody($html);
+
+// try {
+//     $mailer->sendMail();
+//     echo "Mail sent successfully! /n/n";
+// } catch (Exception $e) {
+//     echo $e->getMessage();
+// }
 
 try {
-    $mailer->sendMail();
-    echo "Mail sent successfully! /n/n";
+    $result = User::getFirstName("henryeditz267@gmail.com");
+    echo $result;
 } catch (Exception $e) {
     echo $e->getMessage();
 }
-//try {
-//    User::setNewPassword("", "");
-//    echo "Password Updated Successfully";
-//} catch (Exception $e) {
-//    echo $e->getMessage();
-//}

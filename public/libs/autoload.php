@@ -3,7 +3,7 @@
 // Autoload all class files using composer
 require __DIR__ . "/../../vendor/autoload.php";
 
-use libs\core\WebAPI;
+use app\core\WebAPI;
 
 // NOTE:
 // Config location in labs: /home/$USER/photogram_config.json

@@ -2,8 +2,8 @@
 
 require 'libs/autoload.php';
 
-use libs\core\Session;
-use libs\core\UserSession;
+use app\core\Session;
+use app\core\UserSession;
 
 if (isset($_GET['logout'])) {
     if (Session::isset('session_token')) {
