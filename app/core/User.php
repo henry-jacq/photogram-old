@@ -18,7 +18,7 @@ class User
     public $table;
 
     // Escapes special characters in an SQL statement
-    public static function check_sql_errors($value): string
+    protected static function check_sql_errors($value): string
     {
         $conn = Database::getConnection();
         return mysqli_real_escape_string($conn, $value);
@@ -220,6 +220,30 @@ class User
             return $this->_set_data('dob', "$year.$month.$day");
         } else {
             return false;
+        }
+    }
+
+    public static function changePassword(string $email, string $password)
+    {
+        // Sanitizing user input
+        $email = self::check_sql_errors($email);
+        $password = self::check_sql_errors($password);
+
+        // Amount of cost requires to generate a random hash
+        $options = [
+            'cost' => 8
+        ];
+        // Hashing password
+        $password = password_hash($password, PASSWORD_DEFAULT, $options);
+
+        $conn = Database::getConnection();
+
+        $query = "UPDATE `auth` SET `password` = '$password' WHERE `email` = '$email';";
+
+        try {
+            return $conn->query($query);
+        } catch (Exception $e) {
+            echo $e->getMessage();
         }
     }
 

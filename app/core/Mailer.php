@@ -13,7 +13,7 @@ use PHPMailer\PHPMailer\PHPMailer;
  * @author Henry <henryeditz267@gmail.com>
  */
 
-class Mailer
+class Mailer extends User
 {
     public $mailer;
 
