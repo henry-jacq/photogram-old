@@ -20,10 +20,10 @@ class Database
     {
         if (Database::$conn == null) {
             // Get credentials from config
-            $server = get_config('db_server');
-            $db_user = get_config('db_user');
-            $db_pass = get_config('db_pass');
-            $dbname = get_config('db_name');
+            $server = DB_HOST;
+            $db_user = DB_USER;
+            $db_pass = DB_PASS;
+            $dbname = DB_NAME;
 
             // To establish connection to the mysql database
             $connection = new \mysqli($server, $db_user, $db_pass, $dbname);

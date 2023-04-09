@@ -31,28 +31,28 @@ use app\core\Session;
 
 	<!-- Favicon for photogram -->
 	<link rel="shortcut icon"
-		href="<?= get_config('base_path') ?>assets/brand/favicon.ico">
+		href="<?= URL_ROOT ?>assets/brand/favicon.ico">
 	<!-- Custom-compiled bootstrap CSS -->
 	<link
-		href="<?= get_config('base_path') ?>css/bootstrap.min.css"
+		href="<?= URL_ROOT ?>css/bootstrap.min.css"
 		rel="stylesheet">
 
 	<!-- App CSS -->
 	<link rel="stylesheet"
-		href="<?= get_config('base_path') ?>css/app.min.css">
+		href="<?= URL_ROOT ?>css/app.min.css">
 
 	<!-- Hover CSS -->
 	<link rel="stylesheet"
-		href="<?= get_config('base_path') ?>css/hover.css">
+		href="<?= URL_ROOT ?>css/hover.css">
 	<!-- Bootstrap Icons -->
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
 
 	<?php
 	// Load the CSS file if the current script matches the following
 	if (Session::currentScript() == "login" or Session::currentScript() == "signup" or Session::currentScript() == "forgot-password") {
-	    if (file_exists(($_SERVER['DOCUMENT_ROOT'] . get_config('base_path') . "css/entry.css"))) { ?>
+	    if (file_exists(($_SERVER['DOCUMENT_ROOT'] . URL_ROOT . "css/entry.css"))) { ?>
 	<link rel="stylesheet"
-		href="<?= get_config('base_path') . "css/entry.css" ?>">
+		href="<?= URL_ROOT . "css/entry.css" ?>">
 	<?php }
 	    } ?>
 

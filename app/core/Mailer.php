@@ -19,12 +19,12 @@ class Mailer
 
     public function __construct()
     {
-        $fromName = "Photogram";
-        $fromAddress = "noreply@photogram.com";
-        $smtpHost = get_config('smtp_host');
+        $fromName = APP_NAME;
+        $fromAddress = APP_FROM_ADDRESS;
+        $smtpHost = SMTP_HOST;
         $smtpPort = 587;
-        $smtpAuthUser = get_config('smtp_auth_user');
-        $smtpAuthPass = get_config('smtp_auth_pass');
+        $smtpAuthUser = SMTP_AUTH_USER;
+        $smtpAuthPass = SMTP_AUTH_PASS;
         // Initialize PHPMailer with enabled exceptions.
         $this->mailer = new PHPMailer(true);
 

@@ -36,7 +36,6 @@ $server_address = readline("-> Server address: ");
 $db_user = readline("-> Database username: ");
 $db_pass = readline("-> Database password: ");
 $db_table = readline("-> Table name: ");
-$base_path = readline("-> Base path [Default /]: ");
 $upload_path = readline("-> Enter upload path: ");
 
 echo "\n==> Enter the following prompts to setup mail server:\n";
@@ -47,17 +46,11 @@ $smtp_auth_pass = readline("-> Enter SMTP auth pass: ");
 
 $domain_name = readline("-> Enter domain name: ");
 
-// If base path is empty, it sets to default value
-if ($base_path == "") {
-    $base_path = "/";
-}
-
 $contents = "{
     \"db_server\": \"{$db_user}\",
     \"db_user\": \"{$db_user}\",
     \"db_pass\": \"{$db_pass}\",
     \"db_name\": \"{$db_table}\",
-    \"base_path\": \"{$base_path}\",
     \"upload_path\": \"{$upload_path}\",
     \"smtp_host\": \"{$smtp_host}\",
     \"smtp_auth_user\": \"{$smtp_auth_user}\",

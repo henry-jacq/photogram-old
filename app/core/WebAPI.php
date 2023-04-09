@@ -6,33 +6,32 @@ use Exception;
 
 class WebAPI
 {
+    public $site_config_path;
+
     public function __construct()
     {
-        // if (php_sapi_name() == "cli") {
-        //     global $__site_config;
-        //     $__site_config_path = "/home/henry/htdocs/photogram/app/config/photogram.json";
-        //     $__site_config = file_get_contents($__site_config_path);
-        // } elseif (php_sapi_name() == "apache2handler") {
-        //     global $__site_config;
-        //     $__site_config_path = dirname(is_link($_SERVER['DOCUMENT_ROOT']) ? readlink($_SERVER['DOCUMENT_ROOT']) : $_SERVER['DOCUMENT_ROOT']).'/app/config/photogram.json';
-        //     $__site_config = file_get_contents($__site_config_path);
-        // }
-        global $__site_config;
-        $__site_config_path = __DIR__ . '/../../config/photogram.json';
-        $__site_config = file_get_contents($__site_config_path);
-        Database::getConnection();
+        if (php_sapi_name() == "cli") {
+            $this->site_config_path = dirname(dirname(__DIR__)).'/config/config.php';
+            echo $this->site_config_path . PHP_EOL;
+            require_once $this->site_config_path;
+        } elseif (php_sapi_name() == "apache2handler") {
+            $this->site_config_path = $_SERVER['DOCUMENT_ROOT'] . '/../config/config.php';
+            require_once $this->site_config_path;
+        }
     }
 
     public function initiateSession()
     {
-        session_cache_limiter('none');
-        Session::start();
-        if (Session::isset('session_token')) {
-            try {
-                Session::$usersession = UserSession::authorize(Session::get('session_token'));
-            } catch (Exception $e) {
-                // TODO: Handle error
-                print  $e->getMessage();
+        if (php_sapi_name() != "cli") {
+            session_cache_limiter('none');
+            Session::start();
+            if (Session::isset('session_token')) {
+                try {
+                    Session::$usersession = UserSession::authorize(Session::get('session_token'));
+                } catch (Exception $e) {
+                    // TODO: Handle error
+                    print  $e->getMessage();
+                }
             }
         }
     }

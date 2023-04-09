@@ -23,7 +23,7 @@ class Post
         if (is_file($image_tmp) and exif_imagetype($image_tmp) !== false) {
             $owner = Session::getUser()->getUsername();
             $image_name = md5($owner.time()) . image_type_to_extension(exif_imagetype($image_tmp));
-            $image_path = get_config('upload_path').$image_name;
+            $image_path = APP_UPLOAD_PATH.$image_name;
             if (move_uploaded_file($image_tmp, $image_path)) {
                 $image_uri = "/files/$image_name";
                 $insert_command = "INSERT INTO `posts` (`post_text`, `multiple_images`,`image_uri`, `like_count`, `uploaded_time`, `owner`) VALUES ('$text', 0, '$image_uri', '0', now(), '$owner')";
@@ -45,7 +45,7 @@ class Post
     {
         try {
             $image_name = basename($this->getImageUri());
-            $image_path = get_config('upload_path').$image_name;
+            $image_path = APP_UPLOAD_PATH.$image_name;
             if (file_exists($image_path)) {
                 if (unlink($image_path)) {
                     return true;

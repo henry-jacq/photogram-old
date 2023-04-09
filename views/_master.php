@@ -37,7 +37,7 @@
 
 		<!-- Jquery -->
 		<script
-			src="<?= get_config('base_path') ?>js/jquery/jquery.js">
+			src="<?= URL_ROOT ?>js/jquery/jquery.js">
 		</script>
 
 		<!-- ImageLoaded -->
@@ -48,7 +48,7 @@
 
 		<!-- Bootstrap JS -->
 		<script
-			src="<?= get_config('base_path') ?>js/bootstrap/bootstrap.bundle.js">
+			src="<?= URL_ROOT ?>js/bootstrap/bootstrap.bundle.js">
 		</script>
 
 		<!-- Custom icons from fontawesome -->
@@ -56,17 +56,17 @@
 
 		<!-- App JS -->
 		<script
-			src="<?= get_config('base_path') ?>js/app.min.js">
+			src="<?= URL_ROOT ?>js/app.min.js">
 		</script>
 
 		<!-- Dialog JS -->
 		<script
-			src="<?= get_config('base_path') ?>js/dialog/dialog.js">
+			src="<?= URL_ROOT ?>js/dialog/dialog.js">
 		</script>
 
 		<!-- Toast JS -->
 		<script
-			src="<?= get_config('base_path') ?>js/toast/toast.js">
+			src="<?= URL_ROOT ?>js/toast/toast.js">
 		</script>
 
 	</body>
