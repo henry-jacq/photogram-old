@@ -1,5 +1,7 @@
 <?php
 
+use app\models\Post;
+
 // https://{{domain}}/api/posts/delete
 
 ${basename(__FILE__, '.php')} = function () {
