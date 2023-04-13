@@ -26,13 +26,11 @@ To install the project dependencies, follow these steps:
 
 1. Change directory to project/grunt/: `cd project/grunt/
 `
-1. Install project dependencies from package.json: `npm install`
-2. Change directory to workspace/styles and install packages using npm: `cd workspace/styles && npm install
-`
-1. Install dependencies with Composer: `composer update`
+2. Install project dependencies from package.json: `npm install`
+3. Install dependencies with Composer: `composer update`
 2. Create config using make_config PHP script: `cd project/ && php make_config`
 7. Fill in the prompts to make the Photogram work.
-8. Execute `__migrations.sql` in your SQL server to create database with necessary tables and fields for photogram.
+8. Execute `migrations.sql` in your SQL server to create database with necessary tables and fields for photogram.
 
 
 ## Usage
