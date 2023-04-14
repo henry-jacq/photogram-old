@@ -13,13 +13,21 @@ use app\core\Session;
 				<?= ucfirst(Session::getUser()->getUsername()); ?>
 			</h2>
 			<p>Web Developer</p>
-			<button class="btn btn-sm btn-secondary"
-				onclick="dialog('Not Implemented!',' This feature is not implemented');"><i
-					class="bi bi-pencil me-2"></i>Change Profile</button>
+			<!-- <button class="btn btn-sm btn-secondary" onclick="dialog('Not Implemented!',' This feature is not implemented');"><i class="bi bi-pencil me-2"></i>Change Profile</button> -->
 
-			<div class="text-center mt-3">
-				<p class="mt-5 fw-normal fs-5 mb-0">5</p>
-				<p class="fw-light fs-5">My Posts</p>
+			<div class="row mt-4 mb-3 px-3">
+				<div class="col">
+					<p class="fw-normal fs-5 mb-0" id="totalUserPosts">0</p>
+					<p class="fw-light fs-5">Posts</p>
+				</div>
+				<div class="col">
+					<p class="fw-normal fs-5 mb-0">0</p>
+					<p class="fw-light fs-5">Followers</p>
+				</div>
+				<div class="col">
+					<p class="fw-normal fs-5 mb-0">0</p>
+					<p class="fw-light fs-5">Following</p>
+				</div>
 			</div>
 		</div>
 		<div class="col-md-8">

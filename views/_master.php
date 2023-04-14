@@ -36,8 +36,7 @@
 		</div>
 
 		<!-- Jquery -->
-		<script
-			src="<?= URL_ROOT ?>js/jquery/jquery.js">
+		<script src="<?= URL_ROOT ?>js/jquery/jquery.js">
 		</script>
 
 		<!-- ImageLoaded -->
@@ -47,26 +46,26 @@
 		<script src="https://unpkg.com/masonry-layout@4.2.2/dist/masonry.pkgd.min.js"></script>
 
 		<!-- Bootstrap JS -->
-		<script
-			src="<?= URL_ROOT ?>js/bootstrap/bootstrap.bundle.js">
+		<script src="<?= URL_ROOT ?>js/bootstrap/bootstrap.bundle.js">
 		</script>
 
 		<!-- Custom icons from fontawesome -->
 		<script src="https://kit.fontawesome.com/cd2caad5e8.js" crossorigin="anonymous"></script>
 
 		<!-- App JS -->
-		<script
-			src="<?= URL_ROOT ?>js/app.min.js">
+		<script src="<?= URL_ROOT ?>js/app.min.js">
+		</script>
+
+		<!-- Test JS -->
+		<script src="<?= URL_ROOT ?>js/test.js">
 		</script>
 
 		<!-- Dialog JS -->
-		<script
-			src="<?= URL_ROOT ?>js/dialog/dialog.js">
+		<script src="<?= URL_ROOT ?>js/dialog/dialog.js">
 		</script>
 
 		<!-- Toast JS -->
-		<script
-			src="<?= URL_ROOT ?>js/toast/toast.js">
+		<script src="<?= URL_ROOT ?>js/toast/toast.js">
 		</script>
 
 	</body>

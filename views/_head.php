@@ -8,7 +8,7 @@ use app\core\Session;
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta property="og:image"
-		content="<?= get_config('base_path') ?>assets/brand/photogram-icon.png">
+		content="<?= URL_ROOT ?>assets/brand/photogram-icon.png">
 	<meta property="site_name" content="Photogram">
 	<meta property="og:title" content="Photogram · Gallery of Memories">
 	<meta property="description"
@@ -33,17 +33,14 @@ use app\core\Session;
 	<link rel="shortcut icon"
 		href="<?= URL_ROOT ?>assets/brand/favicon.ico">
 	<!-- Custom-compiled bootstrap CSS -->
-	<link
-		href="<?= URL_ROOT ?>css/bootstrap.min.css"
+	<link href="<?= URL_ROOT ?>css/bootstrap.min.css"
 		rel="stylesheet">
 
 	<!-- App CSS -->
-	<link rel="stylesheet"
-		href="<?= URL_ROOT ?>css/app.min.css">
+	<link rel="stylesheet" href="<?= URL_ROOT ?>css/app.min.css">
 
 	<!-- Hover CSS -->
-	<link rel="stylesheet"
-		href="<?= URL_ROOT ?>css/hover.css">
+	<link rel="stylesheet" href="<?= URL_ROOT ?>css/hover.css">
 	<!-- Bootstrap Icons -->
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
 

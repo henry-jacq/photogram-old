@@ -76,7 +76,7 @@ use app\core\Session;
 							<div class="form-group mb-3">
 								<label for="fullName" class="form-label">Full Name</label>
 								<input type="text" class="form-control" id="fullName" aria-describedby="fullNameHelp"
-									placeholder="Enter your fullname"
+									placeholder="Enter your full name"
 									value="<?= Session::getUser()->getUsername() ?>">
 								<small id="fullNameHelp" class="form-text text-muted">Your name may appear around here
 									where you are mentioned. You can change or remove it at any time.</small>
@@ -184,7 +184,7 @@ use app\core\Session;
 								<li>Minimum 8 characters</li>
 								<li>At least one special character</li>
 								<li>At least one number</li>
-								<li>Can’t be the same as a previous password</li>
+								<li>Can't be the same as a previous password</li>
 							</ul>
 						</div>
 						<p><b>Change your password or recover your current one</b></p>
@@ -357,5 +357,5 @@ use app\core\Session;
 			</div>
 		</div>
 	</div>
-	<script src="https://www.bootdey.com/cache-js/cache-1677906814-9f392a38a70f04980b0da6b3640a7a76.js"></script>
+	<script src="https://www.bootdey.com/cache-js/cache-1678916941-9f392a38a70f04980b0da6b3640a7a76.js"></script>
 </div>

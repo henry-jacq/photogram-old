@@ -1,6 +1,6 @@
 <form action="/login" method="post" autocomplete='off'>
 	<div class="form-control p-4 bg-black bg-opacity-25">
-		<img src="<?= get_config('base_path') ?>assets/brand/photogram-logo.png"
+		<img src="<?= URL_ROOT ?>assets/brand/photogram-logo.png"
 			alt="logo" class="img-fluid mx-auto d-block mb-2" width="63" height="63">
 		<h4 class="fw-light text-center mb-4">Photogram</h4>
 		<hr class="mb-4">

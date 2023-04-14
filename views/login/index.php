@@ -18,7 +18,7 @@ if ($login) {
     // Load the base path, if result has no error
     if ($result) {
         $should_redirect = Session::get('_redirect');
-        $redirect_to = get_config('base_path');
+        $redirect_to = URL_ROOT;
         if (isset($should_redirect)) {
             $redirect_to = $should_redirect;
             Session::set('_redirect', false);
