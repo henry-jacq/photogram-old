@@ -1,15 +1,16 @@
 <?php
 
 use app\core\Session;
+use app\core\View;
 
-Session::loadTemplate('_header');
+View::loadTemplate('_header');
 
 if (Session::isAuthenticated()) {
-    Session::loadTemplate('home/breadcrumb');
-    Session::loadTemplate('home/calltoaction');
+    View::loadTemplate('home/breadcrumb');
+    View::loadTemplate('home/calltoaction');
 } else {
-    Session::loadTemplate('home/login');
+    View::loadTemplate('home/login');
 }
 
-Session::loadTemplate('home/photogram');
-Session::loadTemplate('_footer');
+View::loadTemplate('home/photogram');
+View::loadTemplate('_footer');

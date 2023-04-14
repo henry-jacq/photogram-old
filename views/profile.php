@@ -1,9 +1,9 @@
 <?php
 
 // Profile Page
-use app\core\Session;
+use app\core\View;
 
-Session::loadTemplate('_header');
-Session::loadTemplate('home/breadcrumb');
-Session::loadTemplate('home/profile');
-Session::loadTemplate('_footer');
+View::loadTemplate('_header');
+View::loadTemplate('home/breadcrumb');
+View::loadTemplate('home/profile');
+View::loadTemplate('_footer');

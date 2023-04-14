@@ -77,21 +77,6 @@ class Session
         }
     }
 
-    public static function loadTemplate($template_name)
-    {
-        $script = $_SERVER['DOCUMENT_ROOT'] . "/../views/$template_name.php";
-        if (is_file($script)) {
-            include $script;
-        } else {
-            Session::loadTemplate('_error');
-        }
-    }
-
-    public static function renderPage()
-    {
-        Session::loadTemplate('_master');
-    }
-
     public static function currentScript()
     {
         return basename($_SERVER['SCRIPT_NAME'], '.php');

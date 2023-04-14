@@ -12,7 +12,7 @@ if (str_contains($fname, '..')) {
 
 $image_path = $upload_path . $fname;
 
-if(is_file($image_path)){
+if(is_file($image_path)) {
     header("Content-Type:".mime_content_type($image_path));
     header("Content-Length:".filesize($image_path));
     header('Cache-control: max-age='.(60*60*24*365));

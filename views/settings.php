@@ -1,8 +1,8 @@
 <?php
 
 // Profile details
-use app\core\Session;
+use app\core\View;
 
-Session::loadTemplate('_header');
-Session::loadTemplate('home/breadcrumb');
-Session::loadTemplate('settings/index');
+View::loadTemplate('_header');
+View::loadTemplate('home/breadcrumb');
+View::loadTemplate('settings/index');

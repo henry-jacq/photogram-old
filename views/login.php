@@ -1,5 +1,5 @@
 <?php
 
-use app\core\Session;
+use app\core\View;
 
-Session::loadTemplate('login/index');
+View::loadTemplate('login/index');

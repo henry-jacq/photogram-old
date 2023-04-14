@@ -1,5 +1,6 @@
 <?php
 use app\core\Session;
+use app\core\View;
 
 ?>
 <div class="container p-5">
@@ -49,6 +50,6 @@ use app\core\Session;
 		</div>
 		<h3 class="fw-light py-3 mt-3">My Posts</h3>
 		<hr class="p-4">
-		<?= Session::loadTemplate('home/show_posts'); ?>
+		<?= View::loadTemplate('home/show_posts'); ?>
 	</div>
 </div>

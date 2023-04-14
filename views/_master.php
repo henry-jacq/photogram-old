@@ -4,17 +4,18 @@
 	<!-- Load header -->
 	<?php
 
-    use app\core\Session;
+use app\core\Session;
+	use app\core\View;
 
-	Session::loadTemplate('_head'); ?>
+	View::loadTemplate('_head'); ?>
 
 	<body class="d-flex flex-column min-vh-100">
 
 		<?php
 	if (Session::$isError) {
-	    Session::loadTemplate('_error');
+	    View::loadTemplate('_error');
 	} else {
-	    Session::loadTemplate(Session::currentScript());
+	    View::loadTemplate(Session::currentScript());
 	}
 	?>
 

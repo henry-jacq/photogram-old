@@ -2,6 +2,7 @@
 
 use app\core\Session;
 use app\core\UserSession;
+use app\core\View;
 
 // Try to login, if the user has submitted the form
 if (isset($_POST['username_or_email']) and !empty($_POST['username_or_email']) and isset($_POST['password']) and !empty($_POST['password'])) {
@@ -45,7 +46,7 @@ if ($login) {
 				<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 			</div>
 			<?php // Load Login form
-                    Session::loadTemplate('login/form_in'); ?>
+                    View::loadTemplate('login/form_in'); ?>
 		</div>
 	</div>
 </section>
@@ -57,7 +58,7 @@ if ($login) {
 	<div class="h-100 d-flex align-items-center justify-content-center row" style="min-height: 100vh;">
 		<div class="py-3 col-sm-10 col-md-8 col-lg-6 col-xl-5 col-xxl-4">
 			<?php // Load Login form
-                Session::loadTemplate('login/form_in'); ?>
+                View::loadTemplate('login/form_in'); ?>
 		</div>
 	</div>
 </section>

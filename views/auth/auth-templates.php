@@ -1,5 +1,5 @@
 <?php
-use app\core\Session;
+use app\core\View;
 
 /**
  * This will load the password reset form
@@ -17,7 +17,7 @@ function loadForgotPasswordForm(string $status = null, string $value = null)
 				<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 			</div>
 			<?php // Load Login form with success message
-                Session::loadTemplate('auth/password-reset-form'); ?>
+                View::loadTemplate('auth/password-reset-form'); ?>
 		</div>
 	</div>
 </section>
@@ -33,7 +33,7 @@ function loadForgotPasswordForm(string $status = null, string $value = null)
 				<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 			</div>
 			<?php // Load Login form with success error
-                Session::loadTemplate('auth/password-reset-form'); ?>
+                View::loadTemplate('auth/password-reset-form'); ?>
 		</div>
 	</div>
 </section>
@@ -50,7 +50,7 @@ function loadForgotPasswordForm(string $status = null, string $value = null)
 				<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 			</div>
 			<?php // Load Login form with error message
-                Session::loadTemplate('auth/password-reset-form'); ?>
+                View::loadTemplate('auth/password-reset-form'); ?>
 		</div>
 	</div>
 </section>
@@ -61,7 +61,7 @@ function loadForgotPasswordForm(string $status = null, string $value = null)
 	<div class="h-100 d-flex align-items-center justify-content-center row" style="min-height: 100vh;">
 		<div class="py-3 col-sm-10 col-md-8 col-lg-6 col-xl-5 col-xxl-4">
 			<?php // Load Login form
-                Session::loadTemplate('auth/password-reset-form'); ?>
+                View::loadTemplate('auth/password-reset-form'); ?>
 		</div>
 	</div>
 </section>
@@ -102,7 +102,7 @@ function loadChangePasswordForm(string $status = null)
 						class="text-decoration-none">login now</a>.</p>
 			</div>
 			<?php // Load change password form with success message
-                Session::loadTemplate('auth/change-password-form'); ?>
+                View::loadTemplate('auth/change-password-form'); ?>
 		</div>
 	</div>
 </section>
@@ -115,7 +115,7 @@ function loadChangePasswordForm(string $status = null)
 				<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 			</div>
 			<?php // Load change password form with error
-                Session::loadTemplate('auth/change-password-form'); ?>
+                View::loadTemplate('auth/change-password-form'); ?>
 		</div>
 	</div>
 </section>
@@ -124,7 +124,7 @@ function loadChangePasswordForm(string $status = null)
 	<div class="h-100 d-flex align-items-center justify-content-center row" style="min-height: 100vh;">
 		<div class="py-3 col-sm-10 col-md-8 col-lg-6 col-xl-5 col-xxl-4">
 			<?php // Load change password form
-                Session::loadTemplate('auth/change-password-form'); ?>
+                View::loadTemplate('auth/change-password-form'); ?>
 		</div>
 	</div>
 </section>

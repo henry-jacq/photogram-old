@@ -4,6 +4,7 @@ require 'libs/autoload.php';
 
 use app\core\Session;
 use app\core\UserSession;
+use app\core\View;
 
 if (isset($_GET['logout'])) {
     if (Session::isset('session_token')) {
@@ -14,5 +15,5 @@ if (isset($_GET['logout'])) {
     header("Location: /");
     die();
 } else {
-    Session::renderPage();
+    View::renderPage();
 }
