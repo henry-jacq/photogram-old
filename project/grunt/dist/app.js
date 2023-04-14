@@ -1,4 +1,4 @@
-/* Processed by Grunt on 14/4/2023 @10:36:53 */
+/* Processed by Grunt on 14/4/2023 @11:34:18 */
 
 
 // init Masonry
@@ -75,8 +75,12 @@ $('.btn-delete').on('click', function(){
 });
 
 // Count only user posts
-$.post("/api/posts/count?mode=user", function (o) {
-  $("#totalUserPosts").text(o.count);
-});
+
+if (window.location.pathname === "/profile") {
+  $.post("/api/posts/count?mode=user", function (o) {
+    $("#totalUserPosts").text(o.count);
+  });
+}
+
 
 //# sourceMappingURL=app.js.map

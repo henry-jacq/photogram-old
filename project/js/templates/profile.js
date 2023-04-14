@@ -1,4 +1,8 @@
 // Count only user posts
-$.post("/api/posts/count?mode=user", function (o) {
-  $("#totalUserPosts").text(o.count);
-});
+
+if (window.location.pathname === "/profile") {
+  $.post("/api/posts/count?mode=user", function (o) {
+    $("#totalUserPosts").text(o.count);
+  });
+}
+
