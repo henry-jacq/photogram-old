@@ -111,41 +111,6 @@ class API extends REST
         $this->response($data, 200);
     }
 
-    private function gen_hash()
-    {
-        $st = microtime(true);
-        if (isset($this->_request['pass'])) {
-            $cost = (int)$this->_request['cost'];
-            $options = [
-                "cost" => $cost
-            ];
-            $hash = password_hash($this->_request['pass'], PASSWORD_BCRYPT, $options);
-            $data = [
-                "hash" => $hash,
-                "info" => password_get_info($hash),
-                "val" => $this->_request['pass'],
-                "verified" => password_verify($this->_request['pass'], $hash),
-                "time_in_ms" => microtime(true) - $st
-            ];
-            $data = $this->json($data);
-            $this->response($data, 200);
-        }
-    }
-
-    private function verify_hash()
-    {
-        if (isset($this->_request['pass']) and isset($this->_request['hash'])) {
-            $hash = $this->_request['hash'];
-            $data = [
-                "hash" => $hash,
-                "info" => password_get_info($hash),
-                "val" => $this->_request['pass'],
-                "verified" => password_verify($this->_request['pass'], $hash),
-            ];
-            $data = $this->json($data);
-            $this->response($data, 200);
-        }
-    }
     /*************API SPACE END*********************/
 
     /*
