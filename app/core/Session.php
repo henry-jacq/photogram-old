@@ -2,6 +2,9 @@
 
 namespace app\core;
 
+use app\core\UserSession;
+use Exception;
+
 /**
  * PHP session wrapper
 */
@@ -12,37 +15,57 @@ class Session
     public static $user = null;
     public static $usersession = null;
 
+    /**
+     * Start a new session
+     */
     public static function start()
     {
         session_start();
     }
 
+    /**
+     * Clears the session variables
+     */
     public static function unset()
     {
         session_unset();
     }
 
+    /**
+     * Destroy the session
+     */
     public static function destroy()
     {
         session_destroy();
     }
 
-    // Set a new variable in session
+    /**
+     * Set a new key value in session
+     */
     public static function set($key, $value)
     {
         $_SESSION[$key] = $value;
     }
 
+    /**
+     * Delete the given session key
+     */
     public static function delete($key)
     {
         unset($_SESSION[$key]);
     }
 
-    public static function isset($key)
+    /**
+     * Check if the session key exists or not
+     */
+    public static function isset($key): bool
     {
         return isset($_SESSION[$key]);
     }
 
+    /**
+     * Get the value from given session key
+     */
     public static function get($key, $default=false)
     {
         if (Session::isset($key)) {
@@ -52,11 +75,17 @@ class Session
         }
     }
 
+    /**
+     * Get the user object
+     */
     public static function getUser()
     {
         return Session::$user;
     }
 
+    /**
+     * Get the the user session
+     */
     public static function getUserSession()
     {
         return Session::$usersession;
@@ -77,7 +106,10 @@ class Session
         }
     }
 
-    public static function currentScript()
+    /**
+     * Return the running current script
+     */
+    public static function currentScript(): string
     {
         return basename($_SERVER['SCRIPT_NAME'], '.php');
     }
@@ -91,12 +123,30 @@ class Session
         }
     }
 
+    /**
+     * If not logged in, redirect the user to login page
+     */
     public static function ensureLogin()
     {
         if (!Session::isAuthenticated()) {
             Session::set('_redirect', $_SERVER['REQUEST_URI']);
             header("Location: /login");
             die();
+        }
+    }
+
+    /**
+     * Log out the user from session
+     */
+    public static function logout(string $token)
+    {
+        try {
+            if (Session::isset($token)) {
+                UserSession::removeSession($token);
+            }
+            Session::destroy();
+        } catch (Exception $e) {
+            echo $e->getMessage();
         }
     }
 }
