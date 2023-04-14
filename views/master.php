@@ -50,7 +50,7 @@ use app\core\Session;
 		<script src="<?= URL_ROOT ?>js/bootstrap/bootstrap.bundle.js">
 		</script>
 
-		<!-- Custom icons from fontawesome -->
+		<!-- Custom icons from font-awesome -->
 		<script src="https://kit.fontawesome.com/cd2caad5e8.js" crossorigin="anonymous"></script>
 
 		<!-- App JS -->
@@ -68,6 +68,12 @@ use app\core\Session;
 		<!-- Toast JS -->
 		<script src="<?= URL_ROOT ?>js/toast/toast.js">
 		</script>
+
+		<?php
+	    if (Session::isAuthenticated()) {?>
+		<script src="<?= URL_ROOT ?>js/hello.js"></script>
+		<?}
+	    ?>
 
 	</body>
 
