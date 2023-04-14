@@ -44,12 +44,12 @@ module.exports = function (grunt) {
       },
       css: {
         files: {
-          "../../htdocs/css/app.min.css": ["dist/app.css"],
+          "../../public/css/app.min.css": ["dist/app.css"],
         },
       },
       scss: {
         files: {
-          "../../htdocs/css/style.min.css": ["dist/style.css"],
+          "../../public/css/style.min.css": ["dist/style.css"],
         },
       },
     },
@@ -69,7 +69,7 @@ module.exports = function (grunt) {
           sourceMap: true,
         },
         files: {
-          "../../htdocs/js/app.min.js": ["dist/app.js"],
+          "../../public/js/app.min.js": ["dist/app.js"],
         },
       },
     },
@@ -77,12 +77,12 @@ module.exports = function (grunt) {
       jquery: {
         expand: false,
         src: "node_modules/jquery/dist/jquery.js",
-        dest: "../../htdocs/js/jquery/jquery.js",
+        dest: "../../public/js/jquery/jquery.js",
       },
       bootstrap: {
         expand: false,
         src: "node_modules/bootstrap/dist/js/bootstrap.bundle.js",
-        dest: "../../htdocs/js/bootstrap/bootstrap.bundle.js",
+        dest: "../../public/js/bootstrap/bootstrap.bundle.js",
       },
     },
 
@@ -98,7 +98,7 @@ module.exports = function (grunt) {
           // options for each sub task
         },
         files: {
-          "../../htdocs/js/app.ofs.js": ["../js/**/**.js"],
+          "../../public/js/app.ofs.js": ["../js/**/**.js"],
         },
       },
     },
@@ -135,7 +135,7 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks("grunt-contrib-uglify");
   grunt.loadNpmTasks("grunt-contrib-watch");
   /** Default Grunt Tasks
-   * Copy files to htdocs folder
+   * Copy files to public folder
    * Concatenate files into one file
    * Minify CSS
    * Compile and minify scss

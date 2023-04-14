@@ -1,4 +1,4 @@
-/* Processed by Grunt on 3/4/2023 @6:24:2 */
+/* Processed by Grunt on 13/4/2023 @16:22:42 */
 
 
 // init Masonry
@@ -72,6 +72,11 @@ $('.btn-delete').on('click', function(){
         }
     ]);
     d.show();
+});
+
+// Count only user posts
+$.post("/api/posts/count?mode=user", function (o) {
+  console.log(o), $("#totalUserPosts").text(o.count);
 });
 
 //# sourceMappingURL=app.js.map
