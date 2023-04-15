@@ -54,26 +54,19 @@ use app\core\Session;
 		<script src="https://kit.fontawesome.com/cd2caad5e8.js" crossorigin="anonymous"></script>
 
 		<!-- App JS -->
-		<script src="<?= URL_ROOT ?>js/app.min.js">
-		</script>
-
-		<!-- Test JS -->
-		<script src="<?= URL_ROOT ?>js/test.js">
-		</script>
+		<script src="<?= URL_ROOT ?>js/app.min.js"></script>
 
 		<!-- Dialog JS -->
-		<script src="<?= URL_ROOT ?>js/dialog/dialog.js">
-		</script>
+		<script src="<?= URL_ROOT ?>js/dialog/dialog.js"></script>
 
 		<!-- Toast JS -->
-		<script src="<?= URL_ROOT ?>js/toast/toast.js">
-		</script>
+		<script src="<?= URL_ROOT ?>js/toast/toast.js"></script>
 
 		<?php
 	    if (Session::isAuthenticated()) {?>
 		<script src="<?= URL_ROOT ?>js/hello.js"></script>
-		<?}
-	    ?>
+		<script src="<?= URL_ROOT ?>js/theme-switcher.js"></script>
+		<?php } ?>
 
 	</body>
 

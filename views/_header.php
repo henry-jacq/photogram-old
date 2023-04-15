@@ -10,13 +10,24 @@ use app\core\Session;
 		<!-- Logo START -->
 		<a class="navbar-brand display-6 me-auto" href="/">
 			<img src="/assets/brand/photogram-logo.png" alt="Logo" width="27" height="31"
-				class="d-inline-block align-text-top"><b> Photogram</b></a>
+				class="d-inline-block align-text-top">
+			<div class="d-none d-sm-inline-block">
+				<b> Photogram</b>
+			</div>
+		</a>
 		<!-- Logo END -->
 		<?php if (Session::isAuthenticated()) { ?>
 		<!-- Nav right START -->
 		<ul class="nav flex-nowrap align-items-center ms-sm-3 list-unstyled">
 			<li class="nav-item ms-2">
-				<a class="nav-link btn border py-1 px-2" href="/">
+				<a class="nav-link btn border py-1 px-2" id="themeSwitcher" data-bs-toggle="tooltip"
+					data-bs-placement="bottom" data-bs-title="Change theme">
+					<!-- <i class="bi bi-moon fs-6"></i> -->
+					<i class="bi bi-moon-stars"></i>
+				</a>
+			</li>
+			<li class="nav-item ms-2">
+				<a class="nav-link btn border py-1 px-2" id="postUploadButton">
 					<i class="fa-solid fa-arrow-up-from-bracket fs-6"></i>
 				</a>
 			</li>
