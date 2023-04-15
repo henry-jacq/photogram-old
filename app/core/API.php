@@ -98,7 +98,7 @@ class API extends REST
         if (is_callable($this->current_call)) {
             return call_user_func_array($this->current_call, $args);
         } else {
-            $error = ['error'=>'methood_not_callable', 'method'=>$method];
+            $error = ['error'=>'method_not_callable', 'method'=>$method];
             $this->response($this->json($error), 404);
         }
     }

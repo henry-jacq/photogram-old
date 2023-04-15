@@ -34,6 +34,8 @@ class Post
                 } else {
                     return false;
                 }
+            } else {
+                throw new Exception("Can't move the uploaded file");
             }
         } else {
             throw new Exception("Image not uploaded");
