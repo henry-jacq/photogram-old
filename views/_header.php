@@ -20,19 +20,18 @@ use app\core\Session;
 		<!-- Nav right START -->
 		<ul class="nav flex-nowrap align-items-center ms-sm-3 list-unstyled">
 			<li class="nav-item ms-2">
-				<a class="nav-link btn border py-1 px-2" id="themeSwitcher" data-bs-toggle="tooltip"
-					data-bs-placement="bottom" data-bs-title="Change theme">
+				<a class="nav-link btn border py-1 px-2" id="themeSwitcher" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Switch theme">
 					<!-- <i class="bi bi-moon fs-6"></i> -->
 					<i class="bi bi-moon-stars"></i>
 				</a>
 			</li>
 			<li class="nav-item ms-2">
-				<a class="nav-link btn border py-1 px-2" id="postUploadButton">
+				<a class="nav-link btn border py-1 px-2" id="postUploadButton" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Upload post">
 					<i class="fa-solid fa-arrow-up-from-bracket fs-6"></i>
 				</a>
 			</li>
 			<li class="nav-item ms-2">
-				<a class="nav-link btn border py-1 px-2" href="#">
+				<a class="nav-link btn border py-1 px-2" href="#" onclick="dialog('Not Implemented!',' This feature is not implemented');">
 					<i class="fa-regular fa-heart fs-6"></i>
 				</a>
 			</li>
