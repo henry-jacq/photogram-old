@@ -20,9 +20,9 @@ use app\core\Session;
 	?>
 
 		<div id="modalsGarbage">
-			<div class="modal fade" id="dummy-dialog-modal" tabindex="-1" role="dialog" aria-labelledby=""
+			<div class="modal fade" data-bs-backdrop="static" id="dummy-dialog-modal" tabindex="-1" role="dialog" aria-labelledby=""
 				aria-hidden="true">
-				<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+				<div class="modal-dialog modal-dialog-centered">
 					<div class="modal-content blur">
 						<div class="modal-header">
 							<h4 class="modal-title"></h4>
@@ -55,6 +55,9 @@ use app\core\Session;
 
 		<!-- App JS -->
 		<script src="<?= URL_ROOT ?>js/app.min.js"></script>
+
+		<!-- Test JS -->
+		<script src="<?= URL_ROOT ?>js/test.js"></script>
 
 		<!-- Dialog JS -->
 		<script src="<?= URL_ROOT ?>js/dialog/dialog.js"></script>
