@@ -2,8 +2,6 @@
 
 namespace app\models;
 
-// include_once __DIR__ . "/../traits/SQLGetterSetter.trait.php";
-
 use Exception;
 use app\core\Session;
 use app\core\Database;
@@ -17,6 +15,15 @@ class Post
     public $id;
     public $table;
 
+    public function __construct($id)
+    {
+        if (!$this->conn) {
+            $this->conn = Database::getConnection();
+        }
+        $this->id = $id;
+        $this->table = 'posts';
+    }
+    
     // Register a post in database and save image in 'uploads' directory
     public static function registerPost($image_tmp, $text)
     {
@@ -43,7 +50,7 @@ class Post
     }
 
     // Delete the post's image from 'uploads' directory
-    public function deletePostImage()
+    private function deletePostImage()
     {
         try {
             $image_name = basename($this->getImageUri());
@@ -60,8 +67,10 @@ class Post
         }
     }
 
-    // It will remove the database entry as well as the image in 'uploads'.
-    public function remove_post()
+    /**
+     * It removes the db entry and the image in storage
+     */
+    public function removePost()
     {
         if (!$this->conn) {
             $this->conn = Database::getConnection();
@@ -81,7 +90,9 @@ class Post
         }
     }
 
-    // Dump all posts from database
+    /**
+     * Dump all posts from database
+     */
     public static function getAllPosts()
     {
         $db = Database::getConnection();
@@ -90,7 +101,9 @@ class Post
         return iterator_to_array($result);
     }
 
-    // Count all posts from database
+    /**
+     * Count all posts from database
+     */
     public static function countAllPosts()
     {
         $db = Database::getConnection();
@@ -99,7 +112,9 @@ class Post
         return iterator_to_array($result);
     }
 
-    // Dump only the user's posts from database
+    /**
+     * Dump only the user's posts from database
+     */
     public static function getUserPosts($user)
     {
         $db = Database::getConnection();
@@ -108,21 +123,14 @@ class Post
         return iterator_to_array($result);
     }
 
-    // Count only the user's posts from database
+    /**
+     * Count only the user's posts from database
+     */
     public static function countUserPosts($user)
     {
         $db = Database::getConnection();
         $sql = "SELECT COUNT(*) as count FROM `posts` WHERE `owner` = '$user' ORDER BY `uploaded_time` DESC";
         $result = $db->query($sql);
         return iterator_to_array($result);
-    }
-
-    public function __construct($id)
-    {
-        if (!$this->conn) {
-            $this->conn = Database::getConnection();
-        }
-        $this->id = $id;
-        $this->table = 'posts';
     }
 }
