@@ -18,7 +18,7 @@ class Toast{
         this.subtitle = subtitle
         this.message = message
         this.options = {
-            'placement': 'top-right'
+            'placement': 'bottom-right'
         }
 
         this.options = {...this.options, ...options}
@@ -57,17 +57,14 @@ class Toast{
 
     show(){
         var toast_template = `
-        <div class="p-2 mt-3" id="${this.id}">
-            <div class="toast border" role="alert" aria-live="assertive" aria-atomic="true">
-                <div class="toast-header">
-                    <img class="rounded me-2" src="/assets/brand/photogram-logo.png" width=23 height=25 >
-                    <strong class="me-auto">${this.title}</strong>
-                    <small class="text-muted">${this.subtitle}</small>
-                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-                </div>
-                <div class="toast-body">
-                    ${this.message}
-                </div>
+        <div class="toast mb-4 me-4" id="${this.id}" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header bg-opacity-50">
+                <img src="/assets/brand/favicon.ico" class="me-2" alt="..." width="23" height="25">
+                <strong class="fw-semibold me-auto">${this.title}</strong>
+                <small class="text-muted">${this.subtitle}</small>
+            </div>
+            <div class="toast-body">
+                ${this.message}
             </div>
         </div>
         `;
