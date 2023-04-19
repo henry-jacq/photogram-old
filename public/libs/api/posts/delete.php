@@ -13,7 +13,7 @@ ${basename(__FILE__, '.php')} = function () {
         } else {
             $p = new Post($this->_request['id']);
             $this->response($this->json([
-                'message'=>$p->remove_post()
+                'message'=>$p->removePost()
             ]), 200);
         }
     } else {

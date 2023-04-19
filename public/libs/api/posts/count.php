@@ -14,7 +14,7 @@ ${basename(__FILE__, '.php')} = function () {
             $this->response($this->json(Post::countUserPosts(Session::getUser()->getUsername())[0]), 200);
         } else {
             $this->response($this->json([
-                'message' => 'Provide proper params to fetch posts'
+                'message' => 'Provide proper params to fetch posts count'
             ]), 400);
         }
     } else {
