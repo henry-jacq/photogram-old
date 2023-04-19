@@ -19,3 +19,13 @@ fpPromise.then(fp => fp.get()).then(result => {
     const visitorId = result.visitorId;
     $("#fingerprint").val(visitorId);
 })
+
+// Disable right-click on Images
+$('img').on("contextmenu", function () {
+	return false;
+});
+
+// Disable Image Dragging
+$("img").mousedown(function(e){
+    e.preventDefault()
+});

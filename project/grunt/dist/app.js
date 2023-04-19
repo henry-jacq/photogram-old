@@ -1,4 +1,4 @@
-/* Processed by Grunt on 19/4/2023 @10:52:3 */
+/* Processed by Grunt on 19/4/2023 @11:27:15 */
 
 
 // init Masonry
@@ -22,6 +22,17 @@ fpPromise.then(fp => fp.get()).then(result => {
     const visitorId = result.visitorId;
     $("#fingerprint").val(visitorId);
 })
+
+// Disable right-click on Images
+$('img').on("contextmenu", function () {
+	return false;
+});
+
+// Disable Image Dragging
+$("img").mousedown(function(e){
+    e.preventDefault()
+});
+
 // show/hide password field in login form
 $("#icon-click").on("click", function (data) {
   let icon = $("#icon");
