@@ -230,4 +230,36 @@ function display_dialog(bt_name,content,func){
 	d.show();
 }
 
-  
+function display_form_dialog(callback_func){
+	var uploadForm = `
+	<form class="my-3" action="/api/posts/upload" accept="image/*" method="post" enctype="multipart/form-data">
+		<div class="d-flex container">
+			<div class="text-center d-sm-inline-block mt-1">
+				<img class="img rounded-circle" src="/assets/random_images/cj.jpg" alt="CJ" width="40" height="40">
+			</div>
+			<div class="ms-sm-2 w-100">
+				<textarea class="form-control fs-5 lh-2 border-0 shadow-none" rows="4" placeholder="Share your thoughts..." required></textarea>
+			</div>
+		</div>
+		<div class="mb-3">
+			<label class="form-label">Upload a photo</label>
+			<div class="dropzone dropzone-default card shadow-none border-1 dz-clickable bg-transparent" data-dropzone="{&quot;maxFiles&quot;:2}">
+				<div class="dz-message">
+					<i class="bi bi-images display-3"></i>
+					<p>Drag here or click to upload photo.</p>
+				</div>
+			</div>
+		</div>
+		<button type="submit" id="postUploadBtn" class="btn btn-success float-end">Post</button>
+		<button type="button" class="btn btn-secondary float-end me-2" data-bs-dismiss="modal">Cancel</button>
+	</form>
+	`;
+
+	var title = `<i class="bi bi-plus-circle-dotted me-2"></i>Create Post`;
+	
+	d = new Dialog(title, uploadForm);
+	d.show();
+	var id = d.cloneId;
+
+	$("#"+ id +" > .modal-dialog > .modal-content > .modal-footer").remove();
+}

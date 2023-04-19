@@ -44,6 +44,8 @@ use app\core\Session;
 	<!-- Bootstrap Icons -->
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
 
+	<link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css" />
+
 	<?php
 	// Load the CSS file if the current script matches the following
 	if (Session::currentScript() == "login" or Session::currentScript() == "signup" or Session::currentScript() == "forgot-password") {
