@@ -15,6 +15,14 @@ class Database
 {
     public static $conn = null;
 
+    public function __construct()
+    {
+        $server = DB_HOST ?? '';
+        $db_user = DB_USER ?? '';
+        $db_pass = DB_PASS ?? '';
+        $dbname = DB_NAME ?? '';
+    }
+
     // Establish a new connection or return the existing connection.
     public static function getConnection()
     {
@@ -41,5 +49,10 @@ class Database
             // printf("Returning the existing connection...\n");
             return Database::$conn;
         }
+    }
+
+    private function log($message)
+    {
+        echo "[" . date("Y-m-d H:i:s") . "] - " . $message . PHP_EOL;
     }
 }
