@@ -34,3 +34,16 @@ $('.btn-delete').on('click', function(){
     ]);
     d.show();
 });
+
+// Copy the post link
+$('.btn-copy-link').on('click', function(){
+    textToCopy = window.location.origin + $(this).attr('value');
+    
+    if (navigator.clipboard) {
+        navigator.clipboard.writeText(textToCopy);
+        new Toast("Photogram", "Just Now", "Copied the post link to the clipboard!").show();
+    } else {
+        console.error("Can't copy the post link!");
+        new Toast("Photogram", "Just Now", "Can't copy the post link to the clipboard!").show();
+    }   
+});
