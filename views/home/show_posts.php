@@ -69,9 +69,7 @@ if (Session::currentScript() == "profile") {
 							<ul class="dropdown-menu dropdown-menu-end" aria-labelledby="cardFeedAction1">
 								<li><a class="dropdown-item" href="<?php echo($p->getImageUri()) ?>"> <i
 											class="bi bi-download fa-fw pe-2"></i>Download</a></li>
-								<li onclick="dialog('Not Implemented!',' This feature is not implemented');"><a
-										class="dropdown-item" href="#"> <i class="bi bi-link-45deg fa-fw pe-2"></i>Copy
-										link</a></li>
+								<li data-id="<?= $post['id'] ?>"><a class="dropdown-item btn btn-copy-link" value="<?= $p->getImageUri() ?>"> <i class="bi bi-link-45deg fa-fw pe-2"></i>Copy link</a></li>
 								<li onclick="dialog('Not Implemented!',' This feature is not implemented');"><a
 										class="dropdown-item" href="#"> <i
 											class="bi bi-bookmark fa-fw pe-2"></i>Bookmark</a></li>
@@ -96,14 +94,13 @@ if (Session::currentScript() == "profile") {
 					</div>
 				</header>
 				<?php } ?>
-				<img src="<?= $p->getImageUri() ?>">
+				<img src="<?= $p->getImageUri() ?>" loading="eager">
 				<div class="card-body">
 					<div class="d-flex justify-content-between align-items-center">
 						<div class="btn-group"
 							data-id="<?= $post['id'] ?>">
 							<?php if (!Session::isAuthenticated()) { ?>
-							<!-- <button type="button" class="btn btn-sm btn-outline-primary btn-like" onclick="dialog('Login Now!',' Login to photogram to view and like the post.');"><i class="fa-regular fa-heart"></i> Like</button> -->
-							<span><i class="fa like-btn fa-heart-o me-1"
+							<span><i class="fa-regular like-btn fa-heart me-1"
 									id="like-<?= $post['id'] ?>"
 									aria-hidden="true"></i></span>
 							<span class="me-3">
