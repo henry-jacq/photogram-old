@@ -1,4 +1,4 @@
--- 08 Apr, 2023 Migrations
+-- 20 Apr, 2023 Migrations
 -- Adminer 4.8.1 MySQL 8.0.30 dump
 
 SET NAMES utf8;
@@ -8,7 +8,6 @@ SET sql_mode = 'NO_AUTO_VALUE_ON_ZERO';
 
 SET NAMES utf8mb4;
 
-DROP TABLE IF EXISTS `auth`;
 CREATE TABLE `auth` (
   `id` int NOT NULL AUTO_INCREMENT,
   `username` varchar(32) NOT NULL,
@@ -26,7 +25,6 @@ CREATE TABLE `auth` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 
-DROP TABLE IF EXISTS `post_images`;
 CREATE TABLE `post_images` (
   `id` int NOT NULL AUTO_INCREMENT,
   `post_id` int NOT NULL,
@@ -37,7 +35,6 @@ CREATE TABLE `post_images` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 
-DROP TABLE IF EXISTS `posts`;
 CREATE TABLE `posts` (
   `id` int NOT NULL AUTO_INCREMENT,
   `post_text` varchar(160) NOT NULL,
@@ -50,7 +47,6 @@ CREATE TABLE `posts` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 
-DROP TABLE IF EXISTS `session`;
 CREATE TABLE `session` (
   `id` int NOT NULL AUTO_INCREMENT,
   `uid` int NOT NULL,
@@ -66,7 +62,6 @@ CREATE TABLE `session` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 
-DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
   `id` int NOT NULL,
   `bio` longtext NOT NULL,
@@ -82,4 +77,4 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 
--- 2023-04-08 10:34:11
+-- 2023-04-20 12:32:52
