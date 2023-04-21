@@ -67,9 +67,15 @@ if (Session::currentScript() == "profile") {
 							</a>
 							<!-- Card feed action dropdown menu -->
 							<ul class="dropdown-menu dropdown-menu-end" aria-labelledby="cardFeedAction1">
-								<li><a class="dropdown-item" href="<?php echo($p->getImageUri()) ?>"> <i
-											class="bi bi-download fa-fw pe-2"></i>Download</a></li>
-								<li data-id="<?= $post['id'] ?>"><a class="dropdown-item btn btn-copy-link" value="<?= $p->getImageUri() ?>"> <i class="bi bi-link-45deg fa-fw pe-2"></i>Copy link</a></li>
+								<li><a class="dropdown-item"
+										href="<?php echo($p->getImageUri()) ?>">
+										<i class="bi bi-download fa-fw pe-2"></i>Download</a></li>
+								<li
+									data-id="<?= $post['id'] ?>">
+									<a class="dropdown-item btn btn-copy-link"
+										value="<?= $p->getImageUri() ?>">
+										<i class="bi bi-link-45deg fa-fw pe-2"></i>Copy link</a>
+								</li>
 								<li onclick="dialog('Not Implemented!',' This feature is not implemented');"><a
 										class="dropdown-item" href="#"> <i
 											class="bi bi-bookmark fa-fw pe-2"></i>Bookmark</a></li>
@@ -86,7 +92,8 @@ if (Session::currentScript() == "profile") {
 								<li
 									data-id="<?= $post['id'] ?>">
 									<a class="dropdown-item btn btn-delete"><i
-											class="bi bi-trash fa-fw pe-2 text-danger"></i> Delete</a></li>
+											class="bi bi-trash fa-fw pe-2 text-danger"></i> Delete</a>
+								</li>
 								<?php } ?>
 								<?php } ?>
 							</ul>
@@ -109,13 +116,16 @@ if (Session::currentScript() == "profile") {
 								Likes</span>
 							<?php } else { ?>
 							<!-- <button type="button" class="btn btn-sm btn-outline-secondary btn-like" onclick="dialog('Not Implemented!',' This feature is not implemented');"><i class="fa-regular fa-heart"></i> Like</button> -->
-							<span><i class="fa like-btn fa-heart-o me-1"
-									id="like-<?= $post['id'] ?>"
-									aria-hidden="true"></i></span>
-							<span class="me-3">
-								<span
-									id="like-count-<?= $post['id'] ?>">0</span>
-								Likes</span>
+							<div>
+								<span><i class="fa btn-like fa-heart-o me-1"
+										id="like-<?= $post['id'] ?>"
+										aria-hidden="true"></i></span>
+								<span class="me-3">
+									<span
+										id="like-count-<?= $post['id'] ?>"
+										for="like-<?= $post['id'] ?>">0</span>
+									Likes</span>
+							</div>
 							<?php } ?>
 
 							<span style="color: var(--bs-primary-text);" class="card-items"><i
@@ -123,7 +133,8 @@ if (Session::currentScript() == "profile") {
 						</div>
 					</div>
 					<p class="card-text mt-2">
-						<?= $p->getPostText() ?></p>
+						<?= $p->getPostText() ?>
+					</p>
 				</div>
 			</div>
 		</div>

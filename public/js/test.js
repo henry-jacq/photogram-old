@@ -63,5 +63,18 @@ $(document.body).ready(function() {
 // });
 
 
-myDropzone.processQueue()
+// myDropzone.processQueue()
 
+// Copy the post link
+$('.btn-like').on('click', function(){
+    var id = $(this).attr('id');
+    console.log(id);
+
+    if ($(this).hasClass('fa-heart-o')) {
+        $(this).removeClass('fa-heart-o');
+        $(this).addClass('fa-heart')
+    } else if ($(this).hasClass('fa-heart')) {
+        $(this).removeClass('fa-heart');
+        $(this).addClass('fa-heart-o');
+    }
+});
