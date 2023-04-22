@@ -1,4 +1,4 @@
-/* Processed by Grunt on 22/4/2023 @4:44:58 */
+/* Processed by Grunt on 22/4/2023 @5:5:53 */
 
 
 // init Masonry
@@ -58,44 +58,34 @@ $('.btn-group').mouseover(function () {
     $(this).css('user-select', 'none');
 });
 
-// Like the post if the image is double clicked
+// Change like button status
+function likeBtn(mainSelector) {
+    var likeBtnID = mainSelector.find('i').attr('id');
+    var likeBtnSelector = $('#'+likeBtnID);
+    var currentLikes = parseInt(mainSelector.find('span').text());  
+
+    if (likeBtnSelector.hasClass('fa-heart-o')) {
+        likeBtnSelector.removeClass('fa-heart-o');
+        likeBtnSelector.addClass('fa-heart text-danger')
+        mainSelector.find('span').text(currentLikes += 1);
+    } else if (likeBtnSelector.hasClass('fa-heart text-danger')) {
+        if (currentLikes != 0) {
+            likeBtnSelector.removeClass('fa-heart text-danger');
+            likeBtnSelector.addClass('fa-heart-o');
+            mainSelector.find('span').text(currentLikes -+ 1);
+        }
+    }
+}
+
+// It will like the post if the image is double clicked
 $(".post-card-image").dblclick(function(){
     var selector = $(this).next().find('.btn-group').find('.btn-like');
-
-    var likeBtnID = selector.find('i').attr('id');
-    var likeBtnSelector = $('#'+likeBtnID);
-    var currentLikes = parseInt(selector.find('span').text());  
-
-    if (likeBtnSelector.hasClass('fa-heart-o')) {
-        likeBtnSelector.removeClass('fa-heart-o');
-        likeBtnSelector.addClass('fa-heart text-danger')
-        selector.find('span').text(currentLikes += 1);
-    } else if (likeBtnSelector.hasClass('fa-heart text-danger')) {
-        if (currentLikes != 0) {
-            likeBtnSelector.removeClass('fa-heart text-danger');
-            likeBtnSelector.addClass('fa-heart-o');
-            selector.find('span').text(currentLikes -+ 1);
-        }
-    }
+    likeBtn(selector);
 });
 
-// Change like button status
+// It will like the post on click on like button
 $('.btn-like').on('click', function(){  
-    var likeBtnID = $(this).find('i').attr('id');
-    var likeBtnSelector = $('#'+likeBtnID);
-    var currentLikes = parseInt($(this).find('span').text());  
-
-    if (likeBtnSelector.hasClass('fa-heart-o')) {
-        likeBtnSelector.removeClass('fa-heart-o');
-        likeBtnSelector.addClass('fa-heart text-danger')
-        $(this).find('span').text(currentLikes += 1);
-    } else if (likeBtnSelector.hasClass('fa-heart text-danger')) {
-        if (currentLikes != 0) {
-            likeBtnSelector.removeClass('fa-heart text-danger');
-            likeBtnSelector.addClass('fa-heart-o');
-            $(this).find('span').text(currentLikes -+ 1);
-        }
-    }
+    likeBtn($(this));
 });
 
 // Delete post
