@@ -62,6 +62,7 @@ class Toast{
                 <img src="/assets/brand/favicon.ico" class="me-2" alt="..." width="23" height="25">
                 <strong class="fw-semibold me-auto">${this.title}</strong>
                 <small class="text-muted">${this.subtitle}</small>
+                <button type="button" class="btn-close shadow-none" data-bs-dismiss="toast" aria-label="Close"></button>
             </div>
             <div class="toast-body">
                 ${this.message}
