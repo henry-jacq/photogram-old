@@ -1,4 +1,4 @@
-/* Processed by Grunt on 22/4/2023 @5:5:53 */
+/* Processed by Grunt on 22/4/2023 @8:22:23 */
 
 
 // init Masonry
@@ -102,9 +102,7 @@ $('.btn-delete').on('click', function(){
                     id: post_id
                 }, function(data, textSuccess){
                     if(textSuccess =="success" ){
-                        $(`#post-${post_id}`).remove();
-                        // window.location.href = "/";
-                        $grid.masonry('layout');
+                        $grid.masonry('remove', $(`#post-${post_id}`)).masonry('layout');
                         new Toast("Photogram", "1 seconds ago", "Your post was successfully deleted!", {}).show();
                     } else {
                         new Toast("Photogram", "1 seconds ago", "cannot delete your post!", {}).show();
