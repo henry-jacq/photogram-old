@@ -38,6 +38,14 @@ $('.btn-like').on('click', function(){
     likeBtn($(this));
 });
 
+function showToast(title, subtitle, message) {
+    let tst = new Toast(title, subtitle, message, {});
+    tst.show();
+    let tstid = tst.id;
+    let tstSubtitle = $('#'+tstid).find('.toast-header').find('small');
+    tst.showSec(tstSubtitle);
+}
+
 // Delete post
 $('.btn-delete').on('click', function(){
     post_id = $(this).parent().attr('data-id');
@@ -53,9 +61,9 @@ $('.btn-delete').on('click', function(){
                 }, function(data, textSuccess){
                     if(textSuccess =="success" ){
                         $grid.masonry('remove', $(`#post-${post_id}`)).masonry('layout');
-                        new Toast("Photogram", "1 seconds ago", "Your post was successfully deleted!", {}).show();
+                        showToast("Photogram", "Just Now", "Your post was successfully deleted!");
                     } else {
-                        new Toast("Photogram", "1 seconds ago", "cannot delete your post!", {}).show();
+                        showToast("Photogram", "Just Now", "Can't delete your post!");
                     }
                 });
 
