@@ -101,29 +101,26 @@ if (Session::currentScript() == "profile") {
 					</div>
 				</header>
 				<?php } ?>
-				<img class="post-card-image" src="<?= $p->getImageUri() ?>" loading="eager">
+				<img class="post-card-image"
+					src="<?= $p->getImageUri() ?>" loading="eager">
 				<div class="card-body">
-					<div class="d-flex justify-content-between align-items-center">
-						<div class="btn-group"
-							data-id="<?= $post['id'] ?>">
-							<?php if (!Session::isAuthenticated()) { ?>
-							<span><i class="fa-regular like-btn fa-heart me-1"
-									id="like-<?= $post['id'] ?>"
-									aria-hidden="true"></i></span>
-							<span class="me-3">
-								<span
-									id="like-count-<?= $post['id'] ?>">0</span>
-								Likes</span>
-							<?php } else { ?>
-							<div class="btn-like me-3">
-								<i class="btn border-0 p-0 fa fa-heart-o me-1" id="like-<?= $post['id'] ?>" aria-hidden="true"></i>
-								<span class="me-1" id="like-count-<?= $post['id'] ?>">0</span>Likes
-							</div>
-							<?php } ?>
-
-							<span style="color: var(--bs-primary-text);" class="card-items"><i
-									class="bi bi-send me-1 small"></i>Share</span>
+					<div class="btn-group">
+						<?php if (!Session::isAuthenticated()) { ?>
+						<span class="me-3">
+							<span class="me-1">0</span>Likes
+						</span>
+						<?php } else { ?>
+						<div class="btn-like me-3">
+							<i class="btn border-0 p-0 fa fa-heart-o me-1"
+								id="like-<?= $post['id'] ?>"
+								aria-hidden="true"></i>
+							<span class="me-1"
+								id="like-count-<?= $post['id'] ?>">0</span>Likes
 						</div>
+						<div class="btn-share card-items">
+							<i class="bi bi-send me-1 small"></i>Share
+						</div>
+						<?php } ?>
 					</div>
 					<p class="card-text mt-2">
 						<?= $p->getPostText() ?>
