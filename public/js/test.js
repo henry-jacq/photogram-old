@@ -3,9 +3,9 @@
 // query.on('click', function() {
 //     // Change the active tab
 //     query.each(function () {
-//         $(this).removeClass("active");
+//         selector.removeClass("active");
 //     });
-//     $(this).addClass("active");
+//     selector.addClass("active");
 // })
 
 // $.post("/api/posts/count?mode=user", function(o) {
@@ -62,19 +62,26 @@ $(document.body).ready(function() {
 //     autoProcessQueue: false
 // });
 
-
 // myDropzone.processQueue()
 
-// Copy the post link
-$('.btn-like').on('click', function(){
-    var id = $(this).attr('id');
-    console.log(id);
 
-    if ($(this).hasClass('fa-heart-o')) {
-        $(this).removeClass('fa-heart-o');
-        $(this).addClass('fa-heart')
-    } else if ($(this).hasClass('fa-heart')) {
-        $(this).removeClass('fa-heart');
-        $(this).addClass('fa-heart-o');
+// Like the post if the image is double clicked
+$(".post-card-image").dblclick(function(){
+    var selector = $(this).next().find('.d-flex').find('.btn-group').find('.btn-like');
+
+    var likeBtnID = selector.find('i').attr('id');
+    var likeBtnSelector = $('#'+likeBtnID);
+    var currentLikes = parseInt(selector.find('span').text());  
+
+    if (likeBtnSelector.hasClass('fa-heart-o')) {
+        likeBtnSelector.removeClass('fa-heart-o');
+        likeBtnSelector.addClass('fa-heart text-danger')
+        selector.find('span').text(currentLikes += 1);
+    } else if (likeBtnSelector.hasClass('fa-heart text-danger')) {
+        if (currentLikes != 0) {
+            likeBtnSelector.removeClass('fa-heart text-danger');
+            likeBtnSelector.addClass('fa-heart-o');
+            selector.find('span').text(currentLikes -+ 1);
+        }
     }
 });

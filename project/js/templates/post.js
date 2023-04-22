@@ -1,3 +1,22 @@
+// Change like button status
+$('.btn-like').on('click', function(){  
+    var likeBtnID = $(this).find('i').attr('id');
+    var likeBtnSelector = $('#'+likeBtnID);
+    var currentLikes = parseInt($(this).find('span').text());  
+
+    if (likeBtnSelector.hasClass('fa-heart-o')) {
+        likeBtnSelector.removeClass('fa-heart-o');
+        likeBtnSelector.addClass('fa-heart text-danger')
+        $(this).find('span').text(currentLikes += 1);
+    } else if (likeBtnSelector.hasClass('fa-heart text-danger')) {
+        if (currentLikes != 0) {
+            likeBtnSelector.removeClass('fa-heart text-danger');
+            likeBtnSelector.addClass('fa-heart-o');
+            $(this).find('span').text(currentLikes -+ 1);
+        }
+    }
+});
+
 // Delete post
 $('.btn-delete').on('click', function(){
     post_id = $(this).parent().attr('data-id');

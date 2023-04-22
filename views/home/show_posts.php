@@ -62,11 +62,11 @@ if (Session::currentScript() == "profile") {
 						</div>
 						<div class="dropdown">
 							<a href="#" class="text-secondary btn btn-secondary-soft-hover py-1 px-2"
-								id="cardFeedAction1" data-bs-toggle="dropdown" aria-expanded="false">
+								id="postCardFeedAction" data-bs-toggle="dropdown" aria-expanded="false">
 								<i class="bi bi-three-dots-vertical"></i>
 							</a>
 							<!-- Card feed action dropdown menu -->
-							<ul class="dropdown-menu dropdown-menu-end" aria-labelledby="cardFeedAction1">
+							<ul class="dropdown-menu dropdown-menu-end" aria-labelledby="postCardFeedAction">
 								<li><a class="dropdown-item"
 										href="<?php echo($p->getImageUri()) ?>">
 										<i class="bi bi-download fa-fw pe-2"></i>Download</a></li>
@@ -101,7 +101,7 @@ if (Session::currentScript() == "profile") {
 					</div>
 				</header>
 				<?php } ?>
-				<img src="<?= $p->getImageUri() ?>" loading="eager">
+				<img class="post-card-image" src="<?= $p->getImageUri() ?>" loading="eager">
 				<div class="card-body">
 					<div class="d-flex justify-content-between align-items-center">
 						<div class="btn-group"
@@ -115,16 +115,9 @@ if (Session::currentScript() == "profile") {
 									id="like-count-<?= $post['id'] ?>">0</span>
 								Likes</span>
 							<?php } else { ?>
-							<!-- <button type="button" class="btn btn-sm btn-outline-secondary btn-like" onclick="dialog('Not Implemented!',' This feature is not implemented');"><i class="fa-regular fa-heart"></i> Like</button> -->
-							<div>
-								<span><i class="fa btn-like fa-heart-o me-1"
-										id="like-<?= $post['id'] ?>"
-										aria-hidden="true"></i></span>
-								<span class="me-3">
-									<span
-										id="like-count-<?= $post['id'] ?>"
-										for="like-<?= $post['id'] ?>">0</span>
-									Likes</span>
+							<div class="btn-like me-3">
+								<i class="btn border-0 p-0 fa fa-heart-o me-1" id="like-<?= $post['id'] ?>" aria-hidden="true"></i>
+								<span class="me-1" id="like-count-<?= $post['id'] ?>">0</span>Likes
 							</div>
 							<?php } ?>
 
