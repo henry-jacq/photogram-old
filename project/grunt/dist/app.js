@@ -1,4 +1,4 @@
-/* Processed by Grunt on 22/4/2023 @4:2:12 */
+/* Processed by Grunt on 22/4/2023 @4:26:53 */
 
 
 // init Masonry
@@ -46,6 +46,16 @@ $("#icon-click").on("click", function (data) {
     icon.removeClass("bi-eye");
     icon.addClass("bi-eye-slash");
   }
+});
+
+// Change the cursor to pointer
+$('.btn-like, .btn-share').mouseover(function () { 
+    $(this).css('cursor','pointer');
+});
+
+// Disable user selection for buttons
+$('.btn-group').mouseover(function () { 
+    $(this).css('user-select', 'none');
 });
 
 // Change like button status

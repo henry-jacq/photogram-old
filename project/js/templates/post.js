@@ -1,3 +1,13 @@
+// Change the cursor to pointer
+$('.btn-like, .btn-share').mouseover(function () { 
+    $(this).css('cursor','pointer');
+});
+
+// Disable user selection for buttons
+$('.btn-group').mouseover(function () { 
+    $(this).css('user-select', 'none');
+});
+
 // Change like button status
 $('.btn-like').on('click', function(){  
     var likeBtnID = $(this).find('i').attr('id');
