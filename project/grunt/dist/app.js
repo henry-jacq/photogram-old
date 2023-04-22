@@ -1,4 +1,4 @@
-/* Processed by Grunt on 22/4/2023 @4:26:53 */
+/* Processed by Grunt on 22/4/2023 @4:44:58 */
 
 
 // init Masonry
@@ -56,6 +56,27 @@ $('.btn-like, .btn-share').mouseover(function () {
 // Disable user selection for buttons
 $('.btn-group').mouseover(function () { 
     $(this).css('user-select', 'none');
+});
+
+// Like the post if the image is double clicked
+$(".post-card-image").dblclick(function(){
+    var selector = $(this).next().find('.btn-group').find('.btn-like');
+
+    var likeBtnID = selector.find('i').attr('id');
+    var likeBtnSelector = $('#'+likeBtnID);
+    var currentLikes = parseInt(selector.find('span').text());  
+
+    if (likeBtnSelector.hasClass('fa-heart-o')) {
+        likeBtnSelector.removeClass('fa-heart-o');
+        likeBtnSelector.addClass('fa-heart text-danger')
+        selector.find('span').text(currentLikes += 1);
+    } else if (likeBtnSelector.hasClass('fa-heart text-danger')) {
+        if (currentLikes != 0) {
+            likeBtnSelector.removeClass('fa-heart text-danger');
+            likeBtnSelector.addClass('fa-heart-o');
+            selector.find('span').text(currentLikes -+ 1);
+        }
+    }
 });
 
 // Change like button status
