@@ -75,7 +75,20 @@ class Toast{
         $(document.getElementById(`${this.id}`)).on('hidden.bs.toast', function(){
             $(`#${this.id}`).remove();
         });
-        console.log(t);
         t.show();
+    }
+
+    delay(milliseconds){
+        return new Promise(resolve => {
+            setTimeout(resolve, milliseconds);
+        });
+    }
+
+    async showSec(element)
+    {
+        for (let i = 1; i <= 5; i++) {
+            await this.delay(1000);
+            element.text(i+" seconds ago");
+        }
     }
 }
