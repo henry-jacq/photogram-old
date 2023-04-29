@@ -90,5 +90,6 @@ class Toast{
             await this.delay(1000);
             element.text(i+" seconds ago");
         }
+        element.text("");
     }
 }
