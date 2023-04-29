@@ -61,12 +61,12 @@ if (Session::currentScript() == "profile") {
 							</div>
 						</div>
 						<div class="dropdown">
-							<a href="#" class="text-secondary btn btn-secondary-soft-hover py-1 px-2"
+							<a href="#" class="text-secondary btn btn-secondary-soft-hover py-1 px-2 rounded-circle"
 								id="postCardFeedAction" data-bs-toggle="dropdown" aria-expanded="false">
 								<i class="bi bi-three-dots-vertical"></i>
 							</a>
 							<!-- Card feed action dropdown menu -->
-							<ul class="dropdown-menu dropdown-menu-end" aria-labelledby="postCardFeedAction">
+							<ul class="dropdown-menu dropdown-menu-end mt-2" aria-labelledby="postCardFeedAction">
 								<li><a class="dropdown-item"
 										href="<?php echo($p->getImageUri()) ?>">
 										<i class="bi bi-download fa-fw pe-2"></i>Download</a></li>
