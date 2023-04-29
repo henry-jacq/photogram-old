@@ -1,4 +1,4 @@
-/* Processed by Grunt on 22/4/2023 @8:27:27 */
+/* Processed by Grunt on 29/4/2023 @11:7:48 */
 
 
 // init Masonry
@@ -137,10 +137,10 @@ $('.btn-copy-link').on('click', function(){
     
     if (navigator.clipboard) {
         navigator.clipboard.writeText(textToCopy);
-        new Toast("Photogram", "Just Now", "Copied the post link to the clipboard!").show();
+        showToast("Photogram", "Just Now", "Copied the post link to the clipboard!");
     } else {
         console.error("Can't copy the post link!");
-        new Toast("Photogram", "Just Now", "Can't copy the post link to the clipboard!").show();
+        showToast("Photogram", "Just Now", "Can't copy the post link to the clipboard!");
     }   
 });
 // Count only user posts
