@@ -13,7 +13,8 @@ use app\core\View;
 			<h2 class="fw-normal fs-4">
 				<?= ucfirst(Session::getUser()->getUsername()); ?>
 			</h2>
-			<p>Web Developer</p>
+			<p>@<?= lcfirst(Session::getUser()->getUsername()); ?>
+			</p>
 			<!-- <button class="btn btn-sm btn-secondary" onclick="dialog('Not Implemented!',' This feature is not implemented');"><i class="bi bi-pencil me-2"></i>Change Profile</button> -->
 
 			<div class="row mt-4 mb-3 px-3">
