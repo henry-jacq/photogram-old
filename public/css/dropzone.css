@@ -233,8 +233,9 @@
 
 .dropzone {
   min-height: 150px;
-  border: 2px solid rgba(0, 0, 0, 0.3);
-  background: white;
+  border: 1px dashed;
+  border-radius: 5px;
+  background: transparent;
   padding: 20px 20px;
 }
 
@@ -249,6 +250,7 @@
 .dropzone.dz-clickable .dz-message,
 .dropzone.dz-clickable .dz-message * {
   cursor: pointer;
+  user-select: none;
 }
 
 .dropzone.dz-started .dz-message {
@@ -305,7 +307,7 @@
 }
 
 .dropzone .dz-preview.dz-image-preview {
-  background: white;
+  background: none;
 }
 
 .dropzone .dz-preview.dz-image-preview .dz-details {
