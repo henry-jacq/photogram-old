@@ -58,9 +58,6 @@ use app\core\Session;
 		<!-- Masonry -->
 		<script src="https://unpkg.com/masonry-layout@4.2.2/dist/masonry.pkgd.min.js"></script>
 
-		<!-- App JS -->
-		<script src="<?= URL_ROOT ?>js/app.min.js"></script>
-		
 		<!-- Dropzone JS -->
 		<script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
 		
@@ -70,6 +67,9 @@ use app\core\Session;
 		<!-- Toast JS -->
 		<script src="<?= URL_ROOT ?>js/toast/toast.js"></script>
 
+		<!-- App JS -->
+		<script src="<?= URL_ROOT ?>js/app.min.js"></script>
+		
 		<!-- Test JS -->
 		<script src="<?= URL_ROOT ?>js/test.js"></script>
 
