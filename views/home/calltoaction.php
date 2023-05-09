@@ -17,20 +17,15 @@ if (isset($_FILES['post_image']) and isset($_POST['post_text'])) {
 				<?= strtolower(Session::getUser()->getUsername()); ?>?
 			</h1>
 			<p class="text-muted fs-5 fw-light">Share a photo that talks about it</p>
-			<form class="my-3" action="/" method="POST" enctype="multipart/form-data">
-				<div class="mb-2">
-					<input class="form-control" accept="image/*" name="post_image" type="file" id="formFile" required>
+			<form class="dropzone border-1 rounded mb-3" method="POST" action="/api/posts/create">
+				<textarea class="form-control mb-3" name="post_text" rows="3" placeholder="Say something..."></textarea>
+				<div class="dz-message py-2">
+					<i class="bi bi-images display-4"></i>
+					<p>Drop files here or Click to Upload</p>
 				</div>
-				<div class="form-floating mb-3">
-					<textarea class="form-control" name="post_text" placeholder="Say something..." id="captionArea"
-						style="height: 160px;"></textarea>
-					<label for="captionArea">Say something...</label>
-				</div>
-				<button type="submit" class="btn btn-success my-4"><i
-						class="fa-sharp fa-solid fa-arrow-up-from-bracket"></i> Upload</button>
-				<button class="btn btn-secondary my-2" type="reset">Clear</button>
 			</form>
-
+			<button class="btn btn-primary" id="upload_btn" type="submit">Post</button>
+			<button class="btn btn-secondary" id="reset_btn" type="reset">Clear all</button>
 		</div>
 	</div>
 </section>

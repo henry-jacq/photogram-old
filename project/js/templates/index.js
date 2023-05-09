@@ -29,3 +29,43 @@ $('img').on("contextmenu", function () {
 $("img").mousedown(function(e){
     e.preventDefault()
 });
+
+if (window.location.pathname === "/") {
+    Dropzone.autoDiscover = false;
+    
+    // Initializing Dropzone
+    var myDropzone = new Dropzone(".dropzone", {
+        url: "/api/posts/create",
+        paramName: "file",
+        maxFilesize: 5,
+        maxFiles: 1,
+        acceptedFiles:".png,.jpeg,.webp,.jpg,.gif,.mp4,",
+        autoProcessQueue: false
+    });
+      
+    // Upload post
+    $('#upload_btn').on('click', function(e){
+        e.preventDefault();
+        myDropzone.processQueue();
+        myDropzone.on("queuecomplete", function(e) {
+            location.reload();
+        });
+    });
+    
+    // Disable if no files are uploaded
+    setInterval(() => {
+        if (myDropzone.files.length !== 0) {
+            $('#upload_btn').attr('disabled', false);
+        } else {
+            $('#upload_btn').attr('disabled', true);
+        }
+    }, 500);
+    
+    // Reset the form
+    $('#reset_btn').on('click', function(){     
+        $('[name=post_text]').val('');
+        if (myDropzone.files.length != 0) {
+            myDropzone.removeAllFiles();
+        }
+    });
+}
