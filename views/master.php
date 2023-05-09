@@ -60,16 +60,17 @@ use app\core\Session;
 
 		<!-- App JS -->
 		<script src="<?= URL_ROOT ?>js/app.min.js"></script>
+		
+		<!-- Dialog JS -->
+		<script src="<?= URL_ROOT ?>js/dialog/dialog.js"></script>
+		
+		<!-- Toast JS -->
+		<script src="<?= URL_ROOT ?>js/toast/toast.js"></script>
 
 		<!-- Test JS -->
 		<script src="<?= URL_ROOT ?>js/test.js"></script>
 
-		<!-- Dialog JS -->
-		<script src="<?= URL_ROOT ?>js/dialog/dialog.js"></script>
-
-		<!-- Toast JS -->
-		<script src="<?= URL_ROOT ?>js/toast/toast.js"></script>
-
+		<!-- Dropzone JS -->
 		<script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
 
 	</body>
