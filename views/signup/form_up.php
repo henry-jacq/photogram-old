@@ -9,20 +9,20 @@
 		<div class="row g-3 mb-3">
 			<div class="col-md-6">
 				<label for="firstName" class="form-label">First name</label>
-				<input type="text" name="first_name" class="form-control bg-transparent" id="firstName" required>
+				<input type="text" name="first_name" class="form-control bg-transparent shadow-none" id="firstName" required>
 			</div>
 			<div class="col-md-6">
 				<label for="lastName" class="form-label">Last name</label>
-				<input type="text" name="last_name" class="form-control bg-transparent" id="lastName" required>
+				<input type="text" name="last_name" class="form-control bg-transparent shadow-none" id="lastName" required>
 			</div>
 		</div>
 
 		<label for="userName" class="form-label">Username</label>
-		<input type="text" id="userName" name="username" class="form-control mb-3 bg-transparent" required>
+		<input type="text" id="userName" name="username" class="form-control mb-3 bg-transparent shadow-none" required>
 		<label for="email" class="form-label">Email</label>
-		<input type="email" id="email" name="email_address" class="form-control mb-3 bg-transparent" required>
+		<input type="email" id="email" name="email_address" class="form-control mb-3 bg-transparent shadow-none" required>
 		<label for="password" class="form-label">Password</label>
-		<input type="password" id="password" name="password" class="form-control mb-3 bg-transparent" required>
+		<input type="password" id="password" name="password" class="form-control mb-3 bg-transparent shadow-none" required>
 		<!-- Fingerprint -->
 		<input name="visitor_id" type="hidden" class="form-control" id="fingerprint" value="">
 

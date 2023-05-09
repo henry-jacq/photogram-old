@@ -6,10 +6,10 @@
 		<hr class="mb-4">
 		<h5 class="fw-semi-bold mb-4">Sign In</h5>
 		<label class="form-label">Username or email</label>
-		<input type="text" id="user" name="username_or_email" class="form-control mb-3 bg-transparent" required>
+		<input type="text" id="user" name="username_or_email" class="form-control mb-3 bg-transparent shadow-none" required>
 		<label class="form-label">Password</label>
 		<div class="input-group mb-3">
-			<input type="password" id="pass" name="password" class="form-control bg-transparent" required>
+			<input type="password" id="pass" name="password" class="form-control bg-transparent shadow-none" required>
 			<span class="input-group-text bg-transparent" id="icon-click">
 				<i class="bi-eye-slash" id="icon"></i>
 			</span>
@@ -20,7 +20,7 @@
 		<div class="row mb-3">
 			<div class="col text-start">
 				<div class="form-check">
-					<input class="form-check-input" type="checkbox" id="rememberMe">
+					<input class="form-check-input bg-transparent shadow-none" type="checkbox" id="rememberMe">
 					<label class="form-check-label" for="rememberMe">Remember me</label>
 				</div>
 			</div>

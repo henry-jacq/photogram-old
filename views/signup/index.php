@@ -68,7 +68,7 @@ if ($signup) {
 			<!-- This will popup the alert -->
 			<div id="popup-error" class="alert alert-danger alert-dismissible fade show" role="alert">
 				<strong>Signup Failed!</strong><br>Username or email already exists in database.
-				<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+				<button type="button" class="btn-close shadow-none" data-bs-dismiss="alert" aria-label="Close"></button>
 			</div>
 			<?php // Load Sign up form
                 View::loadTemplate('signup/form_up'); ?>

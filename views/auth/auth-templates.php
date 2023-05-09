@@ -14,7 +14,7 @@ function loadForgotPasswordForm(string $status = null, string $value = null)
 			<!-- This will popup the alert -->
 			<div id="popup-error" class="alert alert-success alert-dismissible fade show" role="alert">
 				<strong>Email has been sent!</strong><br>Password recovery link sent to your email
-				<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+				<button type="button" class="btn-close shadow-none" data-bs-dismiss="alert" aria-label="Close"></button>
 			</div>
 			<?php // Load Login form with success message
                 View::loadTemplate('auth/password-reset-form'); ?>
@@ -30,7 +30,7 @@ function loadForgotPasswordForm(string $status = null, string $value = null)
 			<!-- This will popup the alert -->
 			<div id="popup-error" class="alert alert-danger alert-dismissible fade show" role="alert">
 				<strong>Invalid email!</strong><br>Email doesn't exist in our database.
-				<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+				<button type="button" class="btn-close shadow-none" data-bs-dismiss="alert" aria-label="Close"></button>
 			</div>
 			<?php // Load Login form with success error
                 View::loadTemplate('auth/password-reset-form'); ?>
@@ -47,7 +47,7 @@ function loadForgotPasswordForm(string $status = null, string $value = null)
 			<!-- This will popup the alert -->
 			<div id="popup-error" class="alert alert-danger alert-dismissible fade show" role="alert">
 				<strong>Invalid token!</strong><br>Reset token is invalid.
-				<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+				<button type="button" class="btn-close shadow-none" data-bs-dismiss="alert" aria-label="Close"></button>
 			</div>
 			<?php // Load Login form with error message
                 View::loadTemplate('auth/password-reset-form'); ?>
@@ -112,7 +112,7 @@ function loadChangePasswordForm(string $status = null)
 		<div class="py-3 col-sm-10 col-md-8 col-lg-6 col-xl-5 col-xxl-4">
 			<div id="popup-error" class="alert alert-danger alert-dismissible fade show" role="alert">
 				<strong>Password not matches!</strong><br>Password not matches
-				<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+				<button type="button" class="btn-close shadow-none" data-bs-dismiss="alert" aria-label="Close"></button>
 			</div>
 			<?php // Load change password form with error
                 View::loadTemplate('auth/change-password-form'); ?>

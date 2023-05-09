@@ -43,7 +43,7 @@ if ($login) {
 			<!-- This will popup the alert -->
 			<div id="popup-error" class="alert alert-danger alert-dismissible fade show" role="alert">
 				<strong>Login Failed!</strong><br>Invalid credentials. Please try again.
-				<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+				<button type="button" class="btn-close shadow-none" data-bs-dismiss="alert" aria-label="Close"></button>
 			</div>
 			<?php // Load Login form
                     View::loadTemplate('login/form_in'); ?>
