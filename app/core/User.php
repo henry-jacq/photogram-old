@@ -175,7 +175,7 @@ class User
      */
     public static function createResetPasswordLink($email)
     {
-        $domain = get_config("domain_name");
+        $domain = DOMAIN_NAME;
         $token = self::generateResetToken($email);
         $link = $domain . "/forgot-password/$token";
         return $link;
