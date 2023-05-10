@@ -27,18 +27,18 @@ use app\core\Session;
 			</li>
 			<li class="nav-item ms-2">
 				<a class="nav-link btn border py-1 px-2" id="postUploadButton" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Upload post">
-					<i class="fa-solid fa-arrow-up-from-bracket fs-6"></i>
+					<i class="bi bi-plus-square-dotted"></i></i>
 				</a>
 			</li>
 			<li class="nav-item ms-2">
 				<a class="nav-link btn border py-1 px-2" href="#" onclick="dialog('Not Implemented!',' This feature is not implemented');">
-					<i class="fa-regular fa-heart fs-6"></i>
+					<i class="bi bi-heart fs-6"></i>
 				</a>
 			</li>
 			<li class="nav-item dropdown ms-2">
 				<a class="nav-link btn border py-1 px-2" href="#" id="notifDropdown" role="button"
 					data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
-					<i class="fa-regular fa-bell fs-6"></i>
+					<i class="bi bi-bell fs-6"></i>
 					<span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">3<span
 							class="visually-hidden">unread messages</span></span>
 				</a>
