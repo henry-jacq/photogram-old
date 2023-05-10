@@ -1,4 +1,4 @@
-/* Processed by Grunt on 9/5/2023 @15:5:6 */
+/* Processed by Grunt on 10/5/2023 @11:12:8 */
 
 
 // init Masonry
@@ -72,6 +72,26 @@ if (window.location.pathname === "/") {
         }
     });
 }
+
+// Character limit on post text
+$(document).ready(function() {
+  const myInput = $('[name=post_text]');
+  const charCount = $('#total_chars');
+  const maxLength = 240;
+
+  myInput.on('input', function() {
+    const length = myInput.val().length;
+
+    charCount.removeClass('visually-hidden');
+
+    if (length > maxLength) {
+      const truncatedValue = myInput.val().slice(0, maxLength);
+      myInput.val(truncatedValue);
+    }
+    
+    charCount.text(`${myInput.val().length}/${maxLength}`);
+  });
+});
 
 // show/hide password field in login form
 $("#icon-click").on("click", function (data) {

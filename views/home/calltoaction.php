@@ -19,6 +19,7 @@ if (isset($_FILES['post_image']) and isset($_POST['post_text'])) {
 			<p class="text-muted fs-5 fw-light">Share a photo that talks about it</p>
 			<form class="dropzone border-1 rounded mb-3" method="POST" action="/api/posts/create">
 				<textarea class="form-control mb-3" name="post_text" rows="3" placeholder="Say something..."></textarea>
+				<p id="total_chars" class="visually-hidden text-end"></p>
 				<div class="dz-message py-2">
 					<i class="bi bi-images display-4"></i>
 					<p>Drop files here or Click to Upload</p>
