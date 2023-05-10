@@ -25,8 +25,8 @@ if (isset($_FILES['post_image']) and isset($_POST['post_text'])) {
 					<p>Drop files here or Click to Upload</p>
 				</div>
 			</form>
-			<button class="btn btn-primary" id="upload_btn" type="submit">Post</button>
-			<button class="btn btn-secondary" id="reset_btn" type="reset">Clear all</button>
+			<button class="btn btn-primary btn-upload" type="submit" disabled>Post</button>
+			<button class="btn btn-secondary btn-reset" disabled>Clear</button>
 		</div>
 	</div>
 </section>

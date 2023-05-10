@@ -38,13 +38,13 @@ if (window.location.pathname === "/") {
         url: "/api/posts/create",
         paramName: "file",
         maxFilesize: 5,
-        maxFiles: 1,
+        maxFiles: 2,
         acceptedFiles:".png,.jpeg,.webp,.jpg,.gif,.mp4,",
         autoProcessQueue: false
     });
       
     // Upload post
-    $('#upload_btn').on('click', function(e){
+    $('.btn-upload').on('click', function(e){
         e.preventDefault();
         myDropzone.processQueue();
         myDropzone.on("queuecomplete", function(e) {
@@ -52,22 +52,26 @@ if (window.location.pathname === "/") {
         });
     });
     
-    // Disable if no files are uploaded
-    setInterval(() => {
-        if (myDropzone.files.length !== 0) {
-            $('#upload_btn').attr('disabled', false);
-        } else {
-            $('#upload_btn').attr('disabled', true);
-        }
-    }, 500);
-    
     // Reset the form
-    $('#reset_btn').on('click', function(){     
+    $('.btn-reset').on('click', function(){     
         $('[name=post_text]').val('');
-        if (myDropzone.files.length != 0) {
+        
+        const length = $('[name=post_text]').val().length;
+        $('#total_chars').text(`${length}/240`);
+
+        if (myDropzone.files.length > 0) {
             myDropzone.removeAllFiles();
         }
     });
+
+    // Disable buttons if there is no data in the form
+    setInterval(() => {
+        if (myDropzone.files.length > 0) {
+            $('.btn-reset, .btn-upload').prop('disabled', false);
+        } else {
+            $('.btn-reset, .btn-upload').prop('disabled', true);
+        }
+    }, 500);
 }
 
 // Character limit on post text
@@ -78,14 +82,12 @@ $(document).ready(function() {
 
   myInput.on('input', function() {
     const length = myInput.val().length;
-
     charCount.removeClass('visually-hidden');
 
     if (length > maxLength) {
       const truncatedValue = myInput.val().slice(0, maxLength);
       myInput.val(truncatedValue);
     }
-    
     charCount.text(`${myInput.val().length}/${maxLength}`);
   });
 });
