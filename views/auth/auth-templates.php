@@ -8,7 +8,7 @@ function loadForgotPasswordForm(string $status = null, string $value = null)
 {
     if ($status === "success" and $value === "mail-sent") {
         ?>
-<section class="container">
+<section class="container user-select-none">
 	<div class="h-100 d-flex align-items-center justify-content-center row" style="min-height: 100vh;">
 		<div class="py-3 col-sm-10 col-md-8 col-lg-6 col-xl-5 col-xxl-4">
 			<!-- This will popup the alert -->
@@ -24,7 +24,7 @@ function loadForgotPasswordForm(string $status = null, string $value = null)
 <?php
     } elseif ($status === "fail" and $value === "invalid-email") {
         ?>
-<section class="container">
+<section class="container user-select-none">
 	<div class="h-100 d-flex align-items-center justify-content-center row" style="min-height: 100vh;">
 		<div class="py-3 col-sm-10 col-md-8 col-lg-6 col-xl-5 col-xxl-4">
 			<!-- This will popup the alert -->
@@ -41,7 +41,7 @@ function loadForgotPasswordForm(string $status = null, string $value = null)
 <?php
     } elseif ($status === "fail" and $value === "invalid-token") {?>
 
-<section class="container">
+<section class="container user-select-none">
 	<div class="h-100 d-flex align-items-center justify-content-center row" style="min-height: 100vh;">
 		<div class="py-3 col-sm-10 col-md-8 col-lg-6 col-xl-5 col-xxl-4">
 			<!-- This will popup the alert -->
@@ -57,7 +57,7 @@ function loadForgotPasswordForm(string $status = null, string $value = null)
 
 <?php } elseif ($status === null) {
     ?>
-<section class="container">
+<section class="container user-select-none">
 	<div class="h-100 d-flex align-items-center justify-content-center row" style="min-height: 100vh;">
 		<div class="py-3 col-sm-10 col-md-8 col-lg-6 col-xl-5 col-xxl-4">
 			<?php // Load Login form
@@ -94,7 +94,7 @@ function loadChangePasswordForm(string $status = null)
 {
 
     if ($status === "success") {?>
-<section class="container">
+<section class="container user-select-none">
 	<div class="h-100 d-flex align-items-center justify-content-center row" style="min-height: 100vh;">
 		<div class="py-3 col-sm-10 col-md-8 col-lg-6 col-xl-5 col-xxl-4">
 			<div id="popup-error" class="alert alert-success fade show text-start" role="alert">
@@ -107,7 +107,7 @@ function loadChangePasswordForm(string $status = null)
 	</div>
 </section>
 <?} elseif ($status === "fail") {?>
-<section class="container">
+<section class="container user-select-none">
 	<div class="h-100 d-flex align-items-center justify-content-center row" style="min-height: 100vh;">
 		<div class="py-3 col-sm-10 col-md-8 col-lg-6 col-xl-5 col-xxl-4">
 			<div id="popup-error" class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -120,7 +120,7 @@ function loadChangePasswordForm(string $status = null)
 	</div>
 </section>
 <?} elseif ($status === null) {?>
-<section class="container">
+<section class="container user-select-none">
 	<div class="h-100 d-flex align-items-center justify-content-center row" style="min-height: 100vh;">
 		<div class="py-3 col-sm-10 col-md-8 col-lg-6 col-xl-5 col-xxl-4">
 			<?php // Load change password form

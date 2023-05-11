@@ -1,4 +1,4 @@
-<section class="p-5 text-center">
+<section class="p-5 text-center user-select-none">
     <div class="row py-lg-5">
         <div class="col-lg-6 col-md-8 mx-auto">
             <h1 class="display-6">Create an Account on Photogram <br> Share Memories with the World.</h1>

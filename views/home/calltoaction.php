@@ -3,7 +3,7 @@
 use app\core\Session;
 ?>
 
-<section class="py-4 text-center">
+<section class="py-4 text-center user-select-none">
 	<div class="row py-lg-5 border-bottom ">
 		<div class="col-lg-7 col-md-8 mx-auto">
 			<h1 class="display-6">What's on your mind,
@@ -15,7 +15,7 @@ use app\core\Session;
 				<p id="total_chars" class="visually-hidden text-end"></p>
 				<div class="dz-message py-2">
 					<i class="bi bi-images display-4"></i>
-					<p>Drop files here or Click to Upload</p>
+					<p>Drop files here or click to upload</p>
 				</div>
 			</form>
 			<button class="btn btn-primary btn-upload" type="submit" disabled>Post</button>

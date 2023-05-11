@@ -3,7 +3,7 @@ use app\core\Session;
 use app\core\View;
 
 ?>
-<div class="container p-5">
+<div class="container p-5 user-select-none">
 	<h3 class="fw-light">Profile Page</h3>
 	<hr class="py-3">
 	<div class="row">

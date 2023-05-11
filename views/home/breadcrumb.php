@@ -2,7 +2,7 @@
 use app\core\Session;
 
 ?>
-<div class="container mt-3">
+<div class="container mt-3 user-select-none">
 	<nav aria-label="breadcrumb">
 		<ol class="breadcrumb border rounded p-3">
 			<li class="breadcrumb-item"><a href="/" class="text-decoration-none text-secondary-emphasis">Home</a></li>

@@ -1,4 +1,4 @@
-/* Processed by Grunt on 11/5/2023 @6:17:52 */
+/* Processed by Grunt on 11/5/2023 @6:43:46 */
 
 
 // init Masonry
@@ -115,11 +115,6 @@ $("#icon-click").on("click", function (data) {
 // Change the cursor to pointer
 $('.btn-like, .btn-share').mouseover(function () { 
     $(this).css('cursor','pointer');
-});
-
-// Disable user selection for buttons
-$('.btn-group').mouseover(function () { 
-    $(this).css('user-select', 'none');
 });
 
 // Change like button status

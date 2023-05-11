@@ -6,7 +6,7 @@ use app\core\Session;
 
 <header>
 	<!-- Logo Nav START -->
-	<nav class="navbar navbar-expand-lg px-3 border-bottom shadow shadow-bottom">
+	<nav class="navbar navbar-expand-lg px-3 border-bottom shadow shadow-bottom user-select-none">
 		<!-- Logo START -->
 		<a class="navbar-brand display-6 me-auto" href="/">
 			<img src="/assets/brand/photogram-logo.png" alt="Logo" width="27" height="31"

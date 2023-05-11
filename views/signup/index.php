@@ -63,7 +63,7 @@ if ($signup) {
     } else { ?>
 
 <section class="container">
-	<div class="h-100 d-flex align-items-center justify-content-center row min-vh-100">
+	<div class="h-100 d-flex align-items-center justify-content-center row min-vh-100 user-select-none">
 		<div class="py-3 col-sm-10 col-md-8 col-lg-6 col-xl-5 col-xxl-4">
 			<!-- This will popup the alert -->
 			<div id="popup-error" class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -82,7 +82,7 @@ if ($signup) {
 else { ?>
 
 <section class="container">
-	<div class="h-100 d-flex align-items-center justify-content-center row min-vh-100">
+	<div class="h-100 d-flex align-items-center justify-content-center row min-vh-100 user-select-none">
 		<div class="py-3 col-sm-10 col-md-8 col-lg-6 col-xl-5 col-xxl-4">
 			<?php // Load Sign up form
                 View::loadTemplate('signup/form_up'); ?>

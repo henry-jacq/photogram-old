@@ -35,7 +35,7 @@ if (Session::currentScript() == "profile") {
 			id="post-<?= $post['id'] ?>">
 			<div class="card shadow-lg">
 				<?php if (Session::isAuthenticated()) { ?>
-				<header class="card-header p-2">
+				<header class="card-header p-2 user-select-none">
 					<div class="d-flex align-items-center justify-content-between">
 						<div class="d-flex align-items-center">
 							<!-- Avatar -->
@@ -101,10 +101,10 @@ if (Session::currentScript() == "profile") {
 					</div>
 				</header>
 				<?php } ?>
-				<img class="post-card-image"
+				<img class="post-card-image user-select-none"
 					src="<?= $p->getImageUri() ?>" loading="eager">
 				<div class="card-body">
-					<div class="btn-group">
+					<div class="btn-group user-select-none">
 						<?php if (!Session::isAuthenticated()) { ?>
 						<span class="me-3">
 							<span class="me-1">0</span>Likes
@@ -122,7 +122,7 @@ if (Session::currentScript() == "profile") {
 						</div>
 						<?php } ?>
 					</div>
-					<p class="card-text mt-2">
+					<p class="card-text mt-2 user-select-all">
 						<?= $p->getPostText() ?>
 					</p>
 				</div>
