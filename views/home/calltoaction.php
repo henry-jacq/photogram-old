@@ -1,13 +1,6 @@
 <?php
 
-use app\models\Post;
 use app\core\Session;
-
-if (isset($_FILES['post_image']) and isset($_POST['post_text'])) {
-    $image_tmp = $_FILES['post_image']['tmp_name'];
-    $text = $_POST['post_text'];
-    Post::registerPost($image_tmp, $text);
-}
 ?>
 
 <section class="py-4 text-center">
