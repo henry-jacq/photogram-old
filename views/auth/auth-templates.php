@@ -9,7 +9,7 @@ function loadForgotPasswordForm(string $status = null, string $value = null)
     if ($status === "success" and $value === "mail-sent") {
         ?>
 <section class="container user-select-none">
-	<div class="h-100 d-flex align-items-center justify-content-center row" style="min-height: 100vh;">
+	<div class="h-100 d-flex align-items-center justify-content-center row min-vh-100">
 		<div class="py-3 col-sm-10 col-md-8 col-lg-6 col-xl-5 col-xxl-4">
 			<!-- This will popup the alert -->
 			<div id="popup-error" class="alert alert-success alert-dismissible fade show" role="alert">
@@ -25,7 +25,7 @@ function loadForgotPasswordForm(string $status = null, string $value = null)
     } elseif ($status === "fail" and $value === "invalid-email") {
         ?>
 <section class="container user-select-none">
-	<div class="h-100 d-flex align-items-center justify-content-center row" style="min-height: 100vh;">
+	<div class="h-100 d-flex align-items-center justify-content-center row min-vh-100">
 		<div class="py-3 col-sm-10 col-md-8 col-lg-6 col-xl-5 col-xxl-4">
 			<!-- This will popup the alert -->
 			<div id="popup-error" class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -42,7 +42,7 @@ function loadForgotPasswordForm(string $status = null, string $value = null)
     } elseif ($status === "fail" and $value === "invalid-token") {?>
 
 <section class="container user-select-none">
-	<div class="h-100 d-flex align-items-center justify-content-center row" style="min-height: 100vh;">
+	<div class="h-100 d-flex align-items-center justify-content-center row min-vh-100">
 		<div class="py-3 col-sm-10 col-md-8 col-lg-6 col-xl-5 col-xxl-4">
 			<!-- This will popup the alert -->
 			<div id="popup-error" class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -58,7 +58,7 @@ function loadForgotPasswordForm(string $status = null, string $value = null)
 <?php } elseif ($status === null) {
     ?>
 <section class="container user-select-none">
-	<div class="h-100 d-flex align-items-center justify-content-center row" style="min-height: 100vh;">
+	<div class="h-100 d-flex align-items-center justify-content-center row min-vh-100">
 		<div class="py-3 col-sm-10 col-md-8 col-lg-6 col-xl-5 col-xxl-4">
 			<?php // Load Login form
                 View::loadTemplate('auth/password-reset-form'); ?>
@@ -95,7 +95,7 @@ function loadChangePasswordForm(string $status = null)
 
     if ($status === "success") {?>
 <section class="container user-select-none">
-	<div class="h-100 d-flex align-items-center justify-content-center row" style="min-height: 100vh;">
+	<div class="h-100 d-flex align-items-center justify-content-center row min-vh-100">
 		<div class="py-3 col-sm-10 col-md-8 col-lg-6 col-xl-5 col-xxl-4">
 			<div id="popup-error" class="alert alert-success fade show text-start" role="alert">
 				<p class="my-2"><b class="fw-semibold">Password changed successfully!</b> You can <a href="/login"
@@ -108,7 +108,7 @@ function loadChangePasswordForm(string $status = null)
 </section>
 <?} elseif ($status === "fail") {?>
 <section class="container user-select-none">
-	<div class="h-100 d-flex align-items-center justify-content-center row" style="min-height: 100vh;">
+	<div class="h-100 d-flex align-items-center justify-content-center row min-vh-100">
 		<div class="py-3 col-sm-10 col-md-8 col-lg-6 col-xl-5 col-xxl-4">
 			<div id="popup-error" class="alert alert-danger alert-dismissible fade show" role="alert">
 				<strong>Password not matches!</strong><br>Password not matches
@@ -121,7 +121,7 @@ function loadChangePasswordForm(string $status = null)
 </section>
 <?} elseif ($status === null) {?>
 <section class="container user-select-none">
-	<div class="h-100 d-flex align-items-center justify-content-center row" style="min-height: 100vh;">
+	<div class="h-100 d-flex align-items-center justify-content-center row min-vh-100">
 		<div class="py-3 col-sm-10 col-md-8 col-lg-6 col-xl-5 col-xxl-4">
 			<?php // Load change password form
                 View::loadTemplate('auth/change-password-form'); ?>
