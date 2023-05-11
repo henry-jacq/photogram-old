@@ -30,7 +30,9 @@ $("img").mousedown(function(e){
     e.preventDefault()
 });
 
-if (window.location.pathname === "/" && $('form').hasClass('.dropzone')) {
+// Dropzone - To upload the files
+// Initialize if the dropzone element exists and the path is "/"
+if (window.location.pathname === "/" && document.querySelector('.dropzone')) {  
     Dropzone.autoDiscover = false;
 
     // Initializing Dropzone
@@ -42,7 +44,7 @@ if (window.location.pathname === "/" && $('form').hasClass('.dropzone')) {
         acceptedFiles:".png,.jpeg,.webp,.jpg,.gif,.mp4,",
         autoProcessQueue: false
     });
-    
+        
     // Upload post
     $('.btn-upload').on('click', function(e){
         e.preventDefault();

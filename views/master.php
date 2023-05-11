@@ -10,14 +10,14 @@ use app\core\Session;
 	View::loadTemplate('_head'); ?>
 
 	<body class="d-flex flex-column min-vh-100">
-
+		
 		<?php
-	if (Session::$isError) {
-	    View::loadTemplate('_error');
-	} else {
-	    View::loadTemplate(Session::currentScript());
-	}
-	?>
+		if (Session::$isError) {
+			View::loadTemplate('_error');
+		} else {
+			View::loadTemplate(Session::currentScript());
+		}
+		?>
 
 		<div id="modalsGarbage">
 			<div class="modal fade" data-bs-backdrop="static" id="dummy-dialog-modal" tabindex="-1" role="dialog"
@@ -40,6 +40,9 @@ use app\core\Session;
 		<script src="<?= URL_ROOT ?>js/jquery/jquery.js">
 		</script>
 
+		<!-- Test JS -->
+		<script src="<?= URL_ROOT ?>js/test.js"></script>
+
 		<!-- Bootstrap JS -->
 		<script src="<?= URL_ROOT ?>js/bootstrap/bootstrap.bundle.js"></script>
 
@@ -47,6 +50,8 @@ use app\core\Session;
 	    if (Session::isAuthenticated()) {?>
 		<script src="<?= URL_ROOT ?>js/theme-switcher.js"></script>
 		<script src="<?= URL_ROOT ?>js/hello.js"></script>
+		<!-- Dropzone JS -->
+		<script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
 		<?php } ?>
 
 		<!-- Custom icons from font-awesome -->
@@ -57,9 +62,6 @@ use app\core\Session;
 
 		<!-- Masonry -->
 		<script src="https://unpkg.com/masonry-layout@4.2.2/dist/masonry.pkgd.min.js"></script>
-
-		<!-- Dropzone JS -->
-		<script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
 		
 		<!-- Dialog JS -->
 		<script src="<?= URL_ROOT ?>js/dialog/dialog.js"></script>
@@ -69,9 +71,6 @@ use app\core\Session;
 
 		<!-- App JS -->
 		<script src="<?= URL_ROOT ?>js/app.min.js"></script>
-		
-		<!-- Test JS -->
-		<script src="<?= URL_ROOT ?>js/test.js"></script>
 
 	</body>
 
