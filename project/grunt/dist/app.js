@@ -1,4 +1,4 @@
-/* Processed by Grunt on 10/5/2023 @17:32:50 */
+/* Processed by Grunt on 11/5/2023 @4:53:40 */
 
 
 // init Masonry
@@ -33,9 +33,9 @@ $("img").mousedown(function(e){
     e.preventDefault()
 });
 
-if (window.location.pathname === "/") {
+if (window.location.pathname === "/" && $('form').hasClass('.dropzone')) {
     Dropzone.autoDiscover = false;
-    
+
     // Initializing Dropzone
     var myDropzone = new Dropzone(".dropzone", {
         url: "/api/posts/create",
@@ -45,7 +45,7 @@ if (window.location.pathname === "/") {
         acceptedFiles:".png,.jpeg,.webp,.jpg,.gif,.mp4,",
         autoProcessQueue: false
     });
-      
+    
     // Upload post
     $('.btn-upload').on('click', function(e){
         e.preventDefault();
