@@ -42,7 +42,7 @@ trait SQLGetterSetter
         }
         try {
             // Query to get data from users table
-            $sql = "SELECT `$var` FROM `$this->table` WHERE `id` = $this->id";
+            $sql = "SELECT `$var` FROM `$this->table` WHERE `id` = '$this->id'";
             $result = $this->conn->query($sql);
             if ($result and $result->num_rows == 1) {
                 return $result->fetch_assoc()["$var"];
@@ -63,7 +63,7 @@ trait SQLGetterSetter
         }
         try {
             // Query to update the data in users table
-            $sql = "UPDATE `$this->table` SET `$var`='$data' WHERE `id`=$this->id;";
+            $sql = "UPDATE `$this->table` SET `$var`='$data' WHERE `id`='$this->id';";
             if ($this->conn->query($sql)) {
                 return true;
             } else {
@@ -72,5 +72,10 @@ trait SQLGetterSetter
         } catch (Exception $e) {
             throw new Exception(__CLASS__ . "::_set_data -> $var, data unavailable.");
         }
+    }
+
+    public function getID()
+    {
+        return $this->id;
     }
 }
