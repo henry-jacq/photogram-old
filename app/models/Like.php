@@ -31,7 +31,7 @@ class Like
 
         $result = $this->conn->query($query);
         if ($result->num_rows != 1) {
-            $query = "INSERT INTO `likes` (`id`, `user_id`, `post_id`, `like`, `timestamp`)
+            $query = "INSERT INTO `likes` (`id`, `uid`, `pid`, `like`, `timestamp`)
             VALUES ('$this->id', '$user_id', '$post_id', 0, now())";
             $result = $this->conn->query($query);
             if (!$result) {
@@ -71,7 +71,7 @@ class Like
     public static function getLikeCount(int $id): int
     {
         $conn = Database::getConnection();
-        $query = "SELECT `like` FROM `likes` WHERE `post_id` = '$id'";
+        $query = "SELECT `like` FROM `likes` WHERE `pid` = '$id'";
         $result = $conn->query($query);
         $like_count = 0;
 
@@ -92,7 +92,7 @@ class Like
     {
         $user_id = Session::getUser()->getID();
         $post_id = $post_id;
-        $query = "SELECT `like` FROM `likes` WHERE `post_id` = '$post_id' AND `user_id` = '$user_id'";
+        $query = "SELECT `like` FROM `likes` WHERE `pid` = '$post_id' AND `uid` = '$user_id'";
 
         $conn = Database::getConnection();
         $result = $conn->query($query);
