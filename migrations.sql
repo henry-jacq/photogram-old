@@ -1,5 +1,5 @@
--- 20 Apr, 2023 Migrations
--- Adminer 4.8.1 MySQL 8.0.30 dump
+-- 13 May, 2023 Migrations
+-- Adminer 4.8.1 MySQL 8.0.33 dump
 
 SET NAMES utf8;
 SET time_zone = '+00:00';
@@ -25,6 +25,18 @@ CREATE TABLE `auth` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 
+CREATE TABLE `likes` (
+  `id` varchar(32) NOT NULL,
+  `uid` int NOT NULL,
+  `pid` int NOT NULL,
+  `like` int NOT NULL,
+  `timestamp` timestamp NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `user_id` (`uid`),
+  KEY `post_id` (`pid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+
 CREATE TABLE `post_images` (
   `id` int NOT NULL AUTO_INCREMENT,
   `post_id` int NOT NULL,
@@ -37,7 +49,7 @@ CREATE TABLE `post_images` (
 
 CREATE TABLE `posts` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `post_text` varchar(160) NOT NULL,
+  `post_text` varchar(240) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `multiple_images` int NOT NULL DEFAULT '0',
   `image_uri` varchar(1024) NOT NULL,
   `like_count` int NOT NULL,
@@ -73,8 +85,8 @@ CREATE TABLE `users` (
   `twitter` varchar(1024) DEFAULT NULL,
   `facebook` varchar(1024) DEFAULT NULL,
   KEY `id` (`id`),
-  CONSTRAINT `users_ibfk_1` FOREIGN KEY (`id`) REFERENCES `auth` (`id`) ON DELETE RESTRICT
+  CONSTRAINT `users_ibfk_2` FOREIGN KEY (`id`) REFERENCES `auth` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 
--- 2023-04-20 12:32:52
+-- 2023-05-13 18:35:48
