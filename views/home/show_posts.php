@@ -108,7 +108,7 @@ if (Session::currentScript() == "profile") {
 					<div class="btn-group user-select-none">
 						<?php if (!Session::isAuthenticated()) { ?>
 						<span class="me-3">
-							<span class="me-1">0</span>Likes
+							<span class="me-1"><?= Like::getLikeCount($post['id']) ?></span>Likes
 						</span>
 						<?php } else { ?>
 						<div class="btn-like me-3" data-id="<?= $post['id'] ?>">
