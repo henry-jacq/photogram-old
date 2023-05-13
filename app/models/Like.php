@@ -30,16 +30,12 @@ class Like
         $query = "SELECT * FROM `likes` WHERE `id` = '$this->id'";
 
         $result = $this->conn->query($query);
-        if ($result->num_rows == 1) {
-            // TODO: Insert if no like entry found.
-        } else {
+        if ($result->num_rows != 1) {
             $query = "INSERT INTO `likes` (`id`, `user_id`, `post_id`, `like`, `timestamp`)
-            VALUES ('$this->id', '$user_id', '$post_id', 1, now())";
+            VALUES ('$this->id', '$user_id', '$post_id', 0, now())";
             $result = $this->conn->query($query);
-            if ($result) {
-                if (!$this->conn->query($query)) {
-                    throw new Exception("Unable to create like entry");
-                }
+            if (!$result) {
+                throw new Exception("Unable to create like entry");
             }
         }
     }
@@ -108,8 +104,6 @@ class Like
             } else {
                 return false;
             }
-        } else {
-            return 0;
         }
     }
 }

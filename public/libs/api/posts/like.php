@@ -8,8 +8,8 @@ use app\models\Like;
 ${basename(__FILE__, '.php')} = function () {
     if ($this->isAuthenticated()) {
         if ($this->paramsExists(['id'])) {
-            $post_id = new Post($this->_request['id']);
-            $like = new Like($post_id);
+            $post = new Post($this->_request['id']);
+            $like = new Like($post);
             $like->toggleLike();
             $this->response($this->json([
                 'message'=>$like->isLiked()
