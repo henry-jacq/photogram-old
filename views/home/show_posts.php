@@ -1,6 +1,7 @@
 <?php
 use app\core\Session;
 use app\models\Post;
+use app\models\Like;
 
 ?>
 
@@ -110,12 +111,9 @@ if (Session::currentScript() == "profile") {
 							<span class="me-1">0</span>Likes
 						</span>
 						<?php } else { ?>
-						<div class="btn-like me-3">
-							<i class="btn border-0 p-0 fa fa-heart-o me-1"
-								id="like-<?= $post['id'] ?>"
-								aria-hidden="true"></i>
-							<span class="me-1"
-								id="like-count-<?= $post['id'] ?>">0</span>Likes
+						<div class="btn-like me-3" data-id="<?= $post['id'] ?>">
+							<i class="btn border-0 p-0 fa fa-heart-o me-1" id="like-<?= $post['id'] ?>" aria-hidden="true"></i>
+							<span class="me-1"><?= Like::getLikeCount($post['id']) ?></span>Likes
 						</div>
 						<div class="btn-share card-items">
 							<i class="bi bi-send me-1 small"></i>Share

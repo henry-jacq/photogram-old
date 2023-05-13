@@ -1,4 +1,4 @@
-/* Processed by Grunt on 11/5/2023 @6:43:46 */
+/* Processed by Grunt on 13/5/2023 @12:10:47 */
 
 
 // init Masonry
@@ -118,35 +118,71 @@ $('.btn-like, .btn-share').mouseover(function () {
 });
 
 // Change like button status
-function likeBtn(mainSelector) {
+function likeBtn(mainSelector, status=null, isClicked=false) {
     var likeBtnID = mainSelector.find('i').attr('id');
     var likeBtnSelector = $('#'+likeBtnID);
     var currentLikes = parseInt(mainSelector.find('span').text());  
 
-    if (likeBtnSelector.hasClass('fa-heart-o')) {
-        likeBtnSelector.removeClass('fa-heart-o');
-        likeBtnSelector.addClass('fa-heart text-danger')
-        mainSelector.find('span').text(currentLikes += 1);
-    } else if (likeBtnSelector.hasClass('fa-heart text-danger')) {
-        if (currentLikes != 0) {
-            likeBtnSelector.removeClass('fa-heart text-danger');
-            likeBtnSelector.addClass('fa-heart-o');
-            mainSelector.find('span').text(currentLikes -+ 1);
+    if (status == true) {
+        if (likeBtnSelector.hasClass('fa-heart-o')) {
+            likeBtnSelector.removeClass('fa-heart-o');
+            likeBtnSelector.addClass('fa-heart text-danger')
+            if (isClicked == true) {
+                mainSelector.find('span').text(currentLikes += 1);
+            }
+        }
+    } else if (status == false) {
+        if (likeBtnSelector.hasClass('fa-heart text-danger')) {
+            if (currentLikes != 0) {
+                likeBtnSelector.removeClass('fa-heart text-danger');
+                likeBtnSelector.addClass('fa-heart-o');
+                mainSelector.find('span').text(currentLikes -+ 1);
+            }
         }
     }
 }
 
+// Keep the like(heart-filled) if the user already liked it.
+$('.btn-like').each(function () {
+    let thisBtn = $(this);
+    let post_id = $(this).attr('data-id');
+
+    $.post('/api/posts/like',
+    {
+        postID: post_id
+    }, function(data, textSuccess){
+        if(textSuccess =="success"){
+            likeBtn($(thisBtn), data.message, false);
+        } else {
+            console.error("Can't like the post ID: "+post_id);
+        }
+    });
+});
+
 // It will like the post if the image is double clicked
-$(".post-card-image").dblclick(function(){
-    var selector = $(this).next().find('.btn-group').find('.btn-like');
-    likeBtn(selector);
+// $(".post-card-image").dblclick(function(){
+//     var selector = $(this).next().find('.btn-group').find('.btn-like');
+//     likeBtn(selector);
+// });
+
+// It will like the post when the user clicks on the like button
+$('.btn-like').on('click', function() {
+    let thisBtn = $(this);
+    let post_id = $(this).attr('data-id');
+    
+    $.post('/api/posts/like',
+    {
+        id: post_id
+    }, function(data, textSuccess){
+        if(textSuccess =="success"){
+            likeBtn($(thisBtn), data.message, true);
+        } else {
+            console.error("Can't like the post ID: "+post_id);
+        }
+    });
 });
 
-// It will like the post on click on like button
-$('.btn-like').on('click', function(){  
-    likeBtn($(this));
-});
-
+// Toast wrapper
 function showToast(title, subtitle, message) {
     let tst = new Toast(title, subtitle, message, {});
     tst.show();

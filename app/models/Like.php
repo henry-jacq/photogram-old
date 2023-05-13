@@ -18,12 +18,14 @@ class Like
 
     public function __construct(Post $post)
     {
-        $userid = Session::getUser()->getID();
-        $postid = $post->getID();
-        $this->id = md5($userid . "-".$postid);
-        $this->conn = Database::getConnection();
-        $this->table = 'likes';
+        if (!$this->conn) {
+            $this->conn = Database::getConnection();
+        }
         $this->data = null;
+        $this->table = 'likes';
+        $post_id = $post->getID();
+        $user_id = Session::getUser()->getID();
+        $this->id = md5($user_id . "-" . $post_id);
 
         $query = "SELECT * FROM `likes` WHERE `id` = '$this->id'";
 
@@ -31,9 +33,9 @@ class Like
         if ($result->num_rows == 1) {
             // TODO: Insert if no like entry found.
         } else {
-            $query_insert = "INSERT INTO `likes` (`id`, `user_id`, `post_id`, `like`, `timestamp`)
-            VALUES ('$this->id', '$userid', '$postid', 0, now())";
-            $result = $this->conn->query($query_insert);
+            $query = "INSERT INTO `likes` (`id`, `user_id`, `post_id`, `like`, `timestamp`)
+            VALUES ('$this->id', '$user_id', '$post_id', 1, now())";
+            $result = $this->conn->query($query);
             if ($result) {
                 if (!$this->conn->query($query)) {
                     throw new Exception("Unable to create like entry");
@@ -42,6 +44,9 @@ class Like
         }
     }
 
+    /**
+     * It will toggle the value to either 0 or 1.
+     */
     public function toggleLike()
     {
         $liked = $this->getLike();
@@ -52,8 +57,59 @@ class Like
         }
     }
 
-    public function isLiked()
+    /**
+     * It returns true. if the post is liked; otherwise, it returns false.
+     */
+    public function isLiked(): bool
     {
-        return boolval($this->getLike());
+        if ($this->getLike() == 1) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * It will return the total likes of the post
+     */
+    public static function getLikeCount(int $id): int
+    {
+        $conn = Database::getConnection();
+        $query = "SELECT `like` FROM `likes` WHERE `post_id` = '$id'";
+        $result = $conn->query($query);
+        $like_count = 0;
+
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $like_count += (int) $row['like'];
+            }
+            return $like_count;
+        } else {
+            return 0;
+        }
+    }
+
+    /**
+     * It will returns true, if the user liked the post. Otherwise it returns false
+     */
+    public static function isUserLiked(int $post_id)
+    {
+        $user_id = Session::getUser()->getID();
+        $post_id = $post_id;
+        $query = "SELECT `like` FROM `likes` WHERE `post_id` = '$post_id' AND `user_id` = '$user_id'";
+
+        $conn = Database::getConnection();
+        $result = $conn->query($query);
+
+        if ($result->num_rows == 1) {
+            $row = $result->fetch_assoc();
+            if ($row['like'] == 1){
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return 0;
+        }
     }
 }
