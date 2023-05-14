@@ -1,6 +1,8 @@
 <!doctype html>
 <html lang="en" data-bs-theme="dark">
 
+	<noscript><h1>Photogram</h1><p><strong>Photo-sharing web application</strong></p><p data-nosnippet>You need to enable JavaScript to run this app.</p></noscript>
+
 	<!-- Load header -->
 	<?php
 
