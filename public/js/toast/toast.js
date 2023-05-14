@@ -57,7 +57,7 @@ class Toast{
 
     show(){
         var toast_template = `
-        <div class="toast mb-4 me-4" id="${this.id}" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast fade mb-4 me-4" id="${this.id}" role="alert" aria-live="assertive" aria-atomic="true">
             <div class="toast-header bg-opacity-50">
                 <img src="/assets/brand/favicon.ico" class="me-2" alt="..." width="23" height="25">
                 <strong class="fw-semibold me-auto">${this.title}</strong>
