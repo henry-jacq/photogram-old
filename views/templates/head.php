@@ -4,15 +4,26 @@ use app\core\Session;
 ?>
 
 <head>
-	<meta charset="UTF-8">
+	<meta data-n-head="1" charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" type="image/x-icon" href="/assets/brand/photogram-icon.png">
+	<meta name="author" content="Henry">
 	<meta property="og:image"
 		content="<?= URL_ROOT ?>assets/brand/photogram-icon.png">
 	<meta property="site_name" content="Photogram">
 	<meta property="og:title" content="Photogram · Gallery of Memories">
-	<meta property="description"
-		content="Create an account or log in to Photogram. Share photos &amp; videos with friends, family and other people you know.">
+	<meta property="og:site_name" content="<?= DOMAIN_NAME ?>">
+	<meta property="og:type" content="website">
+	<meta property="og:image" content="<?= URL_ROOT ?>assets/brand/photogram-icon.png">
+	<meta property="og:image:alt" content="Photogram • Created by Henry">
+	<meta property="description" content="Create an account or log in to Photogram. Share photos &amp; videos with friends, family and other people you know.">
+
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:title" content="Photogram">
+	<meta name="twitter:description" content="Photogram is an easy-to-use web app for sharing photos with a clean and uncluttered interface.">
+	<meta name="twitter:image" content="https://iphotogram.selfmade.one/assets/screenshot-2.png">
+	
 	<?php if (Session::isAuthenticated()) { ?>
 	<?php if (Session::currentScript() == "index") { ?>
 	<title>Home · Photogram</title>

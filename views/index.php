@@ -3,7 +3,7 @@
 use app\core\Session;
 use app\core\View;
 
-View::loadTemplate('_header');
+View::loadTemplate('templates/header');
 
 if (Session::isAuthenticated()) {
     View::loadTemplate('home/breadcrumb');
@@ -13,4 +13,4 @@ if (Session::isAuthenticated()) {
 }
 
 View::loadTemplate('home/photogram');
-View::loadTemplate('_footer');
+View::loadTemplate('templates/footer');
