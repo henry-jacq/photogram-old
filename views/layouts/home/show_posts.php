@@ -68,8 +68,8 @@ if (Session::currentScript() == "profile") {
 							</a>
 							<!-- Card feed action dropdown menu -->
 							<ul class="dropdown-menu dropdown-menu-end mt-2" aria-labelledby="postCardFeedAction">
-								<li><a class="dropdown-item"
-										href="<?php echo($p->getImageUri()) ?>">
+								<li><a class="dropdown-item btn btn-download"
+										value="<?php echo($p->getImageUri()) ?>">
 										<i class="bi bi-download fa-fw pe-2"></i>Download</a></li>
 								<li
 									data-id="<?= $post['id'] ?>">
