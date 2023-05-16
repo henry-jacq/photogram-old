@@ -6,11 +6,11 @@ use app\core\View;
 View::loadTemplate('templates/header');
 
 if (Session::isAuthenticated()) {
-    View::loadTemplate('home/breadcrumb');
-    View::loadTemplate('home/calltoaction');
+    View::loadTemplate('layouts/home/breadcrumb');
+    View::loadTemplate('layouts/home/calltoaction');
 } else {
-    View::loadTemplate('home/login');
+    View::loadTemplate('layouts/home/login');
 }
 
-View::loadTemplate('home/photogram');
+View::loadTemplate('layouts/home/photogram');
 View::loadTemplate('templates/footer');

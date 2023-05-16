@@ -71,7 +71,7 @@ if ($signup) {
 				<button type="button" class="btn-close shadow-none" data-bs-dismiss="alert" aria-label="Close"></button>
 			</div>
 			<?php // Load Sign up form
-                View::loadTemplate('signup/form_up'); ?>
+                View::loadTemplate('layouts/signup/form_up'); ?>
 		</div>
 	</div>
 </section>
@@ -85,7 +85,7 @@ else { ?>
 	<div class="h-100 d-flex align-items-center justify-content-center row min-vh-100 user-select-none">
 		<div class="py-3 col-sm-10 col-md-8 col-lg-6 col-xl-5 col-xxl-4">
 			<?php // Load Sign up form
-                View::loadTemplate('signup/form_up'); ?>
+                View::loadTemplate('layouts/signup/form_up'); ?>
 		</div>
 	</div>
 </section>

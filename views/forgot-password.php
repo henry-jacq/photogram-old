@@ -2,4 +2,4 @@
 
 use app\core\View;
 
-View::loadTemplate('auth/index');
+View::loadTemplate('layouts/auth/index');

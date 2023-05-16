@@ -2,4 +2,4 @@
 
 use app\core\View;
 
-View::loadTemplate('signup/index');
+View::loadTemplate('layouts/signup/index');

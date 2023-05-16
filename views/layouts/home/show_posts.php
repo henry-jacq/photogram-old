@@ -1,7 +1,7 @@
 <?php
-use app\core\Session;
-use app\models\Post;
 use app\models\Like;
+use app\models\Post;
+use app\core\Session;
 
 ?>
 
