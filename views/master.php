@@ -15,7 +15,7 @@
 	
 		<?php
 		if (Session::$isError) {
-			View::loadTemplate('_error');
+			View::loadTemplate('templates/error');
 		} else {
 			View::loadTemplate(Session::currentScript());
 		}
