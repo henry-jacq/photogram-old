@@ -25,19 +25,21 @@ use app\core\Session;
 	<meta name="twitter:image" content="https://iphotogram.selfmade.one/assets/screenshot-2.png">
 	
 	<?php if (Session::isAuthenticated()) { ?>
-	<?php if (Session::currentScript() == "index") { ?>
-	<title>Home · Photogram</title>
-	<?php } elseif (Session::currentScript() == "profile") { ?>
-	<title>Profile · Photogram</title>
-	<?php } elseif (Session::currentScript() == "settings") { ?>
-	<title>Settings · Photogram</title>
-	<?php } else { ?>
-	<title>Photogram</title>
-	<?php }
+		<?php if (Session::currentScript() == "index") { ?>
+			<title>Home · Photogram</title>
+		<?php } elseif (Session::currentScript() == "profile") { ?>
+			<title>Profile · Photogram</title>
+		<?php } elseif (Session::currentScript() == "settings") { ?>
+			<title>Settings · Photogram</title>
+		<?php } else { ?>
+			<title>Photogram</title>
+		<?php }
 	} elseif (Session::currentScript() == "forgot-password") {?>
-	<title>Forgot password</title>
-	<?php } else { ?>
-	<title>Sign in/up · Photogram</title>
+		<title>Forgot password</title>
+	<?php } elseif (Session::$isError) {?>
+		<title>404 Page not found!</title>
+	<?} else { ?>
+		<title>Sign in/up · Photogram</title>
 	<?php } ?>
 
 	<!-- Favicon for photogram -->

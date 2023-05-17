@@ -1,12 +1,12 @@
 <!doctype html>
 <html lang="en" data-bs-theme="dark">
 
-	<!-- Load header -->
 	<?php
 
 	use app\core\View;
 	use app\core\Session;
 
+	// Load header
 	View::loadTemplate('templates/head'); ?>
 
 	<body class="d-flex flex-column min-vh-100">
@@ -15,7 +15,7 @@
 	
 		<?php
 		if (Session::$isError) {
-			View::loadTemplate('templates/error');
+			View::loadErrorPage();
 		} else {
 			View::loadTemplate(Session::currentScript());
 		}

@@ -1,7 +1,3 @@
-<?php
-// Setting the response code as 404
-http_response_code(404);
-?>
 <div class="d-flex flex-wrap align-items-center justify-content-center min-vh-100">
     <div class="container p-5">
         <div class="row mx-auto text-center py-5 bg-body-tertiary rounded">

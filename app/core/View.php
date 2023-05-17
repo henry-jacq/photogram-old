@@ -16,7 +16,7 @@ class View
         if (is_file($script)) {
             include $script;
         } else {
-            View::loadTemplate('_error');
+            View::loadTemplate('templates/error');
         }
     }
 
@@ -26,5 +26,14 @@ class View
     public static function renderPage()
     {
         View::loadTemplate('master');
+    }
+
+    /**
+     * Loads the 404 error page
+     */
+    public static function loadErrorPage()
+    {
+        http_response_code(404);
+        self::loadTemplate('templates/error');
     }
 }
