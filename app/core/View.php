@@ -25,7 +25,7 @@ class View
      */
     public static function renderPage()
     {
-        View::loadTemplate('master');
+        View::loadTemplate('templates/master');
     }
 
     /**
