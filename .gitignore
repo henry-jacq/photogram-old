@@ -1,6 +1,9 @@
 # Node modules
 project/grunt/node_modules/
 
+# Storage
+storage/posts/
+
 # vendor
 vendor/
 
