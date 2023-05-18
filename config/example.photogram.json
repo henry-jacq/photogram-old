@@ -3,7 +3,7 @@
     "db_user": "root",
     "db_pass": "",
     "db_name": "photogram_db",
-    "upload_path": "",
+    "post_upload_path": "",
     "smtp_host": "",
     "smtp_auth_user": "",
     "smtp_auth_pass": "",

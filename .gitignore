@@ -1,11 +1,11 @@
 # Node modules
 project/grunt/node_modules/
 
-# Image uploads
-uploads/
-
 # vendor
 vendor/
 
 # Photogram configuration
 config/photogram.json
+
+# TODO
+TODO.md

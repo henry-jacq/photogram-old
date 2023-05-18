@@ -2,7 +2,7 @@
 
 include 'libs/autoload.php';
 
-$upload_path = APP_UPLOAD_PATH;
+$upload_path = APP_POST_UPLOAD_PATH;
 $fname = $_GET['name'];
 
 // To prevent directory traversel

@@ -38,10 +38,10 @@ define('DB_PASS', Config::get_details("db_pass"));
 define('DB_NAME', Config::get_details("db_name"));
 
 // Upload Path
-define('APP_UPLOAD_PATH', Config::get_details("upload_path"));
+define('APP_POST_UPLOAD_PATH', Config::get_details("post_upload_path"));
 
-// Config Path
-define('CONFIG_PATH', dirname(__FILE__));
+// Config Location
+define('APP_CONFIG_LOCATION', __FILE__);
 
 // SMTP Params
 define('SMTP_HOST', Config::get_details("smtp_host"));
