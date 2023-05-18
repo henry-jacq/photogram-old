@@ -2,4 +2,4 @@
 
 use app\core\View;
 
-View::loadTemplate('layouts/login/index');
+View::loadTemplate('templates/login/index');

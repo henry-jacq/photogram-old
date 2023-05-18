@@ -46,7 +46,7 @@ if ($login) {
 				<button type="button" class="btn-close shadow-none" data-bs-dismiss="alert" aria-label="Close"></button>
 			</div>
 			<?php // Load Login form
-                    View::loadTemplate('layouts/login/form_in'); ?>
+                    View::loadTemplate('templates/login/form_in'); ?>
 		</div>
 	</div>
 </section>
@@ -58,7 +58,7 @@ if ($login) {
 	<div class="h-100 d-flex align-items-center justify-content-center row user-select-none min-vh-100">
 		<div class="py-3 col-sm-10 col-md-8 col-lg-6 col-xl-5 col-xxl-4">
 			<?php // Load Login form
-                View::loadTemplate('layouts/login/form_in'); ?>
+                View::loadTemplate('templates/login/form_in'); ?>
 		</div>
 	</div>
 </section>

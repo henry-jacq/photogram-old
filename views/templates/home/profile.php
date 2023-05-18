@@ -51,6 +51,6 @@ use app\core\View;
 		</div>
 		<h3 class="fw-light py-3 mt-3">My Posts</h3>
 		<hr class="p-4">
-		<?= View::loadTemplate('layouts/home/show_posts'); ?>
+		<?= View::loadTemplate('templates/home/show_posts'); ?>
 	</div>
 </div>

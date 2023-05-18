@@ -3,14 +3,14 @@
 use app\core\Session;
 use app\core\View;
 
-View::loadTemplate('templates/header');
+View::loadTemplate('layouts/header');
 
 if (Session::isAuthenticated()) {
-    View::loadTemplate('layouts/home/breadcrumb');
-    View::loadTemplate('layouts/home/calltoaction');
+    View::loadTemplate('templates/home/breadcrumb');
+    View::loadTemplate('templates/home/calltoaction');
 } else {
-    View::loadTemplate('layouts/home/login');
+    View::loadTemplate('templates/home/login');
 }
 
-View::loadTemplate('layouts/home/photogram');
-View::loadTemplate('templates/footer');
+View::loadTemplate('templates/home/photogram');
+View::loadTemplate('layouts/footer');
