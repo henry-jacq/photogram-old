@@ -103,7 +103,7 @@ if (Session::currentScript() == "profile") {
 				</header>
 				<?php } ?>
 				<img class="post-card-image user-select-none"
-					src="<?= $p->getImageUri() ?>" loading="eager">
+					src="<?= $p->getImageUri() ?>" loading="eager" data-id="<?= $post['id']?>">
 				<div class="card-body">
 					<div class="btn-group user-select-none">
 						<?php if (!Session::isAuthenticated()) { ?>

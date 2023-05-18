@@ -45,27 +45,34 @@ $('.btn-like').each(function () {
     });
 });
 
+// Toggle likes
+function likePost(selector, post_id) {
+    if (selector !== undefined && post_id !== undefined) {
+        $.post('/api/posts/like',
+        {
+            id: post_id
+        }, function(data, textSuccess){
+            if(textSuccess =="success"){
+                likeBtn(selector, data.message, true);
+            } else {
+                console.error("Can't like the post ID: "+post_id);
+            }
+        });
+    }
+}
+
 // It will like the post if the image is double clicked
-// $(".post-card-image").dblclick(function(){
-//     var selector = $(this).next().find('.btn-group').find('.btn-like');
-//     likeBtn(selector);
-// });
+$(".post-card-image").dblclick(function(){
+    let thisBtn = $(this).next().find('.btn-group').find('.btn-like');
+    let post_id = $(this).attr('data-id');
+    likePost(thisBtn, post_id);
+});
 
 // It will like the post when the user clicks on the like button
 $('.btn-like').on('click', function() {
     let thisBtn = $(this);
     let post_id = $(this).attr('data-id');
-    
-    $.post('/api/posts/like',
-    {
-        id: post_id
-    }, function(data, textSuccess){
-        if(textSuccess =="success"){
-            likeBtn($(thisBtn), data.message, true);
-        } else {
-            console.error("Can't like the post ID: "+post_id);
-        }
-    });
+    likePost(thisBtn, post_id);
 });
 
 // Toast wrapper
