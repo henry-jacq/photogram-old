@@ -8,15 +8,24 @@ namespace app\core;
 class View
 {
     /**
+     * Loads the 404 error page
+     */
+    public static function loadErrorPage()
+    {
+        http_response_code(404);
+        self::loadTemplate('layouts/error');
+    }
+    
+    /**
      * Loads the view template
      */
-    public static function loadTemplate($template_name)
+    public static function loadTemplate(string $template_name)
     {
-        $script = $_SERVER['DOCUMENT_ROOT'] . "/../views/$template_name.php";
-        if (is_file($script)) {
-            include $script;
+        $template = APP_ROOT . "/views/$template_name.php";
+        if (is_file($template)) {
+            include_once $template;
         } else {
-            View::loadTemplate('templates/error');
+            self::loadErrorPage();
         }
     }
 
@@ -25,15 +34,6 @@ class View
      */
     public static function renderPage()
     {
-        View::loadTemplate('templates/master');
-    }
-
-    /**
-     * Loads the 404 error page
-     */
-    public static function loadErrorPage()
-    {
-        http_response_code(404);
-        self::loadTemplate('templates/error');
+        self::loadTemplate('layouts/master');
     }
 }
