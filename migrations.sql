@@ -1,4 +1,4 @@
--- 13 May, 2023 Migrations
+-- 18 May, 2023 Migrations
 -- Adminer 4.8.1 MySQL 8.0.33 dump
 
 SET NAMES utf8;
@@ -52,7 +52,6 @@ CREATE TABLE `posts` (
   `post_text` varchar(240) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `multiple_images` int NOT NULL DEFAULT '0',
   `image_uri` varchar(1024) NOT NULL,
-  `like_count` int NOT NULL,
   `uploaded_time` timestamp NOT NULL ON UPDATE CURRENT_TIMESTAMP,
   `owner` varchar(128) NOT NULL,
   PRIMARY KEY (`id`)
@@ -89,4 +88,4 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 
--- 2023-05-13 18:35:48
+-- 2023-05-18 06:54:06

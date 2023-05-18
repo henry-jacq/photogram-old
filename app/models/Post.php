@@ -33,7 +33,7 @@ class Post
             $image_path = APP_UPLOAD_PATH.$image_name;
             if (move_uploaded_file($image_tmp, $image_path)) {
                 $image_uri = "/files/$image_name";
-                $insert_command = "INSERT INTO `posts` (`post_text`, `multiple_images`,`image_uri`, `like_count`, `uploaded_time`, `owner`) VALUES ('$text', 0, '$image_uri', '0', now(), '$owner')";
+                $insert_command = "INSERT INTO `posts` (`post_text`, `multiple_images`,`image_uri`, `uploaded_time`, `owner`) VALUES ('$text', 0, '$image_uri', now(), '$owner')";
                 $db = Database::getConnection();
                 if ($db->query($insert_command)) {
                     $id = mysqli_insert_id($db);
