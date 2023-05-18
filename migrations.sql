@@ -32,8 +32,8 @@ CREATE TABLE `likes` (
   `like` int NOT NULL,
   `timestamp` timestamp NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `user_id` (`uid`),
-  KEY `post_id` (`pid`)
+  KEY `pid` (`pid`),
+  CONSTRAINT `likes_ibfk_1` FOREIGN KEY (`pid`) REFERENCES `posts` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 
@@ -96,4 +96,4 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 
--- 2023-05-18 15:02:33
+-- 2023-05-18 16:41:39
