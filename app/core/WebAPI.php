@@ -12,7 +12,6 @@ class WebAPI extends API
     {
         if (php_sapi_name() == "cli") {
             $this->site_config_path = dirname(dirname(__DIR__)).'/config/config.php';
-            echo $this->site_config_path . PHP_EOL;
             require_once $this->site_config_path;
         } elseif (php_sapi_name() == "apache2handler") {
             $this->site_config_path = $_SERVER['DOCUMENT_ROOT'] . '/../config/config.php';
