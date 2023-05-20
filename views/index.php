@@ -7,7 +7,7 @@ View::loadTemplate('layouts/header');
 
 if (Session::isAuthenticated()) {
     View::loadTemplate('templates/home/breadcrumb');
-    View::loadTemplate('templates/home/calltoaction');
+    // View::loadTemplate('templates/home/calltoaction');
 } else {
     View::loadTemplate('templates/home/login');
 }
