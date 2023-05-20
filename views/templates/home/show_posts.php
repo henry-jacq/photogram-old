@@ -22,7 +22,7 @@ if (Session::currentScript() == "profile") {
         $posts = Post::getAllPosts();
         // If no posts are uploaded, print this message.
         if (empty($posts)) { ?>
-		<p class="text-muted text-center align-items-center mb-0">Memories are unavailable. Try to share some photos.
+		<p class="text-muted text-center align-items-center mb-0">There are no posts available. Try to share some photos.
 		</p>
 		<?php }
         } ?>
@@ -68,11 +68,13 @@ if (Session::currentScript() == "profile") {
 							</a>
 							<!-- Card feed action dropdown menu -->
 							<ul class="dropdown-menu dropdown-menu-end mt-2" aria-labelledby="postCardFeedAction">
-								<li><a class="dropdown-item btn btn-download"
+								<li>
+									<a class="dropdown-item btn btn-download"
 										value="<?php echo($p->getImageUri()) ?>">
-										<i class="bi bi-download fa-fw pe-2"></i>Download</a></li>
-								<li
-									data-id="<?= $post['id'] ?>">
+										<i class="bi bi-download fa-fw pe-2">
+										</i>Download</a>
+								</li>
+								<li data-id="<?= $post['id'] ?>">
 									<a class="dropdown-item btn btn-copy-link"
 										value="<?= $p->getImageUri() ?>">
 										<i class="bi bi-link-45deg fa-fw pe-2"></i>Copy link</a>
