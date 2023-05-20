@@ -61,7 +61,6 @@ class Post
         if ($db->query($insert_posts)) {
             $pid = mysqli_insert_id($db);
             foreach ($postImage as $image_tmp) {
-                // echo(PHP_EOL.$image_tmp.PHP_EOL);
                 $image_name = md5($owner.time()) . image_type_to_extension(exif_imagetype($image_tmp));
                 $image_path = APP_POST_UPLOAD_PATH.$image_name;
     
@@ -69,7 +68,7 @@ class Post
                     $image_uri = "/files/$image_name";
                     $insert_multiple = "INSERT INTO `post_images` (`post_id`, `image_uri`) VALUES ('$pid', '$image_uri');";
                     if ($db->query($insert_multiple)) {
-                        return new Post($pid);
+                        continue;
                     } else {
                         throw new Exception("Can't insert the query in post_images table!");
                     }
@@ -90,14 +89,41 @@ class Post
         $image_tmp = $image['tmp_name'];
 
         if ($fileCount > 1) {
-            echo("Got multiple images");
             self::registerMultiplePost($image_tmp, $text);
         } else {
-            echo("Got single image");
             self::registerSinglePost($image_tmp, $text);
         }
     }
 
+    public function hasMultipleImages($pid)
+    {
+        $sql = "SELECT multiple_images FROM posts WHERE id = '$pid'";
+        $result = $this->conn->query($sql);
+        
+        if ($result && $result->num_rows == 1) {
+            $row = $result->fetch_assoc();
+            return $row['multiple_images'] == 1;
+        }
+        
+        return false;
+    }
+
+    public function getMultipleImages($pid)
+    {
+        $sql = "SELECT image_uri FROM post_images WHERE post_id = '$pid'";
+        $result = $this->conn->query($sql);
+
+        $images = [];
+
+        if ($result && $result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $images[] = $row['image_uri'];
+            }
+        }
+
+        return $images;
+    }
+    
     // Delete the post's image from 'uploads' directory
     private function deletePostImage()
     {
