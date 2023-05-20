@@ -66,9 +66,8 @@ class Post
         if ($db->query($insert_posts)) {
             $pid = mysqli_insert_id($db);
             foreach ($postImage as $image_tmp) {
-                $image_name = md5($owner.time()) . image_type_to_extension(exif_imagetype($image_tmp));
+                $image_name = md5($owner.mt_rand(0, 9999)) . image_type_to_extension(exif_imagetype($image_tmp));
                 $image_path = APP_POST_UPLOAD_PATH.$image_name;
-    
                 if (move_uploaded_file($image_tmp, $image_path)) {
                     $image_uri = "/files/$image_name";
                     $insert_multiple = "INSERT INTO `post_images` (`post_id`, `image_uri`) VALUES ('$pid', '$image_uri');";
@@ -138,9 +137,9 @@ class Post
     }
     
     /**
-     * Delete the post image from storage 
+     * Deletes the single post image from storage
      */
-    private function deletePostImage()
+    private function purgeSingleImage()
     {
         try {
             $image_name = basename($this->getImageUri());
@@ -149,7 +148,7 @@ class Post
                 if (unlink($image_path)) {
                     return true;
                 } else {
-                    throw new Exception(__CLASS__."::".__FUNCTION__.", can't delete the post image.Image path: $image_path");
+                    throw new Exception(__CLASS__."::".__FUNCTION__.", can't purge single post image. Image path: $image_path");
                 }
             }
         } catch (Exception $e) {
@@ -158,16 +157,47 @@ class Post
     }
 
     /**
+     * Delete multiple post images from storage
+     */
+    private function purgeMultipleImages()
+    {
+        try {
+            $sql = "SELECT image_uri FROM post_images WHERE post_id = '$this->id'";
+            $result = $this->conn->query($sql);
+
+            if ($result && $result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    $images[] = basename($row['image_uri']);
+                }
+            }
+
+            foreach ($images as $image_name) {
+                $image_path = APP_POST_UPLOAD_PATH.$image_name;
+                if (file_exists($image_path)) {
+                    if (unlink($image_path)) {
+                        continue;
+                    } else {
+                        throw new Exception(__CLASS__."::".__FUNCTION__.", can't purge multiple post images. Image path: $image_path");
+                    }
+                }
+            }
+            return true;
+        } catch (Exception $e) {
+            throw new Exception($e->getMessage());
+        }
+    }
+    
+    /**
      * It removes the image in storage and the DB entry
      */
-    public function deletePost()
+    public function deleteSinglePostImage()
     {
         if (!$this->conn) {
             $this->conn = Database::getConnection();
         }
 
         try {
-            if ($this->deletePostImage()) {
+            if ($this->purgeSingleImage()) {
                 $sql = "DELETE FROM `$this->table` WHERE `id`=$this->id;";
                 if ($this->conn->query($sql)) {
                     return true;
@@ -176,7 +206,30 @@ class Post
                 }
             }
         } catch (Exception $e) {
-            throw new Exception(__CLASS__."::remove_post, cannot remove the post.");
+            throw new Exception(__CLASS__."::deleteSinglePostImage, can't remove single post image.");
+        }
+    }
+
+    /**
+     * It removes the multiple images in storage and the DB entry
+     */
+    public function deleteMultiplePostImages()
+    {
+        if (!$this->conn) {
+            $this->conn = Database::getConnection();
+        }
+
+        try {
+            if ($this->purgeMultipleImages()) {
+                $sql = "DELETE FROM `$this->table` WHERE `id`=$this->id;";
+                if ($this->conn->query($sql)) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        } catch (Exception $e) {
+            throw new Exception(__CLASS__."::deleteMultiplePostImages, can't remove multiple post images.");
         }
     }
 
