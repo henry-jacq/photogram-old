@@ -1,4 +1,4 @@
-/* Processed by Grunt on 20/5/2023 @11:11:2 */
+/* Processed by Grunt on 20/5/2023 @17:28:11 */
 
 
 // init Masonry
@@ -14,13 +14,19 @@ $grid.imagesLoaded().progress( function() {
 
 // Fingerprint
 // Initialize the agent at application startup.
-const fpPromise = import('https://openfpcdn.io/fingerprintjs/v3').then(FingerprintJS => FingerprintJS.load())
+fetch('https://openfpcdn.io/fingerprintjs/v3').then(response => {
+    if (response.ok) {
+        const fpPromise = import('https://openfpcdn.io/fingerprintjs/v3').then(FingerprintJS => FingerprintJS.load())
 
-// Get the visitor identifier when you need it.
-fpPromise.then(fp => fp.get()).then(result => {
-    // This is the visitor identifier:
-    const visitorId = result.visitorId;
-    $("#fingerprint").val(visitorId);
+        // Get the visitor identifier when you need it.
+        fpPromise.then(fp => fp.get()).then(result => {
+            // This is the visitor identifier:
+            const visitorId = result.visitorId;
+            if ($("#fingerprint")) {
+                $("#fingerprint").val(visitorId);
+            }
+        })
+    }
 })
 
 // Disable right-click on Images
