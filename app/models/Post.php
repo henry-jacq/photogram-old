@@ -23,10 +23,12 @@ class Post
         $this->id = $id;
         $this->table = 'posts';
     }
-    
-    // Register a post in database and save image in 'uploads' directory
-    public static function registerPost($image_tmp, $text)
-    {
+
+    private static function registerSinglePost(array|string $image_tmp, string $postText) {
+        $image_tmp = $image_tmp[0];
+        $db = Database::getConnection();
+        $text = mysqli_real_escape_string($db, $postText);
+        
         if (is_file($image_tmp) and exif_imagetype($image_tmp) !== false) {
             $owner = Session::getUser()->getUsername();
             $image_name = md5($owner.time()) . image_type_to_extension(exif_imagetype($image_tmp));
@@ -34,7 +36,6 @@ class Post
             if (move_uploaded_file($image_tmp, $image_path)) {
                 $image_uri = "/files/$image_name";
                 $insert_command = "INSERT INTO `posts` (`post_text`, `multiple_images`,`image_uri`, `uploaded_time`, `owner`) VALUES ('$text', 0, '$image_uri', now(), '$owner')";
-                $db = Database::getConnection();
                 if ($db->query($insert_command)) {
                     $id = mysqli_insert_id($db);
                     return new Post($id);
@@ -46,6 +47,54 @@ class Post
             }
         } else {
             throw new Exception("Image not uploaded");
+        }
+    }
+    
+    // Register the multiple images with single post
+    private static function registerMultiplePost(array|string $postImage, string $postText) {
+        $db = Database::getConnection();
+        $owner = Session::getUser()->getUsername();
+        $text = mysqli_real_escape_string($db, $postText);
+        
+        $insert_posts = "INSERT INTO `posts` (`post_text`, `multiple_images`,`image_uri`, `uploaded_time`, `owner`) VALUES ('$text', 1, '0', now(), '$owner')";
+        
+        if ($db->query($insert_posts)) {
+            $pid = mysqli_insert_id($db);
+            foreach ($postImage as $image_tmp) {
+                // echo(PHP_EOL.$image_tmp.PHP_EOL);
+                $image_name = md5($owner.time()) . image_type_to_extension(exif_imagetype($image_tmp));
+                $image_path = APP_POST_UPLOAD_PATH.$image_name;
+    
+                if (move_uploaded_file($image_tmp, $image_path)) {
+                    $image_uri = "/files/$image_name";
+                    $insert_multiple = "INSERT INTO `post_images` (`post_id`, `image_uri`) VALUES ('$pid', '$image_uri');";
+                    if ($db->query($insert_multiple)) {
+                        return new Post($pid);
+                    } else {
+                        throw new Exception("Can't insert the query in post_images table!");
+                    }
+                } else {
+                    throw new Exception("Can't move the uploaded file $image_tmp");
+                }
+            }
+        } else {
+            throw new Exception("Can't run the main query!");
+        }
+    }
+    
+    // This will create a post for either single or multiple images.
+    public static function createPost(array $image, string $text)
+    {
+        // Get the count of images
+        $fileCount = count($image['tmp_name']);
+        $image_tmp = $image['tmp_name'];
+
+        if ($fileCount > 1) {
+            echo("Got multiple images");
+            self::registerMultiplePost($image_tmp, $text);
+        } else {
+            echo("Got single image");
+            self::registerSinglePost($image_tmp, $text);
         }
     }
 

@@ -6,16 +6,16 @@ use app\models\Post;
 
 ${basename(__FILE__, '.php')} = function () {
     if ($this->isAuthenticated() and isset($_FILES['file'])) {
-        if (empty($_FILES['file'])) {
+        if (!empty($_FILES['file'] and isset($_FILES['file']))) {
+            $postImage = $_FILES['file'];
+            $postText = $_POST['post_text'] ?? '';
+            $this->response($this->json([
+                'message'=>Post::createPost($postImage, $postText)
+            ]), 200);
+        } else {
             $this->response($this->json([
                 'message'=>"Image doesn't exist"
             ]), 400);
-        } else {
-            $image_tmp = $_FILES['file']['tmp_name'];
-            $text = $_POST['post_text'];
-            $this->response($this->json([
-                'message'=>Post::registerPost($image_tmp, $text)
-            ]), 200);
         }
     } else {
         $this->response($this->json([
