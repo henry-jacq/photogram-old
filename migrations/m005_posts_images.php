@@ -12,7 +12,7 @@ class m005_posts_images {
             `image_uri` varchar(2048) NOT NULL,
             PRIMARY KEY (`id`),
             KEY `post_id` (`post_id`),
-            CONSTRAINT `post_images_ibfk_1` FOREIGN KEY (`post_id`) REFERENCES `post_images` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+            CONSTRAINT `post_images_ibfk_2` FOREIGN KEY (`post_id`) REFERENCES `posts` (`id`) ON DELETE CASCADE ON UPDATE SET DEFAULT
             ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;";
         $db->prepare($sql);
     }
