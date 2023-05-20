@@ -103,9 +103,39 @@ if (Session::currentScript() == "profile") {
 						</div>
 					</div>
 				</header>
-				<?php } ?>
-				<img class="post-card-image user-select-none"
-					src="<?= $p->getImageUri() ?>" loading="eager" data-id="<?= $post['id']?>">
+				<?php }				
+				if ($p->hasMultipleImages($post['id'])) {
+					$images = $p->getMultipleImages($post['id']);
+					?>
+					
+				<div id="post-image-<?= $post['id'] ?>" class="carousel slide" data-bs-ride="carousel">
+					<div class="carousel-inner">
+						<!-- For loop starts -->
+						<div class="carousel-item active">
+							<img src="<?= $images[0] ?>" class="d-block w-100">
+						</div>
+						<?php
+						foreach ($images as $index => $image_uri) {
+							if ($index !== 0) {?>
+							<div class="carousel-item">
+								<img src="<?= $image_uri ?>" class="d-block w-100">
+							</div>
+							<? } 
+						} ?>
+					</div>
+					<button class="carousel-control-prev" type="button" data-bs-target="#post-image-<?= $post['id'] ?>" data-bs-slide="prev">
+						<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+						<span class="visually-hidden">Previous</span>
+					</button>
+					<button class="carousel-control-next" type="button" data-bs-target="#post-image-<?= $post['id'] ?>" data-bs-slide="next">
+						<span class="carousel-control-next-icon" aria-hidden="true"></span>
+						<span class="visually-hidden">Next</span>
+					</button>
+				</div>
+				<?php
+				} else {?>
+					<img class="post-card-image user-select-none" src="<?= $p->getImageUri() ?>" loading="eager">
+				<? } ?>
 				<div class="card-body">
 					<div class="btn-group user-select-none">
 						<?php if (!Session::isAuthenticated()) { ?>
