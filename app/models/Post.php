@@ -24,6 +24,9 @@ class Post
         $this->table = 'posts';
     }
 
+    /**
+     * Register the single image for a single post
+     */
     private static function registerSinglePost(array|string $image_tmp, string $postText) {
         $image_tmp = $image_tmp[0];
         $db = Database::getConnection();
@@ -50,7 +53,9 @@ class Post
         }
     }
     
-    // Register the multiple images with single post
+    /**
+     * Register the multiple images for a single post
+     */
     private static function registerMultiplePost(array|string $postImage, string $postText) {
         $db = Database::getConnection();
         $owner = Session::getUser()->getUsername();
@@ -81,7 +86,9 @@ class Post
         }
     }
     
-    // This will create a post for either single or multiple images.
+    /**
+     * This will create a post for either single or multiple images.
+     */
     public static function createPost(array $image, string $text)
     {
         // Get the count of images
@@ -95,6 +102,9 @@ class Post
         }
     }
 
+    /**
+     * Check if the post has multiple images or not
+     */
     public function hasMultipleImages($pid)
     {
         $sql = "SELECT multiple_images FROM posts WHERE id = '$pid'";
@@ -108,6 +118,9 @@ class Post
         return false;
     }
 
+    /**
+     * Get the multiple images of the post 
+     */
     public function getMultipleImages($pid)
     {
         $sql = "SELECT image_uri FROM post_images WHERE post_id = '$pid'";
@@ -124,7 +137,9 @@ class Post
         return $images;
     }
     
-    // Delete the post's image from 'uploads' directory
+    /**
+     * Delete the post image from storage 
+     */
     private function deletePostImage()
     {
         try {
@@ -143,9 +158,9 @@ class Post
     }
 
     /**
-     * It removes the db entry and the image in storage
+     * It removes the image in storage and the DB entry
      */
-    public function removePost()
+    public function deletePost()
     {
         if (!$this->conn) {
             $this->conn = Database::getConnection();
