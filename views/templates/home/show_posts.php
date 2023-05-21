@@ -47,8 +47,8 @@ if (Session::currentScript() == "profile") {
 										width="35" height="35"></a>
 							</div>
 							<!-- Info -->
-							<div>
-								<div class="nav nav-divider">
+							<div class="skeleton-header">
+								<div class="nav nav-divider skeleton skeleton-text">
 									<h7 class="nav-item card-title mb-0"> <a href="#!" class="text-decoration-none"
 											style="color: var(--bs-dark-text)"><?= ucfirst($p->getOwner()); ?></a>
 									</h7>
@@ -58,7 +58,7 @@ if (Session::currentScript() == "profile") {
 											<?= $uploaded_time_str ?></span>
 									</div>
 								</div>
-								<p class="mb-0 small fw-light">Web Developer</p>
+								<p class="mb-0 small fw-light skeleton skeleton-text">Web Developer</p>
 							</div>
 						</div>
 						<div class="dropdown">
@@ -110,7 +110,6 @@ if (Session::currentScript() == "profile") {
 					
 				<div id="post-image-<?= $post['id'] ?>" class="carousel slide" data-bs-ride="carousel">
 					<div class="carousel-inner">
-						<!-- For loop starts -->
 						<div class="carousel-item active">
 							<img src="<?= $images[0] ?>" class="d-block w-100">
 						</div>
@@ -137,7 +136,7 @@ if (Session::currentScript() == "profile") {
 					<img class="post-card-image user-select-none" src="<?= $p->getImageUri() ?>" loading="eager">
 				<? } ?>
 				<div class="card-body">
-					<div class="btn-group user-select-none">
+					<div class="btn-group user-select-none skeleton skeleton-text">
 						<?php if (!Session::isAuthenticated()) { ?>
 						<span class="me-3">
 							<span class="me-1"><?= Like::getLikeCount($post['id']) ?></span>Likes
@@ -152,7 +151,7 @@ if (Session::currentScript() == "profile") {
 						</div>
 						<?php } ?>
 					</div>
-					<p class="card-text mt-2 user-select-all">
+					<p class="card-text mt-2 user-select-all skeleton skeleton-text">
 						<?= $p->getPostText() ?>
 					</p>
 				</div>

@@ -1,3 +1,15 @@
+// Skeleton loading effect
+$('.carousel, .post-card-image, .btn-like').hide();
+
+$(window).on("load", function () {
+    // Remove the skeleton classes once the window finishes loading
+    $('.card-text, .btn-group, .skeleton-header > .skeleton-text').removeClass('skeleton skeleton-text');
+    if ($('img').removeClass('skeleton-img')) {
+        $('.carousel, .post-card-image, .btn-like').show();
+    }
+    $grid.masonry('layout');
+});
+
 // Change the cursor to pointer
 $('.btn-like, .btn-share').mouseover(function () { 
     $(this).css('cursor','pointer');

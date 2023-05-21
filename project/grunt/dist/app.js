@@ -1,4 +1,4 @@
-/* Processed by Grunt on 20/5/2023 @17:28:11 */
+/* Processed by Grunt on 21/5/2023 @9:5:28 */
 
 
 // init Masonry
@@ -122,6 +122,18 @@ $("#icon-click").on("click", function (data) {
     icon.removeClass("bi-eye");
     icon.addClass("bi-eye-slash");
   }
+});
+
+// Skeleton loading effect
+$('.carousel, .post-card-image, .btn-like').hide();
+
+$(window).on("load", function () {
+    // Remove the skeleton classes once the window finishes loading
+    $('.card-text, .btn-group, .skeleton-header > .skeleton-text').removeClass('skeleton skeleton-text');
+    if ($('img').removeClass('skeleton-img')) {
+        $('.carousel, .post-card-image, .btn-like').show();
+    }
+    $grid.masonry('layout');
 });
 
 // Change the cursor to pointer
