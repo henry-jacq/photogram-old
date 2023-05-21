@@ -20,23 +20,23 @@ use app\core\Session;
 		<!-- Nav right START -->
 		<ul class="nav flex-nowrap align-items-center ms-sm-3 list-unstyled">
 			<li class="nav-item ms-2">
-				<a class="nav-link btn border py-1 px-2" id="themeSwitcher" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Switch theme">
+				<a class="nav-link btn border py-1 px-2 rounded-5" id="themeSwitcher" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Switch theme">
 					<!-- <i class="bi bi-moon fs-6"></i> -->
 					<i class="bi bi-moon-stars"></i>
 				</a>
 			</li>
 			<li class="nav-item ms-2">
-				<a class="nav-link btn border py-1 px-2" id="postUploadButton" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Upload post">
+				<a class="nav-link btn border py-1 px-2 rounded-5" id="postUploadButton" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Upload post">
 					<i class="bi bi-plus-square-dotted"></i></i>
 				</a>
 			</li>
 			<li class="nav-item ms-2">
-				<a class="nav-link btn border py-1 px-2" href="#" onclick="dialog('Not Implemented!',' This feature is not implemented');">
+				<a class="nav-link btn border py-1 px-2 rounded-5" href="#" onclick="dialog('Not Implemented!',' This feature is not implemented');">
 					<i class="bi bi-heart fs-6"></i>
 				</a>
 			</li>
 			<li class="nav-item dropdown ms-2">
-				<a class="nav-link btn border py-1 px-2" href="#" id="notifDropdown" role="button"
+				<a class="nav-link btn border py-1 px-2 rounded-5" href="#" id="notifDropdown" role="button"
 					data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
 					<i class="bi bi-bell fs-6"></i>
 					<span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">3<span
@@ -120,13 +120,8 @@ use app\core\Session;
 			<!-- Notification dropdown END -->
 
 			<li class="nav-item ms-3 dropdown">
-				<a class="nav-link btn icon-md p-0 border" href="#" id="profileDropdown" role="button"
-					data-bs-auto-close="outside" data-bs-display="static" data-bs-toggle="dropdown"
-					aria-expanded="false">
-					<img class="rounded-2"
-						src="https://api.dicebear.com/5.x/identicon/svg?seed=<?= ucfirst(Session::getUser()->getUsername()) ?>"
-						alt="<?= ucfirst(Session::getUser()->getUsername()) ?> avatar"
-						width="32" height="32">
+				<a class="nav-link btn icon-md p-0 border rounded-5" href="#" id="profileDropdown" role="button" data-bs-auto-close="outside" data-bs-display="static" data-bs-toggle="dropdown" aria-expanded="false">
+					<img class="user-profile-img img-fluid rounded-circle opacity-50" src="<?= URL_ROOT ?>assets/default-user-post-icon.png" alt="<?= ucfirst(Session::getUser()->getUsername()) ?>-avatar" width="32" height="32">
 					<span
 						class="position-absolute bottom-0 mt-2 start-0 p-1 bg-success border border-light rounded-circle"></span>
 				</a>
@@ -134,21 +129,18 @@ use app\core\Session;
 					aria-labelledby="profileDropdown">
 					<!-- Profile info -->
 					<li class="px-2">
-						<div class="d-flex align-items-center position-relative btn btn-primary-soft">
+						<div class="d-flex align-items-center position-relative btn bg-body-tertiary">
 							<!-- Avatar -->
-							<div class="avatar me-3">
-								<img class="border rounded-circle"
-									src="https://api.dicebear.com/5.x/identicon/svg?seed=<?= ucfirst(Session::getUser()->getUsername()) ?>"
-									alt="<?= ucfirst(Session::getUser()->getUsername()) ?> avatar"
-									width="35" height="35">
+							<div class="avatar avatar-story me-2">
+								<a href="#" class="d-block link-dark text-decoration-none" aria-expanded="false">
+								<img class="user-profile-img border rounded-circle skeleton-img opacity-50" src="<?= URL_ROOT ?>assets/default-user-post-icon.png" width="36" height="36"></a>
 							</div>
 							<div>
 								<a class="h6 stretched-link text-decoration-none"
 									href="/profile"><?= ucfirst(Session::getUser()->getUsername()) ?></a>
-								<!-- <p class="small m-0">Web Developer</p> -->
 							</div>
 						</div>
-						<hr class="mt-1 mb-1">
+						<hr class="mt-2 mb-1">
 					</li>
 					<li>
 						<a class="dropdown-item" href="#"
@@ -156,7 +148,8 @@ use app\core\Session;
 							<i class="fa-fw bi bi-pencil me-2"></i>Edit profile</a>
 					</li>
 					<!-- Links -->
-					<li><a class="dropdown-item" href="/settings"><i class="bi bi-gear fa-fw me-2"></i>Settings</a></li>
+					<li>
+						<a class="dropdown-item" href="/settings"><i class="bi bi-gear fa-fw me-2"></i>Settings</a></li>
 					<li>
 						<a class="dropdown-item" href="#"
 							onclick="dialog('Not Implemented!',' This feature is not implemented');">

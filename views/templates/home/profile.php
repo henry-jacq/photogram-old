@@ -8,8 +8,7 @@ use app\core\View;
 	<hr class="py-3">
 	<div class="row">
 		<div class="col-md-4 text-center align-middle">
-			<img src="https://api.dicebear.com/5.x/identicon/svg?seed=<?= ucfirst(Session::getUser()->getUsername()) ?>"
-				class="img-fluid border rounded-circle mb-3" alt="Profile Picture" width="175" height="175">
+			<img class="user-profile-img img-fluid rounded-circle mb-3 opacity-50" src="<?= URL_ROOT ?>assets/default-user-big.jpg" alt="<?= ucfirst(Session::getUser()->getUsername()) ?>-avatar" width="175" height="175">
 			<h2 class="fw-normal fs-4">
 				<?= ucfirst(Session::getUser()->getUsername()); ?>
 			</h2>

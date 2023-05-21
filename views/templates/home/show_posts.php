@@ -42,9 +42,9 @@ if (Session::currentScript() == "profile") {
 							<!-- Avatar -->
 							<div class="avatar avatar-story me-2">
 								<a href="#" class="d-block link-dark text-decoration-none" aria-expanded="false">
-									<img class="border rounded-circle"
-										src="https://api.dicebear.com/5.x/identicon/svg?seed=<?= ucfirst($p->getOwner()) ?>"
-										width="35" height="35"></a>
+									<img class="user-profile-img border rounded-circle skeleton-img opacity-50"
+										src="<?= URL_ROOT ?>assets/default-user-post-icon.png"
+										width="36" height="36"></a>
 							</div>
 							<!-- Info -->
 							<div class="skeleton-header">
