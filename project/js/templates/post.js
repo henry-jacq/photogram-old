@@ -143,3 +143,27 @@ $('.btn-copy-link').on('click', function(){
         showToast("Photogram", "Just Now", "Can't copy the post link to the clipboard!");
     }   
 });
+
+// Download a single or multiple image post.
+$('.btn-download').on('click', function () {
+    if (this.hasAttribute('href')) {
+        return;
+    }
+
+    let carousel = $(this).parents('header').next();
+    let activeItem = carousel.find('.active');
+    let image = activeItem.find('img').attr('src');
+    let url = window.location.origin + (this.getAttribute('value') != 0 ? $(this).attr('value') : image);
+
+    fetch(url)
+        .then(res => res.blob())
+        .then(file => {
+            let tempURL = URL.createObjectURL(file);
+            this.setAttribute('href', tempURL);
+            this.setAttribute('download', url.replace(/^.*[\\\/]/, ''));
+            this.click();
+            URL.revokeObjectURL(tempURL);
+            this.removeAttribute('href');
+        })
+        .catch(console.error);
+});
