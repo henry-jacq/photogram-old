@@ -3,6 +3,13 @@
 use app\core\Session;
 ?>
 
+<?php
+// If user is authenticated
+if (Session::isAuthenticated()) { ?>
+<script src="<?= URL_ROOT ?>js/theme-switcher.js"></script>
+<script src="<?= URL_ROOT ?>js/hello.js"></script>
+<?php } ?>
+
 <!-- Jquery -->
 <script src="<?= URL_ROOT ?>js/jquery/jquery.js">
 </script>
@@ -14,10 +21,7 @@ use app\core\Session;
 <script src="<?= URL_ROOT ?>js/bootstrap/bootstrap.bundle.js"></script>
 
 <?php
-// If user is authenticated
-if (Session::isAuthenticated()) { ?>
-<script src="<?= URL_ROOT ?>js/theme-switcher.js"></script>
-<script src="<?= URL_ROOT ?>js/hello.js"></script>
+if (Session::isAuthenticated()) {?>
 <!-- Dropzone JS -->
 <script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
 <?php } ?>

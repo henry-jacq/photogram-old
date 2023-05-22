@@ -1,48 +1,44 @@
 // Get current theme
-let current_theme = $("html").attr("data-bs-theme");
+let currentTheme = document.querySelector("html").getAttribute("data-bs-theme");
 // Theme value stored in local storage
-let stored_theme = localStorage.getItem("theme-value");
+let storedTheme = localStorage.getItem("theme-value");
 
 // Set theme from local storage
-if (stored_theme == null) {
+if (storedTheme == null) {
   // Set dark in theme-value as default
-  localStorage.setItem("theme-value", current_theme);
+  localStorage.setItem("theme-value", currentTheme);
 } else {
-  if (stored_theme == "auto" || stored_theme == "light") {
-    $("html").attr("data-bs-theme", "light");
-    $("#themeSwitcher > i").removeClass("bi-moon-stars");
-    $("#themeSwitcher > i").addClass("bi-brightness-high");
-  } else if (stored_theme == "dark") {
-    $("html").attr("data-bs-theme", "dark");
-    $("#themeSwitcher > i").removeClass("bi-brightness-high");
-    $("#themeSwitcher > i").addClass("bi-moon-stars");
+  if (storedTheme == "auto" || storedTheme == "light") {
+    document.querySelector("html").setAttribute("data-bs-theme", "light");
+    document.querySelector("#themeSwitcher > i").classList.remove("bi-moon-stars");
+    document.querySelector("#themeSwitcher > i").classList.add("bi-brightness-high");
+  } else if (storedTheme == "dark") {
+    document.querySelector("html").setAttribute("data-bs-theme", "dark");
+    document.querySelector("#themeSwitcher > i").classList.remove("bi-brightness-high");
+    document.querySelector("#themeSwitcher > i").classList.add("bi-moon-stars");
   }
 }
 
 // Change theme on click
-$("#themeSwitcher").on("click", function () {
-  let theme_attr = "data-bs-theme";
-  let current_theme = $("html").attr(theme_attr);
+document.querySelector("#themeSwitcher").addEventListener("click", function () {
+  let themeAttr = "data-bs-theme";
+  let currentTheme = document.querySelector("html").getAttribute(themeAttr);
 
-  if (current_theme == "light") {
-    $("#themeSwitcher").attr("data-bs-title", "Change to dark theme");
-    $("#themeSwitcher > i").removeClass("bi-brightness-high");
-    $("#themeSwitcher > i").addClass("bi-moon-stars");
-    $("html").attr(theme_attr, "dark");
+  if (currentTheme == "light") {
+    document.querySelector("#themeSwitcher").setAttribute("data-bs-title", "Change to dark theme");
+    document.querySelector("#themeSwitcher > i").classList.remove("bi-brightness-high");
+    document.querySelector("#themeSwitcher > i").classList.add("bi-moon-stars");
+    document.querySelector("html").setAttribute(themeAttr, "dark");
     localStorage.setItem("theme-value", "dark");
-  } else if (current_theme == "dark") {
-    $("#themeSwitcher").attr("data-bs-title", "Change to light theme");
-    $("#themeSwitcher > i").removeClass("bi-moon-stars");
-    $("#themeSwitcher > i").addClass("bi-brightness-high");
-    $("html").attr(theme_attr, "light");
+  } else if (currentTheme == "dark") {
+    document.querySelector("#themeSwitcher").setAttribute("data-bs-title", "Change to light theme");
+    document.querySelector("#themeSwitcher > i").classList.remove("bi-moon-stars");
+    document.querySelector("#themeSwitcher > i").classList.add("bi-brightness-high");
+    document.querySelector("html").setAttribute(themeAttr, "light");
     localStorage.setItem("theme-value", "light");
   }
 });
 
 // To trigger the tooltip
-const tooltipTriggerList = document.querySelectorAll(
-  '[data-bs-toggle="tooltip"]'
-);
-const tooltipList = [...tooltipTriggerList].map(
-  (tooltipTriggerEl) => new bootstrap.Tooltip(tooltipTriggerEl)
-);
+const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+tooltipTriggerList.forEach((tooltipTriggerEl) => new bootstrap.Tooltip(tooltipTriggerEl));
