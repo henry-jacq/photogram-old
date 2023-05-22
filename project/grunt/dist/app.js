@@ -1,16 +1,16 @@
-/* Processed by Grunt on 22/5/2023 @15:17:20 */
+/* Processed by Grunt on 22/5/2023 @18:2:1 */
 
 
-// init Masonry
-var $grid = $('#masonry-area').masonry({
+// Init Masonry
+var grid = document.querySelector('#masonry-area');
+var masonry = new Masonry(grid, {
     percentPosition: true
 });
 
-// layout Masonry after each image loads
-$grid.imagesLoaded().progress( function() {
-    $grid.masonry('layout');
+// Layout Masonry after each image loads
+imagesLoaded(grid).on('progress', function () {
+    masonry.layout();
 });
-
 
 // Fingerprint
 // Initialize the agent at application startup.
@@ -133,7 +133,7 @@ $(window).on("load", function () {
     if ($('img').removeClass('skeleton-img')) {
         $('.carousel, .post-card-image, .btn-like').show();
     }
-    $grid.masonry('layout');
+    masonry.layout();
 });
 
 // Change the cursor to pointer

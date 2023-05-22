@@ -1,13 +1,13 @@
-// init Masonry
-var $grid = $('#masonry-area').masonry({
+// Init Masonry
+var grid = document.querySelector('#masonry-area');
+var masonry = new Masonry(grid, {
     percentPosition: true
 });
 
-// layout Masonry after each image loads
-$grid.imagesLoaded().progress( function() {
-    $grid.masonry('layout');
+// Layout Masonry after each image loads
+imagesLoaded(grid).on('progress', function () {
+    masonry.layout();
 });
-
 
 // Fingerprint
 // Initialize the agent at application startup.

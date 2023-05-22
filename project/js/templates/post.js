@@ -7,7 +7,7 @@ $(window).on("load", function () {
     if ($('img').removeClass('skeleton-img')) {
         $('.carousel, .post-card-image, .btn-like').show();
     }
-    $grid.masonry('layout');
+    masonry.layout();
 });
 
 // Change the cursor to pointer
