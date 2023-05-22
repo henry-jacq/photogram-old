@@ -143,27 +143,3 @@ $('.btn-copy-link').on('click', function(){
         showToast("Photogram", "Just Now", "Can't copy the post link to the clipboard!");
     }   
 });
-
-// Download the post image
-$('.btn-download').on('click', function (e) {
-    if (!this.hasAttribute('href')) {
-        e.preventDefault();
-        // Getting the original image URL
-        url = window.location.origin + $(this).attr('value');
-        // Fetch post image and returning response as blob
-        fetch(url).then(res => res.blob()).then(file => {
-            let tempURL = URL.createObjectURL(file);
-            // Passing tempURL as href value
-            this.setAttribute('href', tempURL)
-            // Passing filename and extension as download value
-            this.setAttribute('download', url.replace(/^.*[\\\/]/, ''))
-            // Remove value attribute
-            this.removeAttribute('value');
-            // Clicking this so the image downloads
-            this.click();
-            URL.revokeObjectURL(tempURL);
-        }).catch((e) => {
-            console.error(e);
-        });
-    }
-});
