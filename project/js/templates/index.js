@@ -56,9 +56,21 @@ $('#postUploadButton').on('click', function () {
                 autoProcessQueue: false
             });
 
+            // Disable buttons if there is no data in the form
+            setInterval(() => {
+                if (myDropzone.files.length > 0) {
+                    $('.btn-reset, .btn-upload').prop('disabled', false);
+                } else {
+                    $('.btn-reset, .btn-upload').prop('disabled', true);
+                }
+            }, 500);
+
             // Upload post
             $('.btn-upload').on('click', function (e) {
                 e.preventDefault();
+                const spinner = `<span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span> Posting`;
+                // Spinner is used to indicate an action is currently processing
+                $(this).html(spinner);
                 myDropzone.processQueue();
                 myDropzone.on("queuecomplete", function () {
                     location.reload();
@@ -76,15 +88,6 @@ $('#postUploadButton').on('click', function () {
                     myDropzone.removeAllFiles();
                 }
             });
-
-            // Disable buttons if there is no data in the form
-            setInterval(() => {
-                if (myDropzone.files.length > 0) {
-                    $('.btn-reset, .btn-upload').prop('disabled', false);
-                } else {
-                    $('.btn-reset, .btn-upload').prop('disabled', true);
-                }
-            }, 500);
         }
 
         // Character limit on post text
