@@ -110,7 +110,9 @@ $('.btn-delete').on('click', function(){
                     id: post_id
                 }, function(data, textSuccess){
                     if(textSuccess =="success" ){
-                        $grid.masonry('remove', $(`#post-${post_id}`)).masonry('layout');
+                        sl = document.querySelector(`#post-${post_id}`);
+                        masonry.remove(sl);
+                        masonry.layout();
                         showToast("Photogram", "Just Now", "Your post was successfully deleted!");
                     } else {
                         showToast("Photogram", "Just Now", "Can't delete your post!");
