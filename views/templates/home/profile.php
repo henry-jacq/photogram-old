@@ -48,8 +48,6 @@ use app\core\View;
 				<i>#IoT #electronics #hacking</i>
 			</div>
 		</div>
-		<h3 class="fw-light py-3 mt-3">My Posts</h3>
-		<hr class="p-4">
-		<?= View::loadTemplate('templates/home/show_posts'); ?>
+		<?= View::loadTemplate('templates/home/photogram'); ?>
 	</div>
 </div>
