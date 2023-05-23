@@ -74,7 +74,7 @@ function likePost(selector, post_id) {
 }
 
 // It will like the post if the image is double clicked
-$(".post-card-image").dblclick(function(){
+$(".post-card-image, .carousel").dblclick(function(){
     let thisBtn = $(this).next().find('.btn-group').find('.btn-like');
     let post_id = $(this).attr('data-id');
     likePost(thisBtn, post_id);

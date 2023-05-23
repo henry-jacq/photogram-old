@@ -1,4 +1,4 @@
-/* Processed by Grunt on 23/5/2023 @8:16:15 */
+/* Processed by Grunt on 23/5/2023 @15:2:4 */
 
 
 // Init Masonry
@@ -203,7 +203,7 @@ function likePost(selector, post_id) {
 }
 
 // It will like the post if the image is double clicked
-$(".post-card-image").dblclick(function(){
+$(".post-card-image, .carousel").dblclick(function(){
     let thisBtn = $(this).next().find('.btn-group').find('.btn-like');
     let post_id = $(this).attr('data-id');
     likePost(thisBtn, post_id);

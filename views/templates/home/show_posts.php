@@ -109,7 +109,7 @@ if (Session::currentScript() == "profile") {
 				$images = $p->getMultipleImages($post['id']);
 				?>
 				
-			<div id="post-image-<?= $post['id'] ?>" class="carousel slide user-select-none" data-bs-ride="carousel">
+			<div id="post-image-<?= $post['id'] ?>" class="carousel slide user-select-none" data-bs-ride="carousel" data-id="<?= $post['id'] ?>">
 				<div class="carousel-inner">
 					<div class="carousel-item active">
 						<img src="<?= $images[0] ?>" class="d-block w-100">
@@ -134,7 +134,7 @@ if (Session::currentScript() == "profile") {
 			</div>
 			<?php
 			} else {?>
-				<img class="post-card-image user-select-none" src="<?= $p->getImageUri() ?>" loading="eager">
+				<img class="post-card-image user-select-none" src="<?= $p->getImageUri() ?>" loading="eager" data-id="<?= $post['id'] ?>">
 			<? } ?>
 			<div class="card-body">
 				<div class="btn-group user-select-none skeleton skeleton-text">
