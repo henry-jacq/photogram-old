@@ -1,4 +1,4 @@
-/* Processed by Grunt on 22/5/2023 @18:2:1 */
+/* Processed by Grunt on 22/5/2023 @18:36:28 */
 
 
 // Init Masonry
@@ -258,16 +258,19 @@ $('.btn-delete').on('click', function(){
 });
 
 // Copy the post link
-$('.btn-copy-link').on('click', function(){
-    textToCopy = window.location.origin + $(this).attr('value');
-    
+$('.btn-copy-link').on('click', function () {
+    let carousel = $(this).parents('header').next();
+    let activeItem = carousel.find('.active');
+    let image = activeItem.find('img').attr('src');
+    let textToCopy = window.location.origin + (this.getAttribute('value') != 0 ? $(this).attr('value') : image);
+
     if (navigator.clipboard) {
         navigator.clipboard.writeText(textToCopy);
         showToast("Photogram", "Just Now", "Copied the post link to the clipboard!");
     } else {
         console.error("Can't copy the post link!");
         showToast("Photogram", "Just Now", "Can't copy the post link to the clipboard!");
-    }   
+    }
 });
 
 // Download a single or multiple image post.
