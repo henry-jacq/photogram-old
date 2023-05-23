@@ -1,5 +1,7 @@
 # Photogram
-Photogram is a web application designed to facilitate photo-sharing among users. Its sleek and intuitive interface, combined with powerful back-end functionality, makes it the ideal platform for sharing photos with friends, family, and colleagues. This document will provide detailed instructions on how to install and run the project, so that you can start sharing your favorite photos today.
+Photogram is an easy-to-use web app for sharing photos with a clean and uncluttered interface.
+
+It is designed to facilitate photo-sharing among users. Its sleek and intuitive interface, combined with powerful back-end functionality, makes it the ideal platform for sharing photos with friends, family, and colleagues. This document will provide detailed instructions on how to install and run the project, so that you can start sharing your favorite photos today.
 
 > **NOTE:** This project is currently under development and some things might not work as expected.
 
@@ -19,19 +21,45 @@ Before starting the project, you will need to have the following packages instal
 - PHP (v8.0 above)
 - NPM
 - Composer
+- Apache server
 
 ### Installation
 
-To install the project dependencies, follow these steps:
+To setup photogram, follow these steps:
 
-1. Change directory to project/grunt/: `cd project/grunt/
-`
-2. Install project dependencies from package.json: `npm install`
-3. Install dependencies with Composer: `composer update`
-2. Create config using make_config PHP script: `cd project/ && php make_config`
-7. Fill in the prompts to make the Photogram work.
-8. Execute `migrations.sql` in your SQL server to create database with necessary tables and fields for photogram.
+Install NPM dependencies:
+```bash
+cd project/grunt/
 
+npm install
+```
+
+Install composer dependencies:
+```bash
+composer update
+```
+
+Create and change folder permissions:
+- This is to allow apache to move files to this folder
+```bash
+mkdir storage/posts/
+chmod 777 storage/posts/
+```
+
+Create config using make_config PHP script:
+- Fill in the prompts to make the Photogram work.
+- If have doubts, check the reference config at `config/example.photogram.json`
+```bash
+cd project/
+php make_config
+```
+
+Apply migrations to database:
+- This will create the database with necessary tables and fields for photogram
+- NOTE: Before executing migrations, check that you are properly connected to the database.
+```bash
+php migrations.php
+```
 
 ## Usage
 
