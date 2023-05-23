@@ -2,6 +2,10 @@
 
 include 'libs/autoload.php';
 
+if (!isset($_GET['name'])) {
+    exit;
+}
+
 $upload_path = APP_POST_UPLOAD_PATH;
 $fname = $_GET['name'];
 

@@ -3,6 +3,9 @@
 use app\core\Session;
 ?>
 
+<!-- Bootstrap JS -->
+<script src="<?= URL_ROOT ?>js/bootstrap/bootstrap.bundle.js"></script>
+
 <?php
 // If user is authenticated
 if (Session::isAuthenticated()) { ?>
@@ -16,9 +19,6 @@ if (Session::isAuthenticated()) { ?>
 
 <!-- Test JS -->
 <script src="<?= URL_ROOT ?>js/test.js"></script>
-
-<!-- Bootstrap JS -->
-<script src="<?= URL_ROOT ?>js/bootstrap/bootstrap.bundle.js"></script>
 
 <?php
 if (Session::isAuthenticated()) {?>
