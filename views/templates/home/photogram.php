@@ -8,7 +8,7 @@ use app\core\View;
 <div class="album py-3">
 	<div class="container">
 		<?php
-		if (Session::currentScript() == "index") {
+		if (Session::isAuthenticated() && Session::currentScript() == "index") {
 			View::loadTemplate('templates/home/stories');
 		}		
 		?>
