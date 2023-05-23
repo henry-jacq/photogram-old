@@ -144,7 +144,7 @@ class Dialog {
 		this.buttons = buttons;
 	}
 
-	show(theme="primary"){
+	show(theme="primary", closeBtn=null){
 		this.clone.prop('id', this.cloneId);
 		this.clone.appendTo('#modalsGarbage');
 		if(typeof this.options.size !== "undefined"){
@@ -162,6 +162,9 @@ class Dialog {
 		this.assignEvents(this.events);
 		$('#'+this.cloneId).addClass()
 		$('#'+this.cloneId+' .modal-title').html(this.title);
+		if (closeBtn == true) {
+			$('#' + this.cloneId + ' .modal-header').append('<button type="button" class="btn-close shadow-none border-0" data-bs-dismiss="modal" aria-label="Close"></button>');
+		}
 		$('#'+this.cloneId+' .modal-body').html(this.message);
 		$('#'+this.cloneId+' .modal-footer').html('');
 		if(this.buttons === "default"){
@@ -232,6 +235,10 @@ function display_dialog(bt_name,content,func){
 
 function display_form_dialog(){
 	var uploadForm = `
+	<div class="text-center mt-1 mb-4">
+		<h1 class="fs-4 fw-normal mb-1">What's on your mind?</h1>
+		<p class="fw-light lead">Unleash your creativity!</p>
+	</div>
 	<form class="dropzone border-1 rounded mb-3" id="dzCreatePost" method="POST" action="/api/posts/create">
 		<textarea class="form-control mb-3" name="post_text" rows="3" placeholder="Say something..."></textarea>
 		<p id="total_chars" class="visually-hidden text-end"></p>
@@ -240,17 +247,16 @@ function display_form_dialog(){
 			<p>Drop files here or click to upload</p>
 		</div>
 	</form>
+	<hr class="py-1">
 	<button class="btn btn-primary btn-upload float-end" type="submit" disabled>Post</button>
 	<button class="btn btn-secondary btn-reset float-end me-2" disabled>Clear</button>
-	<button type="button" class="btn btn-outline-secondary me-2" data-bs-dismiss="modal">Cancel</button>
 	`;
 
 	var title = `<i class="bi bi-plus-circle-dotted me-2"></i>Create Post`;
 	
 	d = new Dialog(title, uploadForm);
-	d.show();
+	d.show("primary", true);
 	var id = d.cloneId;
-
 	$("#"+ id +" > .modal-dialog > .modal-content > .modal-footer").remove();
 	return id;
 }
