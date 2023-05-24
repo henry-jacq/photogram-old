@@ -47,7 +47,7 @@ $smtp_auth_pass = readline("-> Enter SMTP auth pass: ");
 $domain_name = readline("-> Enter domain name: ");
 
 $contents = "{
-    \"db_server\": \"{$db_user}\",
+    \"db_server\": \"{$server_address}\",
     \"db_user\": \"{$db_user}\",
     \"db_pass\": \"{$db_pass}\",
     \"db_name\": \"{$db_name}\",
