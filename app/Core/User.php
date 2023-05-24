@@ -243,7 +243,18 @@ class User
         }
     }
 
-    // public function getUsername() {
-    //     return $this->username;
-    // }
+    /**
+     * Check if the user exists
+     */
+    public static function exists(string $username) {
+        $db = Database::getConnection();
+        $sql = "SELECT * FROM `auth` WHERE `username` = '$username';";
+        $result = $db->query($sql);
+
+        if ($result && $result->num_rows == 1) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
