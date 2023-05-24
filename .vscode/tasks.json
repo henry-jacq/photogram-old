@@ -2,18 +2,32 @@
 	"version": "2.0.0",
 	"tasks": [
 		{
-			"type": "npm",
-			"script": "grunt",
-			"path": "project/grunt",
+			"label": "Grunt - All",
+			"type": "shell",
+			"command": "grunt project/grunt/Gruntfile.js",
 			"problemMatcher": [],
-			"label": "npm: grunt - project/grunt",
-			"detail": "grunt"
+			"detail": "Concate files, minify and obfuscate them using grunt"
 		},
 		{
-			"label": "Show apache2 error log",
+			"label": "Grunt runner for JS",
+			"type": "shell",
+			"command": "bash project/grunt/grunt_runner.sh -t js",
+			"problemMatcher": [],
+			"detail": "Minify and obfuscate JS using grunt"
+		},
+		{
+			"label": "Grunt runner for CSS",
+			"type": "shell",
+			"command": "bash project/grunt/grunt_runner.sh -t css",
+			"problemMatcher": [],
+			"detail": "Minify CSS using grunt"
+		},
+		{
+			"label": "Show apache log",
 			"type": "shell",
 			"command": "tail -f /var/log/apache2/error.log",
-			"problemMatcher": []
+			"problemMatcher": [],
+			"detail": "Stream the apache error log"
 		}
 	]
 }
