@@ -35,7 +35,7 @@ echo "\n==> Enter the following details to generate the config\n\n";
 $server_address = readline("-> Server address: ");
 $db_user = readline("-> Database username: ");
 $db_pass = readline("-> Database password: ");
-$db_table = readline("-> Table name: ");
+$db_name = readline("-> Database name: ");
 $post_upload_path = readline("-> Enter upload path: ");
 
 echo "\n==> Enter the following prompts to setup mail server:\n";
@@ -50,7 +50,7 @@ $contents = "{
     \"db_server\": \"{$db_user}\",
     \"db_user\": \"{$db_user}\",
     \"db_pass\": \"{$db_pass}\",
-    \"db_name\": \"{$db_table}\",
+    \"db_name\": \"{$db_name}\",
     \"post_upload_path\": \"{$post_upload_path}\",
     \"smtp_host\": \"{$smtp_host}\",
     \"smtp_auth_user\": \"{$smtp_auth_user}\",

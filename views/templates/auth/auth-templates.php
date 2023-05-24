@@ -98,8 +98,10 @@ function loadChangePasswordForm(string $status = null)
 	<div class="h-100 d-flex align-items-center justify-content-center row min-vh-100">
 		<div class="py-3 col-sm-10 col-md-8 col-lg-6 col-xl-5 col-xxl-4">
 			<div id="popup-error" class="alert alert-success fade show text-start" role="alert">
-				<p class="my-2"><b class="fw-semibold">Password changed successfully!</b> You can <a href="/login"
-						class="text-decoration-none">login now</a>.</p>
+				<p class="my-2">
+					<b class="fw-semibold"><i class="bi bi-check-circle me-1"></i>Password changed successfully!</b>
+					<a href="/login" class="text-decoration-none"> Login now!</a>
+				</p>
 			</div>
 			<?php // Load change password form with success message
                 View::loadTemplate('templates/auth/change-password-form'); ?>
