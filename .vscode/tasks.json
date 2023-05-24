@@ -4,21 +4,21 @@
 		{
 			"label": "Grunt - All",
 			"type": "shell",
-			"command": "grunt project/grunt/Gruntfile.js",
+			"command": "cd /var/www/html/photogram/project/grunt/ && grunt Gruntfile.js",
 			"problemMatcher": [],
 			"detail": "Concate files, minify and obfuscate them using grunt"
 		},
 		{
 			"label": "Grunt runner for JS",
 			"type": "shell",
-			"command": "bash project/grunt/grunt_runner.sh -t js",
+			"command": "cd /var/www/html/photogram/project/grunt/ && ./grunt_runner.sh -t js",
 			"problemMatcher": [],
 			"detail": "Minify and obfuscate JS using grunt"
 		},
 		{
 			"label": "Grunt runner for CSS",
 			"type": "shell",
-			"command": "bash project/grunt/grunt_runner.sh -t css",
+			"command": "cd /var/www/html/photogram/project/grunt/ && ./grunt_runner.sh -t css",
 			"problemMatcher": [],
 			"detail": "Minify CSS using grunt"
 		},
