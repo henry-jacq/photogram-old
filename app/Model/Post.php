@@ -1,11 +1,11 @@
 <?php
 
-namespace app\models;
+namespace App\Model;
 
 use Exception;
-use app\core\Session;
-use app\core\Database;
-use app\traits\SQLGetterSetter;
+use App\Core\Session;
+use App\Core\Database;
+use App\Traits\SQLGetterSetter;
 
 class Post
 {

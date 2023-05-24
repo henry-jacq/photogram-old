@@ -1,9 +1,9 @@
 <?php
 
-namespace app\core;
+namespace App\Core;
 
-use DateTime;
-use Exception;
+use \DateTime;
+use \Exception;
 
 class UserSession
 {

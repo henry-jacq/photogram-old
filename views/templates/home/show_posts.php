@@ -1,8 +1,8 @@
 <?php
-use app\models\Like;
-use app\models\Post;
-use app\core\Session;
 use Carbon\Carbon;
+use App\Model\Like;
+use App\Model\Post;
+use App\Core\Session;
 
 if (Session::currentScript() == 'index') {?>
 	<h3 class="fs-3 lead user-select-none">Feed</h3><hr class="py-2">

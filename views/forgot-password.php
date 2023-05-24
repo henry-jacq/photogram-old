@@ -1,5 +1,5 @@
 <?php
 
-use app\core\View;
+use App\Core\View;
 
 View::loadTemplate('templates/auth/index');

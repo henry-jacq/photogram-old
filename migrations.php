@@ -2,7 +2,7 @@
 
 require_once 'public/libs/autoload.php';
 
-use app\core\Database;
+use App\Core\Database;
 
 if (php_sapi_name() == "cli") {
     $db = new Database();

@@ -1,7 +1,7 @@
 <?php
 
 require_once 'libs/autoload.php';
-use app\core\API;
+use App\Core\API;
 
 $api = new API();
 

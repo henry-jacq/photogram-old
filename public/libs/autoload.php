@@ -3,7 +3,7 @@
 // Autoload all class files using composer
 require __DIR__ . "/../../vendor/autoload.php";
 
-use app\core\WebAPI;
+use App\Core\WebAPI;
 
 $webAPI = new WebAPI();
 

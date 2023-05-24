@@ -1,12 +1,12 @@
 <?php
 
-namespace app\models;
+namespace App\Model;
 
 use \Exception;
-use app\core\Session;
-use app\core\Database;
-use app\models\Post;
-use app\traits\SQLGetterSetter;
+use App\Core\Session;
+use App\Core\Database;
+use App\Model\Post;
+use App\Traits\SQLGetterSetter;
 
 class Like
 {

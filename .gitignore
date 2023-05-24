@@ -12,3 +12,6 @@ config/photogram.json
 
 # TODO
 TODO.md
+
+# Composer lock file
+composer.lock

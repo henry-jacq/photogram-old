@@ -1,7 +1,7 @@
 <?php
 
-use app\core\Session;
-use app\models\Post;
+use App\Core\Session;
+use App\Model\Post;
 
 // Count posts
 // https://{{domain}}/api/posts/count?mode={all|user}

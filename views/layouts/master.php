@@ -3,8 +3,8 @@
 
 	<?php
 
-	use app\core\View;
-	use app\core\Session;
+	use App\Core\View;
+	use App\Core\Session;
 
 	// Load header
 	View::loadTemplate('layouts/head'); ?>

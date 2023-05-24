@@ -1,6 +1,6 @@
 <?php
 
-use app\core\User;
+use App\Core\User;
 
 include 'libs/autoload.php';
 

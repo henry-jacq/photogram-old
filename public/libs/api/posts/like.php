@@ -1,7 +1,7 @@
 <?php
 
-use app\models\Post;
-use app\models\Like;
+use App\Model\Post;
+use App\Model\Like;
 
 // https://{{domain}}/api/posts/like
 

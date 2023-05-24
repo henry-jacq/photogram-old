@@ -1,6 +1,6 @@
 <?php
 
-use app\core\Session;
+use App\Core\Session;
 ?>
 
 <section class="py-4 text-center user-select-none">

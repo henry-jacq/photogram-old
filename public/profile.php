@@ -2,8 +2,8 @@
 
 include 'libs/autoload.php';
 
-use app\core\Session;
-use app\core\View;
+use App\Core\Session;
+use App\Core\View;
 
 Session::ensureLogin();
 

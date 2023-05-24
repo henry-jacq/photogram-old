@@ -1,8 +1,8 @@
 <?php
 
-use app\core\User;
-use app\core\Mailer;
-use app\core\Session;
+use App\Core\User;
+use App\Core\Mailer;
+use App\Core\Session;
 
 require_once 'auth-templates.php';
 

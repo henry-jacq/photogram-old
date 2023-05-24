@@ -1,5 +1,5 @@
 <?php
-use app\core\View;
+use App\Core\View;
 
 /**
  * This will load the password reset form

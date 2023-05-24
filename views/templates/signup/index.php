@@ -1,7 +1,7 @@
 <?php
 
-use app\core\User;
-use app\core\View;
+use App\Core\User;
+use App\Core\View;
 
 // Try to register, if the user has submitted the form
 $required_fields = array("username" => filter_input(INPUT_POST, 'username', FILTER_SANITIZE_FULL_SPECIAL_CHARS),

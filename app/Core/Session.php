@@ -1,8 +1,8 @@
 <?php
 
-namespace app\core;
+namespace App\Core;
 
-use app\core\UserSession;
+use App\Core\UserSession;
 use Exception;
 
 /**

@@ -1,6 +1,6 @@
 <?php
 
-use app\core\Session;
+use App\Core\Session;
 ?>
 
 <!-- Bootstrap JS -->

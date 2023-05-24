@@ -1,8 +1,8 @@
 <?php
 
-use app\core\Session;
-use app\core\UserSession;
-use app\core\View;
+use App\Core\Session;
+use App\Core\UserSession;
+use App\Core\View;
 
 // Try to login, if the user has submitted the form
 if (isset($_POST['username_or_email']) and !empty($_POST['username_or_email']) and isset($_POST['password']) and !empty($_POST['password'])) {

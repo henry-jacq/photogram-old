@@ -1,13 +1,9 @@
 <?php
 
-namespace app\core;
+namespace App\Core;
 
 use Exception;
-
-use app\traits\SQLGetterSetter;
-use Throwable;
-
-// include_once __DIR__ . "/../traits/SQLGetterSetter.trait.php";
+use App\Traits\SQLGetterSetter;
 
 class User
 {

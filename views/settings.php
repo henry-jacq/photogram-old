@@ -1,7 +1,7 @@
 <?php
 
 // Profile details
-use app\core\View;
+use App\Core\View;
 
 View::loadTemplate('layouts/header');
 View::loadTemplate('templates/home/breadcrumb');

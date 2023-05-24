@@ -1,5 +1,5 @@
 <?php
-use app\core\Session;
+use App\Core\Session;
 
 ?>
 <div class="container mt-3">

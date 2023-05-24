@@ -1,9 +1,9 @@
 <?php
 
-namespace app\traits;
+namespace App\Traits;
 
-use Exception;
-use app\core\Database;
+use \Exception;
+use App\Core\Database;
 
 /**
  * PHP SQLGetterSetter Trait

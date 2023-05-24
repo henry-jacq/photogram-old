@@ -1,6 +1,6 @@
 <?php
 
-use app\models\Post;
+use App\Model\Post;
 
 // https://{{domain}}/api/posts/delete
 
