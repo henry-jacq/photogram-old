@@ -37,7 +37,7 @@ if (Session::currentScript() == "profile") {
 		id="post-<?= $post['id'] ?>">
 		<div class="card shadow-lg">
 			<?php if (Session::isAuthenticated()) { ?>
-			<header class="card-header p-2 user-select-none">
+			<header class="card-header p-2 user-select-none border-0">
 				<div class="d-flex align-items-center justify-content-between">
 					<div class="d-flex align-items-center">
 						<!-- Avatar -->
@@ -112,13 +112,13 @@ if (Session::currentScript() == "profile") {
 			<div id="post-image-<?= $post['id'] ?>" class="carousel slide user-select-none" data-bs-ride="carousel" data-id="<?= $post['id'] ?>">
 				<div class="carousel-inner">
 					<div class="carousel-item active">
-						<img src="<?= $images[0] ?>" class="d-block w-100">
+						<img src="<?= $images[0] ?>" class="d-block w-100 rounded">
 					</div>
 					<?php
 					foreach ($images as $index => $image_uri) {
 						if ($index !== 0) {?>
 						<div class="carousel-item">
-							<img src="<?= $image_uri ?>" class="d-block w-100">
+							<img src="<?= $image_uri ?>" class="d-block w-100 rounded">
 						</div>
 						<? } 
 					} ?>
@@ -134,7 +134,7 @@ if (Session::currentScript() == "profile") {
 			</div>
 			<?php
 			} else {?>
-				<img class="post-card-image user-select-none" src="<?= $p->getImageUri() ?>" loading="eager" data-id="<?= $post['id'] ?>">
+				<img class="post-card-image user-select-none rounded" src="<?= $p->getImageUri() ?>" loading="eager" data-id="<?= $post['id'] ?>">
 			<? } ?>
 			<div class="card-body">
 				<div class="btn-group user-select-none skeleton skeleton-text">

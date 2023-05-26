@@ -165,7 +165,7 @@ use App\Core\Session;
 		</ul>
 		<?php } else { ?>
 		<div>
-			<a href="/login" class="btn btn-success">Sign in</a>
+			<a href="/login" class="btn btn-success">Login</a>
 			<a href="/signup" class="btn btn-secondary">Register</a>
 		</div>
 		<?php } ?>
