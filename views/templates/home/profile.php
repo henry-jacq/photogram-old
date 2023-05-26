@@ -16,18 +16,18 @@ use App\Core\View;
 			</p>
 			<!-- <button class="btn btn-sm btn-secondary" onclick="dialog('Not Implemented!',' This feature is not implemented');"><i class="bi bi-pencil me-2"></i>Change Profile</button> -->
 
-			<div class="row mt-4 mb-3 px-3">
-				<div class="col">
-					<p class="fw-normal fs-5 mb-0" id="totalUserPosts">0</p>
-					<p class="fw-light fs-5">Posts</p>
+			<div class="row text-center mt-4 rounded-3">
+				<div class="col p-2">
+					<h4 class="fs-5" id="totalUserPosts">0</h4>
+					<small class="fs-5 fw-light">Posts</small>
 				</div>
-				<div class="col">
-					<p class="fw-normal fs-5 mb-0">0</p>
-					<p class="fw-light fs-5">Followers</p>
+				<div class="col p-2">
+					<h4 class="fs-5">0</h4>
+					<small class="fs-5 fw-light">Followers</small>
 				</div>
-				<div class="col">
-					<p class="fw-normal fs-5 mb-0">0</p>
-					<p class="fw-light fs-5">Following</p>
+				<div class="col p-2">
+					<h4 class="fs-5">0</h4>
+					<small class="fs-5 fw-light">Following</small>
 				</div>
 			</div>
 		</div>
