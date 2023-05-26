@@ -37,7 +37,7 @@ class Post
             $image_name = md5($owner.time()) . image_type_to_extension(exif_imagetype($image_tmp));
             $image_path = APP_POST_UPLOAD_PATH.$image_name;
             if (move_uploaded_file($image_tmp, $image_path)) {
-                $image_uri = "/files/$image_name";
+                $image_uri = "/files/posts/$image_name";
                 $insert_command = "INSERT INTO `posts` (`post_text`, `multiple_images`,`image_uri`, `uploaded_time`, `owner`) VALUES ('$text', 0, '$image_uri', now(), '$owner')";
                 if ($db->query($insert_command)) {
                     $id = mysqli_insert_id($db);
@@ -69,7 +69,7 @@ class Post
                 $image_name = md5($owner.mt_rand(0, 9999)) . image_type_to_extension(exif_imagetype($image_tmp));
                 $image_path = APP_POST_UPLOAD_PATH.$image_name;
                 if (move_uploaded_file($image_tmp, $image_path)) {
-                    $image_uri = "/files/$image_name";
+                    $image_uri = "/files/posts/$image_name";
                     $insert_multiple = "INSERT INTO `post_images` (`post_id`, `image_uri`) VALUES ('$pid', '$image_uri');";
                     if ($db->query($insert_multiple)) {
                         continue;
