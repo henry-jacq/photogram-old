@@ -143,9 +143,9 @@ use App\Core\Session;
 						<hr class="mt-2 mb-1">
 					</li>
 					<li>
-						<a class="dropdown-item" href="#"
-							onclick="dialog('Not Implemented!',' This feature is not implemented');">
-							<i class="fa-fw bi bi-pencil me-2"></i>Edit profile</a>
+						<a class="dropdown-item" href="/edit-profile">
+							<i class="fa-fw bi bi-pencil me-2"></i>Edit profile
+						</a>
 					</li>
 					<!-- Links -->
 					<li>
