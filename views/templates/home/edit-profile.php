@@ -20,7 +20,7 @@ $ud = new UserData(Session::getUser());
                 <h4 class="fw-normal">Edit Profile</h4>
                 <hr>
             </div>
-            <form class="p-3" action="/api/users/update" method="POST" autocomplete="off">
+            <form class="user-form-data p-3" method="POST" autocomplete="off">
                 <div class="form-group mb-3 row">
                     <div class="col">
                         <label for="fname" class="form-label fw-semibold">Firstname</label>
@@ -32,11 +32,11 @@ $ud = new UserData(Session::getUser());
                     </div>
                 </div>
                 <div class="form-group mb-3">
-                    <label for="email" class="form-label fw-semibold">Secondary Email</label>
+                    <label for="email" class="form-label fw-semibold">Secondary email</label>
                     <input id="email" class="form-control" type="email" name="email" placeholder="Email" value="<?= $ud->getSecEmail(); ?>">
                 </div>
                 <div class="form-group mb-3">
-                    <label for="job" class="form-label fw-semibold">Job</label>
+                    <label for="job" class="form-label fw-semibold">Job title</label>
                     <select id="job" class="form-select" name="job" aria-label="Default select example">
                         <option selected>None</option>
                         <option <?php if ($ud->getJob() == 'App Developer') echo 'selected'; ?>>App Developer</option>
@@ -64,8 +64,9 @@ $ud = new UserData(Session::getUser());
                     <label for="instagram" class="form-label fw-medium">Instagram</label>
                     <input id="instagram" class="form-control" type="text" name="instagram" spellcheck="false" placeholder="username" value="<?= $ud->getInstagram(); ?>">
                 </div>
-                <div class="d-flex justify-content-start">
-                    <button class="btn btn-primary" type="submit">Save Changes</button>
+                <div class="d-flex justify-content-start gap-2">
+                    <button class="btn btn-primary btn-save-data" type="submit">Update profile</button>
+                    <a href="/" class="btn btn-outline-secondary">Cancel</a>
                 </div>
             </form>
         </div>
