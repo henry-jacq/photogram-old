@@ -1,10 +1,18 @@
+<?php
+
+use App\Core\Session;
+use App\Model\UserData;
+
+$ud = new UserData(Session::getUser());
+?>
+
 <div class="container rounded p-4">
     <div class="row border rounded-3">
         <div class="col-lg-3 bg-body-tertiary rounded-3 py-5">
             <div class="d-flex flex-column align-items-center text-center p-3 mt-3">
                 <img class="rounded-circle" width="150" src="/assets/default-user-big.jpg">
-                <span class="fs-5 fw-bold mt-3">Henry</span>
-                <span class="fs-6">henry@gmail.com</span>
+                <span class="fs-5 fw-semibold mt-3"><?= ucfirst(Session::getUser()->getUsername()) ?></span>
+                <span class="fs-6 mt-2"><?= Session::getUser()->getEmail()?></span>
             </div>
         </div>
         <div class="col-lg-9">
@@ -12,57 +20,54 @@
                 <h4 class="fw-normal">Edit Profile</h4>
                 <hr>
             </div>
-            <form class="p-3" novalidate="" autocomplete="off">
+            <form class="p-3" action="/api/users/update" method="POST" autocomplete="off">
                 <div class="form-group mb-3 row">
                     <div class="col">
                         <label for="fname" class="form-label fw-semibold">Firstname</label>
-                        <input type="text" id="fname" class="form-control" placeholder="First name" aria-label="First name">
+                        <input type="text" id="fname" class="form-control" name="fname" placeholder="First name" aria-label="First name" value="<?= $ud->getFirstName(); ?>">
                     </div>
                     <div class="col">
                         <label for="lname" class="form-label fw-semibold">Lastname</label>
-                        <input type="text" id="lname" class="form-control" placeholder="Last name" aria-label="Last name">
+                        <input type="text" id="lname" class="form-control" name="lname" placeholder="Last name" aria-label="Last name" value="<?= $ud->getLastName(); ?>">
                     </div>
                 </div>
                 <div class="form-group mb-3">
-                    <label for="email" class="form-label fw-semibold">Email</label>
-                    <input id="email" class="form-control" type="text" placeholder="Email">
+                    <label for="email" class="form-label fw-semibold">Secondary Email</label>
+                    <input id="email" class="form-control" type="email" name="email" placeholder="Email" value="<?= $ud->getSecEmail(); ?>">
                 </div>
                 <div class="form-group mb-3">
                     <label for="job" class="form-label fw-semibold">Job</label>
-                    <select id="job" class="form-select" aria-label="Default select example">
+                    <select id="job" class="form-select" name="job" aria-label="Default select example">
                         <option selected>None</option>
-                        <option value="1">App Developer</option>
-                        <option value="2">Content Creator</option>
-                        <option value="3">Photographer</option>
-                        <option value="4">Software Engineer</option>
-                        <option value="5">Student</option>
-                        <option value="6">UI/UX Designer</option>
+                        <option <?php if ($ud->getJob() == 'App Developer') echo 'selected'; ?>>App Developer</option>
+                        <option <?php if ($ud->getJob() == 'Content Creator') echo 'selected'; ?>>Content Creator</option>
+                        <option <?php if ($ud->getJob() == 'Photographer') echo 'selected'; ?>>Photographer</option>
+                        <option <?php if ($ud->getJob() == 'Software Engineer') echo 'selected'; ?>>Software Engineer</option>
+                        <option <?php if ($ud->getJob() == 'Student') echo 'selected'; ?>>Student</option>
+                        <option <?php if ($ud->getJob() == 'UI/UX Designer') echo 'selected'; ?>>UI/UX Designer</option>
                     </select>
                 </div>
                 <div class="form-group mb-3">
-                    <label class="form-label fw-semibold">Bio</label>
-                    <textarea class="form-control" rows="3" placeholder="Write about you..."></textarea>
+                    <label for="bio" class="form-label fw-semibold">Bio</label>
+                    <textarea id="bio" class="form-control" rows="3" name="bio" placeholder="Write about you..." maxlength="250"><?= $ud->getBio(); ?></textarea>
                     <p class="form-text mb-0">Tell us about yourself in fewer than 250 characters.</p>
                 </div>
                 <div class="form-group mb-3">
-                    <label class="form-label fw-semibold">Location</label>
-                    <input class="form-control" type="text" placeholder="City, Country">
+                    <label for="location" class="form-label fw-semibold">Location</label>
+                    <input id="location" class="form-control" type="text" name="location" spellcheck="false" placeholder="City, Country" value="<?= $ud->getLocation(); ?>">
                 </div>
                 <div class="form-group mb-3">
-                    <label class="form-label fw-semibold">Twitter</label>
-                    <input class="form-control" type="text" placeholder="@username">
+                    <label for="twitter" class="form-label fw-semibold">Twitter</label>
+                    <input id="twitter" class="form-control" type="text" name="twitter" spellcheck="false" placeholder="@username" value="<?= $ud->getTwitter(); ?>">
                 </div>
                 <div class="form-group mb-5">
-                    <label class="form-label fw-medium">Instagram</label>
-                    <input class="form-control" type="text" placeholder="username">
+                    <label for="instagram" class="form-label fw-medium">Instagram</label>
+                    <input id="instagram" class="form-control" type="text" name="instagram" spellcheck="false" placeholder="username" value="<?= $ud->getInstagram(); ?>">
                 </div>
-                <div class="row">
-                    <div class="col d-flex justify-content-start">
-                        <button class="btn btn-primary" type="submit">Save Changes</button>
-                    </div>
+                <div class="d-flex justify-content-start">
+                    <button class="btn btn-primary" type="submit">Save Changes</button>
                 </div>
-                </form>
-            </div>
+            </form>
         </div>
     </div>
 </div>
