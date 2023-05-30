@@ -276,4 +276,43 @@ class Post
         $result = $db->query($sql);
         return iterator_to_array($result);
     }
+
+    /**
+     * Get ID of the provided username
+     */
+    private function getUserId(string $username)
+    {
+        $conn = Database::getConnection();
+        $username = mysqli_real_escape_string($conn, $username);
+
+        $sql = "SELECT `id` FROM `auth` WHERE `username` = '$username';";
+        $result = $conn->query($sql);
+
+        if ($result && $result->num_rows == 1) {
+            $row = $result->fetch_assoc();
+            return $row['id'];
+        } else {
+            throw new Exception("Can't get the user ID using username: ".$username);
+        }
+    }
+
+    /**
+     * Get the user job
+     */
+    public function getUserJob()
+    {
+        $user_id = $this->getUserId($this->getOwner());
+        $sql = "SELECT `uid`, `job` FROM `users` WHERE `uid` = '1';";
+        $conn = Database::getConnection();
+        $result = $conn->query($sql);
+
+        if ($result && $result->num_rows == 1) {
+            $row = $result->fetch_assoc();
+            if ($row['uid'] === $user_id && $row['job'] != 'None') {
+                return $row['job'];
+            }
+        } else {
+            throw new Exception("Can't get the user job, line no:".__LINE__);
+        }
+    }
 }

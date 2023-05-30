@@ -59,7 +59,10 @@ if (Session::currentScript() == "profile") {
 										<?= $uploaded_time_str ?></span>
 								</div>
 							</div>
-							<p class="mb-0 small fw-light skeleton skeleton-text">Web Developer</p>
+							<?php
+							if (!empty($p->getUserJob())) {?>
+							<p class="mb-0 small fw-light skeleton skeleton-text"><?= $p->getUserJob()?></p>
+							<? } ?>
 						</div>
 					</div>
 					<div class="dropdown">
