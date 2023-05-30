@@ -38,7 +38,7 @@ define('DB_PASS', Config::get_details("db_pass"));
 define('DB_NAME', Config::get_details("db_name"));
 
 // Upload Path
-define('APP_POST_UPLOAD_PATH', Config::get_details("post_upload_path"));
+define('APP_STORAGE_PATH', Config::get_details("storage_path"));
 
 // Config Location
 define('APP_CONFIG_LOCATION', __FILE__);

@@ -1,9 +1,9 @@
 {
     "db_server": "localhost",
     "db_user": "root",
-    "db_pass": "",
+    "db_pass": "****",
     "db_name": "photogram_db",
-    "post_upload_path": "",
+    "storage_path": "/path/to/storage",
     "smtp_host": "",
     "smtp_auth_user": "",
     "smtp_auth_pass": "",
