@@ -4,6 +4,7 @@ namespace App\Model;
 
 use Exception;
 use App\Core\Database;
+use App\Core\Session;
 use App\Traits\SQLGetterSetter;
 
 class UserData {
@@ -30,22 +31,40 @@ class UserData {
         return mysqli_real_escape_string($this->conn, $value);
     }
 
-    private function saveProfile(array|string $image_tmp) {
-        $image_tmp = $image_tmp[0];
-        $db = $this->conn;
+    public function setAvatar(string $image_tmp)
+    {
+        $image_tmp = $this->escapeString($image_tmp);
         
         if (is_file($image_tmp) and exif_imagetype($image_tmp) !== false) {
-            $owner = $this->username;
-            $image_name = md5($owner.time()) . image_type_to_extension(exif_imagetype($image_tmp));
-            $image_path = APP_POST_UPLOAD_PATH.$image_name;
+            $owner = Session::getUser()->getUsername();
+            $image_name = md5($owner.mt_rand(0, 9999)) . image_type_to_extension(exif_imagetype($image_tmp));
+            $image_path = APP_STORAGE_PATH . '/avatars/' .$image_name;
             if (move_uploaded_file($image_tmp, $image_path)) {
-                $image_uri = "/files/profile/$image_name";
-                return $image_uri;
+                $image_uri = "/files/avatars/$image_name";
+                $sql = "UPDATE `$this->table` SET `avatar` = '$image_uri' WHERE `uid` = '$this->id';";
+                if ($this->conn->query($sql)) {
+                    return true;
+                } else {
+                    return false;
+                }
             } else {
                 throw new Exception("Can't move the uploaded file");
             }
         } else {
-            throw new Exception("Profile not updated");
+            throw new Exception("Image not uploaded");
+        }
+    }
+    
+    public function getUserAvatar(string $owner)
+    {
+        $current_user = Session::getUser()->getUsername();
+        $url = "https://api.dicebear.com/6.x/shapes/svg?seed=";
+        if ($owner !== $current_user) {
+            return $url.$owner;
+        } else if (!empty($this->getAvatar())) {
+            return $this->getAvatar();
+        } else {
+            return $url.$current_user;
         }
     }
     
@@ -60,7 +79,7 @@ class UserData {
         $ig = $this->escapeString($ig);
         $email = $this->escapeString($email);
         
-        $sql = "INSERT INTO `users` (`uid`, `first_name`, `last_name`, `bio`, `job`, `sec_email`, `location`, `twitter`, `instagram`) VALUES ('$this->id', '$fname', '$lname', '$bio', '$job', '$email', '$lc', '$tw', '$ig');";
+        $sql = "INSERT INTO `$this->table` (`uid`, `first_name`, `last_name`, `bio`, `job`, `sec_email`, `location`, `twitter`, `instagram`) VALUES ('$this->id', '$fname', '$lname', '$bio', '$job', '$email', '$lc', '$tw', '$ig');";
 
         try {
             $this->conn->query($sql);
@@ -80,7 +99,7 @@ class UserData {
         $ig = $this->escapeString($ig);
         $email = $this->escapeString($email);
 
-        $sql = "UPDATE `users` SET `first_name` = '$fname', `last_name` = '$lname', `sec_email` = '$email', `job` = '$job', `bio` = '$bio', `location` = '$lc', `twitter` = '$tw', `instagram` = '$ig' WHERE `uid` = '$this->id';";
+        $sql = "UPDATE `$this->table` SET `first_name` = '$fname', `last_name` = '$lname', `sec_email` = '$email', `job` = '$job', `bio` = '$bio', `location` = '$lc', `twitter` = '$tw', `instagram` = '$ig' WHERE `uid` = '$this->id';";
 
         try {
             $this->conn->query($sql);
@@ -91,7 +110,7 @@ class UserData {
 
     public function exists()
     {
-        $sql = "SELECT * FROM `users` WHERE `uid` = '$this->id';";
+        $sql = "SELECT * FROM `$this->table` WHERE `uid` = '$this->id';";
 
         $result = $this->conn->query($sql);
         if ($result->num_rows == 1) {
