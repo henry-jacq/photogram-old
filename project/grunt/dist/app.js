@@ -1,38 +1,36 @@
-/* Processed by Grunt on 28/5/2023 @17:40:32 */
+/* Processed by Grunt on 31/5/2023 @18:25:3 */
 
 
 // Update profile details
 if (window.location.pathname === "/edit-profile") {
     $('.user-form-data').on('submit', function (e) {
         e.preventDefault();
-        let thisBtn = $(this);
         const formData = new FormData(this);
-        const fieldValue = formData.get('fname');
-        $.post("/api/users/update",
-        {
-            fname: formData.get('fname'),
-            lname: formData.get('lname'),
-            email: formData.get('email'),
-            job: formData.get('job'),
-            bio: formData.get('bio'),
-            location: formData.get('location'),
-            twitter: formData.get('twitter'),
-            instagram: formData.get('instagram'),
-        }, function (data, textStatus) {
-            if (textStatus == 'success') {
-                if ($('.alert.alert-primary.alert-dismissible.fade.show').length === 0) {
-                    var successMessage = $('<div>').addClass('alert alert-primary alert-dismissible fade show').html('<i class="bi bi-info-circle me-2"></i>Profile was successfully updated<button type="button" class="btn-close shadow-none" data-bs-dismiss="alert" aria-label="Close"></button>');
-                    $(successMessage).insertBefore(thisBtn);
-                } else {
-                    console.error('Something went wrong!');
+        let thisBtn = $(this);
+        let saveBtn = $('.btn-save-data');
+        let spinner = `<div class="spinner-border spinner-border-sm me-1" role="status"><span class="visually-hidden">Loading...</span></div>`;
+
+        saveBtn.attr('disabled', true);
+        saveBtn.html(spinner + 'Updating...');
+
+        $.ajax({
+            url: '/api/users/profile/update',
+            type: 'POST',
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function (response) {
+                if (response.message == 'Updated' || response.message == 'Created') {
+                    saveBtn.attr('disabled', false);
+                    saveBtn.html('Update profile');
+                    if ($('.alert.alert-primary.alert-dismissible.fade.show').length === 0) {
+                        var successMessage = $('<div>').addClass('alert alert-primary alert-dismissible fade show').html('<i class="bi bi-info-circle me-2"></i>Profile was successfully updated<button type="button" class="btn-close shadow-none" data-bs-dismiss="alert" aria-label="Close"></button>');
+                        $(successMessage).insertBefore(thisBtn);
+                    }
                 }
-            } else if (textStatus == 'error') {
-                if ($('.alert.alert-danger.alert-dismissible.fade.show').length === 0) {
-                    var successMessage = $('<div>').addClass('alert alert-danger alert-dismissible fade show').html('<i class="bi bi-exclamation-circle me-2"></i>Failed to update profile<button type="button" class="btn-close shadow-none" data-bs-dismiss="alert" aria-label="Close"></button>');
-                    $(successMessage).insertBefore(thisBtn);
-                } else {
-                    console.error('Something went wrong!');
-                }
+            },
+            error: function (error) {
+                console.error('Error while updating:', error);
             }
         });
     });
