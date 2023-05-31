@@ -1,13 +1,15 @@
 <?php
 
 use App\Core\Session;
+use App\Model\UserData;
 
+if (Session::isAuthenticated()) {
+	$ud = new UserData(Session::getUser());
+}
 ?>
 
 <header>
-	<!-- Logo Nav START -->
 	<nav class="navbar navbar-expand-lg px-3 border-bottom shadow shadow-bottom user-select-none">
-		<!-- Logo START -->
 		<a class="navbar-brand display-6 me-auto" href="/">
 			<img src="/assets/brand/photogram-logo.png" alt="Logo" width="27" height="31"
 				class="d-inline-block align-text-top">
@@ -15,13 +17,10 @@ use App\Core\Session;
 				<b> Photogram</b>
 			</div>
 		</a>
-		<!-- Logo END -->
 		<?php if (Session::isAuthenticated()) { ?>
-		<!-- Nav right START -->
 		<ul class="nav flex-nowrap align-items-center ms-sm-3 list-unstyled">
 			<li class="nav-item ms-2">
 				<a class="nav-link btn border py-1 px-2 rounded-5" id="themeSwitcher" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Switch theme">
-					<!-- <i class="bi bi-moon fs-6"></i> -->
 					<i class="bi bi-moon-stars"></i>
 				</a>
 			</li>
@@ -121,7 +120,7 @@ use App\Core\Session;
 
 			<li class="nav-item ms-3 dropdown">
 				<a class="nav-link btn icon-md p-0 border rounded-5" href="#" id="profileDropdown" role="button" data-bs-auto-close="outside" data-bs-display="static" data-bs-toggle="dropdown" aria-expanded="false">
-					<img class="user-profile-img img-fluid rounded-circle opacity-50" src="<?= URL_ROOT ?>assets/default-user-post-icon.png" alt="<?= ucfirst(Session::getUser()->getUsername()) ?>-avatar" width="32" height="32">
+					<img class="user-profile-img img-fluid rounded-circle" src="<?= $ud->getUserAvatar() ?>" alt="<?= ucfirst(Session::getUser()->getUsername()) ?>-avatar" width="32" height="32">
 					<span
 						class="position-absolute bottom-0 mt-2 start-0 p-1 bg-success border border-light rounded-circle"></span>
 				</a>
@@ -133,7 +132,7 @@ use App\Core\Session;
 							<!-- Avatar -->
 							<div class="avatar avatar-story me-2">
 								<a href="#" class="d-block link-dark text-decoration-none" aria-expanded="false">
-								<img class="user-profile-img border rounded-circle skeleton-img opacity-50" src="<?= URL_ROOT ?>assets/default-user-post-icon.png" width="36" height="36"></a>
+								<img class="user-profile-img border rounded-circle skeleton-img" src="<?= $ud->getUserAvatar() ?>" width="36" height="36"></a>
 							</div>
 							<div>
 								<a class="h6 stretched-link text-decoration-none"

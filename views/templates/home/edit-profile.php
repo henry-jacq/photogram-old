@@ -10,9 +10,9 @@ $ud = new UserData(Session::getUser());
     <div class="row border rounded-3">
         <div class="col-lg-3 bg-body-tertiary rounded-3 py-5">
             <div class="d-flex flex-column align-items-center text-center p-3 mt-3">
-                <img class="rounded-circle" width="150" src="/assets/default-user-big.jpg">
+                <img class="rounded-circle" width="150" src="<?= $ud->getUserAvatar()?>">
                 <span class="fs-5 fw-semibold mt-3"><?= ucfirst(Session::getUser()->getUsername()) ?></span>
-                <span class="fs-6 mt-2"><?= Session::getUser()->getEmail()?></span>
+                <span class="small mt-2"><?= Session::getUser()->getEmail()?></span>
             </div>
         </div>
         <div class="col-lg-9">
@@ -21,6 +21,15 @@ $ud = new UserData(Session::getUser());
                 <hr>
             </div>
             <form class="user-form-data p-3" method="POST" autocomplete="off">
+                <div class="form-group mb-3">
+                    <label for="user-avatar" class="form-label fw-semibold">Upload new avatar</label>
+                    <p class="small mb-2">You can change your avatar here or remove the current avatar to revert to <a href="https://dicebear.com" class="text-decoration-none">dicebear.com</a></p>
+                    <input class="form-control" type="file" id="user-avatar" name="user_image">
+                    <div class="text-secondary small mb-2">The maximum file size allowed is 800KB.</div>
+                    <div class="d-flex justify-content-end mb-3">
+                        <button id="btnRemoveAvatar" class="btn btn-sm btn-outline-danger" type="button"><i class="bi bi-trash me-1"></i>Remove avatar</button>
+                    </div>
+                </div>
                 <div class="form-group mb-3 row">
                     <div class="col">
                         <label for="fname" class="form-label fw-semibold">Firstname</label>

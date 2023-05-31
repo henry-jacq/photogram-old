@@ -1,21 +1,21 @@
 <?php
 use App\Core\Session;
 use App\Core\View;
+use App\Model\UserData;
 
+$ud = new UserData(Session::getUser());
 ?>
 <div class="container p-5 user-select-none">
 	<h3 class="fw-light">Profile Page</h3>
 	<hr class="py-3">
 	<div class="row">
 		<div class="col-md-4 text-center align-middle">
-			<img class="user-profile-img img-fluid rounded-circle mb-3 opacity-50" src="<?= URL_ROOT ?>assets/default-user-big.jpg" alt="<?= ucfirst(Session::getUser()->getUsername()) ?>-avatar" width="175" height="175">
+			<img class="user-profile-img img-fluid rounded-circle mb-3" src="<?= $ud->getUserAvatar() ?>" alt="<?= ucfirst(Session::getUser()->getUsername()) ?>-avatar" width="175" height="175">
 			<h2 class="fw-normal fs-4">
 				<?= ucfirst(Session::getUser()->getUsername()); ?>
 			</h2>
 			<p>@<?= lcfirst(Session::getUser()->getUsername()); ?>
 			</p>
-			<!-- <button class="btn btn-sm btn-secondary" onclick="dialog('Not Implemented!',' This feature is not implemented');"><i class="bi bi-pencil me-2"></i>Change Profile</button> -->
-
 			<div class="row text-center mt-4 rounded-3">
 				<div class="col p-2">
 					<h4 class="fs-5" id="totalUserPosts">0</h4>

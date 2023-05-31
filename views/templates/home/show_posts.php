@@ -2,6 +2,7 @@
 use Carbon\Carbon;
 use App\Model\Like;
 use App\Model\Post;
+use App\Model\UserData;
 use App\Core\Session;
 
 if (Session::currentScript() == 'index') {?>
@@ -36,16 +37,16 @@ if (Session::currentScript() == "profile") {
 	<div class="col-lg-3"
 		id="post-<?= $post['id'] ?>">
 		<div class="card shadow-lg">
-			<?php if (Session::isAuthenticated()) { ?>
+			<?php if (Session::isAuthenticated()) {
+				$ud = new UserData(Session::getUser());	
+			?>
 			<header class="card-header p-2 user-select-none border-0">
 				<div class="d-flex align-items-center justify-content-between">
 					<div class="d-flex align-items-center">
 						<!-- Avatar -->
 						<div class="avatar avatar-story me-2">
 							<a href="#" class="d-block link-dark text-decoration-none" aria-expanded="false">
-								<img class="user-profile-img border rounded-circle skeleton-img opacity-50"
-									src="<?= URL_ROOT ?>assets/default-user-post-icon.png"
-									width="36" height="36"></a>
+								<img class="user-profile-img border rounded-circle skeleton-img" src="<?= $p->getAvatar()?>" width="36" height="36"></a>
 						</div>
 						<!-- Info -->
 						<div class="skeleton-header">
