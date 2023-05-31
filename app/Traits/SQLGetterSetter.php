@@ -78,4 +78,23 @@ trait SQLGetterSetter
     {
         return $this->id;
     }
+
+    /**
+     * Get ID of the provided username
+     */
+    public function getUserId(string $username)
+    {
+        $conn = Database::getConnection();
+        $username = mysqli_real_escape_string($conn, $username);
+
+        $sql = "SELECT `id` FROM `auth` WHERE `username` = '$username';";
+        $result = $conn->query($sql);
+
+        if ($result && $result->num_rows == 1) {
+            $row = $result->fetch_assoc();
+            return $row['id'];
+        } else {
+            throw new Exception("Can't get the user ID using username: ".$username);
+        }
+    }
 }

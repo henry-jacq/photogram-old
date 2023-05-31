@@ -20,13 +20,13 @@ ${basename(__FILE__, '.php')} = function () {
         if (!$ud->exists()) {
             $ud->create($data['fname'], $data['lname'], $data['email'], $data['job'], $data['bio'], $data['location'], $data['twitter'], $data['instagram']);
             if (isset($_FILES) && $_FILES['user_image']['error'] !== UPLOAD_ERR_NO_FILE) {
-                $ud->setAvatar($_FILES['user_image']['tmp_name']);
+                $ud->setNewAvatar($_FILES['user_image']['tmp_name']);
             }
             $message = 'Created';
         } else {
             $ud->update($data['fname'], $data['lname'], $data['email'], $data['job'], $data['bio'], $data['location'], $data['twitter'], $data['instagram']);
             if (isset($_FILES) && $_FILES['user_image']['error'] !== UPLOAD_ERR_NO_FILE) {
-                $ud->setAvatar($_FILES['user_image']['tmp_name']);
+                $ud->setNewAvatar($_FILES['user_image']['tmp_name']);
             }
             $message = 'Updated';
         }

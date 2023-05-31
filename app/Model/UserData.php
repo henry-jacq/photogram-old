@@ -31,8 +31,56 @@ class UserData {
         return mysqli_real_escape_string($this->conn, $value);
     }
 
-    public function setAvatar(string $image_tmp)
+    // Remove the user avatar from storage
+    private function purgeUserAvatar()
     {
+        try {
+            $image_name = basename($this->getAvatar());
+            $image_path = APP_STORAGE_PATH. '/avatars/' .$image_name;
+            if (file_exists($image_path)) {
+                if (unlink($image_path)) {
+                    return true;
+                } else {
+                    throw new Exception(__CLASS__."::".__FUNCTION__.", can't purge user avatar. Image path: $image_path");
+                }
+            }
+        } catch (Exception $e) {
+            throw new Exception($e->getMessage());
+        }
+    }
+    
+    /**
+     * Removes avatar from both storage and database
+     */
+    public function deleteAvatarImage() {
+       if (!$this->conn) {
+            $this->conn = Database::getConnection();
+        }
+
+        try {
+            if ($this->purgeUserAvatar()) {
+                $sql = "UPDATE `$this->table` SET `avatar` = NULL WHERE `uid` = '$this->id';";
+                if ($this->conn->query($sql)) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        } catch (Exception $e) {
+            throw new Exception(__CLASS__."::deleteAvatarImage, can't remove user avatar.");
+        }
+    }
+
+    /**
+     * Set new avatar for user
+     */
+    public function setNewAvatar(string $image_tmp)
+    {
+        // Remove the existing avatar from storage and database
+        if (!empty($this->getAvatar())) {
+            $this->deleteAvatarImage($this->getAvatar());
+        }
+        
         $image_tmp = $this->escapeString($image_tmp);
         
         if (is_file($image_tmp) and exif_imagetype($image_tmp) !== false) {
@@ -55,16 +103,14 @@ class UserData {
         }
     }
     
-    public function getUserAvatar(string $owner)
+    public function getUserAvatar()
     {
-        $current_user = Session::getUser()->getUsername();
+        $uid = Session::getUser()->getId();
         $url = "https://api.dicebear.com/6.x/shapes/svg?seed=";
-        if ($owner !== $current_user) {
-            return $url.$owner;
-        } else if (!empty($this->getAvatar())) {
+        if (!empty($this->getAvatar())) {
             return $this->getAvatar();
         } else {
-            return $url.$current_user;
+            return $url.$uid;
         }
     }
     

@@ -278,31 +278,12 @@ class Post
     }
 
     /**
-     * Get ID of the provided username
-     */
-    private function getUserId(string $username)
-    {
-        $conn = Database::getConnection();
-        $username = mysqli_real_escape_string($conn, $username);
-
-        $sql = "SELECT `id` FROM `auth` WHERE `username` = '$username';";
-        $result = $conn->query($sql);
-
-        if ($result && $result->num_rows == 1) {
-            $row = $result->fetch_assoc();
-            return $row['id'];
-        } else {
-            throw new Exception("Can't get the user ID using username: ".$username);
-        }
-    }
-
-    /**
      * Get the user job
      */
     public function getUserJob()
     {
         $user_id = $this->getUserId($this->getOwner());
-        $sql = "SELECT `uid`, `job` FROM `users` WHERE `uid` = '1';";
+        $sql = "SELECT `uid`, `job` FROM `users` WHERE `uid` = '$user_id';";
         $conn = Database::getConnection();
         $result = $conn->query($sql);
 
@@ -313,6 +294,27 @@ class Post
             }
         } else {
             throw new Exception("Can't get the user job, line no:".__LINE__);
+        }
+    }
+
+    /**
+     * Get the user avatar
+     */
+    public function getAvatar()
+    {
+        $user_id = $this->getUserId($this->getOwner());
+        $url = "https://api.dicebear.com/6.x/shapes/svg?seed=";
+        $sql = "SELECT `avatar` FROM `users` WHERE `uid` = '$user_id';";
+        $result = $this->conn->query($sql);
+        if ($result && $result->num_rows == 1) {
+            $row = $result->fetch_assoc();
+            if (empty($row['avatar']) || is_null($row['avatar'])) {
+                return $url.$user_id;
+            } else {
+                return $row['avatar'];
+            }
+        } else {
+            return $url.$user_id;
         }
     }
 }
