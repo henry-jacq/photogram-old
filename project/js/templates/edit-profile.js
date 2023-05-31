@@ -31,4 +31,36 @@ if (window.location.pathname === "/edit-profile") {
             }
         });
     });
+
+    // Remove avatar
+    $('#btnRemoveAvatar').on('click', function () {
+        const title = 'After removing the avatar, the default user avatar generated from <a href="https://dicebear.com" class="text-decoration-none">dicebear.com</a> will be set as your default avatar.<br><br><b class="fw-semibold">Are you sure to continue?</b>';
+        d = new Dialog('<i class="bi bi-trash me-2"></i>Remove Avatar', title);
+        d.setButtons([
+            {
+                'name': "Cancel",
+                "class": "btn-secondary",
+                "onClick": function (event) {
+                    $(event.data.modal).modal('hide');
+                }
+            },
+            {
+                'name': 'Yes, remove',
+                'class': 'btn-danger',
+                "onClick": function (event) {
+                    $.post('/api/users/profile/delete',
+                        function (data, textSuccess) {
+                            if (data.message == true && textSuccess == "success") {
+                                location.reload();
+                            } else {
+                                console.error(data, textSuccess);
+                            }
+                        });
+
+                    $(event.data.modal).modal('hide')
+                }
+            }
+        ]);
+        d.show();
+    });
 }
