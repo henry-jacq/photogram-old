@@ -2,7 +2,7 @@
 project/grunt/node_modules/
 
 # Storage
-storage/posts/
+storage/*
 
 # vendor
 vendor/
