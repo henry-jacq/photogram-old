@@ -13,81 +13,57 @@ class User
     public $id;
     public $table;
 
-    // Escapes special characters in an SQL statement
+    /**
+     * Escapes special characters in a SQL statement
+     */
     protected static function check_sql_errors($value): string
     {
         $conn = Database::getConnection();
         return mysqli_real_escape_string($conn, $value);
     }
 
-    // Register User
-    public static function signup($username, $password, $email, $fname, $lname): string
+    /**
+     * Register user
+     */
+    public static function register($username, $password, $email): string
     {
         // Amount of cost requires to generate a random hash
         $options = [
             'cost' => 8
         ];
-        // Hashing password
         $password = password_hash($password, PASSWORD_DEFAULT, $options);
-
-        // We assumes this as secure way to hashing a password
-        // $password = md5(strrev(md5($password))); // Security through obscurity
-
-        // Create a connection to database
         $conn = Database::getConnection();
-
-        // Check for special characters in these values
         $username = strtolower(self::check_sql_errors($username));
         $password = self::check_sql_errors($password);
         $email = self::check_sql_errors($email);
-        $fname = self::check_sql_errors($fname);
-        $lname = self::check_sql_errors($lname);
 
-        // Insert values into the database
-        // Todo: In future, change the sql query table to class variable which is declared in database_class_php file
-        $sql = "INSERT INTO `auth` (`username`, `password`, `email`, `first_name`, `last_name`, `active`, `signup_time`) VALUES ('$username', '$password', '$email', '$fname', '$lname', '0', now());";
+        // TODO: In future, change the sql query table to class variable which is declared in database_class_php file
+        $sql = "INSERT INTO `auth` (`username`, `password`, `email`, `active`, `signup_time`) VALUES ('$username', '$password', '$email', '0', now());";
 
-        // Sending the query to the database and checking if it is true or false
-        //PHP 7.4 -
-        // if ($conn->query($sql) === true) {
-        //     $error = false;
-        // } else {
-        //     $error = $conn->error;
-        // }
-
-        //PHP 8.1 - all MySQLi errors are throws as Exceptions
         try {
             return $conn->query($sql);
         } catch (Exception $e) {
-            // echo "Error: " . $sql . "<br>" . $conn->error;
             return false;
         }
     }
 
-    // Login User
-    public static function login($username_or_email, $password): string
+    /**
+     * Login user
+     */
+    public static function login($user, $password): string
     {
-        // Query to fetch the user data
-        // Check if the $username_or_email field has email
-        if (filter_var($username_or_email, FILTER_VALIDATE_EMAIL)) {
-            $query = "SELECT * FROM `auth` WHERE `email` = '$username_or_email'";
+        if (filter_var($user, FILTER_VALIDATE_EMAIL)) {
+            $query = "SELECT * FROM `auth` WHERE `email` = '$user'";
         } else {
-            $query = "SELECT * FROM `auth` WHERE `username` = '$username_or_email'";
+            $query = "SELECT * FROM `auth` WHERE `username` = '$user'";
         }
 
-        // Create a connection to database
         $conn = Database::getConnection();
+        $user = strtolower(self::check_sql_errors($user));
 
-        $username_or_email = strtolower(self::check_sql_errors($username_or_email));
-
-        // Get the user details [1 row] by sending this query to database.
         $result = $conn->query($query);
-        // Checking the query has a row or not
         if ($result->num_rows == 1) {
-            // Fetch the user data in associative array form
             $row = $result->fetch_assoc();
-            // Checking the row that has the password which is entered by user.
-            // Checking the password entered by user is matching with password in database
             if (password_verify($password, $row['password'])) {
                 return $row['username'];
             } else {

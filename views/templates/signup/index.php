@@ -4,11 +4,11 @@ use App\Core\User;
 use App\Core\View;
 
 // Try to register, if the user has submitted the form
-$required_fields = array("username" => filter_input(INPUT_POST, 'username', FILTER_SANITIZE_FULL_SPECIAL_CHARS),
-"password" => filter_input(INPUT_POST, 'password', FILTER_SANITIZE_FULL_SPECIAL_CHARS),
-"email_address" => filter_input(INPUT_POST, 'email_address', FILTER_SANITIZE_EMAIL),
-"first_name" => filter_input(INPUT_POST, 'first_name', FILTER_SANITIZE_FULL_SPECIAL_CHARS),
-"last_name" => filter_input(INPUT_POST, 'last_name', FILTER_SANITIZE_FULL_SPECIAL_CHARS));
+$required_fields = array(
+    "username" => filter_input(INPUT_POST, 'username', FILTER_SANITIZE_FULL_SPECIAL_CHARS),
+    "password" => filter_input(INPUT_POST, 'password', FILTER_SANITIZE_FULL_SPECIAL_CHARS),
+    "email_address" => filter_input(INPUT_POST, 'email_address', FILTER_SANITIZE_EMAIL)
+);
 
 // Sanitizing user input
 foreach ($required_fields as $key => $value) {
@@ -26,12 +26,6 @@ foreach ($required_fields as $key => $value) {
             case 'email_address':
                 $email = $value;
                 break;
-            case 'first_name':
-                $fname = $value;
-                break;
-            case 'last_name':
-                $lname = $value;
-                break;
         }
         $signup = true;
     }
@@ -39,7 +33,7 @@ foreach ($required_fields as $key => $value) {
 
 // If user filled and submitted the form
 if ($signup) {
-    $result = User::signup($username, $password, $email, $fname, $lname);
+    $result = User::register($username, $password, $email);
     // Sign up success, if result has no error
     if ($result) { ?>
 <section class="container">
@@ -51,8 +45,7 @@ if ($signup) {
 				<h3 class="display-6">Welcome to Photogram!</h3>
 				<p class="lead mb-4">Your account has been created.</p>
 				<a class="text-decoration-none" href="/login">
-					<button class="btn btn-success hvr-icon-forward">Continue to login <i
-							class="fa fa-arrow-right hvr-icon" aria-hidden="true"></i></button>
+					<button class="btn btn-success hvr-icon-forward">Continue to login <i class="fa fa-arrow-right hvr-icon" aria-hidden="true"></i></button>
 				</a>
 			</div>
 		</div>

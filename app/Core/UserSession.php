@@ -13,32 +13,28 @@ class UserSession
     public $uid;
 
     // This function will return session_token if the username and password is correct.
-    public static function authenticate($username_or_email, $password)
+    public static function authenticate($user, $pass, $fingerprint=null)
     {
         // Return the username
-        $user_or_email = User::login($username_or_email, $password);
+        $username = User::login($user, $pass);
 
-        if ($user_or_email) {
-            $user = new User($user_or_email);
+        if ($username) {
+            $user = new User($username);
             $conn = Database::getConnection();
             $ip = $_SERVER['REMOTE_ADDR'];
             $agent = $_SERVER['HTTP_USER_AGENT'];
-            $token = md5(rand(0, 9999999) . $ip . $agent . time());
+            $token = md5(random_int(0, 99999) . $ip . $agent . time());
 
             // NOTE:
             // Fingerprint is optional
             // If the user is using any adblocker, the fingerprint will not be generated
-            if (!is_null($_POST['visitor_id'])) {
-                $visitor_id = $_POST['visitor_id'];
-            } else {
-                $visitor_id = null;
-            }
+            $fingerprint = is_null($fingerprint) ? $_COOKIE['fingerprint'] : null;
 
-            $sql = "INSERT INTO `session` (`uid`, `token`, `login_time`, `ip`, `user_agent`, `active`, `visitor_id`) VALUES ('$user->id', '$token', now(), '$ip', '$agent', '1', '$visitor_id');";
+            $sql = "INSERT INTO `session` (`uid`, `token`, `login_time`, `ip`, `user_agent`, `active`, `fingerprint`) VALUES ('$user->id', '$token', now(), '$ip', '$agent', '1', '$fingerprint');";
 
             if ($conn->query($sql)) {
                 Session::set('session_token', $token);
-                Session::set('visitor_id', $visitor_id);
+                Session::set('fingerprint', $fingerprint);
                 return $token;
             } else {
                 return false;
