@@ -141,9 +141,7 @@ class Session
     public static function logout(string $token)
     {
         try {
-            if (Session::isset($token)) {
-                UserSession::removeSession($token);
-            }
+            UserSession::removeSession($token);
             Session::destroy();
         } catch (Exception $e) {
             echo $e->getMessage();

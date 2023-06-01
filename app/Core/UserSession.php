@@ -175,21 +175,12 @@ class UserSession
     // It removes the current Session
     public static function removeSession($token)
     {
-        $session = new UserSession($token);
-
-        if (isset($session->data['id'])) {
-            $id = $session->data['id'];
-            // If there is no database connection create one.
-            if (!$session->conn) {
-                Database::getConnection();
-            }
-            // SQL query to delete the session
-            $sql = "DELETE FROM `session` WHERE `id` = '$id';";
-            if ($session->conn->query($sql)) {
-                return true;
-            } else {
-                return false;
-            }
+        $conn = Database::getConnection();
+        
+        // SQL query to delete the session
+        $sql = "DELETE FROM `session` WHERE `token` = '$token';";
+        if ($conn->query($sql)) {
+            return true;
         } else {
             return false;
         }
