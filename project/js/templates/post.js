@@ -7,7 +7,10 @@ $(window).on("load", function () {
     if ($('img').removeClass('skeleton-img')) {
         $('.carousel, .post-card-image, .btn-like').show();
     }
-    masonry.layout();
+    if (typeof masonry !== 'undefined') {
+        // Masonry library is available
+        masonry.layout();
+    }
 });
 
 // Change the cursor to pointer

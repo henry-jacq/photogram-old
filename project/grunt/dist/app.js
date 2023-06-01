@@ -1,4 +1,4 @@
-/* Processed by Grunt on 31/5/2023 @18:32:41 */
+/* Processed by Grunt on 1/6/2023 @7:34:38 */
 
 
 // Update profile details
@@ -70,31 +70,45 @@ if (window.location.pathname === "/edit-profile") {
 
 // Init Masonry
 var grid = document.querySelector('#masonry-area');
-var masonry = new Masonry(grid, {
-    percentPosition: true
-});
+if (grid) {
+    // Initialize masonry
+    var masonry = new Masonry(grid, {
+        percentPosition: true
+    });
+    // Layout Masonry after each image loads
+    imagesLoaded(grid).on('progress', function () {
+        masonry.layout();
+    });
+}
 
-// Layout Masonry after each image loads
-imagesLoaded(grid).on('progress', function () {
-    masonry.layout();
-});
+// Set a cookie
+function setCookie(name, value, daysToExpire) {
+    var expires = "";
+
+    if (daysToExpire) {
+        var date = new Date();
+        date.setTime(date.getTime() + (daysToExpire * 24 * 60 * 60 * 1000));
+        expires = "; expires=" + date.toUTCString();
+    }
+    document.cookie = name + "=" + value + expires + "; path=/";
+}
 
 // Fingerprint
 // Initialize the agent at application startup.
-fetch('https://openfpcdn.io/fingerprintjs/v3').then(response => {
-    if (response.ok) {
-        const fpPromise = import('https://openfpcdn.io/fingerprintjs/v3').then(FingerprintJS => FingerprintJS.load())
+if (window.location.pathname == '/login') {
+    fetch('https://openfpcdn.io/fingerprintjs/v3').then(response => {
+        if (response.ok) {
+            const fpPromise = import('https://openfpcdn.io/fingerprintjs/v3').then(FingerprintJS => FingerprintJS.load())
 
-        // Get the visitor identifier when you need it.
-        fpPromise.then(fp => fp.get()).then(result => {
-            // This is the visitor identifier:
-            const visitorId = result.visitorId;
-            if ($("#fingerprint")) {
-                $("#fingerprint").val(visitorId);
-            }
-        })
-    }
-})
+            // Get the visitor identifier when you need it.
+            fpPromise.then(fp => fp.get()).then(result => {
+                // This is the visitor identifier:
+                const visitorId = result.visitorId;
+                setCookie('fingerprint', visitorId, 1);
+            })
+        }
+    });
+}
 
 // Disable right-click on Images
 $('img').on("contextmenu", function () {
@@ -203,7 +217,10 @@ $(window).on("load", function () {
     if ($('img').removeClass('skeleton-img')) {
         $('.carousel, .post-card-image, .btn-like').show();
     }
-    masonry.layout();
+    if (typeof masonry !== 'undefined') {
+        // Masonry library is available
+        masonry.layout();
+    }
 });
 
 // Change the cursor to pointer
