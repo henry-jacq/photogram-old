@@ -26,9 +26,12 @@ $ud = new UserData(Session::getUser());
                     <p class="small mb-2">You can change your avatar here or remove the current avatar to revert to <a href="https://dicebear.com" class="text-decoration-none" target="_blank">dicebear.com</a></p>
                     <input class="form-control" type="file" id="user-avatar" name="user_image">
                     <div class="text-secondary small mb-2">The maximum file size allowed is 800KB.</div>
+                    <?php
+                    if (!str_contains($ud->getUserAvatar(), 'dicebear')){?>
                     <div class="d-flex justify-content-end mb-3">
                         <button id="btnRemoveAvatar" class="btn btn-sm btn-outline-danger" type="button"><i class="bi bi-trash me-1"></i>Remove avatar</button>
                     </div>
+                    <?}?>
                 </div>
                 <div class="form-group mb-3 row">
                     <div class="col">
