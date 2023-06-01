@@ -17,7 +17,7 @@ $ud = new UserData(Session::getUser());
         </div>
         <div class="col-lg-9">
             <div class="px-3 mt-4">
-                <h4 class="fw-normal">Edit Profile</h4>
+                <h4 class="fw-normal"><i class="fa-fw bi bi-pencil me-2"></i>Edit Profile</h4>
                 <hr>
             </div>
             <form class="user-form-data p-3" method="POST" autocomplete="off">

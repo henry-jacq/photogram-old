@@ -47,38 +47,26 @@ class UserSession
     public static function authorize($token)
     {
         $session = new UserSession($token);
-
         $ip = $_SERVER['REMOTE_ADDR'];
         $agent = $_SERVER['HTTP_USER_AGENT'];
 
         try {
             // Preventive measures for session hijacking
-            if (isset($agent) && isset($ip)) {
-                if ($agent == $session->getUserAgent() && $ip == $session->getIP()) {
-                    // If the session is active and valid
-                    if ($session->isValid() && $session->isActive()) {
-                        // NOTE: Fingerprint is Optional
-                        if (Session::isset('fingerprint') && $session->getFingerprint()) {
-                            // If fingerprint exists, check both equal or not
-                            if (Session::get('fingerprint') == $session->getFingerprint()) {
-                                Session::$user = $session->getUser();
-                                return $session;
-                            } else {
-                                Session::logout(Session::get('session_token'));
-                            }
-                        } else {
-                            Session::$user = $session->getUser();
-                            return $session;
-                        }
-                    } else {
-                        Session::logout(Session::get('session_token'));
+            if (isset($agent, $ip) && $agent === $session->getUserAgent() && $ip === $session->getIP()) {
+                // If the session is active and valid
+                if ($session->isValid() && $session->isActive()) {
+                    // Check if fingerprint is set and matches
+                    if (Session::isset('fingerprint') && Session::get('fingerprint') === $session->getFingerprint()) {
+                        Session::$user = $session->getUser();
+                        return $session;
+                    } elseif (!Session::isset('fingerprint')) {
+                        Session::$user = $session->getUser();
+                        return $session;
                     }
-                } else {
-                    Session::logout(Session::get('session_token'));
                 }
-            } else {
-                Session::logout(Session::get('session_token'));
             }
+            Session::logout(Session::get('session_token'));
+            return null;
         } catch(Exception $e) {
             throw new Exception($e->getMessage());
         }
