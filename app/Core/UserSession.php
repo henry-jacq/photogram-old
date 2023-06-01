@@ -53,33 +53,31 @@ class UserSession
 
         try {
             // Preventive measures for session hijacking
-            if (isset($agent) and isset($ip)) {
-                if ($agent == $session->getUserAgent() and $ip == $session->getIP()) {
+            if (isset($agent) && isset($ip)) {
+                if ($agent == $session->getUserAgent() && $ip == $session->getIP()) {
                     // If the session is active and valid
-                    if ($session->isValid() and $session->isActive()) {
-                        // NOTE: Fingerprint (or) visitorID is Optional
-                        if (Session::isset('visitor_id') and $session->getVisitorId()) {
+                    if ($session->isValid() && $session->isActive()) {
+                        // NOTE: Fingerprint is Optional
+                        if (Session::isset('fingerprint') && $session->getFingerprint()) {
                             // If fingerprint exists, check both equal or not
-                            if (Session::get('visitor_id') == $session->getVisitorId()) {
+                            if (Session::get('fingerprint') == $session->getFingerprint()) {
                                 Session::$user = $session->getUser();
                                 return $session;
                             } else {
-                                throw new Exception("Fingerprint doesn't match.");
+                                Session::logout(Session::get('session_token'));
                             }
                         } else {
                             Session::$user = $session->getUser();
                             return $session;
                         }
                     } else {
-                        $session::removeSession($token);
-                        throw new Exception("Session is invalid.");
+                        Session::logout(Session::get('session_token'));
                     }
                 } else {
-                    $session::removeSession($token);
-                    throw new Exception("User agent and IP address doesn't match.");
+                    Session::logout(Session::get('session_token'));
                 }
             } else {
-                throw new Exception("User agent and IP address is NULL.");
+                Session::logout(Session::get('session_token'));
             }
         } catch(Exception $e) {
             throw new Exception($e->getMessage());
@@ -98,7 +96,7 @@ class UserSession
             $this->data = $row;
             $this->uid = $row['uid']; // Updating this from database
         } else {
-            throw new Exception("Session is invalid.");
+            throw new Exception("Invalid user session.");
         }
     }
 
@@ -107,7 +105,9 @@ class UserSession
         return new User($this->uid);
     }
 
-    // Check if the validity of the session is within two hour, else it is inactive.
+    /**
+     * If the validity of the session is not within two hours, it is will be expired.
+     */
     public function isValid()
     {
         if (isset($this->data['login_time'])) {
@@ -118,11 +118,13 @@ class UserSession
                 return false;
             }
         } else {
-            throw new Exception("login time is not available!");
+            throw new Exception("Login time is not available!");
         }
     }
 
-    // User IP stored in database
+    /**
+     * Get the user IP stored in database
+     */
     public function getIP()
     {
         if (isset($this->data['ip'])) {
@@ -132,7 +134,9 @@ class UserSession
         }
     }
 
-    // User agent stored in database
+    /**
+     * User agent stored in database
+     */
     public function getUserAgent()
     {
         if (isset($this->data['user_agent'])) {
@@ -142,17 +146,21 @@ class UserSession
         }
     }
 
-    // Fingerprint (or) Visitor ID stored in database
-    public function getVisitorId()
+    /**
+     * Get the fingerprint stored in database
+     */
+    public function getFingerprint()
     {
-        if (isset($this->data['visitor_id'])) {
-            return $this->data['visitor_id'];
+        if (isset($this->data['fingerprint'])) {
+            return $this->data['fingerprint'];
         } else {
             return false;
         }
     }
 
-    // This change the value of active '1' to '0' in database
+    /**
+     * Deactivate the session
+     */
     public function deactivate()
     {
         if (!$this->conn) {
@@ -162,7 +170,9 @@ class UserSession
         return $this->conn->query($sql) ? true : false;
     }
 
-    // Checks if the session is active or not
+    /**
+     * Checks if the session is active or not
+     */
     public function isActive()
     {
         if (isset($this->data['active'])) {
