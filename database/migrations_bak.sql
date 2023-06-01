@@ -1,4 +1,4 @@
--- 28 May, 2023 Migrations
+-- 01 June, 2023 Migrations
 -- Adminer 4.8.1 MySQL 8.0.33 dump
 
 SET NAMES utf8;
@@ -13,8 +13,6 @@ CREATE TABLE `auth` (
   `username` varchar(32) NOT NULL,
   `password` varchar(256) NOT NULL,
   `email` varchar(256) NOT NULL,
-  `first_name` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `last_name` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `active` int NOT NULL DEFAULT '1',
   `signup_time` timestamp NOT NULL,
   `token` varchar(16) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
@@ -87,7 +85,7 @@ CREATE TABLE `session` (
   `ip` varchar(20) NOT NULL,
   `user_agent` varchar(256) NOT NULL,
   `active` int NOT NULL DEFAULT '1',
-  `visitor_id` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `fingerprint` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `uid` (`uid`),
   CONSTRAINT `session_ibfk_1` FOREIGN KEY (`uid`) REFERENCES `auth` (`id`) ON DELETE RESTRICT
@@ -112,4 +110,4 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 
--- 2023-05-28 17:50:03
+-- 2023-06-01 13:31:07
