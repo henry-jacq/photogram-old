@@ -58,8 +58,8 @@ $ud = new UserData(Session::getUser());
                 </div>
                 <div class="form-group mb-3">
                     <label for="bio" class="form-label fw-semibold">Bio</label>
-                    <textarea id="bio" class="form-control" rows="3" name="bio" placeholder="Write about you..." maxlength="250"><?= $ud->getBio(); ?></textarea>
-                    <p class="form-text mb-0">Tell us about yourself in fewer than 250 characters.</p>
+                    <textarea id="bio" class="form-control" rows="5" name="bio" placeholder="Write about you..." maxlength="100"><?= $ud->getBio(); ?></textarea>
+                    <p class="form-text mb-0">Tell us about yourself in fewer than 100 characters.</p>
                 </div>
                 <div class="form-group mb-3">
                     <label for="location" class="form-label fw-semibold">Location</label>

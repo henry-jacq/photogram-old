@@ -9,7 +9,7 @@ $ud = new UserData(Session::getUser());
 	<h3 class="fw-light">Profile Page</h3>
 	<hr class="py-3">
 	<div class="row">
-		<div class="col-md-4 text-center align-middle">
+		<div class="col-lg-4 text-center align-middle">
 			<img class="user-profile-img img-fluid rounded-circle mb-3" src="<?= $ud->getUserAvatar() ?>" alt="<?= ucfirst(Session::getUser()->getUsername()) ?>-avatar" width="175" height="175">
 			<h2 class="fw-normal fs-4">
 				<?= ucfirst(Session::getUser()->getUsername()); ?>
@@ -31,7 +31,7 @@ $ud = new UserData(Session::getUser());
 				</div>
 			</div>
 		</div>
-		<div class="col-md-8">
+		<div class="col-lg-8">
 			<ul class="list-group border-0 my-3">
 				<li class="list-group-item border-0">
 					Username<br><b>@<?= Session::getUser()->getUsername(); ?></b>
@@ -40,13 +40,16 @@ $ud = new UserData(Session::getUser());
 					address<br><b><?= Session::getUser()->getEmail() ?></b>
 				</li>
 			</ul>
-			<div class="container border p-3 rounded">
-				<h5 class="fw-normal">About Me</h5>
-				<p class="fw-light">#!/bin/bash<br>Full stack Developer<br>I convert caffeine into code.</p>
-				<a class="text-decoration-none" href="https://github.com/henry-jacq/">Check Out my Github
-					Page</a>.<br><br>
-				<i>#IoT #electronics #hacking</i>
-			</div>
+			<?php
+			if (!empty($ud->getBio())) {?>
+				<div class="container border p-3 rounded">
+					<h5 class="fw-normal">About Me</h5>
+					<textarea class="form-control border-0 shadow-none p-0 rounded-0" rows="6" style="resize: none; white-space: pre-line;" readonly>
+						<?= $ud->getBio()?>
+					</textarea>
+				</div>
+			<?}
+			?>
 		</div>
 		<?= View::loadTemplate('templates/home/photogram'); ?>
 	</div>
