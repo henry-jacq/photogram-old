@@ -13,29 +13,54 @@ if (grid) {
 
 // Set a cookie
 function setCookie(name, value, daysToExpire) {
-    var expires = "";
+    var expires = "; expires=";
 
     if (daysToExpire) {
         var date = new Date();
         date.setTime(date.getTime() + (daysToExpire * 24 * 60 * 60 * 1000));
         expires = "; expires=" + date.toUTCString();
     }
-    document.cookie = name + "=" + value + expires + "; path=/";
+    document.cookie = name + "=" + value + expires + "; path=/; SameSite=Strict";
 }
 
-// Fingerprint
-// Initialize the agent at application startup.
-if (window.location.pathname == '/login') {
-    fetch('https://openfpcdn.io/fingerprintjs/v3').then(response => {
-        if (response.ok) {
-            const fpPromise = import('https://openfpcdn.io/fingerprintjs/v3').then(FingerprintJS => FingerprintJS.load())
+// Check the existence of a cookie
+function cookieExists(cookieName) {
+    var cookies = document.cookie.split(';');
+    for (var i = 0; i < cookies.length; i++) {
+        var cookie = cookies[i].trim();
+        if (cookie.indexOf(cookieName + '=') === 0) {
+            return true;
+        }
+    }
+    return false;
+}
 
-            // Get the visitor identifier when you need it.
-            fpPromise.then(fp => fp.get()).then(result => {
-                // This is the visitor identifier:
-                const visitorId = result.visitorId;
-                setCookie('fingerprint', visitorId, 1);
-            })
+// Delete a cookie
+function deleteCookie(name) {
+    expires = "; expires=Thu, 01 Jan 1970 00:00:00 UTC";
+    document.cookie = name + "=" + expires + "; path=/; SameSite=Strict";
+}
+
+// Fingerprint set as cookie when remember me is checked
+if (window.location.pathname == '/login') {
+    if (cookieExists('fingerprint')) {
+        deleteCookie('fingerprint');
+    }
+    $('#rememberMe').on('click', function () {
+        if ($('#rememberMe').is(':checked')) {
+            if (!cookieExists('fingerprint')) {
+                fetch('https://openfpcdn.io/fingerprintjs/v3').then(response => {
+                    if (response.ok) {
+                        const fpPromise = import('https://openfpcdn.io/fingerprintjs/v3').then(FingerprintJS => FingerprintJS.load())
+                        fpPromise.then(fp => fp.get()).then(result => {
+                            const visitorId = result.visitorId;
+                            setCookie('fingerprint', visitorId, 1);
+                        })
+                    }
+                });
+            }
+        } else if (cookieExists('fingerprint')) {
+            deleteCookie('fingerprint');
         }
     });
 }
