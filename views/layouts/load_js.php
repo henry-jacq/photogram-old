@@ -4,7 +4,7 @@ use App\Core\Session;
 ?>
 
 <!-- Bootstrap JS -->
-<script src="<?= URL_ROOT ?>js/bootstrap/bootstrap.bundle.js"></script>
+<script src="<?= URL_ROOT ?>js/bootstrap/bootstrap.bundle.min.js"></script>
 
 <?php
 // If user is authenticated
