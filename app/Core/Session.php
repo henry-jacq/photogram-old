@@ -142,7 +142,9 @@ class Session
     {
         try {
             UserSession::removeSession($token);
-            Session::destroy();
+            if (session_status() === PHP_SESSION_ACTIVE) {
+                self::destroy();
+            }
         } catch (Exception $e) {
             echo $e->getMessage();
         }

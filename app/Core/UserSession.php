@@ -12,7 +12,7 @@ class UserSession
     public $data;
     public $uid;
 
-    // This function will return session_token if the username and password is correct.
+    // This function will return session_token if login success.
     public static function authenticate($user, $pass, $fingerprint=null)
     {
         // Return the username
@@ -25,16 +25,17 @@ class UserSession
             $agent = $_SERVER['HTTP_USER_AGENT'];
             $token = md5(random_int(0, 99999) . $ip . $agent . time());
 
-            // NOTE:
-            // Fingerprint is optional
-            // If the user is using any adblocker, the fingerprint will not be generated
-            $fingerprint = is_null($fingerprint) ? $_COOKIE['fingerprint'] : null;
+            // NOTE: Fingerprint is an optional verification
+            // Fingerprint will not be generated if the user uses an ad blocker.
+            if ($fingerprint !== null) {
+                Session::set('fingerprint', $fingerprint);
+            }
 
             $sql = "INSERT INTO `session` (`uid`, `token`, `login_time`, `ip`, `user_agent`, `active`, `fingerprint`) VALUES ('$user->id', '$token', now(), '$ip', '$agent', '1', '$fingerprint');";
 
             if ($conn->query($sql)) {
+                Session::set('logged_in', true);
                 Session::set('session_token', $token);
-                Session::set('fingerprint', $fingerprint);
                 return $token;
             } else {
                 return false;
@@ -53,20 +54,21 @@ class UserSession
         try {
             // Preventive measures for session hijacking
             if (isset($agent, $ip) && $agent === $session->getUserAgent() && $ip === $session->getIP()) {
-                // If the session is active and valid
-                if ($session->isValid() && $session->isActive()) {
-                    // Check if fingerprint is set and matches
-                    if (Session::isset('fingerprint') && Session::get('fingerprint') === $session->getFingerprint()) {
+                if ($session->isActive() && $session->verifyFingerprint()) {
+                    Session::$user = $session->getUser();
+                    return $session;
+                } else {
+                    if (Session::isset('fingerprint')) {
+                        Session::logout($token);
+                    } else if (($session->isValid())) {
                         Session::$user = $session->getUser();
                         return $session;
-                    } elseif (!Session::isset('fingerprint')) {
-                        Session::$user = $session->getUser();
-                        return $session;
+                    } else {
+                        Session::logout($token);
                     }
                 }
             }
-            Session::logout(Session::get('session_token'));
-            return null;
+            Session::logout($token);
         } catch(Exception $e) {
             throw new Exception($e->getMessage());
         }
@@ -84,7 +86,7 @@ class UserSession
             $this->data = $row;
             $this->uid = $row['uid']; // Updating this from database
         } else {
-            throw new Exception("Invalid user session.");
+            throw new Exception("Invalid user session");
         }
     }
 
@@ -94,19 +96,36 @@ class UserSession
     }
 
     /**
-     * If the validity of the session is not within two hours, it is will be expired.
+     * Check and verify the fingerprint
+     */
+    public function verifyFingerprint()
+    {
+        if (Session::isset('fingerprint') && isset($_COOKIE['fingerprint'])) {
+            if (Session::get('fingerprint') === $this->getFingerprint()) {
+                return $this->getFingerprint() === $_COOKIE['fingerprint'];
+            }
+            return false;
+        }
+        return false;
+    }
+    
+    /**
+     * Returns true, if session lifetime is less than 2 hours.
      */
     public function isValid()
     {
-        if (isset($this->data['login_time'])) {
-            $login_time = DateTime::createFromFormat('Y-m-d H:i:s', $this->data['login_time']);
-            if (7200 > time() - $login_time->getTimestamp()) {
+        // Session is valid for 2 hours only
+        if (isset($_SESSION['logged_in'], $this->data['login_time'])) {
+            $expirationTime = 2 * 60 * 60;
+            $loginTime = DateTime::createFromFormat('Y-m-d H:i:s', $this->data['login_time']);
+            if (($expirationTime > time() - $loginTime->getTimestamp())) {
                 return true;
             } else {
                 return false;
             }
         } else {
-            throw new Exception("Login time is not available!");
+            // Session not found or not logged in
+            return false;
         }
     }
 

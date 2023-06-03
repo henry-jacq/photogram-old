@@ -8,7 +8,11 @@ use App\Core\View;
 if (isset($_POST['user']) and !empty($_POST['user']) and isset($_POST['pass']) and !empty($_POST['pass'])) {
     $user_or_email = $_POST['user'];
     $password = $_POST['pass'];
-    $result = UserSession::authenticate($user_or_email, $password);
+    if (isset($_COOKIE['fingerprint']) && !empty($_COOKIE['fingerprint'])) {
+        $result = UserSession::authenticate($user_or_email, $password, $_COOKIE['fingerprint']);
+    } else {
+        $result = UserSession::authenticate($user_or_email, $password, null);
+    }
     $login = true;
 } else {
     $login = false;
