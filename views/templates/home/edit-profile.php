@@ -10,8 +10,8 @@ $ud = new UserData(Session::getUser());
     <div class="row border rounded-3">
         <div class="col-lg-3 bg-body-tertiary rounded-3 py-5">
             <div class="d-flex flex-column align-items-center text-center p-3 mt-3">
-                <img class="rounded-circle" width="150" src="<?= $ud->getUserAvatar()?>">
-                <span class="fs-5 fw-semibold mt-3"><?= ucfirst(Session::getUser()->getUsername()) ?></span>
+                <img class="rounded-circle border border-2 border-light-subtle" width="150" src="<?= $ud->getUserAvatar()?>">
+                <span class="fs-5 fw-semibold mt-2"><?= ucfirst(Session::getUser()->getUsername()) ?></span>
                 <span class="small mt-2"><?= Session::getUser()->getEmail()?></span>
             </div>
         </div>

@@ -14,8 +14,13 @@ $ud = new UserData(Session::getUser());
 			<h2 class="fw-normal fs-4">
 				<?= ucfirst(Session::getUser()->getUsername()); ?>
 			</h2>
-			<p>@<?= lcfirst(Session::getUser()->getUsername()); ?>
-			</p>
+			<p>@<?= lcfirst(Session::getUser()->getUsername()); ?></p>
+			<?php
+			if (!empty($ud->getTwitter())):?>
+			<a class="text-primary fs-5 p-1" target="_blank" href="https://twitter.com/<?= $ud->getTwitter()?>"><i class="bi bi-twitter"></i></a>
+			<?php endif; if (!empty($ud->getInstagram())): ?>
+			<a class="text-danger fs-5 p-1" target="_blank" href="https://instagram.com/<?= $ud->getInstagram()?>"><i class="bi bi-instagram"></i></a>
+			<?php endif; ?>
 			<div class="row text-center mt-4 rounded-3">
 				<div class="col p-2">
 					<h4 class="fs-5" id="totalUserPosts">0</h4>
@@ -39,6 +44,11 @@ $ud = new UserData(Session::getUser());
 				<li class="list-group-item border-0">Email
 					address<br><b><?= Session::getUser()->getEmail() ?></b>
 				</li>
+				<?php if (!empty($ud->getLocation())) {?>
+				<li class="list-group-item border-0">Location
+					<br><b><i class="bi bi-geo-alt me-1"></i><?= $ud->getLocation() ?></b>
+				</li>
+				<?}?>
 			</ul>
 			<?php
 			if (!empty($ud->getBio())) {?>
