@@ -9,24 +9,31 @@ $username = DB_USER;
 $password = DB_PASS;
 $database = DB_NAME;
 
-try {
-    $db = new PDO("mysql:host=$servername;dbname=$database", $username, $password);
 
-    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $query = "SELECT * FROM `auth` WHERE `email` = ?";
+echo '<pre>';
+var_dump($_SESSION);
+echo '</pre>';
+exit;
 
-    $stmt = $db->prepare($query);
 
-    $stmt->bindValue(1, '');
+// try {
+//     $db = new PDO("mysql:host=$servername;dbname=$database", $username, $password);
 
-    $stmt->execute();
+//     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+//     $query = "SELECT * FROM `auth` WHERE `email` = ?";
 
-    echo '<pre>';
-    print_r($stmt->fetchAll()[0]);
-    echo '</pre>';
-    // exit;
+//     $stmt = $db->prepare($query);
+
+//     $stmt->bindValue(1, '');
+
+//     $stmt->execute();
+
+//     echo '<pre>';
+//     print_r($stmt->fetchAll()[0]);
+//     echo '</pre>';
+//     // exit;
     
     
-} catch (\PDOException $e) {
-    throw new \PDOException($e->getMessage());
-}
+// } catch (\PDOException $e) {
+//     throw new \PDOException($e->getMessage());
+// }

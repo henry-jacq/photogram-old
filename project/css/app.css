@@ -1,9 +1,9 @@
 /* Hide scrollbar in chrome, safari and opera */
-body::-webkit-scrollbar {
+/* body::-webkit-scrollbar {
     display: none;
-}
+} */
 
 /* Hide scrollbar in firefox */
-html {
+/* html {
     scrollbar-width: none;
-}
+} */
