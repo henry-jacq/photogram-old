@@ -20,22 +20,22 @@ if (Session::isAuthenticated()) {
 		<?php if (Session::isAuthenticated()) { ?>
 		<ul class="nav flex-nowrap align-items-center ms-sm-3 list-unstyled">
 			<li class="nav-item ms-2">
-				<a class="nav-link btn border py-1 px-2 rounded-5" id="themeSwitcher" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Switch theme">
+				<a class="nav-link text-dark-emphasis bg-body-tertiary btn border py-1 px-2 rounded-5" id="themeSwitcher" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Switch theme">
 					<i class="bi bi-moon-stars"></i>
 				</a>
 			</li>
 			<li class="nav-item ms-2">
-				<a class="nav-link btn border py-1 px-2 rounded-5" id="postUploadButton" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Upload post">
+				<a class="nav-link text-dark-emphasis bg-body-tertiary btn border py-1 px-2 rounded-5" id="postUploadButton" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Upload post">
 					<i class="bi bi-plus-square-dotted"></i></i>
 				</a>
 			</li>
 			<li class="nav-item ms-2">
-				<a class="nav-link btn border py-1 px-2 rounded-5" href="#" onclick="dialog('Not Implemented!',' This feature is not implemented');">
+				<a class="nav-link text-dark-emphasis bg-body-tertiary btn border py-1 px-2 rounded-5" href="#" onclick="dialog('Not Implemented!',' This feature is not implemented');">
 					<i class="bi bi-heart fs-6"></i>
 				</a>
 			</li>
 			<li class="nav-item dropdown ms-2">
-				<a class="nav-link btn border py-1 px-2 rounded-5" href="#" id="notifDropdown" role="button"
+				<a class="nav-link text-dark-emphasis bg-body-tertiary btn border py-1 px-2 rounded-5" href="#" id="notifDropdown" role="button"
 					data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
 					<i class="bi bi-bell fs-6"></i>
 					<span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">3<span
@@ -47,7 +47,7 @@ if (Session::isAuthenticated()) {
 						<div class="card-header d-flex justify-content-between align-items-center py-3">
 							<h6 class="m-0">Notifications <span class="badge bg-danger bg-opacity-10 text-danger ms-2">3
 									new</span></h6>
-							<a class="small text-decoration-none" href="#">Clear all</a>
+							<a class="text-dark-emphasis small text-decoration-none" href="#">Clear all</a>
 						</div>
 						<div class="card-body p-0">
 							<ul class="list-group list-group-flush list-unstyled p-2">
