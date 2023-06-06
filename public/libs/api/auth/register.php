@@ -3,24 +3,26 @@
 use App\Core\User;
 
 ${basename(__FILE__, '.php')} = function () {
-    if ($this->paramsExists(['username', 'email_address', 'password'])) {
-        $username = $this->_request['username'];
-        $email = $this->_request['email_address'];
-        $password = $this->_request['password'];
-
-        $result = User::register($username, $password, $email);
+    if (!$this->isAuthenticated() && $this->paramsExists(['username', 'email_address', 'password'])) {
+        $email = filter_var($this->_request['email_address'], FILTER_SANITIZE_EMAIL);
+        $userData = array(
+            "username" => filter_var($this->_request['username'], FILTER_SANITIZE_FULL_SPECIAL_CHARS),
+            "password" => filter_var($this->_request['password'], FILTER_SANITIZE_FULL_SPECIAL_CHARS),
+            "email_address" => filter_var($email, FILTER_VALIDATE_EMAIL)
+        );
+        
+        $result = User::register($userData['username'], $userData['password'], $userData['email_address']);
         if($result) {
             $this->response($this->json([
-                'message'=>'Successfully Signed Up',
-                'result' => $result
+                'message'=>'Registered',
+                'result' => true
             ]), 200);
         } else {
             $this->response($this->json([
-                'message'=>'Something went wrong',
-                'result' => $result
+                'message'=>'Cannot register your account',
+                'result' => false
             ]), 400);
         }
-
     } else {
         $this->response($this->json([
             'message'=>"bad request"
