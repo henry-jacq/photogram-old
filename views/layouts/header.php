@@ -165,7 +165,7 @@ if (Session::isAuthenticated()) {
 		<?php } else { ?>
 		<div>
 			<a href="/login" class="btn btn-success">Login</a>
-			<a href="/signup" class="btn btn-secondary">Register</a>
+			<a href="/register" class="btn btn-secondary">Register</a>
 		</div>
 		<?php } ?>
 	</nav>

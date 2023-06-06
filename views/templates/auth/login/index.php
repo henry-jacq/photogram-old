@@ -32,7 +32,7 @@
                     <div class="d-grid">
                         <button type="submit" class="btn btn-primary btn-login mb-3">Login now!</button>
                     </div>
-                    <p class="text-center text-muted">Want to join Photogram? <a href="/signup" class="text-decoration-none">Register now</a>.</p>
+                    <p class="text-center text-muted">Want to join Photogram? <a href="/register" class="text-decoration-none">Register now</a>.</p>
                 </div>
             </form>
         </div>

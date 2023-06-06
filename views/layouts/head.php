@@ -62,7 +62,7 @@ use App\Core\Session;
 
 	<?php
 	// Load the CSS file if the current script matches the following
-	if (Session::currentScript() == "login" or Session::currentScript() == "signup" or Session::currentScript() == "forgot-password") {
+	if (Session::currentScript() == "login" or Session::currentScript() == "register" or Session::currentScript() == "forgot-password") {
 	    if (file_exists(($_SERVER['DOCUMENT_ROOT'] . URL_ROOT . "css/entry.css"))) { ?>
 	<link rel="stylesheet"
 		href="<?= URL_ROOT . "css/entry.css" ?>">

@@ -12,23 +12,7 @@ $required_fields = array(
 
 // Sanitizing user input
 foreach ($required_fields as $key => $value) {
-    if (empty($value)) {
-        $signup = false;
-        break;
-    } else {
-        switch($key) {
-            case 'username':
-                $username = $value;
-                break;
-            case 'password':
-                $password = $value;
-                break;
-            case 'email_address':
-                $email = $value;
-                break;
-        }
-        $signup = true;
-    }
+	$$key = $value;
 }
 
 // If user filled and submitted the form
@@ -64,7 +48,7 @@ if ($signup) {
 				<button type="button" class="btn-close shadow-none" data-bs-dismiss="alert" aria-label="Close"></button>
 			</div>
 			<?php // Load Sign up form
-                View::loadTemplate('templates/signup/form_up'); ?>
+                View::loadTemplate('templates/auth/register/form_up'); ?>
 		</div>
 	</div>
 </section>
@@ -78,7 +62,7 @@ else { ?>
 	<div class="h-100 d-flex align-items-center justify-content-center row min-vh-100 user-select-none">
 		<div class="py-3 col-sm-10 col-md-8 col-lg-6 col-xl-5 col-xxl-4">
 			<?php // Load Sign up form
-                View::loadTemplate('templates/signup/form_up'); ?>
+                View::loadTemplate('templates/auth/register/form_up'); ?>
 		</div>
 	</div>
 </section>
