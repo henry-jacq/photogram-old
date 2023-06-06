@@ -14,10 +14,10 @@ $token = User::retrieveResetToken(Session::get('reset_password_email'));
 		<h5 class="fw-normal mb-2 text-center mb-4">Change Password</h5>
 		<!-- <p class="text-center mb-4 fw-light">No worries, we'll send you the reset instructions.</p> -->
 		<label class="form-label">New Password</label>
-		<input type="password" id="newPassword" name="newPassword" class="form-control bg-transparent mb-3 shadow-none" required>
+		<input type="password" id="newPassword" name="newPassword" class="form-control bg-transparent mb-3" required>
 		<label class="form-label">Confirm new Password</label>
 		<input type="password" id="confirmNewPassword" name="confirmNewPassword"
-			class="form-control bg-transparent mb-3 shadow-none" required>
+			class="form-control bg-transparent mb-3" required>
 		<div class="form-text mb-3">Make sure the password is the same in both fields.</div>
 		<div class="d-grid">
 			<button type="submit" class="btn btn-primary mb-3">Change your password</button>

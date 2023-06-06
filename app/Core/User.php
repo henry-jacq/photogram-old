@@ -75,12 +75,12 @@ class User
     }
 
     /**
-     * It fetch first name of user by email
+     * It fetch username by email
      */
-    public static function getFirstName($email)
+    public static function getUsernameByEmail(string $email)
     {
         if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            $query = "SELECT `first_name` FROM `auth` WHERE `email` = '$email';";
+            $query = "SELECT `username` FROM `auth` WHERE `email` = '$email';";
 
             // Create a connection to database
             $conn = Database::getConnection();
@@ -89,10 +89,12 @@ class User
 
             if ($result->num_rows == 1) {
                 $row = $result->fetch_assoc();
-                return $row['first_name'];
+                return $row['username'];
             } else {
-                throw new Exception(__CLASS__ . "::getFirstName() -> $email, first_name is unavailable.");
+                throw new Exception(__CLASS__ . "::getUsername() -> $email, email is not available.");
             }
+        } else {
+            throw new Exception(__CLASS__ . "::getUsername() -> Cannot filter the email.");
         }
     }
 
@@ -182,16 +184,6 @@ class User
         // $this->username = $row['username'];
         } else {
             throw new Exception("Username is not available");
-        }
-    }
-
-    public function setDob($year, $month, $day): string
-    {
-        // checking data is valid or not
-        if (checkdate($month, $day, $year)) {
-            return $this->_set_data('dob', "$year.$month.$day");
-        } else {
-            return false;
         }
     }
 

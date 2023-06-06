@@ -26,15 +26,15 @@ if (isset($_POST['email']) and !empty($_POST['email'])) {
 
     if ($result) {
         try {
-            $first_name = ucfirst(User::getFirstName($email));
-            if ($first_name) {
+            $name = ucfirst(User::getUsernameByEmail($email));
+            if ($name) {
                 // Initialize mailer instance
                 $mailer = new Mailer();
 
                 $mailer->addRecipient($email);
                 $mailer->addSubject("[Photogram] Reset your password!");
                 $reset_link = User::createResetPasswordLink($email);
-                $html = loadPasswordResetMailBody($first_name, $reset_link);
+                $html = loadPasswordResetMailBody($name, $reset_link);
                 $mailer->isHTML(true);
                 $mailer->addBody($html);
                 $mailer->sendMail();

@@ -6,7 +6,7 @@
 		<h5 class="fw-normal mb-2 text-center">Forgot Password</h5>
 		<p class="text-center mb-4 fw-light">No worries, we'll send you the reset instructions.</p>
 		<label class="form-label">Email</label>
-		<input type="email" id="user" name="email" class="form-control bg-transparent shadow-none" required>
+		<input type="email" id="user" name="email" class="form-control bg-transparent" required>
 		<div class="form-text mb-3">Requires your photogram email address</div>
 		<div class="d-grid">
 			<button type="submit" class="btn btn-primary mb-3">Send link</button>
