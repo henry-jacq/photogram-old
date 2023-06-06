@@ -4,7 +4,7 @@ use App\Core\User;
 use App\Core\Mailer;
 use App\Core\Session;
 
-require_once 'auth-templates.php';
+require_once 'fp-templates.php';
 
 if (!empty($_POST['newPassword']) and !empty($_POST['confirmNewPassword'])) {
     if ($_POST['newPassword'] === $_POST['confirmNewPassword']) {

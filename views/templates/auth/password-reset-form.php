@@ -11,7 +11,6 @@
 		<div class="d-grid">
 			<button type="submit" class="btn btn-primary mb-3">Send link</button>
 		</div>
-		<p class="text-center text-muted">Do you already have an account? <a href="/login"
-				class="text-decoration-none">Login now</a>.</p>
+		<p class="text-center text-muted">Do you already have an account? <a href="/login" class="text-decoration-none">Login now</a>.</p>
 	</div>
 </form>
