@@ -3,7 +3,7 @@ Photogram is an easy-to-use web app for sharing photos with a clean and unclutte
 
 It is designed to facilitate photo-sharing among users. Its sleek and intuitive interface, combined with powerful back-end functionality, makes it the ideal platform for sharing photos with friends, family, and colleagues. This document will provide detailed instructions on how to install and run the project, so that you can start sharing your favorite photos today.
 
-> **NOTE:** This project is currently under development and some things might not work as expected.
+> **NOTE:** *This project is currently under development and some things might not work as expected.*
 
 ## Table of Contents
 - Getting Started
@@ -21,11 +21,16 @@ Before starting the project, you will need to have the following packages instal
 - PHP (v8.0 above)
 - NPM
 - Composer
-- Apache server
+- Apache web server
 
 ### Installation
 
 To setup photogram, follow these steps:
+
+Install composer dependencies:
+```bash
+composer update
+```
 
 Install NPM dependencies:
 ```bash
@@ -34,16 +39,20 @@ cd project/grunt/
 npm install
 ```
 
-Install composer dependencies:
+To find out which user as apache web server running? Run this command.
+
 ```bash
-composer update
-```
+ps aux | egrep '(apache|httpd)' | awk '{print $1}' | uniq -d
+``` 
 
 Create and change folder permissions:
-- This is to allow apache to move files to this folder
+- This is to allow apache to move uploaded files to this folder.
+- If the user is not the same as below, you can replace www:data user with the user that is currently running Apache.
 ```bash
-mkdir storage/posts/
-chmod 777 storage/posts/
+mkdir -p storage/posts/ storage/avatars/
+
+sudo chown -R www-data:www-data storage/
+sudo chmod -R 755 storage/
 ```
 
 Create config using make_config PHP script:
@@ -55,7 +64,7 @@ php make_config
 ```
 
 Apply migrations to database:
-- This will create the database with necessary tables and fields for photogram
+- This will create the database with necessary tables and fields for photogram.
 - NOTE: Before executing migrations, check that you are properly connected to the database.
 ```bash
 php migrations.php
