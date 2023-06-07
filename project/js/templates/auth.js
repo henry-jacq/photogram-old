@@ -1,4 +1,8 @@
-if (window.location.pathname == "/login") {
+// Get the current URL path
+var currentPath = window.location.pathname;
+
+// Login user
+if (currentPath == "/login") {
   // show/hide password field in login form
   $("#icon-click").on("click", function (data) {
     let icon = $("#icon");
@@ -47,8 +51,8 @@ if (window.location.pathname == "/login") {
       error: function (jqXHR, textStatus) {
         if (textStatus == 'error') {
           if ($('.alert.alert-danger.alert-dismissible.fade.show').length === 0) {
-            var successMessage = $('<div>').addClass('alert alert-danger alert-dismissible fade show').html('<i class="bi bi-exclamation-circle me-2"></i><b class="fw-semibold">Invalid credentials!</b> Please try again.<button type="button" class="btn-close shadow-none" data-bs-dismiss="alert" aria-label="Close"></button>');
-            $(successMessage).insertBefore('form');
+            var errorMessage = $('<div>').addClass('alert alert-danger alert-dismissible fade show').html('<i class="bi bi-exclamation-circle me-2"></i><b class="fw-semibold">Invalid credentials!</b> Please try again.<button type="button" class="btn-close shadow-none" data-bs-dismiss="alert" aria-label="Close"></button>');
+            $(errorMessage).insertBefore('form');
           }
           $('.btn-login').attr('disabled', false);
           $('.btn-login').html('Login now!');
@@ -58,7 +62,8 @@ if (window.location.pathname == "/login") {
   });
 }
 
-if (window.location.pathname == '/register') {
+// Register user
+if (currentPath == '/register') {
   // Restrict form submission when hitting enter key on these fields
   $('#username, #password, #email').on("keydown", function (event) {
     if (event.keyCode === 13) {
@@ -112,4 +117,99 @@ if (window.location.pathname == '/register') {
       }
     });
   })
+}
+
+// Forgot-Password
+if (currentPath == "/forgot-password") {
+  $('.forgot-password-form').on('submit', function (event) {
+    event.preventDefault();
+    $('.btn-send-link').attr('disabled', true);
+    $('.btn-send-link').html('Sending reset link to your email...');
+    const formData = new FormData(this);
+
+    $.ajax({
+      type: "POST",
+      url: "/api/auth/reset-password",
+      data: formData,
+      processData: false,
+      contentType: false,
+      success: function (response) {
+        $('.btn-send-link').html('Send link');
+        if (response.status === 'Success') {
+          if ($('.alert.alert-success.alert-dismissible.fade.show').length === 0) {
+            var message = $('<div>').addClass('alert alert-success alert-dismissible fade show').html(`<i class="bi bi-exclamation-circle me-2"></i><b>Mail sent!</b><br>Reset link sent to: ${formData.get('reset_email')}<button type="button" class="btn-close shadow-none" data-bs-dismiss="alert" aria-label="Close"></button>`);
+            $(message).insertBefore('form');
+          }
+        }
+      },
+      error: function (error) {
+        $('.btn-send-link').attr('disabled', false);
+        $('.btn-send-link').html('Send link');
+        if ($('.alert.alert-danger.alert-dismissible.fade.show').length === 0) {
+          var errorMessage = $('<div>').addClass('alert alert-danger alert-dismissible fade show').html(`<i class="bi bi-exclamation-circle me-2"></i><b class="fw-semibold">Mail not sent!</b> Your email, ${formData.get('reset_email')}, does not exist in our database.<button type="button" class="btn-close shadow-none" data-bs-dismiss="alert" aria-label="Close"></button>`);
+          $(errorMessage).insertBefore('form');
+        }
+      }
+    });
+  });
+}
+
+// Check password in both fields are same
+var pattern = /^\/forgot-password\/[a-zA-Z0-9]+$/;
+if (pattern.test(currentPath)) {
+  $(function () {
+    var passwordInput = $('#newPassword');
+    var confirmPasswordInput = $('#confirmNewPassword');
+    var changePasswordBtn = $('.btn-change-password');
+    var invalidFeedback = $('.invalid-feedback');
+
+    passwordInput.on('input', validatePasswords);
+    confirmPasswordInput.on('input', validatePasswords);
+
+    function validatePasswords() {
+      var password = passwordInput.val();
+      var confirmPassword = confirmPasswordInput.val();
+      var passwordsMatch = password === confirmPassword && password.length > 0 && confirmPassword.length > 0;
+
+      passwordInput.toggleClass('is-invalid', !passwordsMatch);
+      confirmPasswordInput.toggleClass('is-invalid', !passwordsMatch);
+      changePasswordBtn.prop('disabled', !passwordsMatch);
+      invalidFeedback.toggle(!passwordsMatch);
+    }
+  });
+
+  // Change-Password
+  $('.change-password-form').on('submit', function (event) {
+    event.preventDefault();
+    let changePasswordBtn = $('.btn-change-password');
+    changePasswordBtn.attr('disabled', true);
+    changePasswordBtn.html('Changing your password...');
+    const formData = new FormData(this);
+
+    $.ajax({
+      type: "POST",
+      url: "/api/auth/reset-password",
+      data: formData,
+      processData: false,
+      contentType: false,
+      success: function (response) {
+        changePasswordBtn.attr('disabled', false);
+        changePasswordBtn.html('Change password');
+        if (response.status == 'Success') {
+          if ($('.alert.alert-success.alert-dismissible.fade.show').length === 0) {
+            var message = $('<div>').addClass('alert alert-success alert-dismissible fade show').html(`<i class="bi bi-check-circle me-2"></i>Password changed successfully! <a href="/login" class="text-decoration-none">Login now</a>.<button type="button" class="btn-close shadow-none" data-bs-dismiss="alert" aria-label="Close"></button>`);
+            $(message).insertBefore('form');
+          }
+        }
+      },
+      error: function (error) {
+        changePasswordBtn.attr('disabled', false);
+        changePasswordBtn.html('Change password');
+        if ($('.alert.alert-danger.alert-dismissible.fade.show').length === 0) {
+          var errorMessage = $('<div>').addClass('alert alert-danger alert-dismissible fade show').html(`<i class="bi bi-exclamation-circle me-2"></i>Error occured! cannot change your password!<button type="button" class="btn-close shadow-none" data-bs-dismiss="alert" aria-label="Close"></button>`);
+          $(errorMessage).insertBefore('form');
+        }
+      }
+    });
+  });
 }
