@@ -70,6 +70,52 @@ class Mailer extends User
         }
     }
 
+    // HTML body for password reset mail
+    private function passwordResetMailBody($name, $reset_link)
+    {
+        if (isset($name, $reset_link)) {
+            $htmlMailBody = "
+            <div style='line-height:1.5rem; margin-bottom:10px;'>
+                <b>Hi $name,</b><br>
+                We heard that you have lost your Photogram password. Sorry about that.<br>
+                But don't worry, You can click on this link to reset your password: <a href='$reset_link'>Reset password</a><br>
+                If you don't use the link within 2 hours, it will expire.<br>
+                reset_link visit $reset_link
+            </div>
+            Thanks,<br>
+            <b>Photogram Team</b>
+            ";
+            return $htmlMailBody;
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * Send password-reset mail to the provided email
+     */
+    public static function sendPasswordResetMail(string $to)
+    {
+        try {
+            $name = ucfirst(User::getUsernameByEmail($to));
+            if ($name) {
+                // Initialize mailer instance
+                $mailer = new Mailer();
+
+                $mailer->addRecipient($to);
+                $mailer->addSubject("[Photogram] Reset your password!");
+                $reset_link = User::createResetPasswordLink($to);
+                $html = $mailer->passwordResetMailBody($name, $reset_link);
+                $mailer->isHTML(true);
+                $mailer->addBody($html);
+                $mailer->sendMail();
+                return $reset_link;
+            }
+        } catch (\Exception $e) {
+            echo("Mailer Error: {$e->getMessage()}");
+        }
+    }
+
     /**
      * The Subject of the message.
      */

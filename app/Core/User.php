@@ -122,12 +122,30 @@ class User
         }
     }
 
+    public static function revokeResetToken(string $email)
+    {
+        if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            // Revoke token Query
+            $query = "UPDATE `auth` SET `token` = NULL, `updated_time` = now() WHERE `email` = '$email';";
+
+            // Create a connection to database
+            $conn = Database::getConnection();
+            $result = $conn->query($query);
+
+            if ($result && $conn->query($query)) {
+                return true;
+            } else {
+                throw new Exception("Password reset token cannot be revoked!");
+            }
+        }
+    }
+
     /**
      * Generate Password reset token for given email
      *
      * The token is saved in database
      */
-    public static function generateResetToken($email)
+    public static function generateResetToken(string $email)
     {
         $token = bin2hex(random_bytes(8));
 
@@ -147,7 +165,7 @@ class User
     /**
      * This will returns the password reset URL
      */
-    public static function createResetPasswordLink($email)
+    public static function createResetPasswordLink(string $email)
     {
         $domain = DOMAIN_NAME;
         $token = self::generateResetToken($email);
