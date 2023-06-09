@@ -58,6 +58,7 @@ $ud = new UserData(Session::getUser());
                         <option <?php if ($ud->getJob() == 'Student') echo 'selected'; ?>>Student</option>
                         <option <?php if ($ud->getJob() == 'UI/UX Designer') echo 'selected'; ?>>UI/UX Designer</option>
                     </select>
+                    <p class="form-text mb-0">The job you selected will be shown in your posts.</p>
                 </div>
                 <div class="form-group mb-3">
                     <label for="bio" class="form-label fw-semibold">Bio</label>

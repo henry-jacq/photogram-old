@@ -293,7 +293,7 @@ class Post
                 return $row['job'];
             }
         } else {
-            throw new Exception("Can't get the user job, line no:".__LINE__);
+            return false;
         }
     }
 
