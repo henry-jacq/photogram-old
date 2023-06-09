@@ -1,4 +1,4 @@
-/* Processed by Grunt on 7/6/2023 @18:15:2 */
+/* Processed by Grunt on 8/6/2023 @14:37:24 */
 
 
 // Get the current URL path
@@ -455,6 +455,11 @@ $('.btn-like, .btn-share').mouseover(function () {
 
 // Change like button status
 function likeBtn(mainSelector, status=null, isClicked=false) {
+    var likeAudio = $('<audio>', {
+        id: 'likePop',
+        src: '/assets/like-pop.mp3'
+    });
+    $('body').append(likeAudio);
     var likeBtnID = mainSelector.find('i').attr('id');
     var likeBtnSelector = $('#'+likeBtnID);
     var currentLikes = parseInt(mainSelector.find('span').text());  
@@ -462,8 +467,8 @@ function likeBtn(mainSelector, status=null, isClicked=false) {
     if (status == true) {
         if (likeBtnSelector.hasClass('fa-heart-o')) {
             likeBtnSelector.removeClass('fa-heart-o');
-            likeBtnSelector.addClass('fa-heart text-danger')
-            if (isClicked == true) {
+            likeBtnSelector.addClass('fa-heart text-danger');
+            if (isClicked == true && likeAudio[0].play()) {
                 mainSelector.find('span').text(currentLikes += 1);
             }
         }
