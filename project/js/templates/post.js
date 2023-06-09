@@ -24,7 +24,9 @@ function likeBtn(mainSelector, status=null, isClicked=false) {
         id: 'likePop',
         src: '/assets/like-pop.mp3'
     });
-    $('body').append(likeAudio);
+    if ($('#likePop').length === 0) {
+        $('body').append(likeAudio);
+    }
     var likeBtnID = mainSelector.find('i').attr('id');
     var likeBtnSelector = $('#'+likeBtnID);
     var currentLikes = parseInt(mainSelector.find('span').text());  
@@ -106,6 +108,13 @@ function showToast(title, subtitle, message) {
 
 // Delete post
 $('.btn-delete').on('click', function(){
+    var successAudio = $('<audio>', {
+        id: 'successTone',
+        src: '/assets/success.mp3'
+    });
+    if ($('#successTone').length === 0) {
+        $('body').append(successAudio);
+    }
     post_id = $(this).parent().attr('data-id');
     d = new Dialog("Delete Post ?", "You want to permanently delete this post?");
     d.setButtons([
@@ -121,6 +130,7 @@ $('.btn-delete').on('click', function(){
                         sl = document.querySelector(`#post-${post_id}`);
                         masonry.remove(sl);
                         masonry.layout();
+                        successAudio[0].play();
                         showToast("Photogram", "Just Now", "Your post was successfully deleted!");
                     } else {
                         showToast("Photogram", "Just Now", "Can't delete your post!");
