@@ -283,13 +283,13 @@ class Post
     public function getUserJob()
     {
         $user_id = $this->getUserId($this->getOwner());
-        $sql = "SELECT `uid`, `job` FROM `users` WHERE `uid` = '$user_id';";
+        $sql = "SELECT `id`, `job` FROM `users` WHERE `id` = '$user_id';";
         $conn = Database::getConnection();
         $result = $conn->query($sql);
 
         if ($result && $result->num_rows == 1) {
             $row = $result->fetch_assoc();
-            if ($row['uid'] === $user_id && $row['job'] != 'None') {
+            if ($row['id'] === $user_id && $row['job'] != 'None') {
                 return $row['job'];
             }
         } else {
@@ -304,7 +304,7 @@ class Post
     {
         $user_id = $this->getUserId($this->getOwner());
         $url = "https://api.dicebear.com/6.x/shapes/svg?seed=";
-        $sql = "SELECT `avatar` FROM `users` WHERE `uid` = '$user_id';";
+        $sql = "SELECT `avatar` FROM `users` WHERE `id` = '$user_id';";
         $result = $this->conn->query($sql);
         if ($result && $result->num_rows == 1) {
             $row = $result->fetch_assoc();

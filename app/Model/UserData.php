@@ -59,7 +59,7 @@ class UserData {
 
         try {
             if ($this->purgeUserAvatar()) {
-                $sql = "UPDATE `$this->table` SET `avatar` = NULL WHERE `uid` = '$this->id';";
+                $sql = "UPDATE `$this->table` SET `avatar` = NULL WHERE `id` = '$this->id';";
                 if ($this->conn->query($sql)) {
                     return true;
                 } else {
@@ -89,7 +89,7 @@ class UserData {
             $image_path = APP_STORAGE_PATH . '/avatars/' .$image_name;
             if (move_uploaded_file($image_tmp, $image_path)) {
                 $image_uri = "/files/avatars/$image_name";
-                $sql = "UPDATE `$this->table` SET `avatar` = '$image_uri' WHERE `uid` = '$this->id';";
+                $sql = "UPDATE `$this->table` SET `avatar` = '$image_uri' WHERE `id` = '$this->id';";
                 if ($this->conn->query($sql)) {
                     return true;
                 } else {
@@ -125,7 +125,7 @@ class UserData {
         $ig = $this->escapeString($ig);
         $email = $this->escapeString($email);
         
-        $sql = "INSERT INTO `$this->table` (`uid`, `first_name`, `last_name`, `bio`, `job`, `sec_email`, `location`, `twitter`, `instagram`) VALUES ('$this->id', '$fname', '$lname', '$bio', '$job', '$email', '$lc', '$tw', '$ig');";
+        $sql = "INSERT INTO `$this->table` (`id`, `first_name`, `last_name`, `bio`, `job`, `sec_email`, `location`, `twitter`, `instagram`) VALUES ('$this->id', '$fname', '$lname', '$bio', '$job', '$email', '$lc', '$tw', '$ig');";
 
         try {
             $this->conn->query($sql);
@@ -145,7 +145,7 @@ class UserData {
         $ig = $this->escapeString($ig);
         $email = $this->escapeString($email);
 
-        $sql = "UPDATE `$this->table` SET `first_name` = '$fname', `last_name` = '$lname', `sec_email` = '$email', `job` = '$job', `bio` = '$bio', `location` = '$lc', `twitter` = '$tw', `instagram` = '$ig' WHERE `uid` = '$this->id';";
+        $sql = "UPDATE `$this->table` SET `first_name` = '$fname', `last_name` = '$lname', `sec_email` = '$email', `job` = '$job', `bio` = '$bio', `location` = '$lc', `twitter` = '$tw', `instagram` = '$ig' WHERE `id` = '$this->id';";
 
         try {
             $this->conn->query($sql);
@@ -156,7 +156,7 @@ class UserData {
 
     public function exists()
     {
-        $sql = "SELECT * FROM `$this->table` WHERE `uid` = '$this->id';";
+        $sql = "SELECT * FROM `$this->table` WHERE `id` = '$this->id';";
 
         $result = $this->conn->query($sql);
         if ($result->num_rows == 1) {

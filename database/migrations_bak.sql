@@ -93,8 +93,7 @@ CREATE TABLE `session` (
 
 
 CREATE TABLE `users` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `uid` int NOT NULL,
+  `id` int NOT NULL,
   `first_name` tinytext NOT NULL,
   `last_name` tinytext NOT NULL,
   `bio` varchar(256) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
@@ -105,9 +104,9 @@ CREATE TABLE `users` (
   `twitter` varchar(256) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `instagram` varchar(256) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `id` (`uid`),
-  CONSTRAINT `users_ibfk_3` FOREIGN KEY (`uid`) REFERENCES `auth` (`id`) ON DELETE CASCADE ON UPDATE SET DEFAULT
+  UNIQUE KEY `id` (`id`),
+  CONSTRAINT `users_ibfk_1` FOREIGN KEY (`id`) REFERENCES `auth` (`id`) ON DELETE CASCADE ON UPDATE SET DEFAULT
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 
--- 2023-06-01 13:31:07
+-- 2023-06-10 14:28:12

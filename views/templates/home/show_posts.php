@@ -37,9 +37,7 @@ if (Session::currentScript() == "profile") {
 	<div class="col-lg-3"
 		id="post-<?= $post['id'] ?>">
 		<div class="card shadow-lg">
-			<?php if (Session::isAuthenticated()) {
-				$ud = new UserData(Session::getUser());	
-			?>
+			<?php if (Session::isAuthenticated()) { ?>
 			<header class="card-header p-2 user-select-none border-0">
 				<div class="d-flex align-items-center justify-content-between">
 					<div class="d-flex align-items-center">
