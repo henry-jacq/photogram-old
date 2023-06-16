@@ -10,5 +10,6 @@ if (isset($_GET['logout'])) {
     header("Location: /");
     die();
 } else {
+    Session::ensureLogin();
     View::renderPage();
 }
