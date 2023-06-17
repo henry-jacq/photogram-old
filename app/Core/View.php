@@ -8,7 +8,7 @@ namespace App\Core;
 class View
 {
     /**
-     * Load the template view
+     * Load the layout view
      */
     public static function renderLayout(string $layout)
     {
@@ -21,7 +21,7 @@ class View
     }
 
     /**
-     * Load the layout view
+     * Load the template view
      */
     public static function renderTemplate(string $template)
     {
