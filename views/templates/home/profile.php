@@ -61,6 +61,6 @@ $ud = new UserData(Session::getUser());
 			<?}
 			?>
 		</div>
-		<?= View::renderTemplate('home/photogram'); ?>
+		<?= View::renderTemplate('templates/home/photogram'); ?>
 	</div>
 </div>

@@ -2,4 +2,4 @@
 
 use App\Core\View;
 
-View::renderTemplate('auth/forgot-password');
+View::renderTemplate('templates/auth/forgot-password');

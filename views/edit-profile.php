@@ -4,5 +4,5 @@
 use App\Core\View;
 
 View::renderLayout('header');
-View::renderTemplate('home/breadcrumb');
-View::renderTemplate('home/edit-profile');
+View::renderTemplate('templates/home/breadcrumb');
+View::renderTemplate('templates/home/edit-profile');

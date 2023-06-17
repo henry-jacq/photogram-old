@@ -2,4 +2,4 @@
 
 use App\Core\View;
 
-View::renderTemplate('auth/register');
+View::renderTemplate('templates/auth/register');

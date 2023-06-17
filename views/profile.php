@@ -4,6 +4,6 @@
 use App\Core\View;
 
 View::renderLayout('header');
-View::renderTemplate('home/breadcrumb');
-View::renderTemplate('home/profile');
+View::renderTemplate('templates/home/breadcrumb');
+View::renderTemplate('templates/home/profile');
 View::renderLayout('footer');

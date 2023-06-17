@@ -25,7 +25,7 @@ class View
      */
     public static function renderTemplate(string $template)
     {
-        $template = APP_ROOT . "/views/templates/$template.php";
+        $template = APP_ROOT . "/views/$template.php";
         if (is_file($template)) {
             include_once $template;
         } else {
