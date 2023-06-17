@@ -7,7 +7,7 @@
 	use App\Core\Session;
 
 	// Load header
-	View::loadTemplate('layouts/head'); ?>
+	View::renderLayout('head'); ?>
 
 	<body class="d-flex flex-column min-vh-100">
 		
@@ -23,12 +23,12 @@
 			View::loadErrorPage();
 		} else {
 			// If no error, load the current script
-			View::loadTemplate(Session::currentScript());
+			View::renderTemplate(Session::currentScript());
 		}
 		// Load the static elements
-		View::loadTemplate('layouts/elements');
+		View::renderLayout('elements');
 		// Link javascript files
-		View::loadTemplate('layouts/load_js');
+		View::renderLayout('load_js');
 		?>
 
 	</body>

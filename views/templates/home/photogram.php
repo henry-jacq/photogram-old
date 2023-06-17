@@ -9,9 +9,9 @@ use App\Core\View;
 	<div class="container">
 		<?php
 		if (Session::isAuthenticated() && Session::currentScript() == "index") {
-			View::loadTemplate('templates/home/stories');
+			View::renderTemplate('home/stories');
 		}		
 		?>
-		<?=View::loadTemplate('templates/home/show_posts');?>
+		<?=View::renderTemplate('home/show_posts');?>
 	</div>
 </div>

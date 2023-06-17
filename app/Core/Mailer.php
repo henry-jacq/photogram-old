@@ -104,7 +104,7 @@ class Mailer extends User
 
                 $mailer->addRecipient($to);
                 $mailer->addSubject("[Photogram] Reset your password!");
-                $reset_link = User::createResetPasswordLink($to);
+                $reset_link = Auth::createResetPasswordLink($to);
                 $html = $mailer->passwordResetMailBody($name, $reset_link);
                 $mailer->isHTML(true);
                 $mailer->addBody($html);

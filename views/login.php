@@ -2,4 +2,4 @@
 
 use App\Core\View;
 
-View::loadTemplate('templates/auth/login');
+View::renderTemplate('auth/login');

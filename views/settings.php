@@ -3,6 +3,6 @@
 // Profile details
 use App\Core\View;
 
-View::loadTemplate('layouts/header');
-View::loadTemplate('templates/home/breadcrumb');
-View::loadTemplate('templates/settings/index');
+View::renderLayout('header');
+View::renderTemplate('home/breadcrumb');
+View::renderTemplate('settings/index');
