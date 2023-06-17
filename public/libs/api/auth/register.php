@@ -1,6 +1,6 @@
 <?php
 
-use App\Core\User;
+use App\Core\Auth;
 
 ${basename(__FILE__, '.php')} = function () {
     if (!$this->isAuthenticated() && $this->paramsExists(['username', 'email_address', 'password'])) {
@@ -11,7 +11,7 @@ ${basename(__FILE__, '.php')} = function () {
             "email_address" => filter_var($email, FILTER_VALIDATE_EMAIL)
         );
         
-        $result = User::register($userData['username'], $userData['password'], $userData['email_address']);
+        $result = Auth::register($userData['username'], $userData['password'], $userData['email_address']);
         if($result) {
             $this->response($this->json([
                 'message'=>'Registered',

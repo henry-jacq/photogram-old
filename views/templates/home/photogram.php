@@ -4,18 +4,18 @@ use App\Core\View;
 use App\Core\Session;
 
 if (Session::currentScript() == 'index') {
-	View::loadTemplate('templates/home/sidebar'); 
+	View::renderTemplate('templates/home/sidebar'); 
 } ?>
 
 <div id="page-content-wrapper">
 	<div class="container mt-2 px-5">
-		<?= View::loadTemplate('templates/home/breadcrumb'); ?>
+		<?= View::renderTemplate('templates/home/breadcrumb'); ?>
 		<?php
-		// if (Session::isAuthenticated() && Session::currentScript() == "index") {
-		// 	View::loadTemplate('templates/home/stories');
-		// }		
+		if (Session::isAuthenticated() && Session::currentScript() == "index") {
+			View::renderTemplate('templates/home/stories');
+		}		
 		?>
-		<?= View::loadTemplate('templates/home/show_posts'); ?>
+		<?=View::renderTemplate('templates/home/show_posts');?>
 	</div>
-	<?= View::loadTemplate('layouts/footer'); ?>
+	<?= View::renderLayout('footer'); ?>
 </div>

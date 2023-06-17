@@ -3,7 +3,7 @@
 // Profile Page
 use App\Core\View;
 
-View::loadTemplate('layouts/header');
-View::loadTemplate('templates/home/breadcrumb');
-View::loadTemplate('templates/home/profile');
-View::loadTemplate('layouts/footer');
+View::renderLayout('header');
+View::renderTemplate('templates/home/breadcrumb');
+View::renderTemplate('templates/home/profile');
+View::renderLayout('footer');

@@ -16,7 +16,7 @@ class UserSession
     public static function authenticate($user, $pass, $fingerprint=null)
     {
         // Return the username
-        $username = User::login($user, $pass);
+        $username = Auth::login($user, $pass);
 
         if ($username) {
             $user = new User($username);

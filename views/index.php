@@ -3,8 +3,9 @@
 use App\Core\Session;
 use App\Core\View;
 
-View::loadTemplate('layouts/header');
+View::renderLayout('header');
 
 if (Session::isAuthenticated()) {
-    View::loadTemplate('templates/home/photogram');
+    View::renderTemplate('templates/home/photogram');
 }
+

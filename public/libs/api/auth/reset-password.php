@@ -5,7 +5,7 @@
 
 use App\Core\Mailer;
 use App\Core\Session;
-use App\Core\User;
+use App\Core\Auth;
 
 ${basename(__FILE__, '.php')} = function () {
     if (!$this->isAuthenticated() && $this->paramsExists(['reset_email'])) {
@@ -37,7 +37,7 @@ ${basename(__FILE__, '.php')} = function () {
         $confirmNew = $this->_request['confirmNewPassword'];
 
         if (!empty($new) && !empty($confirmNew && $new === $confirmNew)) {
-            if (User::changePassword($email, $new) && User::revokeResetToken($email)) {
+            if (Auth::changePassword($email, $new) && Auth::revokeResetToken($email)) {
                 $this->response($this->json([
                     'message'=>'Password changed!',
                     'status'=>'Success'
