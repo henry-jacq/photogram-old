@@ -67,7 +67,7 @@ class UserData {
                 }
             }
         } catch (Exception $e) {
-            throw new Exception(__CLASS__."::deleteAvatarImage, can't remove user avatar.");
+            throw new Exception("can't remove user avatar");
         }
     }
 

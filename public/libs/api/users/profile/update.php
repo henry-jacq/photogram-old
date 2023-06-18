@@ -6,7 +6,7 @@ use App\Model\UserData;
 // https://{{domain}}/api/users/update
 
 ${basename(__FILE__, '.php')} = function () {
-    if (isset($_POST)) {
+    if (!empty($_POST)) {
         $ud = new UserData(Session::getUser());
         $post_fields = ['fname', 'lname', 'email', 'job', 'bio', 'location', 'twitter', 'instagram'];
         $data = [];
