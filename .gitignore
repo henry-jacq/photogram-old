@@ -1,5 +1,5 @@
 # Node modules
-resources/grunt/node_modules/
+node_modules/
 
 # Storage
 storage/*

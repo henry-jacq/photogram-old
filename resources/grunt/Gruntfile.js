@@ -76,12 +76,12 @@ module.exports = function (grunt) {
     copy: {
       jquery: {
         expand: false,
-        src: "node_modules/jquery/dist/jquery.js",
+        src: "../../node_modules/jquery/dist/jquery.js",
         dest: "../../public/js/jquery/jquery.js",
       },
       bootstrap: {
         expand: false,
-        src: "node_modules/bootstrap/dist/js/bootstrap.bundle.js",
+        src: "../../node_modules/bootstrap/dist/js/bootstrap.bundle.js",
         dest: "../../public/js/bootstrap/bootstrap.bundle.js",
       },
     },
