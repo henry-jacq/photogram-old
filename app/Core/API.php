@@ -13,13 +13,13 @@ class API extends REST
 
     public function __construct()
     {
-        parent::__construct();  // Init parent contructor
+        // Init parent contructor
+        parent::__construct();
     }
 
-    /*
+    /**
     * Public method for accessing API.
     * This method dynamically call the method based on the query string
-    *
     */
     public function processApi()
     {
@@ -29,7 +29,7 @@ class API extends REST
             $this->$func();
         } else {
             if (isset($_GET['namespace'])) {
-                $dir = $_SERVER['DOCUMENT_ROOT'].'/libs/api/'.$_GET['namespace'];
+                $dir = APP_ROOT.'/app/API/'.$_GET['namespace'];
                 $file = $dir.'/'.$request.'.php';
                 if (file_exists($file)) {
                     include $file;
