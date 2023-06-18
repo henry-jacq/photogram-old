@@ -35,7 +35,7 @@ ${basename(__FILE__, '.php')} = function () {
         ]), 200);
     } else {
         $this->response($this->json([
-            'message'=>"Can't store user data"
-        ]), 400);
+            'message'=> "Not Acceptable"
+        ]), 406);
     }
 };

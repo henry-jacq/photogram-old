@@ -14,12 +14,12 @@ ${basename(__FILE__, '.php')} = function () {
             ]), 200);
         } else {
             $this->response($this->json([
-                'message'=>"Image doesn't exist"
-            ]), 400);
+                'message'=> "Not Acceptable"
+            ]), 406);
         }
     } else {
         $this->response($this->json([
-            'message'=>"Bad request"
+            'message'=>"Bad Request"
         ]), 400);
     }
 };

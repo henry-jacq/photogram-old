@@ -19,12 +19,12 @@ ${basename(__FILE__, '.php')} = function () {
             }
         } else {
             $this->response($this->json([
-                'message'=>"ID doesn't exist"
-            ]), 400);
+                'message'=> "Not Acceptable"
+            ]), 406);
         }
     } else {
         $this->response($this->json([
-            'message'=>"Bad request"
+            'message'=>"Bad Request"
         ]), 400);
     }
 };

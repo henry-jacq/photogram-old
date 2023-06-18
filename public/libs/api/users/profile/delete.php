@@ -21,7 +21,7 @@ ${basename(__FILE__, '.php')} = function () {
         }
     } else {
         $this->response($this->json([
-            'message' => "Bad request"
+            'message' => "Bad Request"
         ]), 400);
     }
 };

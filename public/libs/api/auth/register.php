@@ -16,16 +16,16 @@ ${basename(__FILE__, '.php')} = function () {
             $this->response($this->json([
                 'message'=>'Registered',
                 'result' => true
-            ]), 200);
+            ]), 201);
         } else {
             $this->response($this->json([
                 'message'=>'Cannot register your account',
                 'result' => false
-            ]), 400);
+            ]), 409);
         }
     } else {
         $this->response($this->json([
-            'message'=>"bad request"
+            'message'=>"Bad Request"
         ]), 400);
     }
 };

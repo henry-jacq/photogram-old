@@ -17,19 +17,19 @@ ${basename(__FILE__, '.php')} = function () {
                 Session::set('_redirect', false);
             }
             $this->response($this->json([
-                'message'=>'Authenticated',
+                'message' => 'Authenticated',
                 'token' => $token,
                 'redirect' => $redirect_to
-            ]), 200);
+            ]), 202);
         } else {
             $this->response($this->json([
-                'message'=>'Unauthorized',
+                'message' => 'Unauthorized',
                 'token' => $token
             ]), 401);
         }
     } else {
         $this->response($this->json([
-            'message'=>"bad request"
+            'message'=>"Bad Request"
         ]), 400);
     }
 };

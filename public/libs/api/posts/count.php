@@ -14,12 +14,12 @@ ${basename(__FILE__, '.php')} = function () {
             $this->response($this->json(Post::countUserPosts(Session::getUser()->getUsername())[0]), 200);
         } else {
             $this->response($this->json([
-                'message' => 'Provide proper params to fetch posts count'
-            ]), 400);
+                'message' => 'Method Not Allowed'
+            ]), 405);
         }
     } else {
         $this->response($this->json([
-            'message' => "Bad request"
+            'message' => "Bad Request"
         ]), 400);
     }
 };

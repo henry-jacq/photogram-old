@@ -23,13 +23,13 @@ ${basename(__FILE__, '.php')} = function () {
                     'message'=>'Mailer error!',
                     'link'=>$link,
                     'status'=>'Failed'
-                ]), 401);
+                ]), 503);
             }
         } else {
             $this->response($this->json([
                 'message'=>'Mail cannot be sent!',
                 'status'=>'Failed'
-            ]), 401);
+            ]), 404);
         }
     } else if (!$this->isAuthenticated() && $this->paramsExists(['newPassword', 'confirmNewPassword'])) {
         $email = Session::get('reset_password_email');
@@ -46,16 +46,16 @@ ${basename(__FILE__, '.php')} = function () {
                 $this->response($this->json([
                     'message'=>'Cannot change the password!',
                     'status'=>'Failed'
-                ]), 200);
+                ]), 500);
             }
         } else {
             $this->response($this->json([
                 'message'=>"Password not matches"
-            ]), 401);
+            ]), 406);
         }
     } else {
         $this->response($this->json([
-            'message'=>"bad request"
+            'message'=>"Bad Request"
         ]), 400);
     }
 };

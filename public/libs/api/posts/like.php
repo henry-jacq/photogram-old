@@ -23,7 +23,7 @@ ${basename(__FILE__, '.php')} = function () {
         }
     } else {
         $this->response($this->json([
-            'message'=>"bad request"
+            'message'=>"Bad Request"
         ]), 400);
     }
 };
