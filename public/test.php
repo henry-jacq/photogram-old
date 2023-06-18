@@ -2,7 +2,7 @@
 
 use App\Core\User;
 
-include 'libs/autoload.php';
+include '../bootstrap.php';
 
 $servername = DB_HOST;
 $username = DB_USER;

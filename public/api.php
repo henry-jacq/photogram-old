@@ -1,6 +1,6 @@
 <?php
 
-require_once 'libs/autoload.php';
+require_once '../bootstrap.php';
 use App\Core\API;
 
 $api = new API();

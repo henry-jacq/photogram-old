@@ -1,6 +1,6 @@
 <?php
 
-include 'libs/autoload.php';
+include '../bootstrap.php';
 
 if (isset($_GET['file'])) {
     $fname = $_GET['file'];

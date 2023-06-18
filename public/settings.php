@@ -1,6 +1,6 @@
 <?php
 
-include 'libs/autoload.php';
+include '../bootstrap.php';
 
 use App\Core\Session;
 use App\Core\View;
