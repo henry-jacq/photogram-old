@@ -1,6 +1,6 @@
 <?php
 
-require_once 'public/libs/autoload.php';
+require_once '../bootstrap.php';
 
 use App\Core\Database;
 
