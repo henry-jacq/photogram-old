@@ -94,6 +94,11 @@ class Post
         $fileCount = count($image['tmp_name']);
         $image_tmp = $image['tmp_name'];
 
+        // If text exists and exceed the character limit
+        if (!empty($text) && strlen($text) <= 240) {
+            throw new Exception('Exceeded the Text limit 240');
+        }
+
         if ($fileCount > 1) {
             self::registerMultiplePost($image_tmp, $text);
         } else {
