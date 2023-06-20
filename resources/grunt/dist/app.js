@@ -1,4 +1,4 @@
-/* Processed by Grunt on 20/6/2023 @11:15:57 */
+/* Processed by Grunt on 20/6/2023 @14:57:15 */
 
 
 // Get the current URL path
@@ -270,10 +270,10 @@ if (pattern.test(currentPath)) {
 }
 // Update profile details
 if (window.location.pathname === "/edit-profile") {
-    $('.user-form-data').on('submit', function (e) {
+    $('.btn-save-data').on('click', function (e) {
         e.preventDefault();
-        const formData = new FormData(this);
-        let thisBtn = $(this);
+        let form = document.querySelector('.user-form-data')
+        const formData = new FormData(form);
         let saveBtn = $('.btn-save-data');
         let spinner = `<div class="spinner-border spinner-border-sm me-1" role="status"><span class="visually-hidden">Loading...</span></div>`;
 
@@ -292,8 +292,9 @@ if (window.location.pathname === "/edit-profile") {
                     saveBtn.html('Update profile');
                     if ($('.alert.alert-primary.alert-dismissible.fade.show').length === 0) {
                         var successMessage = $('<div>').addClass('alert alert-primary alert-dismissible fade show').html('<i class="bi bi-info-circle me-2"></i>Profile was successfully updated<button type="button" class="btn-close shadow-none" data-bs-dismiss="alert" aria-label="Close"></button>');
-                        $(successMessage).insertBefore(thisBtn);
+                        $(successMessage).insertBefore(form);
                     }
+                    document.querySelector('.profile-body').scrollIntoView();
                 }
             },
             error: function (error) {

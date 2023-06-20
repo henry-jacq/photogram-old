@@ -9,13 +9,13 @@ $ud = new UserData(Session::getUser());
 <div class="container rounded p-4">
     <div class="row border rounded-3">
         <div class="col-lg-3 bg-body-tertiary rounded-3 py-5">
-            <div class="d-flex flex-column align-items-center text-center p-3 mt-3">
+            <div class="d-flex flex-column align-items-center text-center mt-3">
                 <img class="rounded-circle border border-2 border-prime" width="150" src="<?= $ud->getUserAvatar()?>">
                 <span class="fs-5 fw-semibold mt-2"><?= ucfirst(Session::getUser()->getUsername()) ?></span>
                 <span class="small mt-2"><?= Session::getUser()->getEmail()?></span>
             </div>
         </div>
-        <div class="col-lg-9">
+        <div class="col-lg-9 profile-body">
             <div class="px-3 mt-4">
                 <h4 class="fw-normal"><i class="fa-fw bi bi-pencil me-2"></i>Edit Profile</h4>
                 <hr>
@@ -27,11 +27,11 @@ $ud = new UserData(Session::getUser());
                     <input class="form-control" type="file" id="user-avatar" name="user_image">
                     <div class="text-secondary small mb-2">The maximum file size allowed is 800KB.</div>
                     <?php
-                    if (!str_contains($ud->getUserAvatar(), 'dicebear')){?>
-                    <div class="d-flex justify-content-end mb-3">
-                        <button id="btnRemoveAvatar" class="btn btn-sm btn-outline-danger" type="button"><i class="bi bi-trash me-1"></i>Remove avatar</button>
-                    </div>
-                    <?}?>
+                    if (!str_contains($ud->getUserAvatar(), 'dicebear')) { ?>
+                        <div class="d-flex justify-content-end mb-3">
+                            <button id="btnRemoveAvatar" class="btn btn-sm btn-outline-danger" type="button"><i class="bi bi-trash me-1"></i>Remove avatar</button>
+                        </div>
+                    <? } ?>
                 </div>
                 <div class="form-group mb-3 row">
                     <div class="col">
@@ -73,7 +73,7 @@ $ud = new UserData(Session::getUser());
                     <label for="twitter" class="form-label fw-semibold">Twitter</label>
                     <input id="twitter" class="form-control" type="text" name="twitter" spellcheck="false" placeholder="@username" value="<?= $ud->getTwitter(); ?>">
                 </div>
-                <div class="form-group mb-5">
+                <div class="form-group mb-4">
                     <label for="instagram" class="form-label fw-medium">Instagram</label>
                     <input id="instagram" class="form-control" type="text" name="instagram" spellcheck="false" placeholder="username" value="<?= $ud->getInstagram(); ?>">
                 </div>
