@@ -46,7 +46,7 @@ use App\Core\Session;
 	<link rel="shortcut icon"
 		href="<?= URL_ROOT ?>assets/brand/favicon.ico">
 	<!-- Custom-compiled bootstrap CSS -->
-	<link href="<?= URL_ROOT ?>css/bootstrap.min.css"
+	<link href="<?= URL_ROOT ?>css/main.min.css"
 		rel="stylesheet">
 
 	<!-- App CSS -->
