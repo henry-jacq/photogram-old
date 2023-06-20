@@ -95,7 +95,7 @@ class Post
         $image_tmp = $image['tmp_name'];
 
         // If text exists and exceed the character limit
-        if (!empty($text) && strlen($text) <= 240) {
+        if (!empty($text) && strlen($text) >= 240) {
             throw new Exception('Exceeded the Text limit 240');
         }
 
