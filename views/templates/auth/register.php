@@ -13,11 +13,11 @@
 					<label for="email" class="form-label">Email</label>
 					<input type="email" id="email" name="email_address" class="form-control mb-3 bg-transparent" required>
 					<label for="password" class="form-label">Password</label>
-					<input type="password" id="password" name="password" class="form-control mb-3 bg-transparent" required>
+					<input type="password" id="password" name="password" class="form-control mb-4 bg-transparent" required>
 					<div class="d-grid">
-						<button type="submit" class="btn btn-primary btn-register mb-3">Register now!</button>
+						<button type="submit" class="btn btn-prime btn-register mb-3">Register now!</button>
 					</div>
-					<p class="text-center text-muted mb-0">Do you already have an account? <a href="/login" class="text-decoration-none">Login now</a>.</p>
+					<p class="text-center text-muted mb-0">Do you already have an account? <a href="/login">Login now</a>.</p>
 				</div>
 			</form>
 		</div>

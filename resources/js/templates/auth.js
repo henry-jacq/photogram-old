@@ -148,7 +148,7 @@ if (currentPath == '/register') {
                                     <h3 class="display-6">Welcome to Photogram!</h3>
                                     <p class="lead mb-4">Your account has been created.</p>
                                     <a class="text-decoration-none" href="/login">
-                                        <button class="btn btn-success hvr-icon-forward">Continue to login <i class="fa fa-arrow-right hvr-icon" aria-hidden="true"></i></button>
+                                        <button class="btn btn-prime hvr-icon-forward">Continue to login <i class="fa fa-arrow-right hvr-icon" aria-hidden="true"></i></button>
                                     </a>
                                 </div>
                             </div>

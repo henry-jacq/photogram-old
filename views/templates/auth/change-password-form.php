@@ -12,7 +12,7 @@
 		<div class="invalid-feedback">Password not matches.</div>
 		<div class="form-text mt-3 mb-2">Make sure the password is the same in both fields.</div>
 		<div class="d-grid">
-			<button type="submit" class="btn btn-primary btn-change-password mb-3" disabled>Change password</button>
+			<button type="submit" class="btn btn-prime btn-change-password mb-3" disabled>Change password</button>
 		</div>
 		<p class="text-center text-muted">Do you already have an account? <a href="/login" class="text-decoration-none">Login now</a>.</p>
 	</div>

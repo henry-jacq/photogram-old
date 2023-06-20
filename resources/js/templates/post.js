@@ -14,8 +14,8 @@ $(window).on("load", function () {
 });
 
 // Change the cursor to pointer
-$('.btn-like, .btn-share').mouseover(function () { 
-    $(this).css('cursor','pointer');
+$('.btn-like, .btn-share').on('mouseover', function () {
+    $(this).css('cursor', 'pointer');
 });
 
 // Change like button status

@@ -17,8 +17,8 @@ $('img').on("contextmenu", function () {
 });
 
 // Disable Image Dragging
-$("img").mousedown(function(e){
-    e.preventDefault()
+$("img").on("dragstart", function (event) {
+    event.preventDefault();
 });
 
 // Initialize if the upload button clicked and dropzone element exists

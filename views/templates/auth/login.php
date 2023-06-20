@@ -25,14 +25,14 @@
                             </div>
                         </div>
                         <div class="col text-end">
-                            <a class="text-decoration-none text-primary-emphasis" href="/forgot-password">Forgot password?</a>
+                            <a href="/forgot-password">Forgot password?</a>
                         </div>
                     </div>
 
                     <div class="d-grid">
-                        <button type="submit" class="btn btn-primary btn-login mb-3">Login now!</button>
+                        <button type="submit" class="btn btn-prime btn-login mb-3">Login now!</button>
                     </div>
-                    <p class="text-center text-muted">Want to join Photogram? <a href="/register" class="text-decoration-none">Register now</a>.</p>
+                    <p class="text-center text-muted">Want to join Photogram? <a href="/register">Register now</a>.</p>
                 </div>
             </form>
         </div>

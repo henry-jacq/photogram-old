@@ -1,4 +1,4 @@
-/* Processed by Grunt on 9/6/2023 @14:18:1 */
+/* Processed by Grunt on 20/6/2023 @11:15:57 */
 
 
 // Get the current URL path
@@ -151,7 +151,7 @@ if (currentPath == '/register') {
                                     <h3 class="display-6">Welcome to Photogram!</h3>
                                     <p class="lead mb-4">Your account has been created.</p>
                                     <a class="text-decoration-none" href="/login">
-                                        <button class="btn btn-success hvr-icon-forward">Continue to login <i class="fa fa-arrow-right hvr-icon" aria-hidden="true"></i></button>
+                                        <button class="btn btn-prime hvr-icon-forward">Continue to login <i class="fa fa-arrow-right hvr-icon" aria-hidden="true"></i></button>
                                     </a>
                                 </div>
                             </div>
@@ -354,8 +354,8 @@ $('img').on("contextmenu", function () {
 });
 
 // Disable Image Dragging
-$("img").mousedown(function(e){
-    e.preventDefault()
+$("img").on("dragstart", function (event) {
+    event.preventDefault();
 });
 
 // Initialize if the upload button clicked and dropzone element exists
@@ -447,8 +447,8 @@ $(window).on("load", function () {
 });
 
 // Change the cursor to pointer
-$('.btn-like, .btn-share').mouseover(function () { 
-    $(this).css('cursor','pointer');
+$('.btn-like, .btn-share').on('mouseover', function () {
+    $(this).css('cursor', 'pointer');
 });
 
 // Change like button status

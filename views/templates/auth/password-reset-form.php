@@ -9,8 +9,8 @@
 		<input type="email" id="reset-email" name="reset_email" class="form-control bg-transparent" required>
 		<div class="form-text mb-3">Requires your photogram email address</div>
 		<div class="d-grid">
-			<button type="submit" class="btn btn-primary btn-send-link mb-3">Send link</button>
+			<button type="submit" class="btn btn-prime btn-send-link mb-3">Send link</button>
 		</div>
-		<p class="text-center text-muted">Do you already have an account? <a href="/login" class="text-decoration-none">Login now</a>.</p>
+		<p class="text-center text-muted">Do you already have an account? <a href="/login">Login now</a>.</p>
 	</div>
 </form>
