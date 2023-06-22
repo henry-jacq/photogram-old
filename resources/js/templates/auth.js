@@ -72,7 +72,7 @@ if (currentPath == "/login") {
   
   // Restrict form submission when hitting enter key on these fields
   $('#user, #pass, #rememberMe').on("keydown", function (event) {
-    if (event.keyCode === 13) {
+    if (event.key === 'Enter') {
       event.preventDefault();
       return false;
     }
@@ -118,7 +118,7 @@ if (currentPath == "/login") {
 if (currentPath == '/register') {
   // Restrict form submission when hitting enter key on these fields
   $('#username, #password, #email').on("keydown", function (event) {
-    if (event.keyCode === 13) {
+    if (event.key === 'Enter') {
       event.preventDefault();
       return false;
     }

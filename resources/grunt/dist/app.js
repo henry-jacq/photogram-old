@@ -1,4 +1,4 @@
-/* Processed by Grunt on 22/6/2023 @11:12:18 */
+/* Processed by Grunt on 22/6/2023 @18:8:20 */
 
 
 // Get the current URL path
@@ -75,7 +75,7 @@ if (currentPath == "/login") {
   
   // Restrict form submission when hitting enter key on these fields
   $('#user, #pass, #rememberMe').on("keydown", function (event) {
-    if (event.keyCode === 13) {
+    if (event.key === 'Enter') {
       event.preventDefault();
       return false;
     }
@@ -121,7 +121,7 @@ if (currentPath == "/login") {
 if (currentPath == '/register') {
   // Restrict form submission when hitting enter key on these fields
   $('#username, #password, #email').on("keydown", function (event) {
-    if (event.keyCode === 13) {
+    if (event.key === 'Enter') {
       event.preventDefault();
       return false;
     }
@@ -499,7 +499,7 @@ function likePost(selector, post_id) {
 }
 
 // It will like the post if the image is double clicked
-$(".post-card-image, .carousel").dblclick(function(){
+$(".post-card-image, .carousel").on('dblclick', function(){
     let thisBtn = $(this).next().find('.btn-group').find('.btn-like');
     let post_id = $(this).attr('data-id');
     likePost(thisBtn, post_id);
@@ -536,7 +536,7 @@ $('.btn-delete').on('click', function(){
         {
             'name': "Delete",
             "class": "btn-danger",
-            "onClick": function(event){             
+            "onClick": function(event){
                 $.post('/api/posts/delete',
                 {
                     id: post_id
