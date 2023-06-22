@@ -15,12 +15,6 @@ ${basename(__FILE__, '.php')} = function () {
                 'message'=>$like->isLiked()
             ]), 200);
         }
-        if ($this->paramsExists(['postID'])) {
-            $post_id = $this->_request['postID'];
-            $this->response($this->json([
-                'message'=>Like::isUserLiked($post_id)
-            ]), 200);
-        }
     } else {
         $this->response($this->json([
             'message'=>"Bad Request"

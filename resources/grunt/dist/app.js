@@ -1,4 +1,4 @@
-/* Processed by Grunt on 20/6/2023 @15:27:25 */
+/* Processed by Grunt on 22/6/2023 @11:12:18 */
 
 
 // Get the current URL path
@@ -451,7 +451,7 @@ $('.btn-like, .btn-share').on('mouseover', function () {
 });
 
 // Change like button status
-function likeBtn(mainSelector, status=null, isClicked=false) {
+function likeBtn(mainSelector, status=null) {
     var likeAudio = $('<audio>', {
         id: 'likePop',
         src: '/assets/like-pop.mp3'
@@ -467,7 +467,7 @@ function likeBtn(mainSelector, status=null, isClicked=false) {
         if (likeBtnSelector.hasClass('fa-heart-o')) {
             likeBtnSelector.removeClass('fa-heart-o');
             likeBtnSelector.addClass('fa-heart text-danger');
-            if (isClicked == true && likeAudio[0].play()) {
+            if (likeAudio[0].play()) {
                 mainSelector.find('span').text(currentLikes += 1);
             }
         }
@@ -482,23 +482,6 @@ function likeBtn(mainSelector, status=null, isClicked=false) {
     }
 }
 
-// Keep the like(heart-filled) if the user already liked it.
-$('.btn-like').each(function () {
-    let thisBtn = $(this);
-    let post_id = $(this).attr('data-id');
-
-    $.post('/api/posts/like',
-    {
-        postID: post_id
-    }, function(data, textSuccess){
-        if(textSuccess =="success"){
-            likeBtn($(thisBtn), data.message, false);
-        } else {
-            console.error("Can't like the post ID: "+post_id);
-        }
-    });
-});
-
 // Toggle likes
 function likePost(selector, post_id) {
     if (selector !== undefined && post_id !== undefined) {
@@ -507,7 +490,7 @@ function likePost(selector, post_id) {
             id: post_id
         }, function(data, textSuccess){
             if(textSuccess =="success"){
-                likeBtn(selector, data.message, true);
+                likeBtn(selector, data.message);
             } else {
                 console.error("Can't like the post ID: "+post_id);
             }

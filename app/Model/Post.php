@@ -211,7 +211,7 @@ class Post
                 }
             }
         } catch (Exception $e) {
-            throw new Exception(__CLASS__."::deleteSinglePostImage, can't remove single post image.");
+            throw new Exception(__CLASS__."::deleteSinglePostImage, can't remove single post image. Kindly check the storage folder permissions.");
         }
     }
 

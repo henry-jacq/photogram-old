@@ -146,7 +146,7 @@ if (Session::currentScript() == "profile") {
 					</span>
 					<?php } else { ?>
 					<div class="btn-like me-3" data-id="<?= $post['id'] ?>">
-						<i class="btn border-0 p-0 fa fa-heart-o me-1" id="like-<?= $post['id'] ?>" aria-hidden="true"></i>
+						<i class="btn border-0 p-0 fa <?php echo (Like::isUserLiked($post['id'])) ? 'fa-heart text-danger' : 'fa-heart-o'; ?> me-1" id="like-<?= $post['id'] ?>" aria-hidden="true"></i>
 						<span class="me-1"><?= Like::getLikeCount($post['id']) ?></span>Likes
 					</div>
 					<div class="btn-share card-items">
