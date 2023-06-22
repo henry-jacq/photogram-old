@@ -37,7 +37,7 @@ if (Session::currentScript() == 'index') { ?>
 		$uploaded_time = Carbon::parse($p->getUploadedTime());
 		$uploaded_time_str = $uploaded_time->diffForHumans(); ?>
 
-		<div class="col-lg-3" id="post-<?= $post['id'] ?>">
+		<div class="col-xl-3 col-lg-4 col-md-6" id="post-<?= $post['id'] ?>">
 			<div class="card shadow-lg">
 				<?php if (Session::isAuthenticated()) { ?>
 					<header class="card-header p-2 user-select-none border-0">
