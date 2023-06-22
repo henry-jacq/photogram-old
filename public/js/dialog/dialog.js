@@ -115,7 +115,7 @@ class Dialog {
 			$('#'+this.cloneId+' .modal-footer').append(buttonElement.outerHTML+"&nbsp;");
 			//on functuonality can be extended
 			if(typeof this.buttons[button]['onClick'] === 'function'){
-				$('button#'+id).click({modal: this.clone}, this.buttons[button]['onClick']);
+				$('button#' + id).on('click', { modal: this.clone }, this.buttons[button]['onClick']);
 			}
 		}
 	}

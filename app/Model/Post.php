@@ -140,6 +140,26 @@ class Post
 
         return $images;
     }
+
+    /**
+     * Update post details
+     */
+    public static function updatePost(int $pid, string $text)
+    {
+        // If text exists and exceed the character limit
+        if (!empty($text) && strlen($text) >= 240) {
+            throw new Exception('Exceeded the Text limit 240');
+        }
+        $db = Database::getConnection();
+        $text = mysqli_real_escape_string($db, $text);
+        $query = "UPDATE `posts` SET `post_text` = '{$text}' WHERE `id` = '{$pid}';";
+
+        if ($db->query($query)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
     
     /**
      * Deletes the single post image from storage

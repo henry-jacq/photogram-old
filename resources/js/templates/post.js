@@ -98,11 +98,19 @@ $('.btn-delete').on('click', function(){
     if ($('#successTone').length === 0) {
         $('body').append(successAudio);
     }
-    post_id = $(this).parent().attr('data-id');
-    d = new Dialog("Delete Post ?", "You want to permanently delete this post?");
+    let message = `<p>Are you sure you want to delete this post?</p><p>This action cannot be undone.</p>`;
+    let post_id = $(this).parent().attr('data-id');
+    d = new Dialog('<i class="bi bi-trash me-2"></i>Delete Post', message);
     d.setButtons([
         {
-            'name': "Delete",
+            'name': "Cancel",
+            "class": "btn-secondary",
+            "onClick": function (event) {
+                $(event.data.modal).modal('hide');
+            }
+        },
+        {
+            'name': "Delete post",
             "class": "btn-danger",
             "onClick": function(event){
                 $.post('/api/posts/delete',
@@ -121,13 +129,6 @@ $('.btn-delete').on('click', function(){
                 });
 
                 $(event.data.modal).modal('hide')
-            }
-        },
-        {
-            'name': "Cancel",
-            "class": "btn-secondary",
-            "onClick": function(event){
-                $(event.data.modal).modal('hide');
             }
         }
     ]);
@@ -172,4 +173,73 @@ $('.btn-download').on('click', function () {
             this.removeAttribute('href');
         })
         .catch(console.error);
+});
+
+$('.btn-edit-post').on('click', function () {
+    var successAudio = $('<audio>', {
+        id: 'successTone',
+        src: '/assets/success.mp3'
+    });
+    if ($('#successTone').length === 0) {
+        $('body').append(successAudio);
+    }
+    const pid = $(this).parent().attr('data-id');
+    let el = $(this).parents('header').next().next();
+    let ptext = el.find('.card-text').text();
+    const message = `<div class="container my-3"><p class="form-label">Change post text:</p><textarea class="form-control post-text" name="post_text" rows="5" placeholder="Say something...">${ptext}</textarea><p class="total-chars visually-hidden text-end mt-2"></p></div>`;
+    let d = new Dialog('<i class="bi bi-pencil me-2"></i>Edit Your Post', message);
+    d.setButtons([
+        {
+            'name': "Close",
+            "class": "btn-secondary",
+            "onClick": function (event) {
+                $(event.data.modal).modal('hide')
+            }
+        },
+        {
+            'name': "Update post",
+            "class": "btn-prime btn-update-post",
+            "onClick": function (event) {
+                let ptxt = $(d.clone).find('.post-text').val();
+                $(d.clone).find('.btn-update-post').prop('disabled', true);
+
+                $.post('/api/posts/update',
+                    {
+                        id: pid,
+                        text: ptxt
+                    }, function (data, textSuccess) {
+                        if (textSuccess == "success") {
+                            successAudio[0].play();
+                            el.find('.card-text').text(ptxt);
+                            masonry.layout();
+                            showToast("Photogram", "Just Now", "Post text changed successfully!");
+                        } else {
+                            showToast("Photogram", "Just Now", "Can't change the post text!");
+                        }
+                    });
+                $(event.data.modal).modal('hide');
+            }
+        }
+    ]);
+    d.show();
+    let txtarea = $(d.clone).find('.post-text');
+    $(d.clone).find('.btn-update-post').prop('disabled', true);
+    $(txtarea).on('input', function () {
+        if (txtarea.val() != ptext) {
+            $(d.clone).find('.btn-update-post').prop('disabled', false);
+        } else {
+            $(d.clone).find('.btn-update-post').prop('disabled', true);
+        }
+        // Character limit on post text
+        const maxLength = 240;
+        const charCount = $('.total-chars');
+        const length = $(this).val().length;
+        charCount.removeClass('visually-hidden');
+
+        if (length > maxLength) {
+            const truncatedValue = $(this).val().slice(0, maxLength);
+            $(this).val(truncatedValue);
+        }
+        charCount.text(`${$(this).val().length}/${maxLength}`);
+    });
 });
