@@ -137,14 +137,23 @@ $('.btn-delete').on('click', function(){
 
 // Copy the post link
 $('.btn-copy-link').on('click', function () {
+    let successAudio = $('<audio>', {
+        id: 'successTone',
+        src: '/assets/success.mp3'
+    });
+    if ($('#successTone').length === 0) {
+        $('body').append(successAudio);
+    }
     let carousel = $(this).parents('header').next();
     let activeItem = carousel.find('.active');
     let image = activeItem.find('img').attr('src');
     let textToCopy = window.location.origin + (this.getAttribute('value') != 0 ? $(this).attr('value') : image);
 
     if (navigator.clipboard) {
-        navigator.clipboard.writeText(textToCopy);
-        showToast("Photogram", "Just Now", "Copied the post link to the clipboard!");
+        if (navigator.clipboard.writeText(textToCopy)) {
+            successAudio[0].play();
+            showToast("Photogram", "Just Now", "Copied the post link to the clipboard!");
+        }
     } else {
         console.error("Can't copy the post link!");
         showToast("Photogram", "Just Now", "Can't copy the post link to the clipboard!");
@@ -156,7 +165,6 @@ $('.btn-download').on('click', function () {
     if (this.hasAttribute('href')) {
         return;
     }
-
     let carousel = $(this).parents('header').next();
     let activeItem = carousel.find('.active');
     let image = activeItem.find('img').attr('src');
@@ -190,7 +198,7 @@ $('.btn-edit-post').on('click', function () {
     let d = new Dialog('<i class="bi bi-pencil me-2"></i>Edit Your Post', message);
     d.setButtons([
         {
-            'name': "Close",
+            'name': "Cancel",
             "class": "btn-secondary",
             "onClick": function (event) {
                 $(event.data.modal).modal('hide')
