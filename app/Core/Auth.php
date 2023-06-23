@@ -9,7 +9,7 @@ class Auth {
     /**
      * Register user
      */
-    public static function register($username, $password, $email): string
+    public static function register($username, $fullname, $email, $password): string
     {
         // Amount of cost requires to generate a random hash
         $options = [
@@ -18,11 +18,12 @@ class Auth {
         $password = password_hash($password, PASSWORD_DEFAULT, $options);
         $conn = Database::getConnection();
         $username = strtolower(self::check_sql_errors($username));
+        $fullname = self::check_sql_errors(trim($fullname));
         $password = self::check_sql_errors($password);
         $email = self::check_sql_errors($email);
 
         // TODO: In future, change the sql query table to class variable which is declared in database_class_php file
-        $sql = "INSERT INTO `auth` (`username`, `password`, `email`, `active`, `signup_time`) VALUES ('$username', '$password', '$email', '0', now());";
+        $sql = "INSERT INTO `auth` (`username`, `fullname`, `password`, `email`, `active`, `signup_time`) VALUES ('$username', '$fullname', '$password', '$email', '0', now());";
 
         try {
             return $conn->query($sql);

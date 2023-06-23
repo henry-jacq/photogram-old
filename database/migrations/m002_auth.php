@@ -9,6 +9,7 @@ class m002_auth {
         $sql = "CREATE TABLE `auth` (
             `id` int NOT NULL AUTO_INCREMENT,
             `username` varchar(32) NOT NULL,
+            `fullname` varchar(32) NOT NULL,
             `password` varchar(256) NOT NULL,
             `email` varchar(256) NOT NULL,
             `active` int NOT NULL DEFAULT '1',

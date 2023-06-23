@@ -1,4 +1,3 @@
--- 01 June, 2023 Migrations
 -- Adminer 4.8.1 MySQL 8.0.33 dump
 
 SET NAMES utf8;
@@ -11,6 +10,7 @@ SET NAMES utf8mb4;
 CREATE TABLE `auth` (
   `id` int NOT NULL AUTO_INCREMENT,
   `username` varchar(32) NOT NULL,
+  `fullname` varchar(32) NOT NULL,
   `password` varchar(256) NOT NULL,
   `email` varchar(256) NOT NULL,
   `active` int NOT NULL DEFAULT '1',
@@ -109,4 +109,4 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 
--- 2023-06-10 14:28:12
+-- 2023-06-23 08:32:14
