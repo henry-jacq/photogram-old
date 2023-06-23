@@ -5,6 +5,7 @@ use App\Model\UserData;
 
 if (Session::isAuthenticated()) {
 	$ud = new UserData(Session::getUser());
+	$username = Session::getUser()->getUsername();
 }
 ?>
 
@@ -103,7 +104,7 @@ if (Session::isAuthenticated()) {
 				</li>
 				<li class="nav-item ms-3 dropdown">
 					<a class="nav-link btn icon-md p-0 border rounded-5" href="#" id="profileDropdown" role="button" data-bs-auto-close="outside" data-bs-display="static" data-bs-toggle="dropdown" aria-expanded="false">
-						<img class="user-profile-img img-fluid rounded-circle" src="<?= $ud->getUserAvatar() ?>" alt="<?= ucfirst(Session::getUser()->getUsername()) ?>-avatar" width="32" height="32">
+						<img class="user-profile-img img-fluid rounded-circle" src="<?= $ud->getUserAvatar() ?>" alt="<?= ucfirst($username) ?>-avatar" width="32" height="32">
 						<span class="position-absolute bottom-0 mt-2 start-0 p-1 bg-success border border-light rounded-circle"></span>
 					</a>
 					<ul class="dropdown-menu dropdown-animation dropdown-menu-end pt-2 small mt-2" aria-labelledby="profileDropdown">
@@ -114,7 +115,7 @@ if (Session::isAuthenticated()) {
 										<img class="user-profile-img border rounded-circle skeleton-img" src="<?= $ud->getUserAvatar() ?>" width="36" height="36"></a>
 								</div>
 								<div>
-									<a class="h6 stretched-link text-decoration-none" href="/profile"><?= ucfirst(Session::getUser()->getUsername()) ?></a>
+									<a class="h6 stretched-link text-decoration-none" href="/profile/<?= $username?>"><?= ucfirst($username) ?></a>
 								</div>
 							</div>
 							<hr class="mt-2 mb-1">
@@ -131,7 +132,6 @@ if (Session::isAuthenticated()) {
 						<li><a class="dropdown-item bg-danger-soft-hover" href="/logout"><i class="bi bi-box-arrow-left fa-fw me-2"></i>Sign Out</a></li>
 					</ul>
 				</li>
-				<!-- Profile START -->
 			</ul>
 		<?php } else { ?>
 			<div>

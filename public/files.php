@@ -2,6 +2,11 @@
 
 include '../bootstrap.php';
 
+use App\Core\Session;
+use App\Core\View;
+
+Session::ensureLogin();
+
 if (isset($_GET['file'])) {
     $fname = $_GET['file'];
     
@@ -11,7 +16,7 @@ if (isset($_GET['file'])) {
     } elseif ($_GET['namespace'] == 'avatars') {
         $path = APP_STORAGE_PATH . '/avatars/';
     } else {
-        exit;
+        die();
     }
     
     // To prevent directory traversal
@@ -29,5 +34,5 @@ if (isset($_GET['file'])) {
         echo(file_get_contents($image_path));
     }
 } else {
-    exit;
+    View::renderPage();
 }
