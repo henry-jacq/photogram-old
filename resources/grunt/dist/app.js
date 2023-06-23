@@ -1,4 +1,4 @@
-/* Processed by Grunt on 23/6/2023 @8:8:2 */
+/* Processed by Grunt on 23/6/2023 @18:19:24 */
 
 
 // Get the current URL path
@@ -403,6 +403,26 @@ $('img').on("contextmenu", function () {
 $("img").on("dragstart", function (event) {
     event.preventDefault();
 });
+
+// Scroll to top
+if ($('#scroll-top-btn').length != 0) {
+    var scrollTopBtn = $('#scroll-top-btn');
+    $(window).on('scroll', function () {
+        var scrollPos = $(this).scrollTop();
+
+        if (scrollPos > 0) {
+            scrollTopBtn.removeClass('d-none').fadeIn('slow');
+        } else {
+            scrollTopBtn.fadeOut(function () {
+                $(this).addClass('d-none');
+            });
+        }
+    });
+    scrollTopBtn.on('click', function (e) {
+        e.preventDefault();
+        $('html').animate({ scrollTop: 0 }, 'fast');
+    });
+}
 
 // Initialize if the upload button clicked and dropzone element exists
 $('#postUploadButton').on('click', function () {
