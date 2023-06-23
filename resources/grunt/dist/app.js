@@ -1,4 +1,4 @@
-/* Processed by Grunt on 22/6/2023 @18:45:16 */
+/* Processed by Grunt on 23/6/2023 @7:27:30 */
 
 
 // Get the current URL path
@@ -120,17 +120,62 @@ if (currentPath == "/login") {
 // Register user
 if (currentPath == '/register') {
   // Restrict form submission when hitting enter key on these fields
-  $('#username, #password, #email').on("keydown", function (event) {
+  var usernameInput = $('#username');
+  var fullnameInput = $('#fullname');
+  var emailInput = $('#email');
+  var passwordInput = $('#password');
+  var registerBtn = $('.btn-register');
+  
+  $('#fullname, #username, #password, #email').on("keydown", function (event) {
     if (event.key === 'Enter') {
       event.preventDefault();
       return false;
     }
   });
 
+  $(function () {
+    usernameInput.on('input', validateField);
+    fullnameInput.on('input', validateField);
+    emailInput.on('input', validateField);
+    passwordInput.on('input', validateField);
+
+    function validateField() {
+      var field = $(this);
+      var value = field.val().trim();
+      var isValid = false;
+      var feedbackElement = field.next('.invalid-feedback');
+
+      if (field.attr('id') === 'username') {
+        isValid = /^[a-zA-Z][a-zA-Z_]*$/.test(value);
+        feedbackElement.text('It should not contain any special characters except letters and underscore.');
+      } else if (field.attr('id') === 'fullname') {
+        isValid = /^[A-Za-z]+(\s[A-Za-z]+)*$/.test(value);
+        feedbackElement.text('It should not contain numbers or special characters.');
+      } else if (field.attr('id') === 'email') {
+        isValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+        feedbackElement.text('Please enter a valid email address.');
+      } else if (field.attr('id') === 'password') {
+        isValid = value.length >= 8;
+        feedbackElement.text('Password should contain at least 8 characters.');
+      }
+
+      field.toggleClass('is-invalid', !isValid);
+      feedbackElement.toggle(!isValid);
+
+      var allFieldsValid = !usernameInput.hasClass('is-invalid') &&
+        !fullnameInput.hasClass('is-invalid') &&
+        !emailInput.hasClass('is-invalid') &&
+        !passwordInput.hasClass('is-invalid');
+
+      registerBtn.prop('disabled', !allFieldsValid);
+    }
+  });
+
+
   $('.user-register-form').on('submit', function (event) {
     event.preventDefault();
-    $('.btn-register').html('Checking credentials...');
-    $('.btn-register').attr('disabled', true);
+    registerBtn.html('Verifying credentials...');
+    registerBtn.attr('disabled', true);
     const formData = new FormData(this);
 
     $.ajax({
@@ -166,8 +211,8 @@ if (currentPath == '/register') {
             var errorMessage = $('<div>').addClass('alert alert-danger alert-dismissible fade show').html('<i class="bi bi-exclamation-circle me-2"></i><b class="fw-semibold">Failed to register!</b> Invalid credentials.<button type="button" class="btn-close shadow-none" data-bs-dismiss="alert" aria-label="Close"></button>');
             $(errorMessage).insertBefore('form');
           }
-          $('.btn-register').attr('disabled', false);
-          $('.btn-register').html('Register now!');
+          registerBtn.attr('disabled', false);
+          registerBtn.html('Register now!');
         }
       }
     });
@@ -211,7 +256,7 @@ if (currentPath == "/forgot-password") {
 
 // Check password in both fields are same
 var pattern = /^\/forgot-password\/[a-zA-Z0-9]+$/;
-if (pattern.test(currentPath)) {
+if (pattern.test(location.pathname)) {
   $(function () {
     var passwordInput = $('#newPassword');
     var confirmPasswordInput = $('#confirmNewPassword');
