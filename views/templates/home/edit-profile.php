@@ -3,7 +3,7 @@
 use App\Core\Session;
 use App\Model\UserData;
 
-$ud = new UserData(Session::getUser());
+$ud = new UserData(Session::getUser()->getUsername());
 ?>
 
 <div class="container rounded p-4">
@@ -44,8 +44,8 @@ $ud = new UserData(Session::getUser());
                     </div>
                 </div>
                 <div class="form-group mb-3">
-                    <label for="email" class="form-label fw-semibold">Secondary email</label>
-                    <input id="email" class="form-control" type="email" name="email" placeholder="Email" value="<?= $ud->getSecEmail(); ?>">
+                    <label for="website" class="form-label fw-semibold">Website</label>
+                    <input id="website" class="form-control" type="text" name="website" placeholder="https://example.com" value="<?= $ud->getWebsite(); ?>">
                 </div>
                 <div class="form-group mb-3">
                     <label for="job" class="form-label fw-semibold">Job title</label>

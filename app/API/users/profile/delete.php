@@ -9,7 +9,7 @@ use App\Model\UserData;
 ${basename(__FILE__, '.php')} = function () {
     if ($this->isAuthenticated()) {
         try {
-            $ud = new UserData(Session::getUser());
+            $ud = new UserData(Session::getUser()->getUsername());
 
             $this->response($this->json([
                 'message' => $ud->deleteAvatarImage()

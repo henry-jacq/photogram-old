@@ -7,8 +7,8 @@ use App\Model\UserData;
 
 ${basename(__FILE__, '.php')} = function () {
     if (!empty($_POST)) {
-        $ud = new UserData(Session::getUser());
-        $post_fields = ['fname', 'lname', 'email', 'job', 'bio', 'location', 'twitter', 'instagram'];
+        $ud = new UserData(Session::getUser()->getUsername());
+        $post_fields = ['fname', 'lname', 'website', 'job', 'bio', 'location', 'twitter', 'instagram'];
         $data = [];
 
         foreach ($post_fields as $field) {
@@ -18,13 +18,13 @@ ${basename(__FILE__, '.php')} = function () {
         }
 
         if (!$ud->exists()) {
-            $ud->create($data['fname'], $data['lname'], $data['email'], $data['job'], $data['bio'], $data['location'], $data['twitter'], $data['instagram']);
+            $ud->create($data['fname'], $data['lname'], $data['website'], $data['job'], $data['bio'], $data['location'], $data['twitter'], $data['instagram']);
             if (isset($_FILES) && $_FILES['user_image']['error'] !== UPLOAD_ERR_NO_FILE) {
                 $ud->setNewAvatar($_FILES['user_image']['tmp_name']);
             }
             $message = 'Created';
         } else {
-            $ud->update($data['fname'], $data['lname'], $data['email'], $data['job'], $data['bio'], $data['location'], $data['twitter'], $data['instagram']);
+            $ud->update($data['fname'], $data['lname'], $data['website'], $data['job'], $data['bio'], $data['location'], $data['twitter'], $data['instagram']);
             if (isset($_FILES) && $_FILES['user_image']['error'] !== UPLOAD_ERR_NO_FILE) {
                 $ud->setNewAvatar($_FILES['user_image']['tmp_name']);
             }

@@ -4,8 +4,8 @@ use App\Core\Session;
 use App\Model\UserData;
 
 if (Session::isAuthenticated()) {
-	$ud = new UserData(Session::getUser());
 	$username = Session::getUser()->getUsername();
+	$ud = new UserData($username);
 }
 ?>
 

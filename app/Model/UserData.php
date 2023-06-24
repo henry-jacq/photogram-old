@@ -16,14 +16,14 @@ class UserData {
     public $username;
     use SQLGetterSetter;
     
-    public function __construct(object $user)
+    public function __construct(string $username)
     {
         if (!$this->conn) {
             $this->conn = Database::getConnection();
         }
-        $this->id = $user->getID();
+        $this->id = $this->getUserId($username);
         $this->table = 'users';
-        $this->username = $user->getUsername();
+        $this->username = $username;
     }
 
     private function escapeString($value)
@@ -125,7 +125,7 @@ class UserData {
         $ig = $this->escapeString($ig);
         $email = $this->escapeString($email);
         
-        $sql = "INSERT INTO `$this->table` (`id`, `first_name`, `last_name`, `bio`, `job`, `sec_email`, `location`, `twitter`, `instagram`) VALUES ('$this->id', '$fname', '$lname', '$bio', '$job', '$email', '$lc', '$tw', '$ig');";
+        $sql = "INSERT INTO `$this->table` (`id`, `first_name`, `last_name`, `bio`, `job`, `website`, `location`, `twitter`, `instagram`) VALUES ('$this->id', '$fname', '$lname', '$bio', '$job', '$email', '$lc', '$tw', '$ig');";
 
         try {
             $this->conn->query($sql);
@@ -145,7 +145,7 @@ class UserData {
         $ig = $this->escapeString($ig);
         $email = $this->escapeString($email);
 
-        $sql = "UPDATE `$this->table` SET `first_name` = '$fname', `last_name` = '$lname', `sec_email` = '$email', `job` = '$job', `bio` = '$bio', `location` = '$lc', `twitter` = '$tw', `instagram` = '$ig' WHERE `id` = '$this->id';";
+        $sql = "UPDATE `$this->table` SET `first_name` = '$fname', `last_name` = '$lname', `website` = '$email', `job` = '$job', `bio` = '$bio', `location` = '$lc', `twitter` = '$tw', `instagram` = '$ig' WHERE `id` = '$this->id';";
 
         try {
             $this->conn->query($sql);
