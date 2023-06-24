@@ -1,4 +1,4 @@
-/* Processed by Grunt on 24/6/2023 @5:45:44 */
+/* Processed by Grunt on 24/6/2023 @16:22:23 */
 
 
 // Get the current URL path
@@ -96,11 +96,7 @@ if (currentPath == "/login") {
       success: function (response) {
         $('.btn-login').html('Logging in...');
         if (response.message == 'Authenticated') {
-          if (response.redirect != false) {
             location.replace(response.redirect);
-          } else {
-            location.reload();
-          }
         }
       },
       error: function (jqXHR, textStatus) {
@@ -748,12 +744,5 @@ $('.btn-edit-post').on('click', function () {
         charCount.text(`${$(this).val().length}/${maxLength}`);
     });
 });
-
-// Count only user posts
-if (window.location.pathname === "/profile") {
-  $.post("/api/posts/count?mode=user", function (o) {
-    $("#totalUserPosts").text(o.count);
-  });
-}
 
 //# sourceMappingURL=app.js.map

@@ -93,11 +93,7 @@ if (currentPath == "/login") {
       success: function (response) {
         $('.btn-login').html('Logging in...');
         if (response.message == 'Authenticated') {
-          if (response.redirect != false) {
             location.replace(response.redirect);
-          } else {
-            location.reload();
-          }
         }
       },
       error: function (jqXHR, textStatus) {

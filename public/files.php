@@ -5,8 +5,6 @@ include '../bootstrap.php';
 use App\Core\Session;
 use App\Core\View;
 
-Session::ensureLogin();
-
 if (isset($_GET['file'])) {
     $fname = $_GET['file'];
     

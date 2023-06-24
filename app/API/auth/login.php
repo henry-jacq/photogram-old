@@ -10,10 +10,9 @@ ${basename(__FILE__, '.php')} = function () {
         $fg = isset($_COOKIE['fingerprint']) ? $_COOKIE['fingerprint'] : null;
         $token = UserSession::authenticate($user, $password, $fg);
         if($token) {
-            $should_redirect = Session::get('_redirect');
             $redirect_to = URL_ROOT;
-            if (isset($should_redirect)) {
-                $redirect_to = $should_redirect;
+            if (Session::isset('_redirect')) {
+                $redirect_to = Session::get('_redirect');
                 Session::set('_redirect', false);
             }
             $this->response($this->json([

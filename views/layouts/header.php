@@ -12,7 +12,7 @@ if (Session::isAuthenticated()) {
 <header>
 	<nav class="navbar navbar-expand-lg px-3 border-bottom shadow shadow-bottom user-select-none">
 		<a class="navbar-brand display-6 me-auto" href="/">
-			<img src="/assets/brand/photogram-logo.png" alt="Logo" width="27" height="31" class="d-inline-block align-text-top">
+			<img src="/assets/brand/photogram-logo.png" width="27" height="31" class="d-inline-block align-text-top">
 			<div class="d-none d-sm-inline-block">
 				<b> Photogram</b>
 			</div>
