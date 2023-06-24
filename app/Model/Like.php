@@ -106,4 +106,21 @@ class Like
             }
         }
     }
+
+    /**
+     * Count likes from database
+     * 
+     * If the UID is passed, then the likes count for the UID is returned; otherwise, the total likes count is returned.
+     */
+    public static function countLikes(int $uid = null)
+    {
+        $db = Database::getConnection();
+        if ($uid == null) {
+            $sql = "SELECT COUNT(*) as count FROM `likes` WHERE `like` = 1;";
+        } else {
+            $sql = "SELECT COUNT(*) as count FROM `likes` WHERE `like` = 1 AND `uid` = '$uid';";
+        }
+        $result = $db->query($sql);
+        return iterator_to_array($result);
+    }
 }

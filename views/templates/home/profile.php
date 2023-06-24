@@ -3,6 +3,7 @@
 use App\Core\Session;
 use App\Core\User;
 use App\Core\View;
+use App\Model\Like;
 use App\Model\Post;
 use App\Model\UserData;
 
@@ -41,8 +42,9 @@ $fullname = User::getFullnameByUsername($username);
 			<div class="col-md-7">
 				<h5 class="m-0"><?= ucfirst($fullname) ?>
 				</h5>
-				<p class="mb-2">@<?= $username ?><span class="small mb-2"><?php if (!empty($ud->getJob()) && $ud->getJob() != 'None'): ?>
-				<?=' • ' . $ud->getJob(); endif; ?></span></p>
+				<p class="mb-2">@<?= $username ?><span class="small mb-2">
+				<?php if (!empty($ud->getJob()) && $ud->getJob() != 'None') : ?><?= ' • ' . $ud->getJob();
+				endif; ?></span></p>
 				<?php if (!empty($ud->getLocation())) : ?>
 					<p class="text-secondary small"><i class="bi bi-geo-alt me-1"></i><?= $ud->getLocation() ?></p>
 				<?php endif;
@@ -50,11 +52,16 @@ $fullname = User::getFullnameByUsername($username);
 					<p><?= nl2br($ud->getBio()) ?></p>
 				<?php endif; ?>
 			</div>
-			<div class="col-md-5 mb-2">
+			<div class="col-md-5 mb-2 px-1">
 				<div class="hstack gap-3 gap-xl-3 float-md-end">
-					<div class="text-center">
+					<div class="text-center px-2">
 						<h6 class="mb-0"><?= User::formatNumbers(Post::countUserPosts($username)[0]['count']) ?></h6>
 						<small>Posts</small>
+					</div>
+					<div class="vr"></div>
+					<div class="text-center px-2">
+						<h6 class="mb-0"><?= User::formatNumbers(Like::countLikes($ud->getUserId($username))[0]['count']) ?></h6>
+						<small>Likes</small>
 					</div>
 					<div class="vr"></div>
 					<div class="text-center">
