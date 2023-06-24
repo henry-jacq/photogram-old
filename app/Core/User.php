@@ -92,4 +92,37 @@ class User
             return false;
         }
     }
+
+    /**
+     * It fetch fullname by username
+     */
+    public static function getFullnameByUsername(string $username)
+    {
+        // Create a connection to database
+        $conn = Database::getConnection();
+        $query = "SELECT `fullname` FROM `auth` WHERE `username` = '$username';";
+        $result = $conn->query($query);
+
+        if ($result->num_rows == 1) {
+            $row = $result->fetch_assoc();
+            return $row['fullname'];
+        } else {
+            throw new Exception(__CLASS__ . "::getFullnameByUsername() -> $username, fullname is not available.");
+        }
+    }
+
+    /**
+     * Returns human readable number
+     */
+    public static function formatNumbers(int $n)
+    {
+        $suffixes = ['', 'K', 'M', 'B', 'T'];
+        $suffixIndex = 0;
+        while ($n >= 1000 && $suffixIndex < count($suffixes) - 1) {
+            $n /= 1000;
+            $suffixIndex++;
+        }
+        return round($n, 1) . $suffixes[$suffixIndex];
+    }
+
 }

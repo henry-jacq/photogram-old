@@ -3,34 +3,31 @@
 use Carbon\Carbon;
 use App\Model\Like;
 use App\Model\Post;
-use App\Model\UserData;
 use App\Core\Session;
 
-if (Session::currentScript() == 'index') { ?>
+if (Session::currentScript() == 'index') : ?>
 	<h3 class="fs-3 lead user-select-none">Feed</h3>
 	<hr class="py-2">
-<? } else if (Session::currentScript() == 'profile') { ?>
-	<h3 class="fw-light mt-3">My Posts</h3>
-	<hr class="py-2">
-<? } ?>
+<?php endif; ?>
 
 <div class="row g-3" id="masonry-area">
-
 	<?php
-
-	if (Session::currentScript() == "profile") {
-		$posts = Post::getUserPosts(Session::getUser()->getUsername());
+	$username = $_GET['user'];
+	if (Session::currentScript() == "profile"):
+		$posts = Post::getUserPosts($username);
 		// If user has no posts  uploaded, print this message.
-		if (empty($posts)) { ?>
+		if (Session::getUser()->getUsername() == $username && empty($posts)):?>
 			<p class="text-muted text-center align-items-center mb-0">You haven't posted pictures. When you share photos, they'll appear on your profile.</p>
-		<?php }
-	} else if (Session::currentScript() == "index") {
+		<?php elseif (empty($posts)) : ?>
+			<p class="text-muted text-center align-items-center my-5"><?= $username ?> haven't posted pictures. If they share photos, they'll appear on this profile.</p>
+		<?php endif;
+	elseif (Session::currentScript() == "index") :
 		$posts = Post::getAllPosts();
 		// If no posts are uploaded, print this message.
-		if (empty($posts)) { ?>
+		if (empty($posts)): ?>
 			<p class="text-muted text-center align-items-center mb-0">There are no posts available. Try to share some photos.</p>
-	<?php }
-	} ?>
+	<?php endif;
+	endif; ?>
 
 	<?php foreach ($posts as $post) {
 		$p = new Post($post['id']);
@@ -43,15 +40,13 @@ if (Session::currentScript() == 'index') { ?>
 					<header class="card-header p-2 user-select-none border-0">
 						<div class="d-flex align-items-center justify-content-between">
 							<div class="d-flex align-items-center">
-								<!-- Avatar -->
 								<div class="avatar avatar-story me-2">
-									<a href="#" class="d-block link-dark text-decoration-none" aria-expanded="false">
+									<a href="/profile/<?= $p->getOwner() ?>" class="d-block link-dark text-decoration-none" aria-expanded="false">
 										<img class="user-profile-img border rounded-circle skeleton-img" src="<?= $p->getAvatar() ?>" width="36" height="36"></a>
 								</div>
-								<!-- Info -->
 								<div class="skeleton-header">
 									<div class="nav nav-divider skeleton skeleton-text">
-										<h7 class="nav-item card-title mb-0"> <a href="#!" class="text-decoration-none" style="color: var(--bs-dark-text)"><?= ucfirst($p->getOwner()); ?></a>
+										<h7 class="nav-item card-title mb-0"> <a href="/profile/<?= $p->getOwner() ?>" class="text-decoration-none" style="color: var(--bs-dark-text)"><?= ucfirst($p->getOwner()); ?></a>
 										</h7>
 
 										<div class="ms-1 align-items-center justify-content-between">
