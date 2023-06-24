@@ -39,13 +39,12 @@ $fullname = User::getFullnameByUsername($username);
 	<div class="container mt-5">
 		<div class="row mx-2 mb-2">
 			<div class="col-md-7">
-				<h5 class="m-0"><?= ucfirst($fullname) ?><?php if (!empty($ud->getJob())) : ?>
-					<span class="small fw-light mb-2"> • <?= $ud->getJob() ?></span>
-				<?php endif; ?>
+				<h5 class="m-0"><?= ucfirst($fullname) ?>
 				</h5>
-				<p class="text-secondary mb-2">@<?= $username ?></p>
+				<p class="mb-2">@<?= $username ?><span class="small mb-2"><?php if (!empty($ud->getJob()) && $ud->getJob() != 'None'): ?>
+				<?=' • ' . $ud->getJob(); endif; ?></span></p>
 				<?php if (!empty($ud->getLocation())) : ?>
-					<p class="small"><i class="bi bi-geo-alt me-1"></i><?= $ud->getLocation() ?></p>
+					<p class="text-secondary small"><i class="bi bi-geo-alt me-1"></i><?= $ud->getLocation() ?></p>
 				<?php endif;
 				if (!empty($ud->getBio())) : ?>
 					<p><?= nl2br($ud->getBio()) ?></p>
