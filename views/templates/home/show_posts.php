@@ -71,18 +71,18 @@ if (Session::currentScript() == 'index') { ?>
 								</a>
 								<ul class="dropdown-menu dropdown-menu-end mt-2" aria-labelledby="postCardFeedAction">
 									<li>
-										<a class="dropdown-item btn btn-download" value="<?php echo ($p->getImageUri()) ?>">
+										<a class="dropdown-item btn-download" role="button" value="<?php echo ($p->getImageUri()) ?>">
 											<i class="bi bi-download fa-fw pe-2">
 											</i>Download</a>
 									</li>
 									<li data-id="<?= $post['id'] ?>">
-										<a class="dropdown-item btn btn-copy-link" value="<?= $p->getImageUri() ?>">
+										<a class="dropdown-item btn-copy-link" role="button" value="<?= $p->getImageUri() ?>">
 											<i class="bi bi-link-45deg fa-fw pe-2"></i>Copy link</a>
 									</li>
-									<li onclick="dialog('Not Implemented!',' This feature is not implemented');"><a class="dropdown-item" href="#"> <i class="bi bi-bookmark fa-fw pe-2"></i>Bookmark</a></li>
+									<li onclick="dialog('Not Implemented!',' This feature is not implemented');"><a class="dropdown-item" role="button"> <i class="bi bi-bookmark fa-fw pe-2"></i>Bookmark</a></li>
 									<?php if (Session::isOwnerOf($p->getOwner())) { ?>
 										<li data-id="<?= $post['id'] ?>">
-											<a class="dropdown-item btn btn-edit-post"> <i class="bi bi-pencil fa-fw pe-2"></i>Edit post</a>
+											<a class="dropdown-item btn-edit-post" role="button"><i class="bi bi-pencil fa-fw pe-2"></i>Edit post</a>
 										</li>
 										<!-- <li><a class="dropdown-item" href="#"> <i class="bi bi-archive fa-fw pe-2"></i>Archive post</a></li> -->
 
@@ -91,7 +91,7 @@ if (Session::currentScript() == 'index') { ?>
 												<hr class="dropdown-divider">
 											</li>
 											<li data-id="<?= $post['id'] ?>">
-												<a class="dropdown-item btn btn-delete"><i class="bi bi-trash fa-fw pe-2 text-danger"></i> Delete</a>
+												<a class="dropdown-item btn-delete" role="button"><i class="bi bi-trash me-2 text-danger"></i>Delete</a>
 											</li>
 										<?php } ?>
 									<?php } ?>
