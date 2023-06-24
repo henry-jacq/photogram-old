@@ -1,4 +1,4 @@
-/* Processed by Grunt on 23/6/2023 @18:19:24 */
+/* Processed by Grunt on 24/6/2023 @5:45:44 */
 
 
 // Get the current URL path
@@ -255,8 +255,8 @@ if (currentPath == "/forgot-password") {
 }
 
 // Check password in both fields are same
-var pattern = /^\/forgot-password\/[a-zA-Z0-9]+$/;
-if (pattern.test(location.pathname)) {
+var regex = /^\/forgot-password\/[a-zA-Z0-9]+$/;
+if (regex.test(window.location.pathname)) {
   $(function () {
     var passwordInput = $('#newPassword');
     var confirmPasswordInput = $('#confirmNewPassword');
