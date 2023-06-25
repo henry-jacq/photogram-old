@@ -13,11 +13,6 @@ $(window).on("load", function () {
     }
 });
 
-// Change the cursor to pointer
-$('.btn-like, .btn-share').on('mouseover', function () {
-    $(this).css('cursor', 'pointer');
-});
-
 // Change like button status
 function likeBtn(mainSelector, status=null) {
     var likeAudio = $('<audio>', {
@@ -29,14 +24,14 @@ function likeBtn(mainSelector, status=null) {
     }
     var likeBtnID = mainSelector.find('i').attr('id');
     var likeBtnSelector = $('#'+likeBtnID);
-    var currentLikes = parseInt(mainSelector.find('span').text());  
-
+    var placeholder = mainSelector.parent().next().find('.like-count');
+    var currentLikes = parseInt(placeholder.text());
     if (status == true) {
         if (likeBtnSelector.hasClass('fa-heart-o')) {
             likeBtnSelector.removeClass('fa-heart-o');
             likeBtnSelector.addClass('fa-heart text-danger');
             if (likeAudio[0].play()) {
-                mainSelector.find('span').text(currentLikes += 1);
+                placeholder.text(currentLikes += 1);
             }
         }
     } else if (status == false) {
@@ -44,7 +39,7 @@ function likeBtn(mainSelector, status=null) {
             if (currentLikes != 0) {
                 likeBtnSelector.removeClass('fa-heart text-danger');
                 likeBtnSelector.addClass('fa-heart-o');
-                mainSelector.find('span').text(currentLikes -+ 1);
+                placeholder.text(currentLikes -+ 1);
             }
         }
     }
@@ -193,8 +188,8 @@ $('.btn-edit-post').on('click', function () {
     }
     const pid = $(this).parent().attr('data-id');
     let el = $(this).parents('header').next().next();
-    let ptext = el.find('.card-text').text();
-    const message = `<div class="container my-3"><p class="form-label">Change post text:</p><textarea class="form-control post-text" name="post_text" rows="5" placeholder="Say something...">${ptext}</textarea><p class="total-chars visually-hidden text-end mt-2"></p></div>`;
+    let ptext = el.find('.post-text').text();
+    const message = `<div class="container my-3"><p class="form-label">Change post text:</p><textarea class="form-control post-text" name="post_text" rows="5" placeholder="Say something..." spellcheck="false">${el.find('.post-text').html().replace(/<br\s*\/?>/ig, '')}</textarea><p class="total-chars visually-hidden text-end mt-2"></p></div>`;
     let d = new Dialog('<i class="bi bi-pencil me-2"></i>Edit Your Post', message);
     d.setButtons([
         {
@@ -218,7 +213,7 @@ $('.btn-edit-post').on('click', function () {
                     }, function (data, textSuccess) {
                         if (textSuccess == "success") {
                             successAudio[0].play();
-                            el.find('.card-text').text(ptxt);
+                            el.find('.post-text').html(ptxt.replace(/\n/g, '<br>'));
                             masonry.layout();
                             showToast("Photogram", "Just Now", "Post text changed successfully!");
                         } else {

@@ -5,7 +5,7 @@ use App\Model\Like;
 use App\Model\Post;
 use App\Core\Session;
 
-if (Session::currentScript() == 'index') : ?>
+if (Session::currentScript() == 'index' && Session::isAuthenticated()) : ?>
 	<h3 class="fs-3 lead user-select-none">Feed</h3>
 	<hr class="py-2">
 <?php endif; ?>
@@ -13,10 +13,10 @@ if (Session::currentScript() == 'index') : ?>
 <div class="row g-3" id="masonry-area">
 	<?php
 	$username = $_GET['user'];
-	if (Session::currentScript() == "profile"):
+	if (Session::currentScript() == "profile") :
 		$posts = Post::getUserPosts($username);
 		// If user has no posts  uploaded, print this message.
-		if (Session::getUser()->getUsername() == $username && empty($posts)):?>
+		if (Session::getUser()->getUsername() == $username && empty($posts)) : ?>
 			<p class="text-muted text-center align-items-center mb-0">You haven't posted pictures. When you share photos, they'll appear on your profile.</p>
 		<?php elseif (empty($posts)) : ?>
 			<p class="text-muted text-center align-items-center my-5"><?= $username ?> haven't posted pictures. If they share photos, they'll appear on this profile.</p>
@@ -24,7 +24,7 @@ if (Session::currentScript() == 'index') : ?>
 	elseif (Session::currentScript() == "index") :
 		$posts = Post::getAllPosts();
 		// If no posts are uploaded, print this message.
-		if (empty($posts)): ?>
+		if (empty($posts)) : ?>
 			<p class="text-muted text-center align-items-center mb-0">There are no posts available. Try to share some photos.</p>
 	<?php endif;
 	endif; ?>
@@ -42,7 +42,7 @@ if (Session::currentScript() == 'index') : ?>
 							<div class="d-flex align-items-center">
 								<div class="avatar avatar-story me-2">
 									<a href="/profile/<?= $p->getOwner() ?>" class="d-block link-dark text-decoration-none" aria-expanded="false">
-										<img class="user-profile-img border rounded-circle skeleton-img" src="<?= $p->getAvatar() ?>" width="36" height="36"></a>
+										<img class="user-profile-img border rounded-circle skeleton-img" src="<?= $p->getAvatar() ?>" width="36" height="36" loading="lazy"></a>
 								</div>
 								<div class="skeleton-header">
 									<div class="nav nav-divider skeleton skeleton-text">
@@ -75,21 +75,20 @@ if (Session::currentScript() == 'index') : ?>
 											<i class="bi bi-link-45deg fa-fw pe-2"></i>Copy link</a>
 									</li>
 									<li onclick="dialog('Not Implemented!',' This feature is not implemented');"><a class="dropdown-item" role="button"> <i class="bi bi-bookmark fa-fw pe-2"></i>Bookmark</a></li>
-									<?php if (Session::isOwnerOf($p->getOwner())) { ?>
+									<?php if (Session::isOwnerOf($p->getOwner())) : ?>
 										<li data-id="<?= $post['id'] ?>">
 											<a class="dropdown-item btn-edit-post" role="button"><i class="bi bi-pencil fa-fw pe-2"></i>Edit post</a>
 										</li>
 										<!-- <li><a class="dropdown-item" href="#"> <i class="bi bi-archive fa-fw pe-2"></i>Archive post</a></li> -->
-
-										<?php if (Session::isOwnerOf($p->getOwner())) { ?>
+										<?php if (Session::isOwnerOf($p->getOwner())) : ?>
 											<li>
 												<hr class="dropdown-divider">
 											</li>
 											<li data-id="<?= $post['id'] ?>">
 												<a class="dropdown-item btn-delete" role="button"><i class="bi bi-trash me-2 text-danger"></i>Delete</a>
 											</li>
-										<?php } ?>
-									<?php } ?>
+										<?php endif; ?>
+									<?php endif; ?>
 								</ul>
 							</div>
 						</div>
@@ -98,20 +97,17 @@ if (Session::currentScript() == 'index') : ?>
 				if ($p->hasMultipleImages($post['id'])) {
 					$images = $p->getMultipleImages($post['id']);
 				?>
-
 					<div id="post-image-<?= $post['id'] ?>" class="carousel slide user-select-none" data-bs-ride="carousel" data-id="<?= $post['id'] ?>">
 						<div class="carousel-inner">
 							<div class="carousel-item active">
-								<img src="<?= $images[0] ?>" class="d-block w-100 rounded">
+								<img src="<?= $images[0] ?>" class="d-block w-100 rounded" loading="lazy">
 							</div>
-							<?php
-							foreach ($images as $index => $image_uri) {
-								if ($index !== 0) { ?>
-									<div class="carousel-item">
-										<img src="<?= $image_uri ?>" class="d-block w-100 rounded">
-									</div>
-							<? }
-							} ?>
+							<?php foreach ($images as $index => $image_uri) :
+								if ($index !== 0) : ?>
+								<div class="carousel-item">
+									<img src="<?= $image_uri ?>" class="d-block w-100 rounded" loading="lazy">
+								</div>
+							<? endif; endforeach; ?>
 						</div>
 						<button class="carousel-control-prev" type="button" data-bs-target="#post-image-<?= $post['id'] ?>" data-bs-slide="prev">
 							<span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -124,26 +120,28 @@ if (Session::currentScript() == 'index') : ?>
 					</div>
 				<?php
 				} else { ?>
-					<img class="post-card-image user-select-none rounded" src="<?= $p->getImageUri() ?>" loading="eager" data-id="<?= $post['id'] ?>">
+					<img class="post-card-image user-select-none rounded" src="<?= $p->getImageUri() ?>" loading="lazy" data-id="<?= $post['id'] ?>">
 				<? } ?>
-				<div class="card-body">
-					<div class="btn-group user-select-none skeleton skeleton-text">
-						<?php if (!Session::isAuthenticated()) { ?>
-							<span class="me-3">
-								<span class="me-1"><?= Like::getLikeCount($post['id']) ?></span>Likes
-							</span>
-						<?php } else { ?>
-							<div class="btn-like me-3" data-id="<?= $post['id'] ?>">
-								<i class="btn border-0 p-0 fa <?php echo (Like::isUserLiked($post['id'])) ? 'fa-heart text-danger' : 'fa-heart-o'; ?> me-1" id="like-<?= $post['id'] ?>" aria-hidden="true"></i>
-								<span class="me-1"><?= Like::getLikeCount($post['id']) ?></span>Likes
-							</div>
-							<div class="btn-share card-items">
-								<i class="bi bi-send me-1 small"></i>Share
-							</div>
-						<?php } ?>
+				<?php if (Session::isAuthenticated()) : ?>
+				<div class="card-body px-3 py-1">
+					<div class="btn-group fs-5 user-select-none w-100 skeleton skeleton-text gap-3 mb-1">
+						<div class="btn-like" data-id="<?= $post['id'] ?>">
+							<a role="button"><i class="btn fs-5 mb-1 p-0 border-0 fa <?php echo(Like::isUserLiked($post['id'])) ? 'fa-heart text-danger' : 'fa-heart-o'; ?>" id="like-<?= $post['id'] ?>"></i></a>
+						</div>
+						<div class="btn-comment">
+							<a role="button"><i class="fa-regular fa-comment"></i></a>
+						</div>
+						<div class="btn-share">
+							<a role="button"><i class="fa-regular fa-paper-plane mt-1"></i></a>
+						</div>
+						<!-- <div class="btn-bookmark ms-auto">
+							<a role="button"><i class="fa-regular fa-bookmark"></i></a>
+						</div> -->
 					</div>
-					<p class="card-text mt-2 user-select-all skeleton skeleton-text"><?= $p->getPostText() ?></p>
+					<p class="card-text skeleton skeleton-text user-select-none fw-semibold mb-1"><span class="like-count"><?= Like::getLikeCount($post['id']) ?></span><span class="ms-1">Likes</span></p>
+					<p class="card-text post-text skeleton skeleton-text mb-2"><?= nl2br($p->getPostText()) ?></p>
 				</div>
+				<?php endif; ?>
 			</div>
 		</div>
 	<?php } ?>
