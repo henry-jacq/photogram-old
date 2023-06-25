@@ -1,4 +1,4 @@
-/* Processed by Grunt on 25/6/2023 @13:56:18 */
+/* Processed by Grunt on 25/6/2023 @19:32:6 */
 
 
 // Get the current URL path
@@ -389,6 +389,10 @@ if (grid) {
         masonry.layout();
     });
 }
+
+$('.carousel-control-prev, .carousel-control-next').on('click', function () {
+    masonry.layout();
+});
 
 // Disable right-click on Images
 $('img').on("contextmenu", function () {

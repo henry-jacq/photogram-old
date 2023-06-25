@@ -46,3 +46,9 @@ Styles for skeleton loading effect
         background-color: hsl(200, 20%, 70%);
     }
 }
+
+.post-img {
+    object-fit: fill;
+    min-height: 175px;
+    max-height: 300px;
+}

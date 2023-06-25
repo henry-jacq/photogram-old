@@ -11,6 +11,10 @@ if (grid) {
     });
 }
 
+$('.carousel-control-prev, .carousel-control-next').on('click', function () {
+    masonry.layout();
+});
+
 // Disable right-click on Images
 $('img').on("contextmenu", function () {
 	return false;

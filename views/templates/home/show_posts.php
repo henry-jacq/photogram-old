@@ -34,7 +34,7 @@ if (Session::currentScript() == 'index' && Session::isAuthenticated()) : ?>
 		$uploaded_time = Carbon::parse($p->getUploadedTime());
 		$uploaded_time_str = $uploaded_time->diffForHumans(); ?>
 
-		<div class="col-xl-3 col-lg-4 col-md-6" id="post-<?= $post['id'] ?>">
+		<div class="col-xxl-3 col-lg-4 col-md-6" id="post-<?= $post['id'] ?>">
 			<div class="card shadow-lg">
 				<?php if (Session::isAuthenticated()) { ?>
 					<header class="card-header p-2 user-select-none border-0">
@@ -97,50 +97,51 @@ if (Session::currentScript() == 'index' && Session::isAuthenticated()) : ?>
 				if ($p->hasMultipleImages($post['id'])) {
 					$images = $p->getMultipleImages($post['id']);
 				?>
-					<div id="post-image-<?= $post['id'] ?>" class="carousel slide user-select-none" data-bs-ride="carousel" data-id="<?= $post['id'] ?>">
+					<div id="post-image-<?= $post['id'] ?>" class="carousel slide user-select-none" data-id="<?= $post['id'] ?>">
 						<div class="carousel-inner">
 							<div class="carousel-item active">
-								<img src="<?= $images[0] ?>" class="d-block w-100 rounded" loading="lazy">
+								<img src="<?= $images[0] ?>" class="d-block post-img w-100 rounded" loading="lazy">
 							</div>
 							<?php foreach ($images as $index => $image_uri) :
 								if ($index !== 0) : ?>
-								<div class="carousel-item">
-									<img src="<?= $image_uri ?>" class="d-block w-100 rounded" loading="lazy">
-								</div>
-							<? endif; endforeach; ?>
+									<div class="carousel-item">
+										<img src="<?= $image_uri ?>" class="d-block post-img w-100 rounded" loading="lazy">
+									</div>
+							<? endif;
+							endforeach; ?>
 						</div>
 						<button class="carousel-control-prev" type="button" data-bs-target="#post-image-<?= $post['id'] ?>" data-bs-slide="prev">
-							<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+							<span class="carousel-control-prev-icon bg-dark rounded-circle" aria-hidden="true"></span>
 							<span class="visually-hidden">Previous</span>
 						</button>
 						<button class="carousel-control-next" type="button" data-bs-target="#post-image-<?= $post['id'] ?>" data-bs-slide="next">
-							<span class="carousel-control-next-icon" aria-hidden="true"></span>
+							<span class="carousel-control-next-icon bg-dark rounded-circle" aria-hidden="true"></span>
 							<span class="visually-hidden">Next</span>
 						</button>
 					</div>
 				<?php
 				} else { ?>
-					<img class="post-card-image user-select-none rounded" src="<?= $p->getImageUri() ?>" loading="lazy" data-id="<?= $post['id'] ?>">
+					<img class="post-card-image post-img user-select-none rounded" src="<?= $p->getImageUri() ?>" loading="lazy" data-id="<?= $post['id'] ?>">
 				<? } ?>
 				<?php if (Session::isAuthenticated()) : ?>
-				<div class="card-body px-3 py-1">
-					<div class="btn-group fs-5 user-select-none w-100 skeleton skeleton-text gap-3 mb-1">
-						<div class="btn-like" data-id="<?= $post['id'] ?>">
-							<a role="button"><i class="btn fs-5 mb-1 p-0 border-0 fa <?php echo(Like::isUserLiked($post['id'])) ? 'fa-heart text-danger' : 'fa-heart-o'; ?>" id="like-<?= $post['id'] ?>"></i></a>
+					<div class="card-body px-3 py-2">
+						<div class="btn-group fs-5 user-select-none w-100 skeleton skeleton-text gap-3 mb-1">
+							<div class="btn-like" data-id="<?= $post['id'] ?>">
+								<a role="button"><i class="btn fs-5 mb-1 p-0 border-0 fa <?php echo (Like::isUserLiked($post['id'])) ? 'fa-heart text-danger' : 'fa-heart-o'; ?>" id="like-<?= $post['id'] ?>"></i></a>
+							</div>
+							<div class="btn-comment">
+								<a role="button"><i class="fa-regular fa-comment"></i></a>
+							</div>
+							<div class="btn-share">
+								<a role="button"><i class="fa-regular fa-paper-plane mt-1"></i></a>
+							</div>
+							<!-- <div class="btn-bookmark ms-auto">
+								<a role="button"><i class="fa-regular fa-bookmark"></i></a>
+							</div> -->
 						</div>
-						<div class="btn-comment">
-							<a role="button"><i class="fa-regular fa-comment"></i></a>
-						</div>
-						<div class="btn-share">
-							<a role="button"><i class="fa-regular fa-paper-plane mt-1"></i></a>
-						</div>
-						<!-- <div class="btn-bookmark ms-auto">
-							<a role="button"><i class="fa-regular fa-bookmark"></i></a>
-						</div> -->
+						<p class="card-text skeleton skeleton-text user-select-none fw-semibold mb-2"><span class="like-count"><?= Like::getLikeCount($post['id']) ?></span><span class="ms-1">Likes</span></p>
+						<p class="card-text post-text skeleton skeleton-text mb-2"><?= nl2br($p->getPostText()) ?></p>
 					</div>
-					<p class="card-text skeleton skeleton-text user-select-none fw-semibold mb-1"><span class="like-count"><?= Like::getLikeCount($post['id']) ?></span><span class="ms-1">Likes</span></p>
-					<p class="card-text post-text skeleton skeleton-text mb-2"><?= nl2br($p->getPostText()) ?></p>
-				</div>
 				<?php endif; ?>
 			</div>
 		</div>
