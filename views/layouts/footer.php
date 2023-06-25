@@ -1,4 +1,4 @@
-<footer class="container mt-auto user-select-none">
+<footer class="container mt-auto user-select-none pt-5">
   <div class="py-3 my-3 border-top">
     <div class="text-body-secondary text-center">
       <p class="mb-2">©Copyrights <?= date('Y') . '-' . date('Y') + 1 ?>. All rights reserved.</p>
