@@ -61,31 +61,43 @@ if (Session::currentScript() == 'index' && Session::isAuthenticated()) : ?>
 								</div>
 							</div>
 							<div class="dropdown">
-								<a href="#" class="text-secondary btn py-1 px-2 rounded-circle" id="postCardFeedAction" data-bs-toggle="dropdown" aria-expanded="false">
+								<a role="button" class="btn py-1 px-2 rounded-circle" id="postCardAction-<?= $post['id'] ?>" data-bs-toggle="dropdown" aria-expanded="false">
 									<i class="bi bi-three-dots-vertical"></i>
 								</a>
-								<ul class="dropdown-menu dropdown-menu-end mt-2" aria-labelledby="postCardFeedAction">
+								<ul class="dropdown-menu dropdown-menu-end mt-2" aria-labelledby="postCardAction-<?= $post['id'] ?>">
 									<li>
 										<a class="dropdown-item btn-download" role="button" value="<?php echo ($p->getImageUri()) ?>">
-											<i class="bi bi-download fa-fw pe-2">
-											</i>Download</a>
+											<i class="fa-solid fa-download"></i>
+											<span class="ms-2">Download</span>
+										</a>
 									</li>
 									<li data-id="<?= $post['id'] ?>">
 										<a class="dropdown-item btn-copy-link" role="button" value="<?= $p->getImageUri() ?>">
-											<i class="bi bi-link-45deg fa-fw pe-2"></i>Copy link</a>
+											<i class="fa-solid fa-paperclip"></i>
+											<span class="ms-2">Copy link</span>
+										</a>
 									</li>
-									<li onclick="dialog('Not Implemented!',' This feature is not implemented');"><a class="dropdown-item" role="button"> <i class="bi bi-bookmark fa-fw pe-2"></i>Bookmark</a></li>
+									<li data-id="<?= $post['id'] ?>"><a class="dropdown-item" role="button" value="<?= $p->getImageUri() ?>">
+											<i class="fa-solid fa-expand"></i>
+											<span class="ms-2">Full preview</span>
+										</a>
+									</li>
 									<?php if (Session::isOwnerOf($p->getOwner())) : ?>
 										<li data-id="<?= $post['id'] ?>">
-											<a class="dropdown-item btn-edit-post" role="button"><i class="bi bi-pencil fa-fw pe-2"></i>Edit post</a>
+											<a class="dropdown-item btn-edit-post" role="button">
+												<i class="fa-solid fa-pen-to-square fa-sm"></i>
+												<span class="ms-2">Edit post</span>
+											</a>
 										</li>
-										<!-- <li><a class="dropdown-item" href="#"> <i class="bi bi-archive fa-fw pe-2"></i>Archive post</a></li> -->
 										<?php if (Session::isOwnerOf($p->getOwner())) : ?>
 											<li>
 												<hr class="dropdown-divider">
 											</li>
 											<li data-id="<?= $post['id'] ?>">
-												<a class="dropdown-item btn-delete" role="button"><i class="bi bi-trash me-2 text-danger"></i>Delete</a>
+												<a class="dropdown-item btn-delete" role="button">
+													<i class="fa-solid fa-trash-can fa-sm text-danger"></i>
+													<span class="ms-2">Delete</span>
+												</a>
 											</li>
 										<?php endif; ?>
 									<?php endif; ?>
@@ -135,9 +147,9 @@ if (Session::currentScript() == 'index' && Session::isAuthenticated()) : ?>
 							<div class="btn-share">
 								<a role="button"><i class="fa-regular fa-paper-plane mt-1"></i></a>
 							</div>
-							<!-- <div class="btn-bookmark ms-auto">
+							<div class="btn-bookmark ms-auto">
 								<a role="button"><i class="fa-regular fa-bookmark"></i></a>
-							</div> -->
+							</div>
 						</div>
 						<p class="card-text skeleton skeleton-text user-select-none fw-semibold mb-2"><span class="like-count"><?= Like::getLikeCount($post['id']) ?></span><span class="ms-1">Likes</span></p>
 						<p class="card-text post-text skeleton skeleton-text mb-2"><?= nl2br($p->getPostText()) ?></p>
