@@ -48,7 +48,7 @@ Styles for skeleton loading effect
 }
 
 .post-img {
-    object-fit: fill;
+    object-fit: contain;
     min-height: 175px;
     max-height: 300px;
 }
