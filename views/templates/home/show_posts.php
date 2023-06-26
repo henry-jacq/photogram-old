@@ -139,7 +139,7 @@ if (Session::currentScript() == 'index' && Session::isAuthenticated()) : ?>
 					<div class="card-body px-3 py-2">
 						<div class="btn-group fs-5 user-select-none w-100 skeleton skeleton-text gap-3 mb-1">
 							<div class="btn-like" data-id="<?= $post['id'] ?>">
-								<a role="button"><i class="btn fs-5 mb-1 p-0 border-0 fa <?php echo (Like::isUserLiked($post['id'])) ? 'fa-heart text-danger' : 'fa-heart-o'; ?>" id="like-<?= $post['id'] ?>"></i></a>
+								<a id="like-<?= $post['id'] ?>" role="button"><i class="btn fs-5 mb-1 p-0 border-0 <?php echo (Like::isUserLiked($post['id'])) ? 'fa-solid fa-heart text-danger' : 'fa-regular fa-heart'; ?>"></i></a>
 							</div>
 							<div class="btn-comment">
 								<a role="button"><i class="fa-regular fa-comment"></i></a>

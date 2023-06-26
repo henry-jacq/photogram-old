@@ -22,23 +22,23 @@ function likeBtn(mainSelector, status=null) {
     if ($('#likePop').length === 0) {
         $('body').append(likeAudio);
     }
-    var likeBtnID = mainSelector.find('i').attr('id');
-    var likeBtnSelector = $('#'+likeBtnID);
+    var likeBtnID = mainSelector.find('a').attr('id');
+    var likeIconSelector = $('#'+likeBtnID).find('i');
     var placeholder = mainSelector.parent().next().find('.like-count');
     var currentLikes = parseInt(placeholder.text());
     if (status == true) {
-        if (likeBtnSelector.hasClass('fa-heart-o')) {
-            likeBtnSelector.removeClass('fa-heart-o');
-            likeBtnSelector.addClass('fa-heart text-danger');
+        if (likeIconSelector.hasClass('fa-regular fa-heart')) {
+            likeIconSelector.removeClass('fa-regular fa-heart');
+            likeIconSelector.addClass('fa-solid fa-heart text-danger');
             if (likeAudio[0].play()) {
                 placeholder.text(currentLikes += 1);
             }
         }
     } else if (status == false) {
-        if (likeBtnSelector.hasClass('fa-heart text-danger')) {
+        if (likeIconSelector.hasClass('fa-solid fa-heart text-danger')) {
             if (currentLikes != 0) {
-                likeBtnSelector.removeClass('fa-heart text-danger');
-                likeBtnSelector.addClass('fa-heart-o');
+                likeIconSelector.removeClass('fa-solid fa-heart text-danger');
+                likeIconSelector.addClass('fa-regular fa-heart');
                 placeholder.text(currentLikes -+ 1);
             }
         }
