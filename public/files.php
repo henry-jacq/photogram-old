@@ -19,12 +19,10 @@ if (!in_array($namespace, $validNamespaces)) {
     exit;
 }
 
-$path = APP_STORAGE_PATH . `/{$namespace}/`;
-
 // To prevent directory traversal
 $fname = str_replace('..', '', $fname);
 
-$imagePath = "$path/$namespace/$fname";
+$imagePath = APP_STORAGE_PATH.'/'.$namespace.'/'.$fname;
 
 if (file_exists($imagePath) && is_file($imagePath)) {
     header("Content-Type:" . mime_content_type($imagePath));
