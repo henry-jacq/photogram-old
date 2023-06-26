@@ -1,4 +1,5 @@
 <?php
+
 use App\Core\Session;
 
 ?>
@@ -9,8 +10,7 @@ use App\Core\Session;
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="icon" type="image/x-icon" href="/assets/brand/photogram-icon.png">
 	<meta name="author" content="Henry">
-	<meta property="og:image"
-		content="<?= URL_ROOT ?>assets/brand/photogram-icon.png">
+	<meta property="og:image" content="<?= URL_ROOT ?>assets/brand/photogram-icon.png">
 	<meta property="site_name" content="Photogram">
 	<meta property="og:title" content="Photogram · Gallery of Memories">
 	<meta property="og:site_name" content="<?= DOMAIN_NAME ?>">
@@ -23,7 +23,7 @@ use App\Core\Session;
 	<meta name="twitter:title" content="Photogram">
 	<meta name="twitter:description" content="Photogram is an easy-to-use web app for sharing photos with a clean and uncluttered interface.">
 	<meta name="twitter:image" content="https://iphotogram.selfmade.one/assets/screenshot-2.png">
-	
+
 	<?php if (Session::isAuthenticated()) { ?>
 		<?php if (Session::currentScript() == "index") { ?>
 			<title>Home · Photogram</title>
@@ -34,20 +34,18 @@ use App\Core\Session;
 		<?php } else { ?>
 			<title>Photogram</title>
 		<?php }
-	} elseif (Session::currentScript() == "forgot-password") {?>
+	} elseif (Session::currentScript() == "forgot-password") { ?>
 		<title>Forgot password</title>
-	<?php } elseif (Session::$isError) {?>
+	<?php } elseif (Session::$isError) { ?>
 		<title>404 Page not found!</title>
-	<?} else { ?>
+	<? } else { ?>
 		<title>Sign in/up · Photogram</title>
 	<?php } ?>
 
 	<!-- Favicon for photogram -->
-	<link rel="shortcut icon"
-		href="<?= URL_ROOT ?>assets/brand/favicon.ico">
+	<link rel="shortcut icon" href="<?= URL_ROOT ?>assets/brand/favicon.ico">
 	<!-- Custom-compiled bootstrap CSS -->
-	<link href="<?= URL_ROOT ?>css/main.min.css"
-		rel="stylesheet">
+	<link href="<?= URL_ROOT ?>css/main.min.css" rel="stylesheet">
 
 	<!-- App CSS -->
 	<link rel="stylesheet" href="<?= URL_ROOT ?>css/app.min.css">
@@ -57,16 +55,15 @@ use App\Core\Session;
 	<!-- Bootstrap Icons -->
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
 
-	<link rel="stylesheet" href="<?= URL_ROOT ?>css/dropzone.css"
-		type="text/css" />
+	<!-- Dropzone CSS -->
+	<link rel="stylesheet" href="<?= URL_ROOT ?>css/dropzone.css" type="text/css" />
 
 	<?php
 	// Load the CSS file if the current script matches the following
 	if (Session::currentScript() == "login" or Session::currentScript() == "register" or Session::currentScript() == "forgot-password") {
-	    if (file_exists(($_SERVER['DOCUMENT_ROOT'] . URL_ROOT . "css/entry.css"))) { ?>
-	<link rel="stylesheet"
-		href="<?= URL_ROOT . "css/entry.css" ?>">
+		if (file_exists(($_SERVER['DOCUMENT_ROOT'] . URL_ROOT . "css/entry.css"))) { ?>
+			<link rel="stylesheet" href="<?= URL_ROOT . "css/entry.css" ?>">
 	<?php }
-	    } ?>
+	} ?>
 
 </head>

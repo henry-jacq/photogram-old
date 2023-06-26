@@ -6,6 +6,7 @@ use Exception;
 use App\Core\Database;
 use App\Core\Session;
 use App\Traits\SQLGetterSetter;
+use RuntimeException;
 
 class UserData {
 
@@ -75,25 +76,43 @@ class UserData {
      * Set new avatar for user
      */
     public function setNewAvatar(string $image_tmp)
-    {
-        // Remove the existing avatar from storage and database
-        if (!empty($this->getAvatar())) {
-            $this->deleteAvatarImage($this->getAvatar());
-        }
-        
+    {       
         $image_tmp = $this->escapeString($image_tmp);
         
-        if (is_file($image_tmp) and exif_imagetype($image_tmp) !== false) {
+        if (is_file($image_tmp) && exif_imagetype($image_tmp) !== false) {
             $owner = Session::getUser()->getUsername();
             $image_name = md5($owner.mt_rand(0, 9999)) . image_type_to_extension(exif_imagetype($image_tmp));
             $image_path = APP_STORAGE_PATH . '/avatars/' .$image_name;
             if (move_uploaded_file($image_tmp, $image_path)) {
-                $image_uri = "/files/avatars/$image_name";
-                $sql = "UPDATE `$this->table` SET `avatar` = '$image_uri' WHERE `id` = '$this->id';";
-                if ($this->conn->query($sql)) {
-                    return true;
+                // Remove the existing avatar from storage and database
+                if (!empty($this->getAvatar())) {
+                    $this->deleteAvatarImage($this->getAvatar());
+                }
+                if (extension_loaded('gd')) {
+                    $filename = $image_path;
+                    $img = imagecreatefromstring(file_get_contents($filename));
+                    $ini_x_size = getimagesize($filename)[0];
+                    $ini_y_size = getimagesize($filename)[1];
+
+                    $crop_measure = min($ini_x_size, $ini_y_size);
+                    $crop_array = array('x' => 0, 'y' => 0, 'width' => $crop_measure, 'height' => $crop_measure);
+                    $cropped_img = imagecrop($img, $crop_array);
+                    
+                    // Writing the cropped image where the image is stored 
+                    imagejpeg($cropped_img, $image_path, 50);
+                    
+                    // Destory to free up memory
+                    imagedestroy($cropped_img);
+
+                    $image_uri = "/files/avatars/$image_name";
+                    $sql = "UPDATE `$this->table` SET `avatar` = '$image_uri' WHERE `id` = '$this->id';";
+                    if ($this->conn->query($sql)) {
+                        return true;
+                    } else {
+                        return false;
+                    }
                 } else {
-                    return false;
+                    throw new RuntimeException('Extension gd is not enabled!');
                 }
             } else {
                 throw new Exception("Can't move the uploaded file");

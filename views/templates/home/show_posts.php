@@ -12,7 +12,7 @@ if (Session::currentScript() == 'index' && Session::isAuthenticated()) : ?>
 
 <div class="row g-3" id="masonry-area">
 	<?php
-	$username = $_GET['user'];
+	$username = isset($_GET['user']) ? $_GET['user'] : Session::getUser()->getUsername();
 	if (Session::currentScript() == "profile") :
 		$posts = Post::getUserPosts($username);
 		// If user has no posts  uploaded, print this message.
@@ -94,8 +94,8 @@ if (Session::currentScript() == 'index' && Session::isAuthenticated()) : ?>
 												<hr class="dropdown-divider">
 											</li>
 											<li data-id="<?= $post['id'] ?>">
-												<a class="dropdown-item btn-delete" role="button">
-													<i class="fa-solid fa-trash-can fa-sm text-danger"></i>
+												<a class="dropdown-item btn btn-delete text-danger" role="button">
+													<i class="fa-solid fa-trash-can fa-sm"></i>
 													<span class="ms-2">Delete</span>
 												</a>
 											</li>

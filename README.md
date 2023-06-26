@@ -37,6 +37,25 @@ Install NPM dependencies:
 npm install
 ```
 
+Install php-gd extension:
+
+- This extension is used for image processing
+
+```bash
+sudo apt-get install php-gd
+```
+
+Make sure that extension gd is uncommented in php.ini config
+```php
+;extension=gd
+extension=gd
+```
+
+Restart apache to apply changes
+```bash
+sudo service apache2 restart
+```
+
 To find out which user as apache web server running? Run this command.
 
 ```bash
