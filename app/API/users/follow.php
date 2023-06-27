@@ -7,7 +7,7 @@ use App\Model\Follow;
 // https://{{domain}}/api/users/follow
 
 ${basename(__FILE__, '.php')} = function () {
-    if ($this->isAuthenticated()) {
+    if ($this->isAuthenticated() && $this->get_request_method() == 'POST') {
         if ($this->paramsExists(['follower_id'])) {
             $uid = Session::getUser()->getId();
             $f = new Follow($uid, $this->_request['follower_id']);

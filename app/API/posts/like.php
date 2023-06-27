@@ -6,7 +6,7 @@ use App\Model\Like;
 // https://{{domain}}/api/posts/like
 
 ${basename(__FILE__, '.php')} = function () {
-    if ($this->isAuthenticated()) {
+    if ($this->isAuthenticated() && $this->get_request_method() == 'POST') {
         if ($this->paramsExists(['id'])) {
             $post = new Post($this->_request['id']);
             $like = new Like($post);

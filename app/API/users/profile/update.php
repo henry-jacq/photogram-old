@@ -1,19 +1,18 @@
 <?php
 
-use App\Core\Session;
 use App\Model\UserData;
 
 // https://{{domain}}/api/users/update
 
 ${basename(__FILE__, '.php')} = function () {
-    if (!empty($_POST)) {
-        $ud = new UserData(Session::getUser()->getUsername());
+    if ($this->get_request_method() == 'POST' && !empty($this->_request)) {
+        $ud = new UserData($this->getUsername());
         $post_fields = ['fname', 'lname', 'website', 'job', 'bio', 'location', 'twitter', 'instagram'];
         $data = [];
 
         foreach ($post_fields as $field) {
-            if (isset($_POST[$field])) {
-                $data[$field] = $_POST[$field];
+            if (isset($this->_request[$field])) {
+                $data[$field] = $this->_request[$field];
             }
         }
 

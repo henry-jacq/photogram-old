@@ -5,8 +5,8 @@ use App\Model\Post;
 // https://{{domain}}/api/posts/create
 
 ${basename(__FILE__, '.php')} = function () {
-    if ($this->isAuthenticated() and isset($_FILES['file'])) {
-        if (!empty($_FILES['file'] and isset($_FILES['file']))) {
+    if ($this->isAuthenticated()&& $this->get_request_method() == 'POST') {
+        if (isset($_FILES['file']) && !empty($_FILES['file'])) {
             $postImage = $_FILES['file'];
             $postText = $_POST['post_text'] ?? '';
             $this->response($this->json([

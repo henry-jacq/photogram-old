@@ -5,7 +5,7 @@ use App\Model\Post;
 // https://{{domain}}/api/posts/update
 
 ${basename(__FILE__, '.php')} = function () {
-    if ($this->isAuthenticated()) {
+    if ($this->isAuthenticated() && $this->get_request_method() == 'POST') {
         if ($this->paramsExists(['id', 'text'])) {
             $pid = (int) $this->_request['id'];
             $text = $this->_request['text'];

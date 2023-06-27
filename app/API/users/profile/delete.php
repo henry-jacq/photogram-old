@@ -7,7 +7,7 @@ use App\Model\UserData;
 // https://{{domain}}/api/users/profile/delete
 
 ${basename(__FILE__, '.php')} = function () {
-    if ($this->isAuthenticated()) {
+    if ($this->isAuthenticated() && $this->get_request_method() == 'POST') {
         try {
             $ud = new UserData(Session::getUser()->getUsername());
 
