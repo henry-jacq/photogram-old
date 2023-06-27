@@ -142,9 +142,6 @@ class Auth {
     public static function generateResetToken(string $email)
     {
         $token = bin2hex(random_bytes(8));
-
-        Session::set('reset_password_email', "$email");
-
         $conn = Database::getConnection();
 
         $query = "UPDATE `auth` SET `token` = '$token', `updated_time` = now() WHERE `email` = '$email';";

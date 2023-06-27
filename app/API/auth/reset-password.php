@@ -10,13 +10,13 @@ use App\Core\Auth;
 ${basename(__FILE__, '.php')} = function () {
     if (!$this->isAuthenticated() && $this->get_request_method() == 'POST') {
         if ($this->paramsExists(['reset_email'])) {
-            $mail_to = $this->_request['reset_email'];
-            if (Mailer::mailExists($mail_to)) {
-                $link = Mailer::sendPasswordResetMail($mail_to);
-                if (isset($link)) {
+            $reset_email = $this->_request['reset_email'];
+            if (Mailer::mailExists($reset_email)) {
+                Session::set('reset_password_email', "$reset_email");
+                $link = Mailer::sendPasswordResetMail($reset_email);
+                if (isset($link) && !empty($link)) {
                     $this->response($this->json([
                         'message' => 'Mail sent!',
-                        'link' => $link,
                         'status' => 'Success'
                     ]), 200);
                 } else {
@@ -27,18 +27,22 @@ ${basename(__FILE__, '.php')} = function () {
                     ]), 503);
                 }
             } else {
+                // This is to prevent user enumeration attacks
+                Session::set('reset_password_email', true);
                 $this->response($this->json([
-                    'message' => 'Mail cannot be sent!',
-                    'status' => 'Failed'
-                ]), 404);
+                    'message' => 'Mail sent!',
+                    'status' => 'Success'
+                ]), 200);
             }
         } else if ($this->paramsExists(['newPassword', 'confirmNewPassword'])) {
-            $email = Session::get('reset_password_email');
+            $email = Session::get('reset_email');
             $new = $this->_request['newPassword'];
             $confirmNew = $this->_request['confirmNewPassword'];
 
             if (!empty($new) && !empty($confirmNew && $new === $confirmNew)) {
                 if (Auth::changePassword($email, $new) && Auth::revokeResetToken($email)) {
+                    Session::delete('reset_email');
+                    Session::set('reset_success', true);
                     $this->response($this->json([
                         'message' => 'Password changed!',
                         'status' => 'Success'

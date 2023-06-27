@@ -1,4 +1,4 @@
-/* Processed by Grunt on 27/6/2023 @14:3:39 */
+/* Processed by Grunt on 27/6/2023 @17:23:40 */
 
 
 // Get the current URL path
@@ -232,10 +232,7 @@ if (currentPath == "/forgot-password") {
       success: function (response) {
         $('.btn-send-link').html('Send link');
         if (response.status === 'Success') {
-          if ($('.alert.alert-success.alert-dismissible.fade.show').length === 0) {
-            var message = $('<div>').addClass('alert alert-success alert-dismissible fade show').html(`<i class="bi bi-exclamation-circle me-2"></i><b>Mail sent!</b><br>Reset link sent to: ${formData.get('reset_email')}<button type="button" class="btn-close shadow-none" data-bs-dismiss="alert" aria-label="Close"></button>`);
-            $(message).insertBefore('form');
-          }
+          location.replace('/login');
         }
       },
       error: function (error) {
@@ -292,8 +289,10 @@ if (regex.test(window.location.pathname)) {
         changePasswordBtn.attr('disabled', false);
         changePasswordBtn.html('Change password');
         if (response.status == 'Success') {
-          if ($('.alert.alert-success.alert-dismissible.fade.show').length === 0) {
-            var message = $('<div>').addClass('alert alert-success alert-dismissible fade show').html(`<i class="bi bi-check-circle me-2"></i>Password changed successfully! <a href="/login" class="text-decoration-none">Login now</a>.<button type="button" class="btn-close shadow-none" data-bs-dismiss="alert" aria-label="Close"></button>`);
+          location.replace('/login');
+        } else {
+          if ($('.alert.alert-danger.alert-dismissible.fade.show').length === 0) {
+            var message = $('<div>').addClass('alert alert-danger alert-dismissible fade show').html(`<i class="bi bi-exclamation-circle me-2"></i>Unable to change the password!<button type="button" class="btn-close shadow-none" data-bs-dismiss="alert" aria-label="Close"></button>`);
             $(message).insertBefore('form');
           }
         }
