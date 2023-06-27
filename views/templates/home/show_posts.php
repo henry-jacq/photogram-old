@@ -12,7 +12,7 @@ if (Session::currentScript() == 'index' && Session::isAuthenticated()) : ?>
 
 <div class="row g-3" id="masonry-area">
 	<?php
-	$username = isset($_GET['user']) ? $_GET['user'] : Session::getUser()->getUsername();
+	$username = isset($_GET['user']) ? $_GET['user'] : '';
 	if (Session::currentScript() == "profile") :
 		$posts = Post::getUserPosts($username);
 		// If user has no posts  uploaded, print this message.
@@ -77,7 +77,7 @@ if (Session::currentScript() == 'index' && Session::isAuthenticated()) : ?>
 											<span class="ms-2">Copy link</span>
 										</a>
 									</li>
-									<li data-id="<?= $post['id'] ?>"><a class="dropdown-item" role="button" value="<?= $p->getImageUri() ?>">
+									<li data-id="<?= $post['id'] ?>"><a class="dropdown-item btn-full-preview" role="button" value="<?= $p->getImageUri() ?>">
 											<i class="fa-solid fa-expand"></i>
 											<span class="ms-2">Full preview</span>
 										</a>

@@ -178,6 +178,49 @@ $('.btn-download').on('click', function () {
         .catch(console.error);
 });
 
+// Show post image preview in modal
+$('.btn-full-preview').on('click', function () {
+    var clone_element = $(this).parents('header').next();
+    var d = new Dialog('Full Preview', '', 'xlarge');
+    d.show('', true);
+    var modal = d.clone;
+    var target = modal.find('.modal-body');
+
+    $(modal).on({
+        // Disable right-click on Images
+        contextmenu: function() {
+            return false;
+        },
+        // Disable Image Dragging
+        dragstart: function(e) {
+            e.preventDefault();
+        }
+    });
+    
+    modal.find('.modal-body').addClass('p-0');
+    modal.find('.modal-header').addClass('border-0 px-3 py-1');
+    modal.find('.modal-title').addClass('fs-5 fw-normal');
+    modal.find('.modal-footer').remove();
+
+    if (clone_element.hasClass('carousel')) {
+        clone_element.clone().appendTo(target);
+        carousel_sel = 'post-image-full-preview';
+        target.find('.carousel').attr('id', carousel_sel);
+        target.find('.carousel-item > img').removeClass('post-img');
+        target.find('.carousel-inner').addClass('rounded');
+        target.find('.carousel-control-prev').attr('data-bs-target', '#' + carousel_sel);
+        target.find('.carousel-control-next').attr('data-bs-target', '#' + carousel_sel);
+    } else if (clone_element.hasClass('post-card-image')) {
+        var wrapper = $('<div>').addClass('d-flex align-items-center justify-content-center').html(clone_element.clone());
+        wrapper.appendTo(target);
+        target.find('.post-card-image').removeClass('post-img');
+        target.find('.post-card-image').addClass('img-fluid');
+    } else {
+        console.error('Cannot preview post image.');
+    }
+})
+
+// Edit post text
 $('.btn-edit-post').on('click', function () {
     var successAudio = $('<audio>', {
         id: 'successTone',
