@@ -24,14 +24,16 @@ CREATE TABLE `auth` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 
-CREATE TABLE `follow` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `uid` int NOT NULL,
+CREATE TABLE `follows` (
+  `id` varchar(32) NOT NULL,
+  `user_id` int NOT NULL,
   `follower_id` int NOT NULL,
+  `follow` int NOT NULL,
   `timestamp` timestamp NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `uid` (`uid`),
-  CONSTRAINT `follow_ibfk_1` FOREIGN KEY (`uid`) REFERENCES `auth` (`id`) ON DELETE CASCADE ON UPDATE SET DEFAULT
+  KEY `uid` (`user_id`),
+  KEY `follower_id` (`follower_id`),
+  CONSTRAINT `follows_ibfk_3` FOREIGN KEY (`user_id`) REFERENCES `auth` (`id`) ON DELETE CASCADE ON UPDATE SET DEFAULT
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 

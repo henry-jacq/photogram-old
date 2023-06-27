@@ -5,10 +5,14 @@ use App\Core\User;
 use App\Core\View;
 use App\Model\Like;
 use App\Model\Post;
+use App\Model\Follow;
 use App\Model\UserData;
 
 $username = $_GET['user'];
 $ud = new UserData($username);
+$profile_id = $ud->getUserId($username);
+$sess_user_id = Session::getUser()->getId();
+$sess_username = Session::getUser()->getUsername();
 $fullname = User::getFullnameByUsername($username);
 ?>
 
@@ -29,11 +33,17 @@ $fullname = User::getFullnameByUsername($username);
 			<img class="img-fluid rounded-circle" src="<?= $ud->getUserAvatar() ?>" alt="">
 		</div>
 		<div class="position-absolute bottom-0 end-0 p-2">
-			<?php if ($username == Session::getUser()->getUsername()) : ?>
+			<?php if ($username == $sess_username) : ?>
 				<a href="/edit-profile" class="btn btn-prime btn-sm"><i class="bi bi-pencil me-1"></i>Edit Profile</a>
 			<?php else : ?>
-				<button class="btn btn-sm btn-primary"><i class="bi bi-person-add me-1"></i>Follow</button>
-				<button class="btn btn-sm btn-secondary"><i class="bi bi-chat-left-text me-1"></i>Message</button>
+				<?php
+				if (Follow::isUserFollowing($sess_user_id, $profile_id)) :
+				?>
+					<button class="btn btn-sm btn-primary btn-follow" data-id="<?= $profile_id ?>"><i class="fa-solid fa-user-check fa-sm me-2"></i>Following</button>
+				<?php else : ?>
+					<button class="btn btn-sm btn-primary btn-follow" data-id="<?= $profile_id ?>"><i class="fa-solid fa-user-plus fa-sm me-2"></i>Follow</button>
+				<?php endif; ?>
+				<button class="btn btn-sm btn-secondary"><i class="bi bi-chat-left-text me-2"></i>Message</button>
 			<?php endif; ?>
 		</div>
 	</div>
@@ -42,9 +52,9 @@ $fullname = User::getFullnameByUsername($username);
 			<div class="col-md-7">
 				<h5 class="m-0"><?= ucfirst($fullname) ?>
 				</h5>
-				<p class="mb-2">@<?= $username ?><span class="small mb-2">
-				<?php if (!empty($ud->getJob()) && $ud->getJob() != 'None') : ?><?= ' • ' . $ud->getJob();
-				endif; ?></span></p>
+				<p class="mb-2">@<?= $username ?>
+				<?php if (!empty($ud->getJob()) && $ud->getJob() != 'None') :
+				echo('<span class="small mb-2"> • ' . $ud->getJob() . '</span>'); endif; ?></p>
 				<?php if (!empty($ud->getLocation())) : ?>
 					<p class="text-secondary small"><i class="bi bi-geo-alt me-1"></i><?= $ud->getLocation() ?></p>
 				<?php endif;
@@ -60,17 +70,17 @@ $fullname = User::getFullnameByUsername($username);
 					</div>
 					<div class="vr"></div>
 					<div class="text-center px-2">
-						<h6 class="mb-0"><?= User::formatNumbers(Like::countLikes($ud->getUserId($username))[0]['count']) ?></h6>
+						<h6 class="mb-0"><?= User::formatNumbers(Like::countLikes($profile_id)[0]['count']) ?></h6>
 						<small>Likes</small>
 					</div>
 					<div class="vr"></div>
 					<div class="text-center">
-						<h6 class="mb-0">0</h6>
+						<h6 class="mb-0"><?php echo(User::formatNumbers(Follow::getFollowersCount($profile_id))) ?></h6>
 						<small>Followers</small>
 					</div>
 					<div class="vr"></div>
 					<div class="text-center">
-						<h6 class="mb-0">0</h6>
+						<h6 class="mb-0"><?php echo(User::formatNumbers(Follow::getFollowingCount($profile_id))) ?></h6>
 						<small>Following</small>
 					</div>
 				</div>
