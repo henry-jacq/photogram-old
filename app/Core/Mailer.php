@@ -79,7 +79,7 @@ class Mailer extends User
                 <b>Hi $name,</b><br>
                 We heard that you have lost your Photogram password. Sorry about that.<br>
                 But don't worry, You can click on this link to reset your password: <a href='$reset_link'>Reset password</a><br>
-                If you don't use the link within 2 hours, it will expire.<br>
+                If you don't use the link within 30 minutes, it will expire.<br>
                 reset_link visit $reset_link
             </div>
             Thanks,<br>

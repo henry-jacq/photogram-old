@@ -93,43 +93,62 @@ class Auth {
     }
     
     /**
-     * Retrieve Password reset token for given email
-     *
-     * Get the token saved in database
+     * Retrieve reset credentials for given email
      */
-    public static function retrieveResetToken($email)
+    public static function retrieveResetCredentials($email)
     {
         if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            $query = "SELECT `token` FROM `auth` WHERE `email` = '$email';";
+            $query = "SELECT `token`, `updated_time` FROM `auth` WHERE `email` = '$email';";
 
             // Create a connection to database
             $conn = Database::getConnection();
-
             $result = $conn->query($query);
 
             if ($result->num_rows == 1) {
                 $row = $result->fetch_assoc();
-                return $row['token'];
+                return $row;
             } else {
-                throw new Exception(__CLASS__ . "::retrieveResetToken() -> $email, token is unavailable.");
+                throw new Exception(__CLASS__."::".__FUNCTION__."() -> $email, reset credentials are unavailable.");
             }
         }
     }
 
-    public static function revokeResetToken(string $email)
+    /**
+     * Verify reset token expiration time
+     */
+    public static function verifyTokenExpiration($timestampFromDB)
+    {
+        if (!empty($timestampFromDB)) {
+            // Convert the SQL timestamp to a DateTime object
+            $createdOn = \DateTime::createFromFormat('Y-m-d H:i:s', $timestampFromDB);
+            $createdOn->modify('+1 minutes');
+    
+            // Get the current time
+            $currentTime = new \DateTime();
+    
+            return $createdOn > $currentTime ? true : false;
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * Revoke reset token of email
+     */
+    public static function revokeResetCredentials(string $email)
     {
         if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
             // Revoke token Query
-            $query = "UPDATE `auth` SET `token` = NULL, `updated_time` = now() WHERE `email` = '$email';";
+            $query = "UPDATE `auth` SET `token` = NULL, `updated_time` = NULL WHERE `email` = '$email';";
 
             // Create a connection to database
             $conn = Database::getConnection();
-            $result = $conn->query($query);
 
-            if ($result && $conn->query($query)) {
-                return true;
-            } else {
-                throw new Exception("Password reset token cannot be revoked!");
+            try {
+                $result = $conn->query($query);
+                return $result ? true : false;
+            } catch (Exception $e) {
+                echo($e->getMessage());
             }
         }
     }

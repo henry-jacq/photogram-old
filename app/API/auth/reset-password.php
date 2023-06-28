@@ -40,7 +40,7 @@ ${basename(__FILE__, '.php')} = function () {
             $confirmNew = $this->_request['confirmNewPassword'];
 
             if (!empty($new) && !empty($confirmNew && $new === $confirmNew)) {
-                if (Auth::changePassword($email, $new) && Auth::revokeResetToken($email)) {
+                if (Auth::changePassword($email, $new) && Auth::revokeResetCredentials($email)) {
                     Session::delete('reset_email');
                     Session::set('reset_success', true);
                     $this->response($this->json([
