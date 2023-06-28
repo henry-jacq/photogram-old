@@ -43,7 +43,7 @@ $fullname = User::getFullnameByUsername($username);
 				<?php else : ?>
 					<button class="btn btn-sm btn-primary btn-follow" data-id="<?= $profile_id ?>"><i class="fa-solid fa-user-plus fa-sm me-2"></i>Follow</button>
 				<?php endif; ?>
-				<button class="btn btn-sm btn-secondary"><i class="bi bi-chat-left-text me-2"></i>Message</button>
+				<button class="btn btn-sm btn-secondary" onclick="dialog('Not Implemented!',' This feature is not implemented');"><i class="bi bi-chat-left-text me-2"></i>Message</button>
 			<?php endif; ?>
 		</div>
 	</div>
@@ -53,8 +53,9 @@ $fullname = User::getFullnameByUsername($username);
 				<h5 class="m-0"><?= ucfirst($fullname) ?>
 				</h5>
 				<p class="mb-2">@<?= $username ?>
-				<?php if (!empty($ud->getJob()) && $ud->getJob() != 'None') :
-				echo('<span class="small mb-2"> • ' . $ud->getJob() . '</span>'); endif; ?></p>
+					<?php if (!empty($ud->getJob()) && $ud->getJob() != 'None') :
+						echo ('<span class="small mb-2"> • ' . $ud->getJob() . '</span>');
+					endif; ?></p>
 				<?php if (!empty($ud->getLocation())) : ?>
 					<p class="text-secondary small"><i class="bi bi-geo-alt me-1"></i><?= $ud->getLocation() ?></p>
 				<?php endif;
@@ -75,12 +76,12 @@ $fullname = User::getFullnameByUsername($username);
 					</div>
 					<div class="vr"></div>
 					<div class="text-center">
-						<h6 class="mb-0"><?php echo(User::formatNumbers(Follow::getFollowersCount($profile_id))) ?></h6>
+						<h6 class="mb-0"><?php echo (User::formatNumbers(Follow::getFollowersCount($profile_id))) ?></h6>
 						<small>Followers</small>
 					</div>
 					<div class="vr"></div>
 					<div class="text-center">
-						<h6 class="mb-0"><?php echo(User::formatNumbers(Follow::getFollowingCount($profile_id))) ?></h6>
+						<h6 class="mb-0"><?php echo (User::formatNumbers(Follow::getFollowingCount($profile_id))) ?></h6>
 						<small>Following</small>
 					</div>
 				</div>
