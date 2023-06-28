@@ -101,7 +101,7 @@ class Follow
     public static function getFollowingCount(int $uid)
     {
         $db = Database::getConnection();
-        $sql = "SELECT COUNT(*) as followings FROM `follows` WHERE `follow` = 1 AND `user_id` = '$uid' AND `follow` = 1;";
+        $sql = "SELECT COUNT(*) as followings FROM `follows` WHERE `user_id` = '$uid' AND `follow` = 1";
         $result = $db->query($sql);
         $row = $result->fetch_assoc();
         return $row['followings'];
