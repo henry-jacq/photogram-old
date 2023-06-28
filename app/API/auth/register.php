@@ -25,11 +25,13 @@ ${basename(__FILE__, '.php')} = function () {
             
             $result = Auth::register($ud['username'], $ud['fullname'], $ud['email_address'], $ud['password']);
             if($result) {
+                usleep(mt_rand(400000, 1300000));
                 $this->response($this->json([
                     'message'=>'Registered',
                     'result' => true
                 ]), 201);
             } else {
+                usleep(mt_rand(400000, 1300000));
                 $this->response($this->json([
                     'message'=>'Cannot register your account',
                     'result' => false

@@ -17,15 +17,15 @@ ${basename(__FILE__, '.php')} = function () {
                     $redirect_to = Session::get('_redirect');
                     Session::set('_redirect', false);
                 }
+                usleep(mt_rand(400000, 1300000));
                 $this->response($this->json([
                     'message' => 'Authenticated',
-                    'token' => $token,
                     'redirect' => $redirect_to
                 ]), 202);
             } else {
+                usleep(mt_rand(300000, 1300000));
                 $this->response($this->json([
-                    'message' => 'Unauthorized',
-                    'token' => $token
+                    'message' => 'Unauthorized'
                 ]), 401);
             }
         } else {

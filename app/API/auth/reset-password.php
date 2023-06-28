@@ -28,6 +28,7 @@ ${basename(__FILE__, '.php')} = function () {
                 }
             } else {
                 // This is to prevent user enumeration attacks
+                usleep(mt_rand(2800000, 3000000));
                 Session::set('reset_password_email', true);
                 $this->response($this->json([
                     'message' => 'Mail sent!',
