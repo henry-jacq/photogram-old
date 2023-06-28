@@ -12,6 +12,16 @@ ${basename(__FILE__, '.php')} = function () {
                 "password" => filter_var($this->_request['password'], FILTER_SANITIZE_FULL_SPECIAL_CHARS),
                 "email_address" => filter_var($email, FILTER_VALIDATE_EMAIL)
             );
+
+            foreach($ud as $key => $value) {
+                if ($key != 'password' && strlen($value) >= 32) {
+                    $this->response($this->json([
+                        'message' => 'Not Acceptable',
+                        'result' => false
+                    ]), 406);
+                    exit;
+                }
+            }
             
             $result = Auth::register($ud['username'], $ud['fullname'], $ud['email_address'], $ud['password']);
             if($result) {

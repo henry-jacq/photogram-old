@@ -5,10 +5,11 @@ use App\Core\UserSession;
 
 ${basename(__FILE__, '.php')} = function () {
     if (!$this->isAuthenticated() && $this->get_request_method() == 'POST') {
-        if ($this->paramsExists(['user', 'pass'])) {
+        if ($this->paramsExists(['user', 'pass']) && strlen($this->_request['user']) < 32) {
             $user = $this->_request['user'];
             $password = $this->_request['pass'];
             $fg = isset($_COOKIE['fingerprint']) ? $_COOKIE['fingerprint'] : null;
+            
             $token = UserSession::authenticate($user, $password, $fg);
             if ($token) {
                 $redirect_to = URL_ROOT;
