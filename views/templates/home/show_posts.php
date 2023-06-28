@@ -42,7 +42,7 @@ if (Session::currentScript() == 'index' && Session::isAuthenticated()) : ?>
 							<div class="d-flex align-items-center">
 								<div class="avatar avatar-story me-2">
 									<a href="/profile/<?= $p->getOwner() ?>" class="d-block link-dark text-decoration-none" aria-expanded="false">
-										<img class="user-profile-img border rounded-circle skeleton-img" src="<?= $p->getAvatar() ?>" width="36" height="36" loading="lazy"></a>
+										<img class="user-profile-img border rounded-circle skeleton-img" src="<?= $p->getAvatar() ?>" width="40" height="40" loading="lazy"></a>
 								</div>
 								<div class="skeleton-header">
 									<div class="nav nav-divider skeleton skeleton-text">
@@ -151,7 +151,11 @@ if (Session::currentScript() == 'index' && Session::isAuthenticated()) : ?>
 								<a role="button"><i class="fa-regular fa-bookmark"></i></a>
 							</div>
 						</div>
-						<p class="card-text skeleton skeleton-text user-select-none fw-semibold mb-2"><span class="like-count"><?= Like::getLikeCount($post['id']) ?></span><span class="ms-1">Likes</span></p>
+						<p class="card-text skeleton skeleton-text user-select-none fw-semibold mb-2">
+							<span class="likedby-users" role="button" data-id="<?= $post['id'] ?>">
+								<span class="like-count me-1"><?= Like::getLikeCount($post['id']) ?></span>Likes
+							</span>
+						</p>
 						<p class="card-text post-text skeleton skeleton-text mb-2"><?= nl2br($p->getPostText()) ?></p>
 					</div>
 				<?php endif; ?>

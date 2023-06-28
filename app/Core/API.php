@@ -119,7 +119,7 @@ class API extends REST
     private function json($data)
     {
         if (is_array($data)) {
-            return json_encode($data, JSON_PRETTY_PRINT);
+            return json_encode($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
         } else {
             return "{}";
         }

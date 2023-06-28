@@ -11,7 +11,7 @@ class m002_auth {
             `username` varchar(32) NOT NULL,
             `fullname` varchar(32) NOT NULL,
             `password` varchar(256) NOT NULL,
-            `email` varchar(256) NOT NULL,
+            `email` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
             `active` int NOT NULL DEFAULT '1',
             `signup_time` timestamp NOT NULL,
             `token` varchar(16) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,

@@ -1,4 +1,4 @@
--- 27 June, 2023 Migrations
+-- 28 June, 2023 Migrations
 -- Adminer 4.8.1 MySQL 8.0.33 dump
 
 SET NAMES utf8;
@@ -13,7 +13,7 @@ CREATE TABLE `auth` (
   `username` varchar(32) NOT NULL,
   `fullname` varchar(32) NOT NULL,
   `password` varchar(256) NOT NULL,
-  `email` varchar(256) NOT NULL,
+  `email` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `active` int NOT NULL DEFAULT '1',
   `signup_time` timestamp NOT NULL,
   `token` varchar(16) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
@@ -44,8 +44,11 @@ CREATE TABLE `likes` (
   `like` int NOT NULL,
   `timestamp` timestamp NOT NULL,
   PRIMARY KEY (`id`),
+  UNIQUE KEY `id` (`id`),
   KEY `pid` (`pid`),
-  CONSTRAINT `likes_ibfk_1` FOREIGN KEY (`pid`) REFERENCES `posts` (`id`) ON DELETE CASCADE
+  KEY `uid` (`uid`),
+  CONSTRAINT `likes_ibfk_1` FOREIGN KEY (`pid`) REFERENCES `posts` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `likes_ibfk_2` FOREIGN KEY (`uid`) REFERENCES `auth` (`id`) ON DELETE CASCADE ON UPDATE SET DEFAULT
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 
@@ -112,4 +115,4 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 
--- 2023-06-27 09:58:50
+-- 2023-06-28 15:23:12

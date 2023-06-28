@@ -14,6 +14,10 @@ ${basename(__FILE__, '.php')} = function () {
             $this->response($this->json([
                 'message'=>$like->isLiked()
             ]), 200);
+        } else {
+            $this->response($this->json([
+                'message' => "Not Acceptable"
+            ]), 406);
         }
     } else {
         $this->response($this->json([

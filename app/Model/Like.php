@@ -123,4 +123,20 @@ class Like
         $result = $db->query($sql);
         return iterator_to_array($result);
     }
+
+    public static function getLikedPostUsers(int $pid)
+    {
+        $conn = Database::getConnection();
+        $query = "SELECT `uid` FROM `likes` WHERE `like` = 1 AND `pid` = '$pid'";
+        $result = $conn->query($query);
+        $data = [];
+
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $uid = $row["uid"];
+                $data[] = $uid;
+            }
+            return $data;
+        }
+    }
 }

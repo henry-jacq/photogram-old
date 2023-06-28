@@ -112,6 +112,44 @@ class User
     }
 
     /**
+     * Get username of the provided user ID
+     */
+    public static function getUsernameById(int $uid)
+    {
+        $conn = Database::getConnection();
+
+        $sql = "SELECT `username` FROM `auth` WHERE `id` = '$uid';";
+        $result = $conn->query($sql);
+
+        if ($result && $result->num_rows == 1) {
+            $row = $result->fetch_assoc();
+            return $row['username'];
+        } else {
+            throw new Exception("Can't get the username by id: " . $uid);
+        }
+    }
+
+    /**
+     * Get username of the provided user ID
+     */
+    public static function getAvatarById(int $uid)
+    {
+        $conn = Database::getConnection();
+
+        $sql = "SELECT `avatar` FROM `users` WHERE `id` = '$uid';";
+        $result = $conn->query($sql);
+
+        if ($result && $result->num_rows == 1) {
+            $row = $result->fetch_assoc();
+            if (!empty($row['avatar'])) {
+                return $row['avatar'];
+            } else {
+                return "https://api.dicebear.com/6.x/shapes/svg?seed=" . $uid;
+            }
+        }
+    }
+
+    /**
      * Returns human readable number
      */
     public static function formatNumbers(int $n)
