@@ -12,7 +12,7 @@ ${basename(__FILE__, '.php')} = function () {
             $like = new Like($post);
             $like->toggleLike();
             $this->response($this->json([
-                'message'=>$like->isLiked()
+                'liked'=>$like->isLiked()
             ]), 200);
         } else {
             $this->response($this->json([

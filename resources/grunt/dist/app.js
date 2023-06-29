@@ -1,4 +1,4 @@
-/* Processed by Grunt on 28/6/2023 @19:5:31 */
+/* Processed by Grunt on 29/6/2023 @10:6:1 */
 
 
 // Get the current URL path
@@ -536,7 +536,7 @@ $(window).on("load", function () {
 });
 
 // Change like button status
-function likeBtn(mainSelector, status=null) {
+function likeBtn(mainSelector) {
     var likeAudio = $('<audio>', {
         id: 'likePop',
         src: '/assets/like-pop.mp3'
@@ -548,37 +548,34 @@ function likeBtn(mainSelector, status=null) {
     var likeIconSelector = $('#'+likeBtnID).find('i');
     var placeholder = mainSelector.parent().next().find('.like-count');
     var currentLikes = parseInt(placeholder.text());
-    if (status == true) {
-        if (likeIconSelector.hasClass('fa-regular fa-heart')) {
-            likeIconSelector.removeClass('fa-regular fa-heart');
-            likeIconSelector.addClass('fa-solid fa-heart text-danger');
-            if (likeAudio[0].play()) {
-                placeholder.text(currentLikes += 1);
-            }
-        }
-    } else if (status == false) {
-        if (likeIconSelector.hasClass('fa-solid fa-heart text-danger')) {
-            if (currentLikes != 0) {
-                likeIconSelector.removeClass('fa-solid fa-heart text-danger');
-                likeIconSelector.addClass('fa-regular fa-heart');
-                placeholder.text(currentLikes -+ 1);
-            }
+    if (likeIconSelector.hasClass('fa-regular fa-heart')) {
+        likeAudio[0].play()
+        likeIconSelector.removeClass('fa-regular fa-heart');
+        likeIconSelector.addClass('fa-solid fa-heart text-danger');
+        placeholder.text(currentLikes += 1);
+    }
+    else {
+        if (likeIconSelector.hasClass('fa-solid fa-heart text-danger') && currentLikes != 0) {
+            likeIconSelector.removeClass('fa-solid fa-heart text-danger');
+            likeIconSelector.addClass('fa-regular fa-heart');
+            placeholder.text(currentLikes -+ 1);
+        } else {
+            console.error('Cannot dislike the button');
         }
     }
 }
 
-// Toggle likes
+// Toggle like button
 function likePost(selector, post_id) {
     if (selector !== undefined && post_id !== undefined) {
+        // Toggle like or dislike
+        likeBtn(selector);
         $.post('/api/posts/like',
         {
             id: post_id
-        }, function(data, textSuccess){
-            if(textSuccess =="success"){
-                likeBtn(selector, data.message);
-            } else {
-                console.error("Can't like the post ID: "+post_id);
-            }
+        }).fail(function () {
+            likeBtn(selector);
+            console.error("Can't like the post ID: "+post_id);
         });
     }
 }
@@ -704,7 +701,6 @@ $('.btn-download').on('click', function () {
 $('.btn-full-preview').on('click', function () {
     var clone_element = $(this).parents('header').next();
     var d = new Dialog('Full Preview', '', 'xlarge');
-    d.show('', true);
     var modal = d.clone;
     var target = modal.find('.modal-body');
 
@@ -723,6 +719,7 @@ $('.btn-full-preview').on('click', function () {
     modal.find('.modal-header').addClass('border-0 px-3 py-1');
     modal.find('.modal-title').addClass('fs-5 fw-normal');
     modal.find('.modal-footer').remove();
+    d.show('', true);
 
     if (clone_element.hasClass('carousel')) {
         clone_element.clone().appendTo(target);
