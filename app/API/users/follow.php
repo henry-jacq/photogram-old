@@ -13,7 +13,7 @@ ${basename(__FILE__, '.php')} = function () {
             $f = new Follow($uid, $this->_request['follower_id']);
             $f->toggleFollow();
             $this->response($this->json([
-                'follow' => $f->isFollowing()
+                'following' => $f->isFollowing()
             ]), 200);
         }
     } else {

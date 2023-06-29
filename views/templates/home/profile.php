@@ -39,11 +39,11 @@ $fullname = User::getFullnameByUsername($username);
 				<?php
 				if (Follow::isUserFollowing($sess_user_id, $profile_id)) :
 				?>
-					<button class="btn btn-sm btn-primary btn-follow" data-id="<?= $profile_id ?>"><i class="fa-solid fa-user-check fa-sm me-2"></i>Following</button>
+					<button class="btn btn-sm btn-primary btn-follow" data-id="<?= $profile_id ?>"><i class="bi-person-check me-1"></i>Following</button>
 				<?php else : ?>
-					<button class="btn btn-sm btn-primary btn-follow" data-id="<?= $profile_id ?>"><i class="fa-solid fa-user-plus fa-sm me-2"></i>Follow</button>
+					<button class="btn btn-sm btn-outline-primary btn-follow" data-id="<?= $profile_id ?>"><i class="bi-person-add me-1"></i>Follow</button>
 				<?php endif; ?>
-				<button class="btn btn-sm btn-secondary" onclick="dialog('Not Implemented!',' This feature is not implemented');"><i class="bi bi-chat-left-text me-2"></i>Message</button>
+				<button class="btn btn-sm btn-secondary" onclick="dialog('Not Implemented!',' This feature is not implemented');"><i class="bi bi-chat-left-text-fill me-1"></i>Message</button>
 			<?php endif; ?>
 		</div>
 	</div>
