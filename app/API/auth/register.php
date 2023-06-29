@@ -13,8 +13,18 @@ ${basename(__FILE__, '.php')} = function () {
                 "email_address" => filter_var($email, FILTER_VALIDATE_EMAIL)
             );
 
+            // Check input length and XSS attacks
             foreach($ud as $key => $value) {
                 if ($key != 'password' && strlen($value) >= 32) {
+                    $this->response($this->json([
+                        'message' => 'Not Acceptable',
+                        'result' => false
+                    ]), 406);
+                    exit;
+                }
+                $sanitizedValue = htmlspecialchars($value, ENT_QUOTES | ENT_HTML5, 'UTF-8');
+                if ($sanitizedValue !== $value) {
+                    // The value contains potentially malicious content
                     $this->response($this->json([
                         'message' => 'Not Acceptable',
                         'result' => false

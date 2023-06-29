@@ -10,7 +10,7 @@ use App\Core\Auth;
 ${basename(__FILE__, '.php')} = function () {
     if (!$this->isAuthenticated() && $this->get_request_method() == 'POST') {
         if ($this->paramsExists(['reset_email'])) {
-            $reset_email = $this->_request['reset_email'];
+            $reset_email = filter_var($this->_request['reset_email'], FILTER_VALIDATE_EMAIL);
             if (Mailer::mailExists($reset_email)) {
                 Session::set('reset_password_email', "$reset_email");
                 $link = Mailer::sendPasswordResetMail($reset_email);

@@ -30,7 +30,7 @@ class Post
     private static function registerSinglePost(array|string $image_tmp, string $postText) {
         $image_tmp = $image_tmp[0];
         $db = Database::getConnection();
-        $text = mysqli_real_escape_string($db, $postText);
+        $text = strip_tags(mysqli_real_escape_string($db, $postText));
         
         if (is_file($image_tmp) and exif_imagetype($image_tmp) !== false) {
             $owner = Session::getUser()->getUsername();
@@ -59,7 +59,7 @@ class Post
     private static function registerMultiplePost(array|string $postImage, string $postText) {
         $db = Database::getConnection();
         $owner = Session::getUser()->getUsername();
-        $text = mysqli_real_escape_string($db, $postText);
+        $text = strip_tags(mysqli_real_escape_string($db, $postText));
         
         $insert_posts = "INSERT INTO `posts` (`post_text`, `multiple_images`,`image_uri`, `uploaded_time`, `owner`) VALUES ('$text', 1, '0', now(), '$owner')";
         

@@ -48,25 +48,23 @@ class Mailer extends User
     public static function mailExists(string $email): bool
     {
         $email = User::check_sql_errors($email);
-        if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            $query = "SELECT * FROM `auth` WHERE `email` = '$email'";
+        $query = "SELECT * FROM `auth` WHERE `email` = '$email'";
 
-            // Create a connection to database
-            $conn = Database::getConnection();
+        // Create a connection to database
+        $conn = Database::getConnection();
 
-            // Get the user details [1 row] by sending this query to database.
-            $result = $conn->query($query);
+        // Get the user details [1 row] by sending this query to database.
+        $result = $conn->query($query);
 
-            if ($result->num_rows) {
-                $row = $result->fetch_assoc();
-                if ($row['email']) {
-                    return true;
-                } else {
-                    throw new \Exception("Email is not available");
-                }
+        if ($result->num_rows) {
+            $row = $result->fetch_assoc();
+            if ($row['email']) {
+                return true;
             } else {
-                return false;
+                throw new \Exception("Email is not available");
             }
+        } else {
+            return false;
         }
     }
 

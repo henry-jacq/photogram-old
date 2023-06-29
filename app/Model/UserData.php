@@ -28,7 +28,7 @@ class UserData
 
     private function escapeString($value)
     {
-        return mysqli_real_escape_string($this->conn, $value);
+        return htmlspecialchars(mysqli_real_escape_string($this->conn, $value), ENT_QUOTES | ENT_HTML5, 'UTF-8');
     }
 
     /**
