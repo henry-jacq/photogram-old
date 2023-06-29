@@ -1,13 +1,9 @@
 // Toggle follow button status
 function toggleFollow(selector) {
-    if (selector.hasClass('btn-outline-primary')) {
-        selector.removeClass('btn-outline-primary');
-        selector.addClass('btn-primary');
+    if (selector.find('i').hasClass('bi-person-add')) {
         selector.html('<i class="bi-person-check me-1"></i>Following');
     } else {
-        selector.removeClass('btn-primary');
-        selector.addClass('btn-outline-primary');
-        selector.html('<i class="bi-person-plus me-1"></i>Follow');
+        selector.html('<i class="bi-person-add me-1"></i>Follow');
     }
 }
 

@@ -1,4 +1,4 @@
-/* Processed by Grunt on 29/6/2023 @12:19:8 */
+/* Processed by Grunt on 29/6/2023 @17:56:13 */
 
 
 // Get the current URL path
@@ -378,14 +378,10 @@ if (window.location.pathname === "/edit-profile") {
 
 // Toggle follow button status
 function toggleFollow(selector) {
-    if (selector.hasClass('btn-outline-primary')) {
-        selector.removeClass('btn-outline-primary');
-        selector.addClass('btn-primary');
+    if (selector.find('i').hasClass('bi-person-add')) {
         selector.html('<i class="bi-person-check me-1"></i>Following');
     } else {
-        selector.removeClass('btn-primary');
-        selector.addClass('btn-outline-primary');
-        selector.html('<i class="bi-person-plus me-1"></i>Follow');
+        selector.html('<i class="bi-person-add me-1"></i>Follow');
     }
 }
 
@@ -777,7 +773,8 @@ $('.btn-edit-post').on('click', function () {
                     }, function (data, textSuccess) {
                         if (textSuccess == "success") {
                             successAudio[0].play();
-                            el.find('.post-text').html(ptxt.replace(/\n/g, '<br>'));
+                            el.find('.post-text').css('white-space', 'pre-line');
+                            el.find('.post-text').html(ptxt.replace(/<br\s*\/?>/ig, '<br>'));
                             masonry.layout();
                             showToast("Photogram", "Just Now", "Post text changed successfully!");
                         } else {

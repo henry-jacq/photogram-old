@@ -8,7 +8,7 @@ ${basename(__FILE__, '.php')} = function () {
     if ($this->isAuthenticated() && $this->get_request_method() == 'POST') {
         if ($this->paramsExists(['id', 'text'])) {
             $pid = (int) $this->_request['id'];
-            $text = $this->_request['text'];
+            $text = htmlspecialchars($this->_request['text']);
             $this->response($this->json([
                 'message' => Post::updatePost($pid, $text)
             ]), 200);

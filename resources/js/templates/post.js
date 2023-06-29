@@ -253,7 +253,8 @@ $('.btn-edit-post').on('click', function () {
                     }, function (data, textSuccess) {
                         if (textSuccess == "success") {
                             successAudio[0].play();
-                            el.find('.post-text').html(ptxt.replace(/\n/g, '<br>'));
+                            el.find('.post-text').css('white-space', 'pre-line');
+                            el.find('.post-text').html(ptxt.replace(/<br\s*\/?>/ig, '<br>'));
                             masonry.layout();
                             showToast("Photogram", "Just Now", "Post text changed successfully!");
                         } else {

@@ -41,7 +41,7 @@ $fullname = User::getFullnameByUsername($username);
 				?>
 					<button class="btn btn-sm btn-primary btn-follow" data-id="<?= $profile_id ?>"><i class="bi-person-check me-1"></i>Following</button>
 				<?php else : ?>
-					<button class="btn btn-sm btn-outline-primary btn-follow" data-id="<?= $profile_id ?>"><i class="bi-person-add me-1"></i>Follow</button>
+					<button class="btn btn-sm btn-primary btn-follow" data-id="<?= $profile_id ?>"><i class="bi-person-add me-1"></i>Follow</button>
 				<?php endif; ?>
 				<button class="btn btn-sm btn-secondary" onclick="dialog('Not Implemented!',' This feature is not implemented');"><i class="bi bi-chat-left-text-fill me-1"></i>Message</button>
 			<?php endif; ?>
