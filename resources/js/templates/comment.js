@@ -31,6 +31,7 @@ $('.btn-comment').on('click', function () {
             const sess_user_avatar = data.owner.avatar;
             modal_footer.find('#user-comment-avatar').attr('src', sess_user_avatar);
             if (data.message == true && data.comments.users != false) {
+                modal.find('.modal-title').text(`Comments (${data.comments.users.length})`);
                 for (let count = 0; count < data.comments.users.length; count++) {
                     let ud = data.comments.users[count];
                     let comment_id = ud.comment_id;
@@ -113,7 +114,9 @@ $('.btn-comment').on('click', function () {
     });
 
     // Delete comment
-    $(document).on('click', '.btn-delete-comment', function () {
+    $(target).on('click', '.btn-delete-comment', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
         var successAudio = $('<audio>', {
             id: 'successTone',
             src: '/assets/success.mp3'
