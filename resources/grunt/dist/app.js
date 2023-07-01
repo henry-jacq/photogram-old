@@ -1,6 +1,124 @@
-/* Processed by Grunt on 29/6/2023 @17:56:13 */
+/* Processed by Grunt on 1/7/2023 @14:10:57 */
 
 
+// Init Masonry
+var grid = document.querySelector('#masonry-area');
+if (grid) {
+    // Initialize masonry
+    var masonry = new Masonry(grid, {
+        percentPosition: true
+    });
+    // Layout Masonry after each image loads
+    imagesLoaded(grid).on('progress', function () {
+        masonry.layout();
+    });
+}
+
+$('.carousel-control-prev, .carousel-control-next').on('click', function () {
+    masonry.layout();
+});
+
+// Disable right-click on Images
+$('img').on("contextmenu", function () {
+	return false;
+});
+
+// Disable Image Dragging
+$("img").on("dragstart", function (event) {
+    event.preventDefault();
+});
+
+// Scroll to top
+if ($('#scroll-top-btn').length != 0) {
+    var scrollTopBtn = $('#scroll-top-btn');
+    $(window).on('scroll', function () {
+        var scrollPos = $(this).scrollTop();
+
+        if (scrollPos > 0) {
+            scrollTopBtn.removeClass('d-none').fadeIn('slow');
+        } else {
+            scrollTopBtn.fadeOut(function () {
+                $(this).addClass('d-none');
+            });
+        }
+    });
+    scrollTopBtn.on('click', function (e) {
+        e.preventDefault();
+        $('html').animate({ scrollTop: 0 }, 'fast');
+    });
+}
+
+// Initialize if the upload button clicked and dropzone element exists
+$('#postUploadButton').on('click', function () {
+    var id = display_form_dialog();
+    $('#' + id).on('shown.bs.modal', function () {
+        // Dropzone - To upload the files
+        if (document.querySelector('#dzCreatePost')) {
+            Dropzone.autoDiscover = false;
+
+            // Initializing Dropzone
+            var myDropzone = new Dropzone("#dzCreatePost", {
+                url: "/api/posts/create",
+                paramName: "file",
+                maxFiles: 2,
+                maxFilesize: 5,
+                parallelUploads: 2,
+                uploadMultiple: true,
+                acceptedFiles: ".png,.jpeg,.jpg,.gif,.mp4,",
+                autoProcessQueue: false
+            });
+
+            // Disable buttons if there is no data in the form
+            setInterval(() => {
+                if (myDropzone.files.length > 0) {
+                    $('.btn-reset, .btn-upload').prop('disabled', false);
+                } else {
+                    $('.btn-reset, .btn-upload').prop('disabled', true);
+                }
+            }, 500);
+
+            // Upload post
+            $('.btn-upload').on('click', function (e) {
+                e.preventDefault();
+                const spinner = `<span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span> Posting`;
+                // Spinner is used to indicate an action is currently processing
+                $(this).html(spinner);
+                myDropzone.processQueue();
+                myDropzone.on("queuecomplete", function () {
+                    location.reload();
+                });
+            });
+
+            // Reset the form
+            $('.btn-reset').on('click', function () {
+                $('[name=post_text]').val('');
+
+                const length = $('[name=post_text]').val().length;
+                $('#total_chars').text(`${length}/240`);
+
+                if (myDropzone.files.length > 0) {
+                    myDropzone.removeAllFiles();
+                }
+            });
+        }
+
+        // Character limit on post text
+        const myInput = $('[name=post_text]');
+        const charCount = $('#total_chars');
+        const maxLength = 240;
+
+        myInput.on('input', function () {
+            const length = myInput.val().length;
+            charCount.removeClass('visually-hidden');
+
+            if (length > maxLength) {
+                const truncatedValue = myInput.val().slice(0, maxLength);
+                myInput.val(truncatedValue);
+            }
+            charCount.text(`${myInput.val().length}/${maxLength}`);
+        });
+    });
+});
 // Get the current URL path
 var currentPath = window.location.pathname;
 
@@ -308,6 +426,130 @@ if (regex.test(window.location.pathname)) {
     });
   });
 }
+// Comment on post
+let comment_frame = `<div class="container"><ul id="comment-list" class="list-group list-group-flush my-3"></ul></div>`;
+
+let comment_clone = `<li id="comment" class="list-group-item border-0"><div class="d-flex"><div class="mt-1 me-1"><div class="d-none d-sm-inline-block me-2"><img id="commenter-avatar" class="border rounded-circle" src="" width="46" height="46" loading="lazy"/></div></div><div class="bg-body-tertiary border px-3 py-2 rounded w-100"><div class="d-flex justify-content-between mb-1"><h6 class="fw-semibold mb-0"><a id="commenter-name" class="text-body" href=""></a></h6><small id="commented-time" class="ms-2">Now</small></div><p id="commenter-text" class="mb-2"></p></div></div></li>`;
+
+let comment_send_form = `<div class="me-2"><img id="user-comment-avatar" class="border rounded-circle" src="" width="40" height="40"></div><form class="text-body position-relative w-100"><textarea id="add-comment" class="form-control pe-5" rows="1" maxlength="43" placeholder="Add a comment..."></textarea><button class="btn btn-comment-send focus-ring focus-ring-prime border-0 position-absolute top-50 end-0 translate-middle-y" type="button" disabled><i class="bi bi-send-fill text-prime"></i></button></form>`;
+
+var deleteBtn = `<a class="btn-delete-comment mt-2 small text-danger" role="button">Delete</a>`;
+
+$('.btn-comment').on('click', function () {
+    var d = new Dialog('Comments', comment_frame);
+    d.show('', true);
+    var modal = d.clone;
+    var modal_footer = modal.find('.modal-footer');
+    modal.find('.modal-body').addClass('p-2');
+    modal_footer.addClass('flex-nowrap');
+    modal_footer.empty().html(comment_send_form);
+    modal_footer.find('#add-comment').css('resize', 'none');
+    modal.find('.modal-dialog').addClass('modal-dialog-scrollable');
+
+    const post_id = $(this).attr('data-id');
+    const target = modal.find('#comment-list');
+
+    // Display comments on modal
+    $.post('/api/posts/comments/users',
+    {
+        id: post_id
+    }, function (data, textSuccess) {
+        if (textSuccess == 'success') {
+            const sess_user_name = data.owner.username;
+            const sess_user_avatar = data.owner.avatar;
+            modal_footer.find('#user-comment-avatar').attr('src', sess_user_avatar);
+            if (data.message == true && data.comments.users != false) {
+                for (let count = 0; count < data.comments.users.length; count++) {
+                    let ud = data.comments.users[count];
+                    let comment_id = ud.comment_id;
+                    let comment_body = ud.comment;
+                    let timestamp = ud.timestamp;
+                    let username = ud.username;
+                    let fullname = ud.fullname;
+                    let avatar = ud.avatar;
+                    target.append(comment_clone);
+                    target.find('#commenter-avatar').attr('src', avatar);
+                    target.find('#commenter-avatar').attr('id', Math.random() * 1000 + count);
+                    target.find('#commenter-name').text(fullname);
+                    target.find('#commenter-name').attr('href', '/profile/' + username);
+                    target.find('#commenter-name').attr('id', Math.random() * 1000 + count);
+                    target.find('#commented-time').empty().text(timestamp);
+                    target.find('#commented-time').attr('id', Math.random() * 1000 + count);
+                    target.find('#comment').attr('id', Math.random() * 1000 + count);
+                    target.find('#commenter-text').empty().text(comment_body);
+                    if (sess_user_name == username) {
+                        $(deleteBtn).insertAfter(target.find('#commenter-text'));
+                        let btnDeleteComment = $(target.find('#commenter-text')).next();
+                        btnDeleteComment.attr('data-id', comment_id);
+                    }
+                    target.find('#commenter-text').attr('id', Math.random() * 1000 + count);
+                }
+            } else {
+                $('<h5 class="comment-not-found text-center my-5"><i class="bi bi-exclamation-triangle me-2"></i>No comments found</h5>').appendTo(target);
+            }
+        } else {
+            console.error("Cannot fetch comments for post ID: " + post_id);
+        }
+    });
+
+    // Handle form
+    $(modal_footer.find('#add-comment')).on('input', function () {
+        let commentText = $(this).val();
+        if (commentText != '' && commentText.length < 43) {
+            $('.btn-comment-send').removeAttr('disabled');
+        } else {
+            $('.btn-comment-send').attr('disabled', true);
+        }
+    });
+
+    // Send a new comment
+    $('.btn-comment-send').on('click', function () {
+        let commentText = $(modal_footer.find('#add-comment')).val();
+        $.post('/api/posts/comments/create',
+            {
+                pid: post_id,
+                comment: commentText
+            }, function (data) {
+                if (data.message == true) {
+                    if (target.find('.comment-not-found')) {
+                        target.find('.comment-not-found').remove();
+                    }
+                    target.prepend(comment_clone);
+                    target.find('#commenter-avatar').attr('src', data.avatar);
+                    target.find('#commenter-avatar').attr('id', Math.random() * 1000)
+                    target.find('#commenter-name').text(data.fullname);
+                    target.find('#commenter-name').attr('href', '/profile/' + data.username);
+                    target.find('#commenter-name').attr('id', Math.random() * 1000)
+                    modal_footer.find('#add-comment').val('');
+                    target.find('#comment').attr('id', Math.random() * 1000)
+                    target.find('#commenter-text').empty().text(commentText);
+                    $(deleteBtn).insertAfter(target.find('#commenter-text'));
+                    let btnDeleteComment = $(target.find('#commenter-text')).next();
+                    btnDeleteComment.attr('data-id', data.comment_id)
+                    target.find('#commenter-text').attr('id', Math.random() * 1000);
+                    $('.btn-comment-send').attr('disabled', true);
+                }
+            });
+    });
+
+    // Delete comment
+    $(document).on('click', '.btn-delete-comment', function () {
+        let cid = $(this).attr('data-id');
+        let comment_box = $(this).parents('.list-group-item');
+
+        $.post('/api/posts/comments/delete',
+            {
+                comment_id: cid
+            }, function (data) {
+                if (data.message == true) {
+                    comment_box.fadeOut(300, function () {
+                        comment_box.remove();
+                    });
+                }
+            });
+    });
+});
+
 // Update profile details
 if (window.location.pathname === "/edit-profile") {
     $('.btn-save-data').on('click', function (e) {
@@ -400,124 +642,6 @@ $('.btn-follow').on('click', function () {
     });;
 });
 
-// Init Masonry
-var grid = document.querySelector('#masonry-area');
-if (grid) {
-    // Initialize masonry
-    var masonry = new Masonry(grid, {
-        percentPosition: true
-    });
-    // Layout Masonry after each image loads
-    imagesLoaded(grid).on('progress', function () {
-        masonry.layout();
-    });
-}
-
-$('.carousel-control-prev, .carousel-control-next').on('click', function () {
-    masonry.layout();
-});
-
-// Disable right-click on Images
-$('img').on("contextmenu", function () {
-	return false;
-});
-
-// Disable Image Dragging
-$("img").on("dragstart", function (event) {
-    event.preventDefault();
-});
-
-// Scroll to top
-if ($('#scroll-top-btn').length != 0) {
-    var scrollTopBtn = $('#scroll-top-btn');
-    $(window).on('scroll', function () {
-        var scrollPos = $(this).scrollTop();
-
-        if (scrollPos > 0) {
-            scrollTopBtn.removeClass('d-none').fadeIn('slow');
-        } else {
-            scrollTopBtn.fadeOut(function () {
-                $(this).addClass('d-none');
-            });
-        }
-    });
-    scrollTopBtn.on('click', function (e) {
-        e.preventDefault();
-        $('html').animate({ scrollTop: 0 }, 'fast');
-    });
-}
-
-// Initialize if the upload button clicked and dropzone element exists
-$('#postUploadButton').on('click', function () {
-    var id = display_form_dialog();
-    $('#' + id).on('shown.bs.modal', function () {
-        // Dropzone - To upload the files
-        if (document.querySelector('#dzCreatePost')) {
-            Dropzone.autoDiscover = false;
-
-            // Initializing Dropzone
-            var myDropzone = new Dropzone("#dzCreatePost", {
-                url: "/api/posts/create",
-                paramName: "file",
-                maxFiles: 2,
-                maxFilesize: 5,
-                parallelUploads: 2,
-                uploadMultiple: true,
-                acceptedFiles: ".png,.jpeg,.jpg,.gif,.mp4,",
-                autoProcessQueue: false
-            });
-
-            // Disable buttons if there is no data in the form
-            setInterval(() => {
-                if (myDropzone.files.length > 0) {
-                    $('.btn-reset, .btn-upload').prop('disabled', false);
-                } else {
-                    $('.btn-reset, .btn-upload').prop('disabled', true);
-                }
-            }, 500);
-
-            // Upload post
-            $('.btn-upload').on('click', function (e) {
-                e.preventDefault();
-                const spinner = `<span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span> Posting`;
-                // Spinner is used to indicate an action is currently processing
-                $(this).html(spinner);
-                myDropzone.processQueue();
-                myDropzone.on("queuecomplete", function () {
-                    location.reload();
-                });
-            });
-
-            // Reset the form
-            $('.btn-reset').on('click', function () {
-                $('[name=post_text]').val('');
-
-                const length = $('[name=post_text]').val().length;
-                $('#total_chars').text(`${length}/240`);
-
-                if (myDropzone.files.length > 0) {
-                    myDropzone.removeAllFiles();
-                }
-            });
-        }
-
-        // Character limit on post text
-        const myInput = $('[name=post_text]');
-        const charCount = $('#total_chars');
-        const maxLength = 240;
-
-        myInput.on('input', function () {
-            const length = myInput.val().length;
-            charCount.removeClass('visually-hidden');
-
-            if (length > maxLength) {
-                const truncatedValue = myInput.val().slice(0, maxLength);
-                myInput.val(truncatedValue);
-            }
-            charCount.text(`${myInput.val().length}/${maxLength}`);
-        });
-    });
-});
 // Skeleton loading effect
 $('.carousel, .post-card-image, .btn-like').hide();
 

@@ -141,7 +141,7 @@ if (Session::currentScript() == 'index' && Session::isAuthenticated()) : ?>
 							<div class="btn-like" data-id="<?= $post['id'] ?>">
 								<a id="like-<?= $post['id'] ?>" role="button"><i class="btn fs-5 mb-1 p-0 border-0 <?php echo (Like::isUserLiked($post['id'])) ? 'fa-solid fa-heart text-danger' : 'fa-regular fa-heart'; ?>"></i></a>
 							</div>
-							<div class="btn-comment">
+							<div class="btn-comment" data-id="<?= $post['id'] ?>">
 								<a role="button"><i class="fa-regular fa-comment"></i></a>
 							</div>
 							<div class="btn-share">
