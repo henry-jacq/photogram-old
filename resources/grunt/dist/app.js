@@ -1,4 +1,4 @@
-/* Processed by Grunt on 1/7/2023 @14:10:57 */
+/* Processed by Grunt on 1/7/2023 @16:21:39 */
 
 
 // Init Masonry
@@ -429,7 +429,7 @@ if (regex.test(window.location.pathname)) {
 // Comment on post
 let comment_frame = `<div class="container"><ul id="comment-list" class="list-group list-group-flush my-3"></ul></div>`;
 
-let comment_clone = `<li id="comment" class="list-group-item border-0"><div class="d-flex"><div class="mt-1 me-1"><div class="d-none d-sm-inline-block me-2"><img id="commenter-avatar" class="border rounded-circle" src="" width="46" height="46" loading="lazy"/></div></div><div class="bg-body-tertiary border px-3 py-2 rounded w-100"><div class="d-flex justify-content-between mb-1"><h6 class="fw-semibold mb-0"><a id="commenter-name" class="text-body" href=""></a></h6><small id="commented-time" class="ms-2">Now</small></div><p id="commenter-text" class="mb-2"></p></div></div></li>`;
+let comment_clone = `<li id="comment" class="list-group-item border-0"><div class="d-flex"><div class="mt-1 me-1"><div class="me-2"><img id="commenter-avatar" class="border rounded-circle" src="" width="46" height="46" loading="lazy"/></div></div><div class="bg-body-tertiary border px-3 py-2 rounded w-100"><div class="d-flex justify-content-between mb-1"><h6 class="fw-semibold mb-0"><a id="commenter-name" class="text-body" href=""></a></h6><small id="commented-time" class="ms-2">Now</small></div><p id="commenter-text" class="mb-2"></p></div></div></li>`;
 
 let comment_send_form = `<div class="me-2"><img id="user-comment-avatar" class="border rounded-circle" src="" width="40" height="40"></div><form class="text-body position-relative w-100"><textarea id="add-comment" class="form-control pe-5" rows="1" maxlength="43" placeholder="Add a comment..."></textarea><button class="btn btn-comment-send focus-ring focus-ring-prime border-0 position-absolute top-50 end-0 translate-middle-y" type="button" disabled><i class="bi bi-send-fill text-prime"></i></button></form>`;
 
@@ -505,48 +505,64 @@ $('.btn-comment').on('click', function () {
     // Send a new comment
     $('.btn-comment-send').on('click', function () {
         let commentText = $(modal_footer.find('#add-comment')).val();
+        var messageAudio = $('<audio>', {
+            id: 'messageTone',
+            src: '/assets/message-tone.mp3'
+        });
+        if ($('#messageTone').length === 0) {
+            $('body').append(messageAudio);
+        }
         $.post('/api/posts/comments/create',
-            {
-                pid: post_id,
-                comment: commentText
-            }, function (data) {
-                if (data.message == true) {
-                    if (target.find('.comment-not-found')) {
-                        target.find('.comment-not-found').remove();
-                    }
-                    target.prepend(comment_clone);
-                    target.find('#commenter-avatar').attr('src', data.avatar);
-                    target.find('#commenter-avatar').attr('id', Math.random() * 1000)
-                    target.find('#commenter-name').text(data.fullname);
-                    target.find('#commenter-name').attr('href', '/profile/' + data.username);
-                    target.find('#commenter-name').attr('id', Math.random() * 1000)
-                    modal_footer.find('#add-comment').val('');
-                    target.find('#comment').attr('id', Math.random() * 1000)
-                    target.find('#commenter-text').empty().text(commentText);
-                    $(deleteBtn).insertAfter(target.find('#commenter-text'));
-                    let btnDeleteComment = $(target.find('#commenter-text')).next();
-                    btnDeleteComment.attr('data-id', data.comment_id)
-                    target.find('#commenter-text').attr('id', Math.random() * 1000);
-                    $('.btn-comment-send').attr('disabled', true);
+        {
+            pid: post_id,
+            comment: commentText
+        }, function (data) {
+            if (data.message == true) {
+                if (target.find('.comment-not-found')) {
+                    target.find('.comment-not-found').remove();
                 }
-            });
+                target.prepend(comment_clone);
+                messageAudio[0].play();
+                target.find('#commenter-avatar').attr('src', data.avatar);
+                target.find('#commenter-avatar').attr('id', Math.random() * 1000)
+                target.find('#commenter-name').text(data.fullname);
+                target.find('#commenter-name').attr('href', '/profile/' + data.username);
+                target.find('#commenter-name').attr('id', Math.random() * 1000)
+                modal_footer.find('#add-comment').val('');
+                target.find('#comment').attr('id', Math.random() * 1000)
+                target.find('#commenter-text').empty().text(commentText);
+                $(deleteBtn).insertAfter(target.find('#commenter-text'));
+                let btnDeleteComment = $(target.find('#commenter-text')).next();
+                btnDeleteComment.attr('data-id', data.comment_id)
+                target.find('#commenter-text').attr('id', Math.random() * 1000);
+                $('.btn-comment-send').attr('disabled', true);
+            }
+        });
     });
 
     // Delete comment
     $(document).on('click', '.btn-delete-comment', function () {
+        var successAudio = $('<audio>', {
+            id: 'successTone',
+            src: '/assets/success.mp3'
+        });
+        if ($('#successTone').length === 0) {
+            $('body').append(successAudio);
+        }
         let cid = $(this).attr('data-id');
         let comment_box = $(this).parents('.list-group-item');
 
         $.post('/api/posts/comments/delete',
-            {
-                comment_id: cid
-            }, function (data) {
-                if (data.message == true) {
-                    comment_box.fadeOut(300, function () {
-                        comment_box.remove();
-                    });
-                }
-            });
+        {
+            comment_id: cid
+        }, function (data) {
+            if (data.message == true) {
+                successAudio[0].play();
+                comment_box.fadeOut(300, function () {
+                    comment_box.remove();
+                });
+            }
+        });
     });
 });
 

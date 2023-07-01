@@ -25,7 +25,7 @@ class m009_comments
     public function down()
     {
         $db = new Database;
-        $sql = "DROP TABLE `follow`";
+        $sql = "DROP TABLE `comments`";
         $db->prepare($sql);
     }
 }
