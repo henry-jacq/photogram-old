@@ -3,9 +3,9 @@
 // Reset user password
 // https://{{domain}}/api/auth/reset-password
 
-use App\Core\Mailer;
-use App\Core\Session;
 use App\Core\Auth;
+use App\Core\Session;
+use App\Services\Mailer;
 
 ${basename(__FILE__, '.php')} = function () {
     if (!$this->isAuthenticated() && $this->get_request_method() == 'POST') {

@@ -1,16 +1,15 @@
 <?php
 
+namespace App\Services;
 
-namespace App\Core;
-
-
+use App\Core\Auth;
+use App\Core\User;
+use App\Core\Database;
 // use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\PHPMailer;
 
 /**
  * Mailer - PHPMailer wrapper for sending emails
- *
- * @author Henry <henryeditz267@gmail.com>
  */
 
 class Mailer extends User
