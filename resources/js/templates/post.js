@@ -48,7 +48,7 @@ function likePost(selector, post_id) {
     if (selector !== undefined && post_id !== undefined) {
         // Toggle like or dislike
         likeBtn(selector);
-        $.post('/api/posts/like',
+        $.post('/api/posts/likes/like',
         {
             id: post_id
         }).fail(function () {
@@ -301,7 +301,7 @@ $('.likedby-users').on('click', function () {
     modal.find('.modal-dialog').addClass('modal-dialog-scrollable');
     modal.find('.modal-footer').remove();
 
-    $.post('/api/posts/liked-users',
+    $.post('/api/posts/likes/users',
     {
         id: post_id
     }, function (data) {

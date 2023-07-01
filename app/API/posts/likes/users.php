@@ -3,7 +3,7 @@
 use App\Core\User;
 use App\Model\Like;
 
-// https://{{domain}}/api/posts/liked-users
+// https://{{domain}}/api/posts/likes/users
 
 ${basename(__FILE__, '.php')} = function () {
     if ($this->isAuthenticated() && $this->get_request_method() == 'POST') {

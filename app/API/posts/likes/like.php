@@ -3,7 +3,7 @@
 use App\Model\Post;
 use App\Model\Like;
 
-// https://{{domain}}/api/posts/like
+// https://{{domain}}/api/posts/likes/like
 
 ${basename(__FILE__, '.php')} = function () {
     if ($this->isAuthenticated() && $this->get_request_method() == 'POST') {
