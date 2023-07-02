@@ -305,7 +305,7 @@ $('.likedby-users').on('click', function () {
     {
         id: post_id
     }, function (data) {
-        if (data.message == true) {
+        if (data.message == true && data.users != null) {
             for (let count = 0; count < data.users.length; count++) {
                 let ud = data.users[count];
                 let username = ud.username;
@@ -321,6 +321,8 @@ $('.likedby-users').on('click', function () {
                 target.find('#link').attr('href', '/profile/' + username);
                 target.find('#link').attr('id', 'link' + count);
             }
+        } else {
+            $('<h5 class="text-center my-5"><i class="bi bi-exclamation-triangle me-2"></i>No liked users found</h5>').prependTo(modal.find('.modal-body').empty())
         }
     });
 });
