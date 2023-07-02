@@ -233,30 +233,3 @@ function display_dialog(bt_name,content,func){
 	d.show();
 }
 
-function display_form_dialog(){
-	var uploadForm = `
-	<div class="text-center mt-1 mb-4">
-		<h1 class="fs-4 fw-normal mb-1">What's on your mind?</h1>
-		<p class="fw-light lead">Unleash your creativity!</p>
-	</div>
-	<form class="dropzone border-1 rounded mb-3" id="dzCreatePost" method="POST" action="/api/posts/create">
-		<textarea class="form-control mb-3" name="post_text" rows="3" placeholder="Say something..."></textarea>
-		<p id="total_chars" class="visually-hidden text-end"></p>
-		<div class="dz-message py-2">
-			<i class="bi bi-images display-4"></i>
-			<p>Drop files here or click to upload</p>
-		</div>
-	</form>
-	<hr class="py-1">
-	<button class="btn btn-primary btn-upload float-end" type="submit" disabled>Post</button>
-	<button class="btn btn-secondary btn-reset float-end me-2" disabled>Clear</button>
-	`;
-
-	var title = `<i class="bi bi-plus-circle-dotted me-2"></i>Create Post`;
-	
-	d = new Dialog(title, uploadForm);
-	d.show("primary", true);
-	var id = d.cloneId;
-	$("#"+ id +" > .modal-dialog > .modal-content > .modal-footer").remove();
-	return id;
-}
