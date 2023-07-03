@@ -87,32 +87,10 @@ $fullname = User::getFullnameByUsername($username);
 				</div>
 			</div>
 		</div>
-
-		<ul class="nav nav-pills mt-3 gap-3">
-			<li class="nav-item">
-				<a class="nav-link rounded-pill active" data-bs-toggle="tab" href="#feed">Feed</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link disabled rounded-pill" data-bs-toggle="tab" href="#collections">Collections</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link disabled rounded-pill" data-bs-toggle="tab" href="#likes">Likes</a>
-			</li>
-		</ul>
-		<hr class="mt-2 mb-3">
-		<div class="tab-content">
-			<div class="tab-pane fade show active" id="feed">
-				<!-- <h5>Feed Content</h5> -->
-				<?= View::renderTemplate('templates/home/show_posts') ?>
-			</div>
-			<div class="tab-pane fade" id="collections">
-				<h5>Collections Content</h5>
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean sed semper felis. Fusce eget eros arcu. Nullam iaculis, ante ut viverra ullamcorper, lorem erat varius odio, vitae aliquet erat ipsum at metus.</p>
-			</div>
-			<div class="tab-pane fade" id="likes">
-				<h5>Likes Content</h5>
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean sed semper felis. Fusce eget eros arcu. Nullam iaculis, ante ut viverra ullamcorper, lorem erat varius odio, vitae aliquet erat ipsum at metus.</p>
-			</div>
+		<div class="ms-3 mt-4">
+			<h4 class="fw-normal">Posts</h4>
 		</div>
+		<hr class="mt-2 mb-3">
+		<?= View::renderTemplate('templates/home/show_posts') ?>
 	</div>
 </div>

@@ -147,9 +147,6 @@ if (Session::currentScript() == 'index' && Session::isAuthenticated()) : ?>
 							<div class="btn-share">
 								<a role="button"><i class="fa-regular fa-paper-plane mt-1"></i></a>
 							</div>
-							<div class="btn-bookmark ms-auto">
-								<a role="button"><i class="fa-regular fa-bookmark"></i></a>
-							</div>
 						</div>
 						<p class="card-text skeleton skeleton-text user-select-none fw-semibold mb-2">
 							<span class="likedby-users" role="button" data-id="<?= $post['id'] ?>">
