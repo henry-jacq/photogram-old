@@ -20,6 +20,7 @@ Before starting the project, you will need to have the following packages instal
 
 - PHP (v8.0 above)
 - NPM
+- Curl
 - Composer
 - Apache web server
 
@@ -38,17 +39,22 @@ npm install
 ```
 
 Install php-gd extension:
-
 - This extension is used for image processing
 
 ```bash
 sudo apt-get install php-gd
 ```
 
-Make sure that extension gd is uncommented in php.ini config
+Uncomment the gd extension in php.ini config:
 ```php
 ;extension=gd
 extension=gd
+```
+
+Enabling apache modules:
+```bash
+sudo a2enmod headers
+sudo a2enmod rewrite
 ```
 
 Restart apache to apply changes
@@ -89,11 +95,11 @@ php database/migrations.php
 
 ## Usage
 
-The Photogram application has an intuitive and user-friendly interface that makes it easy to share your photos with others. Once you've logged in to your account, simply click on the upload button and select the images you wish to share. It will guide you through the process of uploading your photos and adding relevant tags and descriptions.
+The Photogram application has an intuitive and user-friendly interface that makes it easy to share your photos with others. Once you've logged in to your account, simply click on the upload button and select the images you wish to share. It will guide you through the process of uploading your photos and adding relevant descriptions.
 
-Once your photos are uploaded, they will be visible to other users on the platform. You can browse and search through existing content, and interact with other users by liking their photos.
+Once your photos are uploaded, they will be visible to other users on the platform. You can browse and search through existing content, and interact with other users by liking and commenting on their photos.
 
-Overall, Photogram is a powerful yet simple-to-use platform that makes it easy to share your visual creations with the world. Whether you're a professional photographer or just someone who loves to capture and share moments with others, Photogram is the perfect platform for you.
+Overall, Photogram is a powerful yet simple-to-use platform that makes it easy to share your visual creations. Whether you're a professional photographer or just someone who loves to capture and share moments with others, Photogram is the perfect platform for you.
 
 ## Contributing
 
@@ -102,6 +108,5 @@ We welcome contributions to the Photogram project! Here are some ways you can ge
 - Report bugs and suggest new features by creating an issue on our [git repository](https://git.selfmade.ninja/Henry/photogram/-/issues).
 - Contribute code by forking the repository, making changes, and submitting a pull request.
 - Help improve the documentation by submitting a pull request with your changes.
-- Share Photogram with others by spreading the word on social media or in online communities.
 
 Thank you for your interest in contributing to Photogram!
