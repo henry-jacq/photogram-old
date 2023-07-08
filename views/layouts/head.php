@@ -22,7 +22,7 @@ use App\Core\Session;
 	<meta name="twitter:card" content="summary_large_image">
 	<meta name="twitter:title" content="Photogram">
 	<meta name="twitter:description" content="Photogram is an easy-to-use web app for sharing photos with a clean and uncluttered interface.">
-	<meta name="twitter:image" content="https://iphotogram.selfmade.one/assets/screenshot-2.png">
+	<meta name="twitter:image" content="<?= URL_ROOT ?>assets/screenshot-2.png">
 
 	<?php if (Session::isAuthenticated()) { ?>
 		<?php if (Session::currentScript() == "index") { ?>
