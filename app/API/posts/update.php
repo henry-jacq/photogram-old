@@ -6,7 +6,7 @@ use App\Model\Post;
 
 ${basename(__FILE__, '.php')} = function () {
     if ($this->isAuthenticated() && $this->get_request_method() == 'POST') {
-        if ($this->paramsExists(['id', 'text'])) {
+        if ($this->paramsExists(['id', 'text']) && Post::verifyOwner((int) $this->_request['id'])) {
             $pid = (int) $this->_request['id'];
             $text = htmlspecialchars($this->_request['text']);
             $this->response($this->json([

@@ -259,6 +259,34 @@ class Post
     }
 
     /**
+     * It verifies the post and session owner
+     */
+    public static function verifyOwner(int $pid): bool
+    {
+        $db = Database::getConnection();
+        
+        try {
+            $sess_user = Session::getUser()->getUsername();
+            $sql = "SELECT * FROM `posts` WHERE `id`=$pid;";
+    
+            $result = $db->query($sql);
+            if ($result->num_rows == 1) {
+                $row = $result->fetch_assoc();
+                $p_user = $row['owner'];
+            }
+    
+            if ($sess_user == $p_user) {
+                return true;
+            }
+    
+            return false;
+            
+        } catch (Exception $e) {
+            throw new Exception(__CLASS__ . "::verifyOwner, cannot verify the post owner and session owner!");
+        }
+    }
+
+    /**
      * Dump all posts from database
      */
     public static function getAllPosts()
